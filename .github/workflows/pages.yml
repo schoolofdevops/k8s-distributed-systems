@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+# This workflow lives on `main`, the repo's default branch — deliberately
+# NOT on `gh-pages`, which is fully overwritten by every deploy from the
+# private src repo (peaceiris/actions-gh-pages does a clean replace of
+# that branch's content each run; keeping this file there proved
+# unreliable across several attempts, confirmed by watching it vanish
+# even with keep_files: true set).
+#
+# Trigger: a repository_dispatch event fired by the src repo's own deploy
+# workflow right after it pushes new content to gh-pages here. This avoids
+# ever needing to write to .github/workflows/* with the src repo's
+# DEPLOY_TOKEN, which lacks the `workflow` OAuth scope GitHub requires for
+# that (and dispatching an event doesn't need it either).
+
+on:
+  repository_dispatch:
+    types: [content-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: gh-pages
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
