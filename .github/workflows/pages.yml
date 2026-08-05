@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+# This repo holds the pre-built static site, pushed here by the private src
+# repo's own build workflow. This workflow's only job is to publish whatever
+# lands on this branch via the native GitHub Pages (Actions) deployment.
+#
+# This file is maintained manually in this repo (not by the src repo's
+# automated deploy) — DEPLOY_TOKEN there lacks the `workflow` OAuth scope
+# needed to create/modify files under .github/workflows/, by GitHub design.
+# The src repo's deploy.yml uses keep_files: true so this file survives
+# every content deploy without needing to touch it.
+
+on:
+  push:
+    branches: [gh-pages]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
