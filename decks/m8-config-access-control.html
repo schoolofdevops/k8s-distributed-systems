@@ -175,6 +175,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M8·01</div>
 </section>
 
+<!-- DIVIDER · intro lead-in -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Two gaps still open</h2>
+  <div class="pageno">M8·02</div>
+</section>
+
 <!-- 2 · two gaps -->
 <section>
   <h2 class="t">The app runs — two things would fail a review</h2>
@@ -206,7 +212,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="940" y="180" text-anchor="middle" class="lbl-sm">db</text>
     <text x="685" y="260" text-anchor="middle" class="lbl-sm" fill="#c62828">debug pod</text>
   </svg>
-  <div class="pageno">M8·02</div>
+  <div class="pageno">M8·03</div>
+</section>
+
+<!-- DIVIDER · The analogy: a secured research campus -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: a secured research campus</h2>
+  <div class="pageno">M8·04</div>
 </section>
 
 <!-- 3 · campus scene anchor -->
@@ -248,7 +260,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="936" y="235" text-anchor="middle" class="lbl-sm">envelope</text>
     <text x="885" y="270" text-anchor="middle" class="lbl-g">= config</text>
   </svg>
-  <div class="pageno">M8·03</div>
+  <div class="pageno">M8·05</div>
 </section>
 
 <!-- 4 · two jobs kept apart -->
@@ -280,12 +292,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="860" y="245" text-anchor="middle" class="lbl-sm">mailroom</text>
     <text x="970" y="255" text-anchor="middle" class="lbl-sm">door</text>
   </svg>
-  <div class="pageno">M8·04</div>
+  <div class="pageno">M8·06</div>
+</section>
+
+<!-- DIVIDER · Moving configuration out: ConfigMaps and Secrets -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Moving configuration out: ConfigMaps and Secrets</h2>
+  <div class="pageno">M8·07</div>
 </section>
 
 <!-- 5 · config welded breaks -->
 <section>
-  <h2 class="t">Config welded in breaks at environment two</h2>
+  <h2 class="t">Config welded in breaks at the second environment</h2>
   <p class="s">Swap the sheet, not the worker.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="On the left, a manifest with the database host as a literal value, crossed out. An arrow points right to three near-identical manifests for dev, staging, and production that differ only by a few strings.">
     <g filter="url(#rough)">
@@ -308,7 +326,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="790" y="258" text-anchor="middle" class="lbl-sm">prod manifest</text>
     <text x="700" y="322" text-anchor="middle" class="lbl-g" fill="#c62828">three near-identical files, one wrong string away</text>
   </svg>
-  <div class="pageno">M8·05</div>
+  <div class="pageno">M8·08</div>
 </section>
 
 <!-- 6 · ConfigMap sheet / Secret envelope -->
@@ -337,7 +355,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="245" text-anchor="middle" class="lbl-sm">DB_PASSWORD</text>
     <text x="805" y="298" text-anchor="middle" class="lbl-g">the sealed envelope</text>
   </svg>
-  <div class="pageno">M8·06</div>
+  <div class="pageno">M8·09</div>
 </section>
 
 <!-- 7 · Secret encoded not encrypted -->
@@ -363,7 +381,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="248" text-anchor="middle" class="lbl-b">the real win</text>
     <text x="550" y="282" text-anchor="middle" class="lbl-sm" fill="#2e7d32">a separate object with its own RBAC</text>
   </svg>
-  <div class="pageno">M8·07</div>
+  <div class="pageno">M8·10</div>
 </section>
 
 <!-- 8 · envFrom injects every key -->
@@ -393,7 +411,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="947" y="188" text-anchor="middle" class="lbl-sm" fill="#2e7d32">db: connected</text>
   </svg>
-  <div class="pageno">M8·08</div>
+  <div class="pageno">M8·11</div>
 </section>
 
 <!-- 9 · config read once at start -->
@@ -422,7 +440,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="840" y="108" text-anchor="middle" class="lbl-b" fill="#c62828">missing key</text>
     <text x="840" y="140" text-anchor="middle" class="lbl-sm">Pod never starts</text>
   </svg>
-  <div class="pageno">M8·09</div>
+  <div class="pageno">M8·12</div>
+</section>
+
+<!-- DIVIDER · Three gates: authentication, authorization, admission control -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Three gates: authentication, authorization, admission control</h2>
+  <div class="pageno">M8·13</div>
 </section>
 
 <!-- 10 · three gates pipeline -->
@@ -460,7 +484,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="505" y="303" text-anchor="middle" class="lbl-sm" fill="#c62828">403</text>
     <text x="720" y="303" text-anchor="middle" class="lbl-sm" fill="#c62828">rejected</text>
   </svg>
-  <div class="pageno">M8·10</div>
+  <div class="pageno">M8·14</div>
 </section>
 
 <!-- 11 · exit code names the gate -->
@@ -486,7 +510,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="205" text-anchor="middle" class="lbl-sm">object violates a rule</text>
     <text x="900" y="245" text-anchor="middle" class="lbl-g">stage: admission</text>
   </svg>
-  <div class="pageno">M8·11</div>
+  <div class="pageno">M8·15</div>
+</section>
+
+<!-- DIVIDER · Service Accounts: identity for Pods -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Service Accounts: identity for Pods</h2>
+  <div class="pageno">M8·16</div>
 </section>
 
 <!-- 12 · service account machine badge -->
@@ -509,7 +539,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="755" y="175" text-anchor="middle" class="lbl-b">system:serviceaccount:fernwood:pod-reader</text>
     <text x="620" y="270" text-anchor="middle" class="lbl-g">every Pod runs as one — the default if you name none</text>
   </svg>
-  <div class="pageno">M8·12</div>
+  <div class="pageno">M8·17</div>
 </section>
 
 <!-- 13 · least privilege default -->
@@ -532,7 +562,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="205" text-anchor="middle" class="lbl-sm">in fernwood only</text>
     <text x="810" y="255" text-anchor="middle" class="lbl-g" fill="#2e7d32">exactly what it needs</text>
   </svg>
-  <div class="pageno">M8·13</div>
+  <div class="pageno">M8·18</div>
+</section>
+
+<!-- DIVIDER · RBAC: Roles, ClusterRoles, and bindings -->
+<section>
+  <h2 class="t" style="font-size:2.2em">RBAC: Roles, ClusterRoles, and bindings</h2>
+  <div class="pageno">M8·19</div>
 </section>
 
 <!-- 14 · RBAC language -->
@@ -557,7 +593,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="825" y="170" text-anchor="middle" class="lbl-sm">user  ·  group</text>
     <text x="825" y="212" text-anchor="middle" class="lbl-sm">ServiceAccount</text>
   </svg>
-  <div class="pageno">M8·14</div>
+  <div class="pageno">M8·20</div>
 </section>
 
 <!-- 15 · Role wing vs ClusterRole facility -->
@@ -580,7 +616,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="205" text-anchor="middle" class="lbl-sm">+ Nodes, PVs, namespaces</text>
     <text x="810" y="255" text-anchor="middle" class="lbl-g">opens the whole facility</text>
   </svg>
-  <div class="pageno">M8·15</div>
+  <div class="pageno">M8·21</div>
 </section>
 
 <!-- 16 · binding attaches -->
@@ -610,7 +646,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="990" y="165" text-anchor="middle" class="lbl-sm">Service</text>
     <text x="990" y="190" text-anchor="middle" class="lbl-sm">Account</text>
   </svg>
-  <div class="pageno">M8·16</div>
+  <div class="pageno">M8·22</div>
 </section>
 
 <!-- 17 · RoleBinding borrows ClusterRole -->
@@ -634,7 +670,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="790" y="275" text-anchor="middle" class="lbl-sm">RoleBinding in ns-B</text>
     <text x="790" y="302" text-anchor="middle" class="lbl-g">scoped to ns-B</text>
   </svg>
-  <div class="pageno">M8·17</div>
+  <div class="pageno">M8·23</div>
 </section>
 
 <!-- 18 · least privilege proven -->
@@ -656,7 +692,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="222" text-anchor="middle" class="lbl-b" fill="#c62828">Forbidden</text>
     <text x="810" y="255" text-anchor="middle" class="lbl-g">db-0 untouched</text>
   </svg>
-  <div class="pageno">M8·18</div>
+  <div class="pageno">M8·24</div>
+</section>
+
+<!-- DIVIDER · NetworkPolicy: closing the flat network -->
+<section>
+  <h2 class="t" style="font-size:2.2em">NetworkPolicy: closing the flat network</h2>
+  <div class="pageno">M8·25</div>
 </section>
 
 <!-- 19 · flat network wide open -->
@@ -680,7 +722,7 @@ footer, header, hgroup, main, menu, nav, section {
     <path d="M480,275 C580,270 620,240 630,208" stroke="#c62828" stroke-width="2.2" fill="none" stroke-dasharray="7 6" marker-end="url(#ah)"/>
     <text x="820" y="165" text-anchor="middle" class="lbl-g">nothing is stopping it</text>
   </svg>
-  <div class="pageno">M8·19</div>
+  <div class="pageno">M8·26</div>
 </section>
 
 <!-- 20 · flip to closed -->
@@ -709,7 +751,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="845" y="175" text-anchor="middle" class="lbl-sm">one open</text>
     <text x="845" y="248" text-anchor="middle" class="lbl-g">only named corridors</text>
   </svg>
-  <div class="pageno">M8·20</div>
+  <div class="pageno">M8·27</div>
 </section>
 
 <!-- 21 · selection default-deny -->
@@ -734,7 +776,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="225" text-anchor="middle" class="lbl-sm">stays wide open</text>
     <text x="810" y="258" text-anchor="middle" class="lbl-g">so: a default-deny selects every Pod</text>
   </svg>
-  <div class="pageno">M8·21</div>
+  <div class="pageno">M8·28</div>
 </section>
 
 <!-- 22 · CNI must enforce -->
@@ -757,7 +799,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="200" text-anchor="middle" class="lbl-sm">rule enforced</text>
     <text x="810" y="250" text-anchor="middle" class="lbl-g" fill="#2e7d32">the M3 decision makes it real</text>
   </svg>
-  <div class="pageno">M8·22</div>
+  <div class="pageno">M8·29</div>
 </section>
 
 <!-- 23 · Fernwood four paths -->
@@ -788,7 +830,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="672" y="160" text-anchor="middle" class="lbl-g">:5432</text>
     <text x="700" y="300" text-anchor="middle" class="lbl-g" fill="#c62828">dropped</text>
   </svg>
-  <div class="pageno">M8·23</div>
+  <div class="pageno">M8·30</div>
 </section>
 
 <!-- 24 · forget envoy rule -->
@@ -810,7 +852,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="218" text-anchor="middle" class="lbl-sm">projectcontour not allowed</text>
     <text x="550" y="300" text-anchor="middle" class="lbl-g">allow projectcontour on purpose — or Ingress breaks while the app looks fine</text>
   </svg>
-  <div class="pageno">M8·24</div>
+  <div class="pageno">M8·31</div>
+</section>
+
+<!-- DIVIDER · Where this leaves the app -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Where this leaves the app</h2>
+  <div class="pageno">M8·32</div>
 </section>
 
 <!-- 25 · CLOSING -->
@@ -832,7 +880,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="175" y="248" class="lbl">a default-deny NetworkPolicy — M7 door still serves</text>
   </svg>
   <p class="credit">Now open <b>Module 8 · Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M8·25</div>
+  <div class="pageno">M8·33</div>
 </section>
 
 </div></div>

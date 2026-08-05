@@ -167,7 +167,7 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Contour publishes to a live feed, it never saves a file</h2>
   <p class="s">Envoy subscribes to xDS and swaps config in memory.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Contour pushes over an xDS gRPC feed to Envoy, which holds its config in memory; the feed carries four streams — LDS for listeners, RDS for routes, CDS for clusters, and EDS for endpoints — and Envoy swaps them in without a restart.">
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Contour pushes over an xDS gRPC feed to Envoy, which holds its config in memory; the feed carries four streams (LDS for listeners, RDS for routes, CDS for clusters, and EDS for endpoints), and Envoy swaps them in without a restart.">
     <g filter="url(#rough)">
       <rect x="70" y="115" width="220" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
       <path d="M295,165 L455,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
@@ -185,10 +185,10 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="740" y="216" width="300" height="42" rx="6"/>
     </g>
     <g class="lbl-sm" text-anchor="start">
-      <text x="760" y="88">LDS — listeners</text>
-      <text x="760" y="140">RDS — routes</text>
-      <text x="760" y="192">CDS — clusters</text>
-      <text x="760" y="244">EDS — endpoints</text>
+      <text x="760" y="88">LDS: listeners</text>
+      <text x="760" y="140">RDS: routes</text>
+      <text x="760" y="192">CDS: clusters</text>
+      <text x="760" y="244">EDS: endpoints</text>
     </g>
     <text x="580" y="290" text-anchor="middle" class="lbl-sm" fill="#2e7d32">swapped in with no Envoy restart</text>
   </svg>
@@ -198,7 +198,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 3 · both APIs converge before Envoy -->
 <section>
   <h2 class="t">Both APIs converge before they reach Envoy</h2>
-  <p class="s">No separate Gateway-API data path — they merge upstream.</p>
+  <p class="s">No separate Gateway-API data path. They merge upstream.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Ingress objects and Gateway plus HTTPRoutes both feed the same Contour, which programs the same Envoy, which forwards to the Pods; there is no separate data path for the Gateway API.">
     <g filter="url(#rough)">
       <rect x="60" y="55" width="240" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -219,7 +219,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="850" y="158" text-anchor="middle" class="lbl-b">same</text>
     <text x="850" y="188" text-anchor="middle" class="lbl-b">Envoy</text>
     <text x="1050" y="150" text-anchor="middle" class="lbl-sm">Pods</text>
-    <text x="555" y="295" text-anchor="middle" class="lbl-sm" fill="#2e7d32">they merge before Envoy — identical underneath</text>
+    <text x="555" y="295" text-anchor="middle" class="lbl-sm" fill="#2e7d32">they merge before Envoy, identical underneath</text>
   </svg>
   <div class="pageno">M7-DD·03</div>
 </section>
@@ -292,7 +292,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="90" y="157" text-anchor="middle" class="num">2</text>
     <text x="90" y="237" text-anchor="middle" class="num">3</text>
     <g class="lbl" text-anchor="start">
-      <text x="145" y="72">audit an inherited cluster — the route table is the truth</text>
+      <text x="145" y="72">audit an inherited cluster: the route table is the truth</text>
       <text x="145" y="152">migrate an estate route by route, proving parity each time</text>
       <text x="145" y="232">debug load balancing from /clusters health_flags</text>
     </g>

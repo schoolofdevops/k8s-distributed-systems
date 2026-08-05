@@ -138,7 +138,7 @@ footer, header, hgroup, main, menu, nav, section {
 <section data-auto-animate>
   <p class="kicker">MODULE 4 · LESSON 3 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:2.0em">One stable number for a moving set of Pods</h2>
-  <p class="s" style="font-size:1.2em">A switchboard for a set of disposable Pods.</p>
+  <p class="s" style="font-size:1.2em">A switchboard for a set of throwaway Pods.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A switchboard with one fixed number on the front, routing an incoming call to one of several staff on the rota — whoever is on duty.">
     <g filter="url(#rough)">
       <rect x="400" y="60" width="300" height="130" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
@@ -160,9 +160,15 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M4·01</div>
 </section>
 
-<!-- 2 · Pod IPs churn -->
+<!-- 2 · DIVIDER: lesson intro -->
 <section>
-  <h2 class="t">Pod IPs churn — wiring by IP is impossible now</h2>
+  <h2 class="t" style="font-size:2.2em">Why Pod IPs stop working</h2>
+  <div class="pageno">M4·02</div>
+</section>
+
+<!-- 3 · Pod IPs churn -->
+<section>
+  <h2 class="t">Pod IPs churn, so wiring by IP is impossible now</h2>
   <p class="s">The IP changes every time a Pod is recreated.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A frontend wired directly to a backend Pod's IP; the Pod is replaced by the ReplicaSet with a new IP, and the hard-wired connection snaps.">
     <g filter="url(#rough)">
@@ -175,16 +181,22 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="850" y="95" text-anchor="middle" class="lbl-sm" fill="#757575">old Pod .80</text>
     <text x="850" y="125" text-anchor="middle" class="lbl-sm" fill="#757575">gone</text>
     <text x="850" y="218" text-anchor="middle" class="lbl-b">new Pod</text>
-    <text x="850" y="250" text-anchor="middle" class="lbl-sm" fill="#c62828">.91 — different IP</text>
+    <text x="850" y="250" text-anchor="middle" class="lbl-sm" fill="#c62828">.91, different IP</text>
     <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round">
       <path d="M335,150 L520,110 M545,102 L695,95" marker-end="url(#ah)"/>
     </g>
     <text x="470" y="150" text-anchor="middle" class="lbl-sm" fill="#c62828">wire snaps</text>
   </svg>
-  <div class="pageno">M4·02</div>
+  <div class="pageno">M4·03</div>
 </section>
 
-<!-- 3 · analogy: switchboard -->
+<!-- 4 · DIVIDER: The analogy: a company switchboard number -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: a company switchboard number</h2>
+  <div class="pageno">M4·04</div>
+</section>
+
+<!-- 5 · analogy: switchboard -->
 <section>
   <h2 class="t">A company switchboard number</h2>
   <p class="s">You dial one number; you never learn who answers.</p>
@@ -211,13 +223,13 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M625,165 L765,162" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M4·03</div>
+  <div class="pageno">M4·05</div>
 </section>
 
-<!-- 4 · a Service = stable name + IP -->
+<!-- 6 · a Service = stable name + IP -->
 <section>
   <h2 class="t">A Service is one stable name and IP</h2>
-  <p class="s">It turns disposable Pods into one address.</p>
+  <p class="s">It turns throwaway Pods into one address.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A Service front with a stable name backend and a stable cluster IP, routing to one of several backend Pods behind it that come and go.">
     <g filter="url(#rough)">
       <rect x="120" y="105" width="300" height="120" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
@@ -236,12 +248,12 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="920" y="170" text-anchor="middle" class="lbl-g">come &amp; go</text>
   </svg>
-  <div class="pageno">M4·04</div>
+  <div class="pageno">M4·06</div>
 </section>
 
-<!-- 5 · two capabilities -->
+<!-- 7 · two capabilities -->
 <section>
-  <h2 class="t">Two capabilities in one object</h2>
+  <h2 class="t">Two abilities in one object</h2>
   <p class="s">A stable name, and work spread across Pods.</p>
   <svg viewBox="0 0 1100 310" role="img" aria-label="A Service bundles two capabilities: service discovery, a stable DNS name you reach the group by, and load balancing, spreading each connection across the healthy Pods.">
     <g filter="url(#rough)">
@@ -255,13 +267,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="170" text-anchor="middle" class="lbl">spread across Pods</text>
     <text x="810" y="215" text-anchor="middle" class="lbl-sm">no single Pod is a bottleneck</text>
   </svg>
-  <div class="pageno">M4·05</div>
+  <div class="pageno">M4·07</div>
 </section>
 
-<!-- 6 · the name is the contract -->
+<!-- 8 · DIVIDER: Service discovery: the name is the contract -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Service discovery: the name is the contract</h2>
+  <div class="pageno">M4·08</div>
+</section>
+
+<!-- 9 · the name is the contract -->
 <section>
   <h2 class="t">The name is the contract</h2>
-  <p class="s">http://backend:8080 — unchanged for three modules.</p>
+  <p class="s">http://backend:8080, unchanged for three modules.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="The same hostname backend resolves across three runtimes: Docker DNS in M1, Compose in M2, and Kubernetes DNS in M4 — the app code never changed.">
     <g filter="url(#rough)">
       <rect x="90" y="200" width="270" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -278,12 +296,12 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M300,200 L430,205" marker-end="url(#ahg)"/>
       <path d="M620,135 L750,140" marker-end="url(#ahg)"/>
     </g>
-    <text x="550" y="305" text-anchor="middle" class="lbl-sm" fill="#2e7d32">the hostname held across three runtimes — zero code changes</text>
+    <text x="550" y="305" text-anchor="middle" class="lbl-sm" fill="#2e7d32">the hostname held across three runtimes, zero code changes</text>
   </svg>
-  <div class="pageno">M4·06</div>
+  <div class="pageno">M4·09</div>
 </section>
 
-<!-- 7 · short name vs long name -->
+<!-- 10 · short name vs long name -->
 <section>
   <h2 class="t">Same namespace, short name; across, the long one</h2>
   <p class="s">The search path makes the bare name resolve.</p>
@@ -309,13 +327,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="785" y="238" text-anchor="middle" class="lbl-b">another namespace</text>
     <text x="785" y="272" text-anchor="middle" class="lbl-sm">use backend.fernwood</text>
   </svg>
-  <div class="pageno">M4·07</div>
+  <div class="pageno">M4·10</div>
 </section>
 
-<!-- 8 · four types as layers -->
+<!-- 11 · DIVIDER: The four Service types, and when you would reach for each -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The four Service types, and when you would reach for each</h2>
+  <div class="pageno">M4·11</div>
+</section>
+
+<!-- 12 · four types as layers -->
 <section>
   <h2 class="t">Four types, each reaches from further out</h2>
-  <p class="s">ClusterIP, NodePort, LoadBalancer — plus ExternalName.</p>
+  <p class="s">ClusterIP, NodePort, LoadBalancer, plus ExternalName.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Three Service types stacked as layers each reaching from further out — ClusterIP inside, NodePort on every node, LoadBalancer from the cloud — with ExternalName set apart as the odd one out that does no proxying.">
     <g filter="url(#rough)">
       <rect x="120" y="240" width="300" height="66" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
@@ -333,10 +357,10 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M600,175 L635,150" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M4·08</div>
+  <div class="pageno">M4·12</div>
 </section>
 
-<!-- 9 · which one to reach for -->
+<!-- 13 · which one to reach for -->
 <section>
   <h2 class="t">Which one you actually reach for</h2>
   <p class="s">When in doubt, it is ClusterIP.</p>
@@ -360,10 +384,16 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="130" y="303">→ ExternalName</text>
     </g>
   </svg>
-  <div class="pageno">M4·09</div>
+  <div class="pageno">M4·13</div>
 </section>
 
-<!-- 10 · selector picks Pods into Endpoints -->
+<!-- 14 · DIVIDER: Under the hood: Endpoints, the cluster IP, and kube-proxy -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Under the hood: Endpoints, the cluster IP, and kube-proxy</h2>
+  <div class="pageno">M4·14</div>
+</section>
+
+<!-- 15 · selector picks Pods into Endpoints -->
 <section>
   <h2 class="t">The selector picks Pods into Endpoints</h2>
   <p class="s">Endpoints is the live "who's on duty" list.</p>
@@ -392,12 +422,12 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M705,180 L795,195" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M4·10</div>
+  <div class="pageno">M4·15</div>
 </section>
 
-<!-- 11 · cluster IP is virtual -->
+<!-- 16 · cluster IP is virtual -->
 <section>
-  <h2 class="t">The cluster IP is virtual — nothing owns it</h2>
+  <h2 class="t">The cluster IP is virtual, nothing owns it</h2>
   <p class="s">No Pod, no NIC, answers for it.</p>
   <svg viewBox="0 0 1100 310" role="img" aria-label="A cluster IP address 10.96.171.26 floating free, belonging to no Pod and no network card, existing only as a match key in a set of rules — which is exactly why it stays stable.">
     <g filter="url(#rough)">
@@ -410,15 +440,15 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="550" y="255">no NIC answers ARP</text>
       <text x="870" y="230">just a match key in rules</text>
     </g>
-    <text x="550" y="300" text-anchor="middle" class="lbl-sm" fill="#2e7d32">tied to no Pod's lifecycle — so it never changes</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-sm" fill="#2e7d32">tied to no Pod's lifecycle, so it never changes</text>
   </svg>
-  <div class="pageno">M4·11</div>
+  <div class="pageno">M4·16</div>
 </section>
 
-<!-- 12 · kube-proxy programs the dataplane -->
+<!-- 17 · kube-proxy programs the dataplane -->
 <section>
   <h2 class="t">kube-proxy writes the kernel rules</h2>
-  <p class="s">The kernel redirects — no proxy in the path.</p>
+  <p class="s">The kernel redirects, no proxy in the path.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="On each node, kube-proxy watches Services and Endpoints and writes iptables rules into the kernel; a packet sent to the cluster IP is rewritten in-kernel to one of the backend Pod IPs, with no extra hop through a proxy process.">
     <g filter="url(#rough)">
       <rect x="70" y="120" width="200" height="80" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -440,12 +470,18 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5">
       <path d="M550,80 L550,86" marker-end="url(#ahg)"/>
     </g>
-    <text x="550" y="290" text-anchor="middle" class="lbl-sm">destination rewritten in place — no extra network hop</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-sm">destination rewritten in place, no extra network hop</text>
   </svg>
-  <div class="pageno">M4·12</div>
+  <div class="pageno">M4·17</div>
 </section>
 
-<!-- 13 · name -> raw IP -> name again -->
+<!-- 18 · DIVIDER: What this replaces, and where you are going -->
+<section>
+  <h2 class="t" style="font-size:2.2em">What this replaces, and where you are going</h2>
+  <div class="pageno">M4·18</div>
+</section>
+
+<!-- 19 · name -> raw IP -> name again -->
 <section>
   <h2 class="t">Name → raw IP → name again, stronger</h2>
   <p class="s">The app code never changed through any of it.</p>
@@ -470,10 +506,10 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="298" text-anchor="middle" class="lbl-g">the platform underneath got stronger</text>
   </svg>
-  <div class="pageno">M4·13</div>
+  <div class="pageno">M4·19</div>
 </section>
 
-<!-- 14 · CLOSING -->
+<!-- 20 · CLOSING -->
 <section>
   <p class="kicker">MODULE 4 · LESSON 3 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Wire it in, then break it</h2>
@@ -497,7 +533,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="130" y="258" text-anchor="start" class="lbl" fill="#c62828">break a selector → no endpoints</text>
   </svg>
   <p class="credit">Now open <b>Module 4 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M4·14</div>
+  <div class="pageno">M4·20</div>
 </section>
 
 </div></div>

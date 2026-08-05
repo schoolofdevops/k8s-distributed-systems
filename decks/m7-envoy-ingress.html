@@ -8,8 +8,7 @@
 <!-- ============================================================
      CourseSmith whiteboard deck skeleton (self-contained).
      Style contract: templates/deck/whiteboard-style-guide.md
-     Tokens: Distributed Systems with Docker &amp; Kubernetes 3 Working with Pods
-              M3 (e.g. M1)
+     Tokens: Distributed Systems with Docker &amp; Kubernetes / Module 7 / M7
      Zero external requests: reveal.js 5.x runtime + Patrick Hand
      woff2 are inlined below. Keep it that way.
      ============================================================ -->
@@ -167,6 +166,11 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M7·01</div>
 </section>
 
+<section>
+  <h2 class="t" style="font-size:2.2em">The app runs, but nobody outside can reach it</h2>
+  <div class="pageno">M7·02</div>
+</section>
+
 <!-- 2 · inside solved, outside can't get in -->
 <section>
   <h2 class="t">Inside is solved; the outside can't get in</h2>
@@ -193,12 +197,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="710" y="130" text-anchor="middle" class="lbl-sm">on someone's laptop</text>
     <text x="900" y="285" text-anchor="middle" class="lbl-sm" fill="#c62828">no way in</text>
   </svg>
-  <div class="pageno">M7·02</div>
+  <div class="pageno">M7·03</div>
 </section>
 
 <!-- 3 · NodePort stopgap doesn't scale -->
 <section>
-  <h2 class="t">NodePort was the stopgap — it doesn't scale</h2>
+  <h2 class="t">NodePort was a quick fix that doesn't scale</h2>
   <p class="s">No hostnames, no paths, no TLS, no one place for rules.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="On the left, the M4 NodePort approach is a wall of numbered high-ports crossed out; on the right, real traffic arrives as an https URL on port 443 sorted by host and path.">
     <g filter="url(#rough)">
@@ -222,7 +226,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="200" text-anchor="middle" class="lbl-sm">port 443 &nbsp;·&nbsp; sorted by host + path</text>
     <text x="820" y="245" text-anchor="middle" class="lbl-sm" fill="#2e7d32">by name, not by port number</text>
   </svg>
-  <div class="pageno">M7·03</div>
+  <div class="pageno">M7·04</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: the reception desk of an office building</h2>
+  <div class="pageno">M7·05</div>
 </section>
 
 <!-- 4 · analogy: the reception desk -->
@@ -254,7 +263,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="960" y="165" text-anchor="middle" class="lbl-g">the right</text>
     <text x="960" y="192" text-anchor="middle" class="lbl-g">internal door</text>
   </svg>
-  <div class="pageno">M7·04</div>
+  <div class="pageno">M7·06</div>
 </section>
 
 <!-- 5 · map the desk onto Kubernetes -->
@@ -287,7 +296,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="212" text-anchor="middle" class="lbl-b">Service (M4)</text>
     <text x="805" y="284" text-anchor="middle" class="lbl-b">hostname + path</text>
   </svg>
-  <div class="pageno">M7·05</div>
+  <div class="pageno">M7·07</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">Service versus Ingress: two different jobs</h2>
+  <div class="pageno">M7·08</div>
 </section>
 
 <!-- 6 · Service L4 vs Ingress L7 -->
@@ -298,7 +312,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="70" y="60" width="440" height="230" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="290" y="105" text-anchor="middle" class="lbl-b">Service — L4</text>
+    <text x="290" y="105" text-anchor="middle" class="lbl-b">Service (L4)</text>
     <g class="lbl-sm" text-anchor="start">
       <text x="115" y="155">load-balances by IP + port</text>
       <text x="115" y="195">blind to HTTP</text>
@@ -307,14 +321,14 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="590" y="60" width="440" height="230" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="810" y="105" text-anchor="middle" class="lbl-b">Ingress — L7</text>
+    <text x="810" y="105" text-anchor="middle" class="lbl-b">Ingress (L7)</text>
     <g class="lbl-sm" text-anchor="start">
       <text x="635" y="155">reads the request line + headers</text>
       <text x="635" y="195">routes on host + path</text>
       <text x="635" y="235">terminates TLS</text>
     </g>
   </svg>
-  <div class="pageno">M7·06</div>
+  <div class="pageno">M7·09</div>
 </section>
 
 <!-- 7 · Ingress feeds the Service (lesson diagram 1) -->
@@ -346,14 +360,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="940" y="100" text-anchor="middle" class="lbl-sm">Pods</text>
     <text x="940" y="250" text-anchor="middle" class="lbl-sm">Pods</text>
   </svg>
-  <div class="pageno">M7·07</div>
+  <div class="pageno">M7·10</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">An Ingress object is only a rule set</h2>
+  <div class="pageno">M7·11</div>
 </section>
 
 <!-- 8 · Ingress object is only a rule set -->
 <section>
   <h2 class="t">An Ingress object is only a rule set</h2>
   <p class="s">Apply it and nothing routes yet.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="An Ingress object is a sheet of paper stating that requests for a host go to a Service, with no process, no socket, and no traffic behind it — inert on its own.">
+  <svg viewBox="0 0 1100 320" role="img" aria-label="An Ingress object is a sheet of paper stating that requests for a host go to a Service, with no process, no socket, and no traffic behind it. It is inert on its own.">
     <g filter="url(#rough)">
       <rect x="360" y="50" width="380" height="150" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
       <line x1="395" y1="95" x2="705" y2="95" stroke="#757575" stroke-width="1.6"/>
@@ -370,7 +389,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="268" text-anchor="middle" class="lbl-sm" fill="#c62828">no open socket</text>
     <text x="800" y="268" text-anchor="middle" class="lbl-sm" fill="#c62828">no traffic</text>
   </svg>
-  <div class="pageno">M7·08</div>
+  <div class="pageno">M7·12</div>
 </section>
 
 <!-- 9 · the controller makes the rules real -->
@@ -397,13 +416,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="145" text-anchor="middle" class="lbl-sm">to the lift</text>
     <text x="810" y="295" text-anchor="middle" class="lbl-sm" fill="#2e7d32">reads it, walks you there</text>
   </svg>
-  <div class="pageno">M7·09</div>
+  <div class="pageno">M7·13</div>
 </section>
 
 <!-- 10 · Kubernetes ships object, not controller -->
 <section>
   <h2 class="t">Kubernetes ships the object, never the controller</h2>
-  <p class="s">You choose and install one — Fernwood runs Envoy.</p>
+  <p class="s">You choose and install one. Fernwood runs Envoy.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="The Kubernetes core API ships the Ingress type but leaves an empty controller slot that you must plug a controller into, such as the NGINX default or Envoy for Fernwood.">
     <g filter="url(#rough)">
       <rect x="70" y="90" width="330" height="150" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -425,13 +444,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="740" y="185" text-anchor="middle" class="lbl-b">Envoy</text>
     <text x="675" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">Fernwood's choice: Envoy (via Contour)</text>
   </svg>
-  <div class="pageno">M7·10</div>
+  <div class="pageno">M7·14</div>
 </section>
 
 <!-- 11 · Contour brain, Envoy muscle (lesson diagram 2) -->
 <section>
   <h2 class="t">Contour is the brain, Envoy is the muscle</h2>
-  <p class="s">One computes the config; one holds the port.</p>
+  <p class="s">One builds the config; one holds the port.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="The Ingress object is watched by Contour, which programs Envoy over xDS; Envoy holds the real port 80 and 443, and outside traffic reaches Envoy which forwards to the Services and Pods.">
     <g filter="url(#rough)">
       <rect x="60" y="120" width="180" height="90" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -446,7 +465,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="150" y="188" text-anchor="middle" class="lbl-sm">rule set</text>
     <text x="290" y="150" text-anchor="middle" class="lbl-g">watches</text>
     <text x="450" y="152" text-anchor="middle" class="lbl-b">Contour</text>
-    <text x="450" y="185" text-anchor="middle" class="lbl-sm">computes config</text>
+    <text x="450" y="185" text-anchor="middle" class="lbl-sm">builds config</text>
     <text x="610" y="150" text-anchor="middle" class="lbl-g">xDS</text>
     <text x="770" y="152" text-anchor="middle" class="lbl-b">Envoy</text>
     <text x="770" y="185" text-anchor="middle" class="lbl-sm">holds port 80/443</text>
@@ -454,7 +473,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="985" y="178" text-anchor="middle" class="lbl-sm">+ Pods</text>
     <text x="450" y="270" text-anchor="middle" class="lbl-sm">Contour speaks Ingress <tspan fill="#757575">and</tspan> Gateway API</text>
   </svg>
-  <div class="pageno">M7·11</div>
+  <div class="pageno">M7·15</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">How outside traffic actually reaches Envoy</h2>
+  <div class="pageno">M7·16</div>
 </section>
 
 <!-- 12 · how traffic reaches Envoy (cloud LB) -->
@@ -481,14 +505,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="1000" y="176" text-anchor="middle" class="lbl-sm">Services</text>
     <text x="555" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">one address, in front of every app Service</text>
   </svg>
-  <div class="pageno">M7·12</div>
+  <div class="pageno">M7·17</div>
 </section>
 
 <!-- 13 · KIND: no cloud LB -->
 <section>
   <h2 class="t">On KIND there is no cloud load balancer</h2>
-  <p class="s">&lt;pending&gt; is expected — port-forward reaches Envoy.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: on a cloud, the LoadBalancer Service gets a real public IP, while on KIND the external IP stays pending forever and you use kubectl port-forward to reach Envoy — only the last hop differs.">
+  <p class="s">&lt;pending&gt; is expected. Port-forward reaches Envoy.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: on a cloud, the LoadBalancer Service gets a real public IP, while on KIND the external IP stays pending forever and you use kubectl port-forward to reach Envoy; only the last hop differs.">
     <g filter="url(#rough)">
       <rect x="70" y="60" width="440" height="200" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
       <rect x="130" y="150" width="130" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
@@ -510,7 +534,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="930" y="185" text-anchor="middle" class="lbl-sm">port-forward</text>
     <text x="810" y="242" text-anchor="middle" class="lbl-sm">only the last hop differs</text>
   </svg>
-  <div class="pageno">M7·13</div>
+  <div class="pageno">M7·18</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">When to use a Service, and when to use an Ingress</h2>
+  <div class="pageno">M7·19</div>
 </section>
 
 <!-- 14 · bare Service vs Ingress -->
@@ -537,7 +566,12 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">one door, one certificate store, many apps</text>
   </svg>
-  <div class="pageno">M7·14</div>
+  <div class="pageno">M7·20</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">Name-based virtual hosting versus path-based routing</h2>
+  <div class="pageno">M7·21</div>
 </section>
 
 <!-- 15 · name-based virtual hosting -->
@@ -563,7 +597,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="850" y="165" text-anchor="middle" class="lbl-sm">two hostnames</text>
     <text x="850" y="195" text-anchor="middle" class="lbl-sm">two Services</text>
   </svg>
-  <div class="pageno">M7·15</div>
+  <div class="pageno">M7·22</div>
 </section>
 
 <!-- 16 · path-based routing -->
@@ -588,7 +622,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="610" y="265" text-anchor="middle" class="lbl-sm" fill="#2e7d32">longer prefix wins</text>
     <text x="890" y="238" text-anchor="middle" class="lbl-sm">/api/health &rarr; backend</text>
   </svg>
-  <div class="pageno">M7·16</div>
+  <div class="pageno">M7·23</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">The Gateway API: the same job, split across roles</h2>
+  <div class="pageno">M7·24</div>
 </section>
 
 <!-- 17 · Gateway API problem: one flat object -->
@@ -614,13 +653,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="925" y="140" text-anchor="middle" class="lbl">app teams</text>
     <text x="550" y="285" text-anchor="middle" class="lbl-sm" fill="#c62828">a tug-of-war over one YAML</text>
   </svg>
-  <div class="pageno">M7·17</div>
+  <div class="pageno">M7·25</div>
 </section>
 
 <!-- 18 · Gateway API three-owner split (lesson diagram 3) -->
 <section>
   <h2 class="t">The Gateway API splits it across three owners</h2>
-  <p class="s">GatewayClass, Gateway, HTTPRoute — one owner each.</p>
+  <p class="s">GatewayClass, Gateway, HTTPRoute: one owner each.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="The Gateway API splits the flat object into three: the platform team owns the GatewayClass naming Contour and Envoy, the infra team owns the Gateway listener on port 80, and app teams own the HTTPRoutes that attach to the Gateway.">
     <g filter="url(#rough)">
       <rect x="60" y="130" width="230" height="90" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -643,12 +682,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="870" y="285" text-anchor="middle" class="lbl-sm">store-api.fernwood.local</text>
     <text x="670" y="322" text-anchor="middle" class="lbl-g">app teams attach</text>
   </svg>
-  <div class="pageno">M7·18</div>
+  <div class="pageno">M7·26</div>
 </section>
 
 <!-- 19 · two APIs, one Envoy -->
 <section>
-  <h2 class="t">Two APIs, one Envoy — the same routing</h2>
+  <h2 class="t">Two APIs, one Envoy, the same routing</h2>
   <p class="s">Classic Ingress and Gateway API on one data plane.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Classic Ingress rules and Gateway API routes both feed the same Contour and the same Envoy, which forwards to the same clusters and Pods; both APIs return HTTP 200 side by side.">
     <g filter="url(#rough)">
@@ -674,7 +713,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="1025" y="185" text-anchor="middle" class="lbl-sm">Pods</text>
     <text x="565" y="290" text-anchor="middle" class="lbl-sm" fill="#2e7d32">two control APIs, one data plane</text>
   </svg>
-  <div class="pageno">M7·19</div>
+  <div class="pageno">M7·27</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">Where this leaves the app</h2>
+  <div class="pageno">M7·28</div>
 </section>
 
 <!-- 20 · CLOSING -->
@@ -693,11 +737,11 @@ footer, header, hgroup, main, menu, nav, section {
     <g class="lbl" text-anchor="start">
       <text x="145" y="78">Contour + Envoy installed as the ingress layer</text>
       <text x="145" y="158">host-based and path-based routing, both live</text>
-      <text x="145" y="238">Node, Python, Java — all behind one door</text>
+      <text x="145" y="238">Node, Python, Java, all behind one door</text>
     </g>
   </svg>
   <p class="credit">Now open <b>Module 7 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M7·20</div>
+  <div class="pageno">M7·29</div>
 </section>
 
 </div></div>

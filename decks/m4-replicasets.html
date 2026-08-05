@@ -156,15 +156,21 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="674" y="205" width="52" height="20" rx="4" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="1.6"/>
       <rect x="854" y="205" width="52" height="20" rx="4" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="1.6"/>
     </g>
-    <text x="700" y="272" text-anchor="middle" class="lbl-sm">three on the deck — the desired count</text>
+    <text x="700" y="272" text-anchor="middle" class="lbl-sm">three on the deck, the desired count</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M4·01</div>
 </section>
 
-<!-- 2 · one Pod = SPOF + ceiling -->
+<!-- 2 · DIVIDER: lesson intro -->
 <section>
-  <h2 class="t">One Pod is a single point of failure — and a ceiling</h2>
+  <h2 class="t" style="font-size:2.2em">From one Pod to a managed set</h2>
+  <div class="pageno">M4·02</div>
+</section>
+
+<!-- 3 · one Pod = SPOF + ceiling -->
+<section>
+  <h2 class="t">One Pod is a single point of failure, and a ceiling</h2>
   <p class="s">Availability and scale, both broken by one copy.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: on the left a node reboots and the single Pod is down until you notice; on the right one Pod can serve only as much traffic as one Pod can, a fixed ceiling.">
     <g filter="url(#rough)">
@@ -183,10 +189,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="192" text-anchor="middle" class="lbl-sm">one Pod</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">one instance = one fixed ceiling</text>
   </svg>
-  <div class="pageno">M4·02</div>
+  <div class="pageno">M4·03</div>
 </section>
 
-<!-- 3 · the one job -->
+<!-- 4 · DIVIDER: Why one Pod is never enough -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why one Pod is never enough</h2>
+  <div class="pageno">M4·04</div>
+</section>
+
+<!-- 5 · the one job -->
 <section>
   <h2 class="t">The whole job: keep N identical Pods running</h2>
   <p class="s">Declare N; the controller makes reality match it.</p>
@@ -212,10 +224,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="630" y="120" text-anchor="middle" class="lbl-g">reconcile</text>
     <text x="600" y="270" text-anchor="middle" class="lbl-g">watch &amp; replace</text>
   </svg>
-  <div class="pageno">M4·03</div>
+  <div class="pageno">M4·05</div>
 </section>
 
-<!-- 4 · analogy: supervisor -->
+<!-- 6 · DIVIDER: The analogy: a lifeguard supervisor keeping the rota full -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: a lifeguard supervisor keeping the rota full</h2>
+  <div class="pageno">M4·06</div>
+</section>
+
+<!-- 7 · analogy: supervisor -->
 <section>
   <h2 class="t">A lifeguard supervisor keeps the rota full</h2>
   <p class="s">One goes home sick; a replacement is called in.</p>
@@ -243,10 +261,10 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="505" y="252" text-anchor="middle" class="lbl-sm">still three on the deck, always</text>
   </svg>
-  <div class="pageno">M4·04</div>
+  <div class="pageno">M4·07</div>
 </section>
 
-<!-- 5 · uniform=label, count=selector -->
+<!-- 8 · uniform=label, count=selector -->
 <section>
   <h2 class="t">The uniform is a label; "count the reds" is a selector</h2>
   <p class="s">They count the uniform, not people by name.</p>
@@ -264,13 +282,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="170" text-anchor="middle" class="lbl">= a selector</text>
     <text x="800" y="228" text-anchor="middle" class="lbl-sm">a rule that matches the tag</text>
   </svg>
-  <div class="pageno">M4·05</div>
+  <div class="pageno">M4·08</div>
 </section>
 
-<!-- 6 · manage by label not name -->
+<!-- 9 · manage by label not name -->
 <section>
   <h2 class="t">Manage by label, not by name</h2>
-  <p class="s">Membership follows the uniform, not authorship.</p>
+  <p class="s">Membership follows the uniform, not who hired you.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Two surprises: put the uniform on a stranger and they are counted even though the supervisor never hired them; take it off someone standing right there and they vanish from the count.">
     <g filter="url(#rough)">
       <rect x="70" y="75" width="440" height="200" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -290,10 +308,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="880" y="160" text-anchor="middle" class="lbl-sm" fill="#c62828">not counted</text>
     <text x="810" y="262" text-anchor="middle" class="lbl-sm" fill="#c62828">take it off → out of the count</text>
   </svg>
-  <div class="pageno">M4·06</div>
+  <div class="pageno">M4·09</div>
 </section>
 
-<!-- 7 · label is a key-value tag -->
+<!-- 10 · DIVIDER: Labels and selectors: the mechanism under everything -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Labels and selectors: the mechanism under everything</h2>
+  <div class="pageno">M4·10</div>
+</section>
+
+<!-- 11 · label is a key-value tag -->
 <section>
   <h2 class="t">A label is a key-value tag</h2>
   <p class="s">Attached to an object's metadata.</p>
@@ -309,10 +333,10 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="365" y="214">tier:  frontend</text>
     </g>
   </svg>
-  <div class="pageno">M4·07</div>
+  <div class="pageno">M4·11</div>
 </section>
 
-<!-- 8 · one selector idea reused everywhere -->
+<!-- 12 · one selector idea reused everywhere -->
 <section>
   <h2 class="t">One selector idea, reused everywhere</h2>
   <p class="s">Objects find each other by matching labels.</p>
@@ -335,13 +359,13 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M720,170 L785,170" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M4·08</div>
+  <div class="pageno">M4·12</div>
 </section>
 
-<!-- 9 · wrong label = silent bug -->
+<!-- 13 · wrong label = silent bug -->
 <section>
   <h2 class="t">A wrong label is a silent bug</h2>
-  <p class="s">A typo drops a Pod out — with no error.</p>
+  <p class="s">A typo drops a Pod out, with no error.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="A Pod with a typo in its tier label falls out of both its ReplicaSet's count and its Service's traffic, and no error is raised.">
     <g filter="url(#rough)">
       <rect x="410" y="55" width="280" height="90" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -360,10 +384,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="180" text-anchor="middle" class="lbl-sm">no error raised</text>
   </svg>
-  <div class="pageno">M4·09</div>
+  <div class="pageno">M4·13</div>
 </section>
 
-<!-- 10 · ReplicationController ancestor -->
+<!-- 14 · DIVIDER: ReplicationController: the ancestor, and why it is gone -->
+<section>
+  <h2 class="t" style="font-size:2.2em">ReplicationController: the ancestor, and why it is gone</h2>
+  <div class="pageno">M4·14</div>
+</section>
+
+<!-- 15 · ReplicationController ancestor -->
 <section>
   <h2 class="t">ReplicationController: the ancestor, and why it is gone</h2>
   <p class="s">The one difference is the selector.</p>
@@ -388,10 +418,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="205" text-anchor="middle" class="lbl-sm">tier in (frontend, backend)</text>
     <text x="550" y="298" text-anchor="middle" class="lbl-g">Deployments (M5) are built on ReplicaSets, not RCs</text>
   </svg>
-  <div class="pageno">M4·10</div>
+  <div class="pageno">M4·15</div>
 </section>
 
-<!-- 11 · the spec: three parts -->
+<!-- 16 · DIVIDER: The ReplicaSet spec: three parts that must agree -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The ReplicaSet spec: three parts that must agree</h2>
+  <div class="pageno">M4·16</div>
+</section>
+
+<!-- 17 · the spec: three parts -->
 <section>
   <h2 class="t">The spec: three parts that must agree</h2>
   <p class="s">replicas, selector, template.</p>
@@ -409,10 +445,10 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="255" y="252">template:  the Pod to stamp out</text>
     </g>
   </svg>
-  <div class="pageno">M4·11</div>
+  <div class="pageno">M4·17</div>
 </section>
 
-<!-- 12 · template must match selector -->
+<!-- 18 · template must match selector -->
 <section>
   <h2 class="t">The template's labels must match the selector</h2>
   <p class="s">Mismatch and the API rejects it.</p>
@@ -433,10 +469,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="290" text-anchor="middle" class="lbl-sm" fill="#c62828">mismatch → it would create Pods it does not own → API refuses it</text>
   </svg>
-  <div class="pageno">M4·12</div>
+  <div class="pageno">M4·18</div>
 </section>
 
-<!-- 13 · one loop, two directions -->
+<!-- 19 · DIVIDER: Self-healing and scaling, in one sentence each -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Self-healing and scaling, in one sentence each</h2>
+  <div class="pageno">M4·19</div>
+</section>
+
+<!-- 20 · one loop, two directions -->
 <section>
   <h2 class="t">One loop, two directions</h2>
   <p class="s">Self-healing and scaling close the same gap.</p>
@@ -454,10 +496,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="205" text-anchor="middle" class="lbl-sm">N moves up or down</text>
     <text x="810" y="245" text-anchor="middle" class="lbl-sm">controller adds / removes</text>
   </svg>
-  <div class="pageno">M4·13</div>
+  <div class="pageno">M4·20</div>
 </section>
 
-<!-- 14 · CLOSING -->
+<!-- 21 · CLOSING -->
 <section>
   <p class="kicker">MODULE 4 · LESSON 2 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Break it, then scale it</h2>
@@ -478,7 +520,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
   </svg>
   <p class="credit">Now open <b>Module 4 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M4·14</div>
+  <div class="pageno">M4·21</div>
 </section>
 
 </div></div>

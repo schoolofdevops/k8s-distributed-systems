@@ -177,7 +177,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <g class="lbl-g" text-anchor="start">
       <text x="170" y="128">stuck at Init:0/1 if the backend is not up</text>
-      <text x="170" y="233">same Pod, same namespace — so localhost</text>
+      <text x="170" y="233">same Pod, same namespace, so localhost</text>
     </g>
   </svg>
   <div class="pageno">M3-DD·02</div>
@@ -195,7 +195,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="66" text-anchor="middle" class="lbl-b">one shop floor</text>
     <text x="320" y="160" text-anchor="middle" class="lbl-b">unlock &amp; check delivery</text>
-    <text x="320" y="195" text-anchor="middle" class="lbl-g">runs once, first —</text>
+    <text x="320" y="195" text-anchor="middle" class="lbl-g">runs once, first</text>
     <text x="320" y="222" text-anchor="middle" class="lbl-g">no delivery, no open</text>
     <text x="770" y="160" text-anchor="middle" class="lbl-b">restock all day</text>
     <text x="770" y="195" text-anchor="middle" class="lbl-g">a continuous helper,</text>
@@ -207,13 +207,13 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 4 · init gates start -->
 <section>
   <h2 class="t">An init container runs once, first, and must succeed</h2>
-  <p class="s">No backend, no start — the Pod waits at Init:0/1.</p>
+  <p class="s">No backend, no start. The Pod waits at Init:0/1.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="The init container wait-for-backend must succeed before the main frontend starts; when the backend is up it exits zero and releases the frontend, but if not the Pod stays stuck at Init 0 of 1.">
     <g filter="url(#rough)">
       <rect x="90" y="115" width="240" height="100" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
     <text x="210" y="155" text-anchor="middle" class="lbl-b">wait-for-backend</text>
-    <text x="210" y="190" text-anchor="middle" class="lbl-g">init — runs first</text>
+    <text x="210" y="190" text-anchor="middle" class="lbl-g">init: runs first</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
       <path d="M335,145 L430,145" marker-end="url(#ah)"/>
     </g>
@@ -248,9 +248,9 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="410" y="63" text-anchor="middle" class="lbl-b">initContainers:</text>
     <text x="175" y="140" text-anchor="start" class="lbl">wait-for-backend</text>
-    <text x="175" y="168" text-anchor="start" class="lbl-g">no restartPolicy — runs once, then exits</text>
+    <text x="175" y="168" text-anchor="start" class="lbl-g">no restartPolicy: runs once, then exits</text>
     <text x="175" y="230" text-anchor="start" class="lbl">healthz-logger</text>
-    <text x="175" y="258" text-anchor="start" class="lbl-sm">restartPolicy: Always — long-lived sidecar</text>
+    <text x="175" y="258" text-anchor="start" class="lbl-sm">restartPolicy: Always, long-lived sidecar</text>
     <g filter="url(#rough)">
       <rect x="760" y="140" width="250" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
@@ -263,7 +263,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 6 · localhost vs Pod IP -->
 <section>
   <h2 class="t">localhost inside; Pod IP outside</h2>
-  <p class="s">Same Pod, same namespace — so localhost works.</p>
+  <p class="s">Same Pod, same namespace, so localhost works.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Inside one Pod, the sidecar reaches the frontend on localhost 3000 because they share a namespace; the backend is a separate Pod with its own IP, reached over the network.">
     <g filter="url(#rough)">
       <rect x="70" y="80" width="470" height="210" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
@@ -276,7 +276,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
       <path d="M330,195 L285,195" marker-end="url(#ah)"/>
     </g>
-    <text x="305" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">localhost:3000 — same namespace</text>
+    <text x="305" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">localhost:3000, same namespace</text>
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="6 6">
       <path d="M545,185 L700,185" marker-end="url(#ahg)"/>
     </g>

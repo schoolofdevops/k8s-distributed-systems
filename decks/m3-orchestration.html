@@ -178,6 +178,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M3·01</div>
 </section>
 
+<!-- DIVIDER · intro -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why this module exists</h2>
+  <div class="pageno">M3·02</div>
+</section>
+
 <!-- 2 · One host is the ceiling -->
 <section>
   <h2 class="t">One host is the ceiling</h2>
@@ -207,13 +213,19 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="855" y="180">a 2nd copy (one port)</text>
     </g>
   </svg>
-  <div class="pageno">M3·02</div>
+  <div class="pageno">M3·03</div>
+</section>
+
+<!-- DIVIDER · Where Docker's job ends -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Where Docker's job ends and Kubernetes' begins</h2>
+  <div class="pageno">M3·04</div>
 </section>
 
 <!-- 3 · the seam -->
 <section>
   <h2 class="t">Docker runs a container; Kubernetes decides which run</h2>
-  <p class="s">Placement, healing, scaling, rollout — that's orchestration.</p>
+  <p class="s">Placement, healing, scaling, rollout. That's orchestration.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Two panels: Docker runs one container on one host; Kubernetes decides which containers run, how many, where, and what to do when reality drifts from the plan.">
     <g filter="url(#rough)">
       <rect x="70" y="70" width="440" height="220" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -232,7 +244,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="810" y="262" text-anchor="middle" class="lbl-g">the whole fleet, across machines</text>
   </svg>
-  <div class="pageno">M3·03</div>
+  <div class="pageno">M3·05</div>
+</section>
+
+<!-- DIVIDER · The analogy -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: an airport, not a single gate</h2>
+  <div class="pageno">M3·06</div>
 </section>
 
 <!-- 4 · airport analogy -->
@@ -270,7 +288,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="765" y="270" text-anchor="middle" class="lbl-g">many gates, ground crews, hundreds of flights</text>
   </svg>
-  <div class="pageno">M3·04</div>
+  <div class="pageno">M3·07</div>
 </section>
 
 <!-- 5 · tower vs tarmac -->
@@ -303,7 +321,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="810" y="238">report status back</text>
     </g>
   </svg>
-  <div class="pageno">M3·05</div>
+  <div class="pageno">M3·08</div>
 </section>
 
 <!-- 6 · you file a plan -->
@@ -345,18 +363,24 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="790" y="247">frontend on a node</text>
     </g>
   </svg>
-  <div class="pageno">M3·06</div>
+  <div class="pageno">M3·09</div>
+</section>
+
+<!-- DIVIDER · Declarative not imperative -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Declarative, not imperative: the one idea behind everything</h2>
+  <div class="pageno">M3·10</div>
 </section>
 
 <!-- 7 · declarative -->
 <section>
   <h2 class="t">Declare the end state, not the steps</h2>
-  <p class="s">Say what should be true — not the steps to get there.</p>
+  <p class="s">Say what should be true, not the steps to get there.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="The imperative list of steps is crossed out; in its place, a single declaration box says there should be three frontends on this image answering on port 3000, and the controller works out the steps.">
     <g filter="url(#rough)">
       <rect x="70" y="80" width="400" height="200" rx="12" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7"/>
     </g>
-    <text x="270" y="68" text-anchor="middle" class="lbl-g">imperative — the steps</text>
+    <text x="270" y="68" text-anchor="middle" class="lbl-g">imperative: the steps</text>
     <g class="lbl-g" text-anchor="start">
       <text x="100" y="135">start a container</text>
       <text x="100" y="175">now start another</text>
@@ -371,19 +395,19 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="580" y="90" width="450" height="180" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="805" y="78" text-anchor="middle" class="lbl-b">declarative — the end state</text>
+    <text x="805" y="78" text-anchor="middle" class="lbl-b">declarative: the end state</text>
     <g class="lbl" text-anchor="middle">
       <text x="805" y="152">there should be 3 frontends,</text>
       <text x="805" y="192">this image, answering on 3000</text>
     </g>
     <text x="805" y="240" text-anchor="middle" class="lbl-g">the controller works out the steps</text>
   </svg>
-  <div class="pageno">M3·07</div>
+  <div class="pageno">M3·11</div>
 </section>
 
 <!-- 8 · reconciliation (2 fragments) -->
 <section>
-  <h2 class="t">Compare, act, repeat — forever</h2>
+  <h2 class="t">Compare, act, repeat, forever</h2>
   <p class="s">Reconciliation: close the gap between want and reality.</p>
   <svg viewBox="0 0 1100 360" role="img" aria-label="Desired state says three and actual matches three; then one Pod dies and actual drops to two, a mismatch; the controller acts to start a replacement and the count returns to three, then keeps watching.">
     <g filter="url(#rough)">
@@ -400,13 +424,13 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="370" y="90" width="220" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
     <text x="480" y="130" text-anchor="middle" class="lbl-b">actual: 3</text>
-    <text x="480" y="162" text-anchor="middle" class="lbl-sm" fill="#2e7d32">matches — nothing to do</text>
+    <text x="480" y="162" text-anchor="middle" class="lbl-sm" fill="#2e7d32">matches: nothing to do</text>
     <g class="fragment">
       <g filter="url(#rough)">
         <rect x="370" y="90" width="220" height="90" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
       </g>
       <text x="480" y="130" text-anchor="middle" class="lbl-b">actual: 2</text>
-      <text x="480" y="162" text-anchor="middle" class="lbl-sm" fill="#c62828">a Pod died — mismatch</text>
+      <text x="480" y="162" text-anchor="middle" class="lbl-sm" fill="#c62828">a Pod died: mismatch</text>
     </g>
     <g class="fragment">
       <g filter="url(#rough)">
@@ -420,7 +444,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="330" y="288" text-anchor="middle" class="lbl">controller acts &#8594; then keeps watching, forever</text>
     </g>
   </svg>
-  <div class="pageno">M3·08</div>
+  <div class="pageno">M3·12</div>
+</section>
+
+<!-- DIVIDER · Inside the control tower -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Inside the control tower: the control-plane components</h2>
+  <div class="pageno">M3·13</div>
 </section>
 
 <!-- 9 · control-plane anatomy (4 fragments) -->
@@ -431,18 +461,18 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="60" y="70" width="980" height="240" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="550" y="58" text-anchor="middle" class="lbl-b">control plane — the tower &amp; ops office</text>
+    <text x="550" y="58" text-anchor="middle" class="lbl-b">control plane: the tower &amp; ops office</text>
     <g class="fragment">
       <g filter="url(#rough)"><rect x="100" y="120" width="200" height="150" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/></g>
       <text x="200" y="158" text-anchor="middle" class="lbl-b">API server</text>
-      <text x="200" y="196" text-anchor="middle" class="lbl-g">tower radio —</text>
+      <text x="200" y="196" text-anchor="middle" class="lbl-g">tower radio</text>
       <text x="200" y="224" text-anchor="middle" class="lbl-g">every request</text>
       <text x="200" y="252" text-anchor="middle" class="lbl-g">goes through it</text>
     </g>
     <g class="fragment">
       <g filter="url(#rough)"><rect x="330" y="120" width="200" height="150" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/></g>
       <text x="430" y="158" text-anchor="middle" class="lbl-b">etcd</text>
-      <text x="430" y="196" text-anchor="middle" class="lbl-g">the records —</text>
+      <text x="430" y="196" text-anchor="middle" class="lbl-g">the records</text>
       <text x="430" y="224" text-anchor="middle" class="lbl-g">the one source</text>
       <text x="430" y="252" text-anchor="middle" class="lbl-g">of truth</text>
     </g>
@@ -450,18 +480,24 @@ footer, header, hgroup, main, menu, nav, section {
       <g filter="url(#rough)"><rect x="560" y="120" width="200" height="150" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.6"/></g>
       <text x="660" y="158" text-anchor="middle" class="lbl-b">scheduler</text>
       <text x="660" y="196" text-anchor="middle" class="lbl-g">gate assignment</text>
-      <text x="660" y="224" text-anchor="middle" class="lbl-g">— picks a node</text>
+      <text x="660" y="224" text-anchor="middle" class="lbl-g">picks a node</text>
       <text x="660" y="252" text-anchor="middle" class="lbl-g">for each Pod</text>
     </g>
     <g class="fragment">
       <g filter="url(#rough)"><rect x="790" y="120" width="210" height="150" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/></g>
       <text x="895" y="158" text-anchor="middle" class="lbl-b">controllers</text>
       <text x="895" y="196" text-anchor="middle" class="lbl-g">watch the radar</text>
-      <text x="895" y="224" text-anchor="middle" class="lbl-g">— reconcile</text>
+      <text x="895" y="224" text-anchor="middle" class="lbl-g">reconcile</text>
       <text x="895" y="252" text-anchor="middle" class="lbl-g">desired vs actual</text>
     </g>
   </svg>
-  <div class="pageno">M3·09</div>
+  <div class="pageno">M3·14</div>
+</section>
+
+<!-- DIVIDER · On the airfield -->
+<section>
+  <h2 class="t" style="font-size:2.2em">On the airfield: the node components</h2>
+  <div class="pageno">M3·15</div>
 </section>
 
 <!-- 10 · node anatomy (3 fragments) -->
@@ -472,7 +508,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="120" y="70" width="860" height="240" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="550" y="58" text-anchor="middle" class="lbl-b">node — a gate + ground crew</text>
+    <text x="550" y="58" text-anchor="middle" class="lbl-b">node: a gate + ground crew</text>
     <g class="fragment">
       <g filter="url(#rough)"><rect x="160" y="120" width="240" height="160" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/></g>
       <text x="280" y="158" text-anchor="middle" class="lbl-b">kubelet</text>
@@ -495,7 +531,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="820" y="258" text-anchor="middle" class="lbl-g">reached via the CRI</text>
     </g>
   </svg>
-  <div class="pageno">M3·10</div>
+  <div class="pageno">M3·16</div>
 </section>
 
 <!-- 11 · pluggable interfaces -->
@@ -540,13 +576,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="280" text-anchor="middle" class="lbl-b" fill="#2e7d32">Calico</text>
     <text x="820" y="235" text-anchor="middle" class="lbl-g">speaks CNI &#8594; just works</text>
   </svg>
-  <div class="pageno">M3·11</div>
+  <div class="pageno">M3·17</div>
+</section>
+
+<!-- DIVIDER · What you actually send -->
+<section>
+  <h2 class="t" style="font-size:2.2em">What you actually send: objects, described as YAML</h2>
+  <div class="pageno">M3·18</div>
 </section>
 
 <!-- 12 · the object shape -->
 <section>
   <h2 class="t">Everything you send is an object</h2>
-  <p class="s">apiVersion, kind, metadata, spec — every time.</p>
+  <p class="s">apiVersion, kind, metadata, spec. Every time.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="A manifest with four labelled fields — apiVersion, kind, metadata, spec — is applied to the API server, which stores it in etcd as desired state.">
     <g filter="url(#rough)">
       <rect x="80" y="55" width="470" height="255" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
@@ -578,7 +620,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="960" y="245" text-anchor="middle" class="lbl-g">stored as</text>
     <text x="960" y="272" text-anchor="middle" class="lbl-g">desired state</text>
   </svg>
-  <div class="pageno">M3·12</div>
+  <div class="pageno">M3·19</div>
+</section>
+
+<!-- DIVIDER · Why this is worth your attention -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why this is worth your attention</h2>
+  <div class="pageno">M3·20</div>
 </section>
 
 <!-- 13 · payoff -->
@@ -589,7 +637,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="70" y="80" width="440" height="200" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="290" y="120" text-anchor="middle" class="lbl-b">M2 — by hand</text>
+    <text x="290" y="120" text-anchor="middle" class="lbl-b">M2: by hand</text>
     <g class="lbl" text-anchor="middle">
       <text x="290" y="175">"on box-07,</text>
       <text x="290" y="215">and cron, we think"</text>
@@ -601,21 +649,21 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="590" y="80" width="440" height="200" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="810" y="120" text-anchor="middle" class="lbl-b">M3 — declared</text>
+    <text x="810" y="120" text-anchor="middle" class="lbl-b">M3: declared</text>
     <g class="lbl" text-anchor="middle">
       <text x="810" y="172">a declared object;</text>
       <text x="810" y="210">the control plane keeps N alive</text>
     </g>
-    <text x="810" y="258" text-anchor="middle" class="lbl-g" fill="#2e7d32">a dead node reschedules — you sleep</text>
+    <text x="810" y="258" text-anchor="middle" class="lbl-g" fill="#2e7d32">a dead node reschedules, you sleep</text>
   </svg>
-  <div class="pageno">M3·13</div>
+  <div class="pageno">M3·21</div>
 </section>
 
 <!-- 14 · CLOSING -->
 <section>
   <p class="kicker">MODULE 3 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.8em">Stand up the tower and the tarmac</h2>
-  <p class="s" style="font-size:1.15em">A real control plane and a real node — then a Pod.</p>
+  <p class="s" style="font-size:1.15em">A real control plane and a real node, then a Pod.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="What the lab does in four steps: create a KIND cluster, see the control-plane pods running, see the kubelet and kube-proxy and runtime on the node, then run your first Pod on it.">
     <g filter="url(#rough)">
       <circle cx="90" cy="60" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -635,7 +683,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="130" y="248" text-anchor="start" class="lbl" fill="#2e7d32">then run your first Pod on it (Lesson 2)</text>
   </svg>
   <p class="credit">Now open <b>Module 3 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M3·14</div>
+  <div class="pageno">M3·22</div>
 </section>
 
 </div></div>

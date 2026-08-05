@@ -152,10 +152,16 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M3·01</div>
 </section>
 
+<!-- DIVIDER · intro -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Meet the Pod</h2>
+  <div class="pageno">M3·02</div>
+</section>
+
 <!-- 2 · staircase -->
 <section>
   <h2 class="t">The Pod is the smallest thing you can run</h2>
-  <p class="s">Everything later — ReplicaSets, Deployments — makes Pods.</p>
+  <p class="s">Everything later is a machine for making Pods.</p>
   <svg viewBox="0 0 1100 360" role="img" aria-label="A staircase: the Pod at the base, then ReplicaSet, Deployment and StatefulSet stacked above it, each one a machine for making and managing Pods.">
     <g filter="url(#rough)">
       <rect x="120" y="250" width="240" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
@@ -174,7 +180,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="600" y="348" text-anchor="middle" class="lbl-g">each one is a machine for making and managing Pods</text>
   </svg>
-  <div class="pageno">M3·02</div>
+  <div class="pageno">M3·03</div>
+</section>
+
+<!-- DIVIDER · The analogy -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: a shared studio flat, not a single bedroom</h2>
+  <div class="pageno">M3·04</div>
 </section>
 
 <!-- 3 · shared flat analogy -->
@@ -186,7 +198,7 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="250" y="70" width="600" height="230" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
       <rect x="515" y="270" width="70" height="30" rx="4" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="550" y="58" text-anchor="middle" class="lbl-b">Pod — one shared flat</text>
+    <text x="550" y="58" text-anchor="middle" class="lbl-b">Pod: one shared flat</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <circle cx="360" cy="145" r="22"/>
       <path d="M360,167 L360,220 M360,180 L335,205 M360,180 L385,205"/>
@@ -199,7 +211,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="180" text-anchor="middle" class="lbl-g">two containers</text>
     <text x="550" y="212" text-anchor="middle" class="lbl-sm">own beds, one shared home</text>
   </svg>
-  <div class="pageno">M3·03</div>
+  <div class="pageno">M3·05</div>
 </section>
 
 <!-- 4 · four shared things (4 fragments) -->
@@ -239,10 +251,10 @@ footer, header, hgroup, main, menu, nav, section {
         <circle cx="410" cy="315" r="15"/>
         <circle cx="690" cy="315" r="15"/>
       </g>
-      <text x="550" y="335" text-anchor="middle" class="lbl">scheduled onto one node — together</text>
+      <text x="550" y="335" text-anchor="middle" class="lbl">scheduled onto one node, together</text>
     </g>
   </svg>
-  <div class="pageno">M3·04</div>
+  <div class="pageno">M3·06</div>
 </section>
 
 <!-- 5 · definition -->
@@ -261,7 +273,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="655" y="186" text-anchor="middle" class="lbl-g">optional</text>
     <text x="550" y="288" text-anchor="middle" class="lbl-g">one network namespace · can share storage · most hold one</text>
   </svg>
-  <div class="pageno">M3·05</div>
+  <div class="pageno">M3·07</div>
+</section>
+
+<!-- DIVIDER · Why not just a container -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why not just a container? The problem Pods solve</h2>
+  <div class="pageno">M3·08</div>
 </section>
 
 <!-- 6 · why not just a container -->
@@ -291,13 +309,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="920" y="190" text-anchor="middle" class="lbl-sm">helper</text>
     <text x="810" y="264" text-anchor="middle" class="lbl-sm" fill="#2e7d32">placed · networked · managed as one</text>
   </svg>
-  <div class="pageno">M3·06</div>
+  <div class="pageno">M3·09</div>
+</section>
+
+<!-- DIVIDER · The object model -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The object model: the shape every manifest shares</h2>
+  <div class="pageno">M3·10</div>
 </section>
 
 <!-- 7 · four-part object -->
 <section>
   <h2 class="t">Every object has the same four parts</h2>
-  <p class="s">apiVersion, kind, metadata, spec — plus labels.</p>
+  <p class="s">apiVersion, kind, metadata, spec, plus labels.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="One manifest with four fields, each labelled with its job: apiVersion the API version, kind the object type, metadata the name and labels, spec the desired state.">
     <g filter="url(#rough)">
       <rect x="150" y="55" width="800" height="255" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
@@ -310,10 +334,10 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="200" y="111">apiVersion:  which version of the API</text>
       <text x="200" y="169">kind:  which type of object</text>
       <text x="200" y="227">metadata:  name + labels (identity)</text>
-      <text x="200" y="285">spec:  the desired state — what you want</text>
+      <text x="200" y="285">spec:  the desired state, what you want</text>
     </g>
   </svg>
-  <div class="pageno">M3·07</div>
+  <div class="pageno">M3·11</div>
 </section>
 
 <!-- 8 · spec vs status -->
@@ -340,7 +364,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="825" y="165" text-anchor="middle" class="lbl">what's true now</text>
     <text x="825" y="205" text-anchor="middle" class="lbl-g">Kubernetes fills it in</text>
   </svg>
-  <div class="pageno">M3·08</div>
+  <div class="pageno">M3·12</div>
+</section>
+
+<!-- DIVIDER · Multi-container Pods -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Multi-container Pods: sidecar and init (recognize them now)</h2>
+  <div class="pageno">M3·13</div>
 </section>
 
 <!-- 9 · init vs sidecar -->
@@ -369,7 +399,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="905" y="190" text-anchor="middle" class="lbl-sm">sidecar</text>
     <text x="810" y="264" text-anchor="middle" class="lbl-g">runs alongside for the Pod's whole life</text>
   </svg>
-  <div class="pageno">M3·09</div>
+  <div class="pageno">M3·14</div>
+</section>
+
+<!-- DIVIDER · Health checks -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Health checks: three questions Kubernetes keeps asking</h2>
+  <div class="pageno">M3·15</div>
 </section>
 
 <!-- 10 · three probes -->
@@ -396,7 +432,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="130" y="282">"done booting?"  &#8594;  hold the others off till yes</text>
     </g>
   </svg>
-  <div class="pageno">M3·10</div>
+  <div class="pageno">M3·16</div>
 </section>
 
 <!-- 11 · probe answers for its own container -->
@@ -425,7 +461,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="540" y="135" text-anchor="middle" class="lbl-sm" fill="#c62828">liveness points here</text>
     <text x="540" y="302" text-anchor="middle" class="lbl-sm" fill="#c62828">wrong: backend down &#8594; every healthy frontend restarts</text>
   </svg>
-  <div class="pageno">M3·11</div>
+  <div class="pageno">M3·17</div>
+</section>
+
+<!-- DIVIDER · Into the lab -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Into the lab</h2>
+  <div class="pageno">M3·18</div>
 </section>
 
 <!-- 12 · CLOSING -->
@@ -452,7 +494,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="130" y="248" text-anchor="start" class="lbl" fill="#c62828">break three Pods and learn to read why</text>
   </svg>
   <p class="credit">Now open <b>Module 3 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M3·12</div>
+  <div class="pageno">M3·19</div>
 </section>
 
 </div></div>

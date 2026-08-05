@@ -169,10 +169,16 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M6·01</div>
 </section>
 
+<!-- DIVIDER · intro / lead-in -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The tier you cannot throw away</h2>
+  <div class="pageno">M6·02</div>
+</section>
+
 <!-- 2 · stateless was deliberate; a database can't -->
 <section>
-  <h2 class="t">The tiers so far threw state away — a database can't</h2>
-  <p class="s">Interchangeable Pods were the point — a database breaks it.</p>
+  <h2 class="t">The tiers so far threw state away, a database can't</h2>
+  <p class="s">Interchangeable Pods were the point, a database breaks it.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: stateless frontend and backend Pods are expendable — lose one and lose nothing — while a database Pod, if deleted, takes the orders table with it and there is no rollback.">
     <g filter="url(#rough)">
       <rect x="70" y="70" width="440" height="210" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -190,7 +196,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="118" text-anchor="middle" class="lbl-b">database</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">delete it → orders gone, no rollback</text>
   </svg>
-  <div class="pageno">M6·02</div>
+  <div class="pageno">M6·03</div>
+</section>
+
+<!-- DIVIDER · section: Why containers do not solve state for free -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why containers do not solve state for free</h2>
+  <div class="pageno">M6·04</div>
 </section>
 
 <!-- 3 · different lifecycles -->
@@ -201,7 +213,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
       <line x1="70" y1="120" x2="1030" y2="120" stroke-dasharray="5 5"/>
     </g>
-    <text x="70" y="100" class="lbl-g">Pod — cattle</text>
+    <text x="70" y="100" class="lbl-g">Pod: cattle</text>
     <g filter="url(#rough)">
       <rect x="120" y="80" width="120" height="70" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
       <rect x="470" y="80" width="120" height="70" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -216,9 +228,9 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)">
       <rect x="120" y="245" width="820" height="60" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="530" y="283" text-anchor="middle" class="lbl-b">one durable volume — survives &amp; reattaches</text>
+    <text x="530" y="283" text-anchor="middle" class="lbl-b">one durable volume, survives &amp; reattaches</text>
   </svg>
-  <div class="pageno">M6·03</div>
+  <div class="pageno">M6·05</div>
 </section>
 
 <!-- 4 · first-class object -->
@@ -238,12 +250,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="780" y="178" text-anchor="middle" class="lbl-sm">its own lifecycle</text>
     <text x="780" y="212" text-anchor="middle" class="lbl-sm" fill="#2e7d32">survives the Pod</text>
   </svg>
-  <div class="pageno">M6·04</div>
+  <div class="pageno">M6·06</div>
+</section>
+
+<!-- DIVIDER · section: The analogy: renting a self-storage unit -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: renting a self-storage unit</h2>
+  <div class="pageno">M6·07</div>
 </section>
 
 <!-- 5 · analogy scene: rent a unit -->
 <section>
-  <h2 class="t">You rent a unit — you don't build one</h2>
+  <h2 class="t">You rent a unit, you don't build one</h2>
   <p class="s">You sign for a unit; the office assigns you one.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A tenant at the office counter signs a short agreement stating what they need; behind the counter a catalogue of plans; the office then assigns a real numbered unit.">
     <g filter="url(#rough)">
@@ -265,7 +283,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="625" y="228" text-anchor="middle" class="lbl-sm">of plans</text>
     <text x="940" y="155" text-anchor="middle" class="lbl-b">unit 03</text>
   </svg>
-  <div class="pageno">M6·05</div>
+  <div class="pageno">M6·08</div>
 </section>
 
 <!-- 6 · mapping -->
@@ -300,7 +318,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="625" y="317">CSI driver</text>
     </g>
   </svg>
-  <div class="pageno">M6·06</div>
+  <div class="pageno">M6·09</div>
+</section>
+
+<!-- DIVIDER · section: The object model, layer by layer -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The object model, layer by layer</h2>
+  <div class="pageno">M6·10</div>
 </section>
 
 <!-- 7 · object model anatomy -->
@@ -335,13 +359,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="870" y="297" text-anchor="middle" class="lbl-sm">backing disk</text>
     <text x="600" y="243" text-anchor="middle" class="lbl-g" fill="#2e7d32">binds</text>
   </svg>
-  <div class="pageno">M6·07</div>
+  <div class="pageno">M6·11</div>
 </section>
 
 <!-- 8 · StorageClass is a recipe -->
 <section>
   <h2 class="t">A StorageClass is a recipe, not storage</h2>
-  <p class="s">How storage gets made — not the storage itself.</p>
+  <p class="s">How storage gets made, not the storage itself.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A recipe card for a StorageClass listing three ingredients: a provisioner, a reclaim policy of Delete or Retain, and a volume binding mode; one class is marked as the cluster default.">
     <g filter="url(#rough)">
       <rect x="260" y="55" width="580" height="230" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
@@ -352,12 +376,12 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="102" text-anchor="middle" class="lbl-b">StorageClass "standard" (default)</text>
     <g class="lbl" text-anchor="start">
-      <text x="352" y="165">provisioner — what actually makes volumes</text>
-      <text x="352" y="213">reclaim policy — Delete or Retain</text>
-      <text x="352" y="261">binding mode — when the PV is created</text>
+      <text x="352" y="165">provisioner: what makes volumes</text>
+      <text x="352" y="213">reclaim policy: Delete or Retain</text>
+      <text x="352" y="261">binding mode: when the PV is created</text>
     </g>
   </svg>
-  <div class="pageno">M6·08</div>
+  <div class="pageno">M6·12</div>
 </section>
 
 <!-- 9 · claim asks, volume answers -->
@@ -374,15 +398,15 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="160" y="160" text-anchor="middle" class="lbl-b">Pod</text>
     <text x="160" y="190" text-anchor="middle" class="lbl-sm">mounts ↓</text>
-    <text x="430" y="140" text-anchor="middle" class="lbl-b">PVC — a request</text>
+    <text x="430" y="140" text-anchor="middle" class="lbl-b">PVC: a request</text>
     <text x="430" y="180" text-anchor="middle" class="lbl-sm">size: 1Gi</text>
     <text x="430" y="212" text-anchor="middle" class="lbl-sm">mode: RWO</text>
     <text x="620" y="150" text-anchor="middle" class="lbl-g" fill="#2e7d32">binds</text>
-    <text x="840" y="150" text-anchor="middle" class="lbl-b">PV — the unit</text>
+    <text x="840" y="150" text-anchor="middle" class="lbl-b">PV: the unit</text>
     <text x="840" y="190" text-anchor="middle" class="lbl-sm">the concrete storage</text>
     <text x="550" y="290" text-anchor="middle" class="lbl-sm">Pod spec names the claim → same manifest runs anywhere</text>
   </svg>
-  <div class="pageno">M6·09</div>
+  <div class="pageno">M6·13</div>
 </section>
 
 <!-- 10 · CSI loading dock -->
@@ -407,7 +431,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="915" y="248" text-anchor="middle" class="lbl-sm">ebs.csi.aws.com</text>
     <text x="915" y="272" text-anchor="middle" class="lbl-g">AWS</text>
   </svg>
-  <div class="pageno">M6·10</div>
+  <div class="pageno">M6·14</div>
+</section>
+
+<!-- DIVIDER · section: Access modes: who can mount, and how many at once -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Access modes: who can mount, and how many at once</h2>
+  <div class="pageno">M6·15</div>
 </section>
 
 <!-- 11 · access modes -->
@@ -432,7 +462,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="700" y="246">shared filesystems only (NFS…)</text>
     </g>
   </svg>
-  <div class="pageno">M6·11</div>
+  <div class="pageno">M6·16</div>
 </section>
 
 <!-- 12 · RWX trap -->
@@ -448,7 +478,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M283,166 L297,194 M297,166 L283,194" stroke="#c62828" stroke-width="2.4" fill="none"/>
     </g>
     <text x="290" y="118" text-anchor="middle" class="lbl-b">RWX on block storage</text>
-    <text x="290" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">unsatisfiable — the disk can't</text>
+    <text x="290" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">won't work: the disk can't</text>
     <g filter="url(#rough)">
       <rect x="590" y="70" width="440" height="210" rx="14" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
       <rect x="650" y="150" width="110" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
@@ -460,7 +490,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="915" y="145" text-anchor="middle" class="lbl-sm">db-1</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">corruption, not scale → each gets its own RWO</text>
   </svg>
-  <div class="pageno">M6·12</div>
+  <div class="pageno">M6·17</div>
+</section>
+
+<!-- DIVIDER · section: Dynamic provisioning is the payoff -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Dynamic provisioning is the payoff</h2>
+  <div class="pageno">M6·18</div>
 </section>
 
 <!-- 13 · static vs dynamic -->
@@ -488,13 +524,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="930" y="145" text-anchor="middle" class="lbl-sm">exact PV</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">provisioner makes it, right-sized, on demand</text>
   </svg>
-  <div class="pageno">M6·13</div>
+  <div class="pageno">M6·19</div>
 </section>
 
 <!-- 14 · Pending is the plan -->
 <section>
   <h2 class="t">Pending is the plan, not a fault</h2>
-  <p class="s">WaitForFirstConsumer — the healthy Pending.</p>
+  <p class="s">WaitForFirstConsumer: the healthy Pending.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A PVC sits Pending on purpose until a Pod is scheduled; then the provisioner creates the volume on that same node and the claim goes Bound. A Pending PVC with no consumer is the most common storage false alarm.">
     <g filter="url(#rough)">
       <rect x="70" y="130" width="200" height="90" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -510,7 +546,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="790" y="180" text-anchor="middle" class="lbl-b">Bound</text>
     <text x="480" y="270" text-anchor="middle" class="lbl-sm">no consumer yet → the #1 "is my storage broken?" false alarm</text>
   </svg>
-  <div class="pageno">M6·14</div>
+  <div class="pageno">M6·20</div>
+</section>
+
+<!-- DIVIDER · section: Why a StatefulSet, and not a Deployment -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why a StatefulSet, and not a Deployment</h2>
+  <div class="pageno">M6·21</div>
 </section>
 
 <!-- 15 · why statefulset not deployment -->
@@ -533,9 +575,9 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="810" y="118" text-anchor="middle" class="lbl-b">a database</text>
     <text x="810" y="188" text-anchor="middle" class="lbl-sm">this exact one, with its data</text>
-    <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">breaks the assumption — identity matters</text>
+    <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">breaks that rule: identity matters</text>
   </svg>
-  <div class="pageno">M6·15</div>
+  <div class="pageno">M6·22</div>
 </section>
 
 <!-- 16 · stable name -->
@@ -557,7 +599,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="785" y="172" text-anchor="middle" class="lbl-b">db-0</text>
     <text x="785" y="245" text-anchor="middle" class="lbl-sm" fill="#2e7d32">same name, not db-9f8c7</text>
   </svg>
-  <div class="pageno">M6·16</div>
+  <div class="pageno">M6·23</div>
 </section>
 
 <!-- 17 · own PVC kept -->
@@ -582,7 +624,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="935" y="248" text-anchor="middle" class="lbl-sm">PV / disk</text>
     <text x="550" y="315" text-anchor="middle" class="lbl-sm">recreate the Pod → same claim, same data</text>
   </svg>
-  <div class="pageno">M6·17</div>
+  <div class="pageno">M6·24</div>
 </section>
 
 <!-- 18 · stable DNS + ordering -->
@@ -611,7 +653,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="570" y="285" text-anchor="middle" class="lbl-sm">then db-1</text>
     <text x="720" y="285" text-anchor="start" class="lbl-g">ordered start / stop</text>
   </svg>
-  <div class="pageno">M6·18</div>
+  <div class="pageno">M6·25</div>
 </section>
 
 <!-- 19 · synthesis recipe -->
@@ -639,7 +681,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="1030" y="238" text-anchor="middle" class="lbl-sm">PV</text>
     <text x="565" y="312" text-anchor="middle" class="lbl-sm">the database is just the most familiar example</text>
   </svg>
-  <div class="pageno">M6·19</div>
+  <div class="pageno">M6·26</div>
+</section>
+
+<!-- DIVIDER · section: Where this leaves you -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Where this leaves you</h2>
+  <div class="pageno">M6·27</div>
 </section>
 
 <!-- 20 · CLOSING -->
@@ -658,12 +706,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="90" y="238" text-anchor="middle" class="num">3</text>
     <g class="lbl" text-anchor="start">
       <text x="135" y="78">a file outlives the Pod that wrote it</text>
-      <text x="135" y="158">db-0 returns — same name, same volume, same data</text>
-      <text x="135" y="238">the backend reports db: connected — first in-cluster Postgres</text>
+      <text x="135" y="158">db-0 returns: same name, same volume, same data</text>
+      <text x="135" y="238">the backend reports db: connected, first in-cluster Postgres</text>
     </g>
   </svg>
   <p class="credit">Now open <b>Module 6 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M6·20</div>
+  <div class="pageno">M6·28</div>
 </section>
 
 </div></div>

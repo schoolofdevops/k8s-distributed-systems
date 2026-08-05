@@ -137,7 +137,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 1 · TITLE -->
 <section data-auto-animate>
   <p class="kicker">MODULE 4 · LESSON 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:2.0em">One cluster, many teams — give each a floor</h2>
+  <h2 class="t" style="font-size:2.0em">One cluster, many teams: give each a floor</h2>
   <p class="s" style="font-size:1.2em">A shared cluster needs an organizing boundary.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="An office building with three labelled floors — fernwood, qa and platform — sitting on one shared foundation of nodes, network and control plane.">
     <g filter="url(#rough)">
@@ -151,13 +151,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="78" text-anchor="middle" class="lbl">fernwood</text>
     <text x="550" y="145" text-anchor="middle" class="lbl">qa</text>
     <text x="550" y="213" text-anchor="middle" class="lbl">platform</text>
-    <text x="550" y="263" text-anchor="middle" class="lbl-sm">one shared foundation — nodes, network, control plane</text>
+    <text x="550" y="263" text-anchor="middle" class="lbl-sm">one shared foundation · nodes, network, control plane</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M4·01</div>
 </section>
 
-<!-- 2 · one bucket collides -->
+<!-- 2 · DIVIDER: lesson intro -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why a shared cluster needs boundaries</h2>
+  <div class="pageno">M4·02</div>
+</section>
+
+<!-- 3 · one bucket collides -->
 <section>
   <h2 class="t">One bucket, and the names collide</h2>
   <p class="s">Everything in default means clashes and bad deletes.</p>
@@ -174,12 +180,18 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M880,120 L640,175" marker-end="url(#ah)"/>
     </g>
     <text x="890" y="108" text-anchor="middle" class="lbl-sm" fill="#c62828">delete staging…</text>
-    <text x="550" y="308" text-anchor="middle" class="lbl-sm" fill="#c62828">two "frontend" clash — and you cannot tell whose is whose</text>
+    <text x="550" y="308" text-anchor="middle" class="lbl-sm" fill="#c62828">two "frontend" clash, and you cannot tell whose is whose</text>
   </svg>
-  <div class="pageno">M4·02</div>
+  <div class="pageno">M4·03</div>
 </section>
 
-<!-- 3 · analogy: floor -->
+<!-- 4 · DIVIDER: The analogy: floors in an office building -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: floors in an office building</h2>
+  <div class="pageno">M4·04</div>
+</section>
+
+<!-- 5 · analogy: floor -->
 <section>
   <h2 class="t">A namespace is a floor of the building</h2>
   <p class="s">Cluster = building; namespace = floor.</p>
@@ -190,15 +202,15 @@ footer, header, hgroup, main, menu, nav, section {
       <line x1="330" y1="189" x2="770" y2="189" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="290" y="262" width="520" height="40" rx="8" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="550" y="90" text-anchor="middle" class="lbl">fernwood — your floor</text>
+    <text x="550" y="90" text-anchor="middle" class="lbl">fernwood · your floor</text>
     <text x="550" y="162" text-anchor="middle" class="lbl">qa</text>
-    <text x="550" y="234" text-anchor="middle" class="lbl">kube-system — building services</text>
-    <text x="550" y="288" text-anchor="middle" class="lbl-sm">shared foundation — nodes · network · control plane</text>
+    <text x="550" y="234" text-anchor="middle" class="lbl">kube-system · building services</text>
+    <text x="550" y="288" text-anchor="middle" class="lbl-sm">shared foundation · nodes · network · control plane</text>
   </svg>
-  <div class="pageno">M4·03</div>
+  <div class="pageno">M4·05</div>
 </section>
 
-<!-- 4 · names unique per floor -->
+<!-- 6 · names unique per floor -->
 <section>
   <h2 class="t">Same name is fine on different floors</h2>
   <p class="s">Names are unique per floor, not per building.</p>
@@ -213,14 +225,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="295" y="183" text-anchor="middle" class="lbl">Service backend</text>
     <text x="805" y="112" text-anchor="middle" class="lbl-b">namespace: qa</text>
     <text x="805" y="183" text-anchor="middle" class="lbl">Service backend</text>
-    <text x="550" y="300" text-anchor="middle" class="lbl-sm" fill="#2e7d32">two "backend" — no clash, different floors</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-sm" fill="#2e7d32">two "backend", no clash on different floors</text>
   </svg>
-  <div class="pageno">M4·04</div>
+  <div class="pageno">M4·06</div>
 </section>
 
-<!-- 5 · definition -->
+<!-- 7 · definition -->
 <section>
-  <h2 class="t">A namespace is a named partition inside one cluster</h2>
+  <h2 class="t">A namespace is a named section inside one cluster</h2>
   <p class="s">One boundary you scope and delete as a unit.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A named partition box with three rows describing what a namespace gives you: unique object names, a scope for access and quota, and a unit you can clean up all at once.">
     <g filter="url(#rough)">
@@ -236,10 +248,10 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="285" y="252">clean up as a single unit</text>
     </g>
   </svg>
-  <div class="pageno">M4·05</div>
+  <div class="pageno">M4·07</div>
 </section>
 
-<!-- 6 · not a wall, not a separate building -->
+<!-- 8 · not a wall, not a separate building -->
 <section>
   <h2 class="t">Not a wall, not a separate building</h2>
   <p class="s">It organizes; it does not isolate or duplicate.</p>
@@ -260,10 +272,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="118" text-anchor="middle" class="lbl-b">NOT a separate cluster</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm">still one building, shared floors</text>
   </svg>
-  <div class="pageno">M4·06</div>
+  <div class="pageno">M4·08</div>
 </section>
 
-<!-- 7 · namespaced vs cluster-wide -->
+<!-- 9 · DIVIDER: Namespaced vs cluster-wide: not everything lives on a floor -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Namespaced vs cluster-wide: not everything lives on a floor</h2>
+  <div class="pageno">M4·09</div>
+</section>
+
+<!-- 10 · namespaced vs cluster-wide -->
 <section>
   <h2 class="t">Most things live on a floor; a few belong to the building</h2>
   <p class="s">Namespaced objects vs cluster-wide ones.</p>
@@ -287,10 +305,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="290" y="286" text-anchor="middle" class="lbl-g">get pods asks about one floor</text>
     <text x="810" y="286" text-anchor="middle" class="lbl-g">no floor to sit on</text>
   </svg>
-  <div class="pageno">M4·07</div>
+  <div class="pageno">M4·10</div>
 </section>
 
-<!-- 8 · context = three questions -->
+<!-- 11 · DIVIDER: Contexts: which cluster, which namespace, which user -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Contexts: which cluster, which namespace, which user</h2>
+  <div class="pageno">M4·11</div>
+</section>
+
+<!-- 12 · context = three questions -->
 <section>
   <h2 class="t">A context answers three questions at once</h2>
   <p class="s">Which cluster, which user, which namespace.</p>
@@ -314,10 +338,10 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="815" y="253">which namespace?</text>
     </g>
   </svg>
-  <div class="pageno">M4·08</div>
+  <div class="pageno">M4·12</div>
 </section>
 
-<!-- 9 · wrong context = #1 mistake -->
+<!-- 13 · wrong context = #1 mistake -->
 <section>
   <h2 class="t">The wrong context is the #1 mistake</h2>
   <p class="s">Check current-context before you change things.</p>
@@ -342,10 +366,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="300" text-anchor="middle" class="lbl-sm">the check catches the command before it lands on the wrong floor</text>
   </svg>
-  <div class="pageno">M4·09</div>
+  <div class="pageno">M4·13</div>
 </section>
 
-<!-- 10 · visit vs move desk -->
+<!-- 14 · DIVIDER: Two ways to work in a namespace, and which to use -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Two ways to work in a namespace, and which to use</h2>
+  <div class="pageno">M4·14</div>
+</section>
+
+<!-- 15 · visit vs move desk -->
 <section>
   <h2 class="t">Visit a floor, or move your desk</h2>
   <p class="s">Flag to glance; set the default to stay.</p>
@@ -363,10 +393,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="200" text-anchor="middle" class="lbl-sm">every later command assumes it</text>
     <text x="810" y="240" text-anchor="middle" class="lbl-sm" fill="#2e7d32">sticks across terminals &amp; reboots</text>
   </svg>
-  <div class="pageno">M4·10</div>
+  <div class="pageno">M4·15</div>
 </section>
 
-<!-- 11 · namespace is not a context -->
+<!-- 16 · namespace is not a context -->
 <section>
   <h2 class="t">A namespace is not a context</h2>
   <p class="s">Namespace is just one field of a context.</p>
@@ -385,10 +415,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="302" text-anchor="middle" class="lbl-sm">changing your default floor does not change the building</text>
   </svg>
-  <div class="pageno">M4·11</div>
+  <div class="pageno">M4·16</div>
 </section>
 
-<!-- 12 · CLOSING -->
+<!-- 17 · DIVIDER: Into the rest of the module -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Into the rest of the module</h2>
+  <div class="pageno">M4·17</div>
+</section>
+
+<!-- 18 · CLOSING -->
 <section>
   <p class="kicker">MODULE 4 · LESSON 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Make fernwood your floor</h2>
@@ -409,7 +445,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
   </svg>
   <p class="credit">Now open <b>Module 4 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M4·12</div>
+  <div class="pageno">M4·18</div>
 </section>
 
 </div></div>

@@ -163,7 +163,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 2 · the formula -->
 <section>
   <h2 class="t">The HPA is one line of arithmetic</h2>
-  <p class="s">ceil of a ratio, clamped between min and max.</p>
+  <p class="s">It rounds a ratio up, held between min and max.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="The HPA formula: desired replicas equals the ceiling of current replicas times current metric over target metric; worked at 656 percent over 50 percent the ratio is far above one so the count jumps to the cap of six, with a ten percent tolerance band and averaging across ready Pods.">
     <g filter="url(#rough)">
       <rect x="120" y="55" width="860" height="80" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -208,7 +208,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 4 · scale-up vs scale-down windows -->
 <section>
   <h2 class="t">Scale-up is an emergency; scale-down waits</h2>
-  <p class="s">A long window protects latency; a short one saves money.</p>
+  <p class="s">A long wait protects speed; a short one saves money.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="The asymmetric stabilization windows: scale-up has a zero-second window so the HPA reacts to a spike immediately, while scale-down defaults to a five-minute window that holds capacity, both tunable in a behavior block.">
     <g filter="url(#rough)">
       <rect x="70" y="70" width="440" height="200" rx="14" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -222,7 +222,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="115" text-anchor="middle" class="lbl-b">scale-down</text>
     <text x="810" y="165" text-anchor="middle" class="lbl">window 5m default</text>
     <text x="810" y="212" text-anchor="middle" class="lbl-sm">a lull is not the end of the rush</text>
-    <text x="550" y="302" text-anchor="middle" class="lbl-g">both set in a behavior block — there is no universally correct number</text>
+    <text x="550" y="302" text-anchor="middle" class="lbl-g">both set in a behavior block; there is no one correct number</text>
   </svg>
   <div class="pageno">M5-DD·04</div>
 </section>
@@ -263,7 +263,7 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <p class="kicker">MODULE 5 · DEEP DIVE &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Three failures, three StatefulSet guarantees</h2>
-  <p class="s" style="font-size:1.15em">Identity, storage, order — that is all of M6.</p>
+  <p class="s" style="font-size:1.15em">Identity, storage, order. That is all of M6.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="Each Deployment failure maps to a StatefulSet guarantee that M6 adds: random names become ordinal names, ephemeral or shared storage becomes one PersistentVolumeClaim per Pod, and all-at-once becomes ordered start and stop.">
     <g filter="url(#rough)">
       <rect x="70" y="60" width="410" height="56" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.2"/>

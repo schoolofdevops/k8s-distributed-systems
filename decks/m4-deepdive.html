@@ -138,7 +138,7 @@ footer, header, hgroup, main, menu, nav, section {
 <section data-auto-animate>
   <p class="kicker">MODULE 4 · DEEP DIVE &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.95em">A Service is rules in the kernel, not a process</h2>
-  <p class="s" style="font-size:1.2em">No operator in the path — the kernel rewrites the packet.</p>
+  <p class="s" style="font-size:1.2em">No operator in the path, the kernel rewrites the packet.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A cluster IP feeding into a stack of kernel rules that rewrite the destination to a real Pod, with no proxy process in between.">
     <g filter="url(#rough)">
       <rect x="80" y="115" width="230" height="80" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8" stroke-dasharray="6 5"/>
@@ -205,7 +205,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M355,155 L400,155" marker-end="url(#ah)"/>
       <path d="M700,155 L745,155" marker-end="url(#ah)"/>
     </g>
-    <text x="550" y="250" text-anchor="middle" class="lbl-g">the packet's whole journey — no proxy process</text>
+    <text x="550" y="250" text-anchor="middle" class="lbl-g">the packet's whole journey, no proxy process</text>
   </svg>
   <div class="pageno">M4-DD·03</div>
 </section>
@@ -233,7 +233,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="860" y="128" text-anchor="middle" class="lbl-b">three endpoints</text>
     <text x="860" y="170" text-anchor="middle" class="lbl">0.33 · 0.5 · rest</text>
     <text x="860" y="205" text-anchor="middle" class="lbl-sm">each ends up equal</text>
-    <text x="370" y="285" text-anchor="middle" class="lbl-g">two Pods, 50/50 — the weights make every share equal</text>
+    <text x="370" y="285" text-anchor="middle" class="lbl-g">two Pods, 50/50, and the weights make every share equal</text>
   </svg>
   <div class="pageno">M4-DD·04</div>
 </section>
@@ -241,7 +241,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- 5 · scale reweights -->
 <section>
   <h2 class="t">Scale, and kube-proxy rewrites the weights</h2>
-  <p class="s">The rules are not static — membership drives them.</p>
+  <p class="s">The rules are not static, membership drives them.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Scaling the backend from two to three endpoints; the first rule's probability drops from 0.5 to 0.333 as a new endpoint chain appears — kube-proxy rewrote the load balancer to match.">
     <g filter="url(#rough)">
       <rect x="90" y="90" width="330" height="140" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -257,7 +257,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M425,160 L675,160" marker-end="url(#ah)"/>
     </g>
     <text x="550" y="145" text-anchor="middle" class="lbl-sm">kubectl scale</text>
-    <text x="550" y="292" text-anchor="middle" class="lbl-g">one number changed in a ReplicaSet — the balancer rewrote itself</text>
+    <text x="550" y="292" text-anchor="middle" class="lbl-g">one number changed in a ReplicaSet, and the balancer rewrote itself</text>
   </svg>
   <div class="pageno">M4-DD·05</div>
 </section>

@@ -166,10 +166,16 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M2·01</div>
 </section>
 
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why write the wiring down?</h2>
+  <div class="pageno">M2·02</div>
+</section>
+
 <!-- 2 · The problem -->
 <section>
   <h2 class="t">The wiring lives in your head, not on disk</h2>
-  <p class="s">Fine the first time, a liability every time after.</p>
+  <p class="s">Fine the first time, a problem every time after.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="The five-command wiring survives only in shell scrollback and memory; on Monday a new QA runs it, misses one flag, and the backend reports the database unavailable.">
     <g filter="url(#rough)">
       <rect x="80" y="90" width="330" height="180" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="9 7"/>
@@ -190,7 +196,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="180" text-anchor="middle" class="lbl-sm">no POSTGRES_DB=fernwood</text>
     <text x="800" y="222" text-anchor="middle" class="lbl" fill="#c62828">backend: "database unavailable"</text>
   </svg>
-  <div class="pageno">M2·02</div>
+  <div class="pageno">M2·03</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The analogy: a prompt book, not shouting from the wings</h2>
+  <div class="pageno">M2·04</div>
 </section>
 
 <!-- 3 · Prompt book analogy -->
@@ -214,7 +226,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="645" y="220" text-anchor="middle" class="lbl">on which line</text>
     <text x="550" y="315" text-anchor="middle" class="lbl-g" fill="#2e7d32">written down, so every night repeats</text>
   </svg>
-  <div class="pageno">M2·03</div>
+  <div class="pageno">M2·05</div>
 </section>
 
 <!-- 4 · Wings vs calling the show -->
@@ -247,13 +259,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="240" text-anchor="middle" class="lbl">whole cast on, one command</text>
     <text x="805" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">the wiring is in the file, not your memory</text>
   </svg>
-  <div class="pageno">M2·04</div>
+  <div class="pageno">M2·06</div>
 </section>
 
 <!-- 5 · wiring becomes a file -->
 <section>
   <h2 class="t">The wiring becomes a file, not a ritual</h2>
-  <p class="s">Reviewable, diffable — you keep it, not re-perform it.</p>
+  <p class="s">You keep it and review it, not re-perform it.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="The wiring moves out of scrollback and memory, which get crossed out, and into a compose file kept in version control that can be read, reviewed in a pull request and diffed.">
     <g filter="url(#rough)">
       <rect x="70" y="90" width="330" height="150" rx="12" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7"/>
@@ -272,10 +284,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="810" y="78" text-anchor="middle" class="lbl-b">compose.yaml in version control</text>
     <text x="810" y="145" text-anchor="middle" class="lbl">read it · review it in a PR</text>
-    <text x="810" y="185" text-anchor="middle" class="lbl">diff it when it changes</text>
+    <text x="810" y="185" text-anchor="middle" class="lbl">see what changed</text>
     <text x="810" y="222" text-anchor="middle" class="lbl-g" fill="#2e7d32">repeatable for everyone</text>
   </svg>
-  <div class="pageno">M2·05</div>
+  <div class="pageno">M2·07</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">From "install on a server" to "declare a stack"</h2>
+  <div class="pageno">M2·08</div>
 </section>
 
 <!-- 6 · procedural -> declarative -->
@@ -303,13 +321,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="182" text-anchor="middle" class="lbl">make it so"</text>
     <text x="560" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">the same shift you'll use for Kubernetes in Session 3</text>
   </svg>
-  <div class="pageno">M2·06</div>
+  <div class="pageno">M2·09</div>
 </section>
 
 <!-- 7 · containers vs whole app -->
 <section>
   <h2 class="t">Containers ship a tier; Compose ships the app</h2>
-  <p class="s">Containers ship a tier; Compose ships the whole app.</p>
+  <p class="s">Each tier was portable; the app was not.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Containers already ship each tier as its own portable image, but nothing described the whole application; Compose wraps all three services plus the network and storage into one unit.">
     <g filter="url(#rough)">
       <rect x="70" y="110" width="130" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -337,13 +355,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="825" y="250" text-anchor="middle" class="lbl-sm">+ network + storage that connect them</text>
     <text x="825" y="285" text-anchor="middle" class="lbl-g" fill="#2e7d32">the whole application, described once</text>
   </svg>
-  <div class="pageno">M2·07</div>
+  <div class="pageno">M2·10</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Read the app as a system first</h2>
+  <div class="pageno">M2·11</div>
 </section>
 
 <!-- 8 · read the app as a system (table) -->
 <section>
-  <h2 class="t">Read the app as a system first</h2>
-  <p class="s">Images, ports, dependencies, state — read them first.</p>
+  <h2 class="t">Three services, four facts each</h2>
+  <p class="s">Images, ports, dependencies, state.</p>
   <svg viewBox="0 0 1100 350" role="img" aria-label="A table of the three services: frontend built locally on port 3000 depends on backend and is stateless; backend built locally on port 8080 depends on db and is stateless; db is the pulled postgres image on port 5432 with no dependency and is stateful.">
     <g filter="url(#rough)">
       <rect x="60" y="60" width="980" height="270" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -376,7 +400,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="785" y="299" text-anchor="middle" class="lbl-sm">—</text>
     <text x="955" y="299" text-anchor="middle" class="lbl-b" fill="#c62828">stateful</text>
   </svg>
-  <div class="pageno">M2·08</div>
+  <div class="pageno">M2·12</div>
 </section>
 
 <!-- 9 · images: build vs pull -->
@@ -399,7 +423,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="200" text-anchor="middle" class="lbl-sm">Compose pulls it</text>
     <text x="550" y="300" text-anchor="middle" class="lbl-g" fill="#2e7d32">one file handles both kinds</text>
   </svg>
-  <div class="pageno">M2·09</div>
+  <div class="pageno">M2·13</div>
 </section>
 
 <!-- 10 · dependencies one way -->
@@ -428,7 +452,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="545" y="235" text-anchor="middle" class="lbl-sm" fill="#c62828">nothing points back</text>
     <text x="545" y="272" text-anchor="middle" class="lbl-g" fill="#2e7d32">start db &#8594; backend &#8594; frontend — that's depends_on</text>
   </svg>
-  <div class="pageno">M2·10</div>
+  <div class="pageno">M2·14</div>
 </section>
 
 <!-- 11 · state -->
@@ -455,7 +479,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="255" text-anchor="middle" class="lbl-g" fill="#c62828">destroy it carelessly — data gone</text>
     <text x="550" y="322" text-anchor="middle" class="lbl-sm">&#8594; frontend becomes a Deployment (S5) · db becomes a StatefulSet (S6)</text>
   </svg>
-  <div class="pageno">M2·11</div>
+  <div class="pageno">M2·15</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">What Docker Compose actually is</h2>
+  <div class="pageno">M2·16</div>
 </section>
 
 <!-- 12 · Compose is file + command -->
@@ -478,7 +508,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="178" text-anchor="middle" class="lbl-sm">makes reality match the file</text>
     <text x="820" y="228" text-anchor="middle" class="lbl-g">calls the show</text>
   </svg>
-  <div class="pageno">M2·12</div>
+  <div class="pageno">M2·17</div>
 </section>
 
 <!-- 13 · every flag has a home -->
@@ -515,7 +545,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="970" y="160" text-anchor="middle" class="lbl">volumes</text>
     <text x="970" y="205" text-anchor="middle" class="lbl">depends_on</text>
   </svg>
-  <div class="pageno">M2·13</div>
+  <div class="pageno">M2·18</div>
 </section>
 
 <!-- 14 · the file describes this shape -->
@@ -551,13 +581,19 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="905" y="335" text-anchor="middle" class="lbl-sm">named volume</text>
   </svg>
-  <div class="pageno">M2·14</div>
+  <div class="pageno">M2·19</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Why the file beats the five commands</h2>
+  <div class="pageno">M2·20</div>
 </section>
 
 <!-- 15 · why the file beats commands -->
 <section>
-  <h2 class="t">Why the file beats the five commands</h2>
-  <p class="s">Not just easier to type — a stack you can operate.</p>
+  <h2 class="t">The file gives you four properties</h2>
+  <p class="s">Not just easier to type. A stack you can operate.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Four properties you get from declaring the stack: one source of truth, idempotence, ordering by declaration, and whole-stack operations.">
     <g filter="url(#rough)">
       <circle cx="90" cy="70" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -570,15 +606,15 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="90" y="218" text-anchor="middle" class="num">3</text>
     <text x="90" y="288" text-anchor="middle" class="num">4</text>
     <g class="lbl" text-anchor="start">
-      <text x="130" y="70">one source of truth — read it, review it, diff it</text>
-      <text x="130" y="140">idempotence — re-run fixes only what drifted</text>
+      <text x="130" y="70">one source of truth — read, review, compare it</text>
+      <text x="130" y="140">safe to re-run — only fixes what changed</text>
     </g>
     <g class="lbl" text-anchor="start" fill="#2e7d32">
       <text x="130" y="210">ordering by declaration — wait until ready, not just up</text>
       <text x="130" y="280">whole-stack ops — logs, ps, down operate on the app</text>
     </g>
   </svg>
-  <div class="pageno">M2·15</div>
+  <div class="pageno">M2·21</div>
 </section>
 
 <!-- 16 · up is not ready (fragments) -->
@@ -613,7 +649,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="540" y="300" text-anchor="middle" class="lbl-sm">the seconds between up and ready is where a race hides</text>
     </g>
   </svg>
-  <div class="pageno">M2·16</div>
+  <div class="pageno">M2·22</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Volumes: giving the stateful tier a memory</h2>
+  <div class="pageno">M2·23</div>
 </section>
 
 <!-- 17 · named volume memory (fragments) -->
@@ -654,7 +696,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="880" y="318" text-anchor="middle" class="lbl-sm">Session 6 scales this up: StorageClass · PVC</text>
     </g>
   </svg>
-  <div class="pageno">M2·17</div>
+  <div class="pageno">M2·24</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">The wall Compose runs into</h2>
+  <div class="pageno">M2·25</div>
 </section>
 
 <!-- 18 · everything on one machine -->
@@ -682,7 +730,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="470" y="285" text-anchor="middle" class="lbl-g">watches &amp; restarts crashes — restart: unless-stopped</text>
   </svg>
-  <div class="pageno">M2·18</div>
+  <div class="pageno">M2·26</div>
 </section>
 
 <!-- 19 · three walls -->
@@ -709,7 +757,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="135" y="262">more copies all land here, fighting for ports, CPU, memory</text>
     </g>
   </svg>
-  <div class="pageno">M2·19</div>
+  <div class="pageno">M2·27</div>
+</section>
+
+<!-- DIVIDER -->
+<section>
+  <h2 class="t" style="font-size:2.2em">What you will do in the lab</h2>
+  <div class="pageno">M2·28</div>
 </section>
 
 <!-- 20 · closing -->
@@ -738,7 +792,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
   </svg>
   <p class="credit">Now open <b>Module 2 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M2·20</div>
+  <div class="pageno">M2·29</div>
 </section>
 
 </div></div>

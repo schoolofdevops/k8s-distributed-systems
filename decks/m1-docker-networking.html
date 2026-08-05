@@ -158,6 +158,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section>
+  <h2 class="t" style="font-size:2.2em">How a container gets a network at all</h2>
+  <div class="pageno">M1·02</div>
+</section>
+
+<section>
   <h2 class="t">Every container gets its own private mailroom</h2>
   <p class="s">Its own IP, its own interfaces, its own ports.</p>
   <svg viewBox="0 0 1100 350" role="img" aria-label="An apartment building where each apartment has its own private mailroom — a network namespace with its own IP and interfaces — while all share the one real network card downstairs; two apartments can both use port 8080 without colliding.">
@@ -185,7 +190,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="895" y="215" text-anchor="middle" class="lbl-sm">own interfaces + routing</text>
     <text x="560" y="320" text-anchor="middle" class="lbl-g">that isolation is why both can listen on 8080 without colliding</text>
   </svg>
-  <div class="pageno">M1·02</div>
+  <div class="pageno">M1·03</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">The three built-in networks</h2>
+  <div class="pageno">M1·04</div>
 </section>
 
 <section>
@@ -205,7 +215,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="122" text-anchor="middle" class="lbl-b">host</text>
     <text x="550" y="158" text-anchor="middle" class="lbl-g">driver: host</text>
     <text x="550" y="205" text-anchor="middle" class="lbl-sm">no separate</text>
-    <text x="550" y="235" text-anchor="middle" class="lbl-sm">namespace —</text>
+    <text x="550" y="235" text-anchor="middle" class="lbl-sm">namespace,</text>
     <text x="550" y="268" text-anchor="middle" class="lbl-sm">shares the host stack</text>
     <text x="880" y="122" text-anchor="middle" class="lbl-b">none</text>
     <text x="880" y="158" text-anchor="middle" class="lbl-g">driver: null</text>
@@ -214,7 +224,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="880" y="268" text-anchor="middle" class="lbl-sm">cut off on purpose</text>
     <text x="550" y="318" text-anchor="middle" class="lbl-g">the driver decides what "being on this network" physically means</text>
   </svg>
-  <div class="pageno">M1·03</div>
+  <div class="pageno">M1·05</div>
 </section>
 
 <section>
@@ -247,7 +257,12 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="985" y="130" text-anchor="middle" class="lbl-sm" fill="#c62828">no net</text>
   </svg>
-  <div class="pageno">M1·04</div>
+  <div class="pageno">M1·06</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">Why the default bridge is an operational trap</h2>
+  <div class="pageno">M1·07</div>
 </section>
 
 <section>
@@ -270,7 +285,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="112" text-anchor="middle" class="lbl-g">only "172.17.0.3" works</text>
     <text x="550" y="215" text-anchor="middle" class="lbl" fill="#c62828">no name resolution and no directory here</text>
   </svg>
-  <div class="pageno">M1·05</div>
+  <div class="pageno">M1·08</div>
 </section>
 
 <section>
@@ -306,13 +321,18 @@ footer, header, hgroup, main, menu, nav, section {
       <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round">
         <path d="M550,210 L550,270" marker-end="url(#ah)"/>
       </g>
-      <text x="550" y="300" text-anchor="middle" class="lbl" fill="#c62828">pointer is stale — points at nothing</text>
+      <text x="550" y="300" text-anchor="middle" class="lbl" fill="#c62828">pointer is stale, points at nothing</text>
       <text x="880" y="180" text-anchor="middle" class="lbl-sm">the classic 2-tier failure:</text>
       <text x="880" y="212" text-anchor="middle" class="lbl-sm">"nothing changed, yet</text>
       <text x="880" y="240" text-anchor="middle" class="lbl-sm">the app is broken"</text>
     </g>
   </svg>
-  <div class="pageno">M1·06</div>
+  <div class="pageno">M1·09</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">User-defined bridge networks and DNS by name</h2>
+  <div class="pageno">M1·10</div>
 </section>
 
 <section>
@@ -325,7 +345,7 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="420" y="120" width="180" height="80" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
       <rect x="230" y="235" width="260" height="45" rx="8" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="5 5"/>
     </g>
-    <text x="360" y="60" text-anchor="middle" class="lbl-b">appnet — one office floor</text>
+    <text x="360" y="60" text-anchor="middle" class="lbl-b">appnet · one office floor</text>
     <text x="210" y="152" text-anchor="middle" class="lbl">frontend</text>
     <text x="210" y="182" text-anchor="middle" class="lbl-sm">listed</text>
     <text x="510" y="152" text-anchor="middle" class="lbl">backend</text>
@@ -345,7 +365,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="700" y="150" text-anchor="middle" class="lbl-sm" fill="#c62828">no listing</text>
   </svg>
-  <div class="pageno">M1·07</div>
+  <div class="pageno">M1·11</div>
 </section>
 
 <section>
@@ -381,7 +401,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="550" y="290" text-anchor="middle" class="lbl-g">that's why BACKEND_URL defaults to a name, not an address</text>
     </g>
   </svg>
-  <div class="pageno">M1·08</div>
+  <div class="pageno">M1·12</div>
 </section>
 
 <section>
@@ -416,7 +436,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="815" y="140" text-anchor="middle" class="lbl-sm" fill="#c62828">172.x</text>
     <text x="815" y="290" text-anchor="middle" class="lbl-sm" fill="#c62828">must chase an IP that changes every run</text>
   </svg>
-  <div class="pageno">M1·09</div>
+  <div class="pageno">M1·13</div>
 </section>
 
 <section>
@@ -437,7 +457,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="530" y="185" text-anchor="middle" class="lbl-g">same idea, whole cluster</text>
     <text x="545" y="315" text-anchor="middle" class="lbl-g">learn the habit here on one host and the Kubernetes version feels familiar</text>
   </svg>
-  <div class="pageno">M1·10</div>
+  <div class="pageno">M1·14</div>
+</section>
+
+<section>
+  <h2 class="t" style="font-size:2.2em">What the lab is about to prove</h2>
+  <div class="pageno">M1·15</div>
 </section>
 
 <section>
@@ -460,12 +485,12 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="130" y="138">attach every container that must talk</text>
     </g>
     <g class="lbl" text-anchor="start" fill="#2e7d32">
-      <text x="130" y="198">call each other by name — DNS for free</text>
+      <text x="130" y="198">call each other by name, DNS for free</text>
       <text x="130" y="258">never wire an IP address by hand</text>
     </g>
   </svg>
   <p class="credit">Now open <b>Module 1 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M1·11</div>
+  <div class="pageno">M1·16</div>
 </section>
 
 </div></div>
