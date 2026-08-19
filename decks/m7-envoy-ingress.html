@@ -81,6 +81,8 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .slides{ text-align:center; }
   .reveal .slides section{ position:absolute; inset:0; box-sizing:border-box; flex-direction:column; justify-content:center; padding:20px 48px 42px; overflow:hidden; }
   .reveal .slides > section.present{ display:flex; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
 
   .reveal h1,.reveal h2,.reveal h3{
     font-family:'Patrick Hand', cursive;
@@ -166,12 +168,13 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M7·01</div>
 </section>
 
-<section>
-  <h2 class="t" style="font-size:2.2em">The app runs, but nobody outside can reach it</h2>
+<!-- 2 · DIVIDER · intro -->
+<section class="divider">
+  <h2 class="t">The app runs, but nobody outside can reach it</h2>
   <div class="pageno">M7·02</div>
 </section>
 
-<!-- 2 · inside solved, outside can't get in -->
+<!-- 3 · inside solved, outside can't get in -->
 <section>
   <h2 class="t">Inside is solved; the outside can't get in</h2>
   <p class="s">A Service is an address for callers already inside.</p>
@@ -200,7 +203,7 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M7·03</div>
 </section>
 
-<!-- 3 · NodePort stopgap doesn't scale -->
+<!-- 4 · NodePort stopgap doesn't scale -->
 <section>
   <h2 class="t">NodePort was a quick fix that doesn't scale</h2>
   <p class="s">No hostnames, no paths, no TLS, no one place for rules.</p>
@@ -229,14 +232,46 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M7·04</div>
 </section>
 
-<section>
-  <h2 class="t" style="font-size:2.2em">The analogy: the reception desk of an office building</h2>
+<!-- 5 · DIVIDER · analogy -->
+<section class="divider">
+  <h2 class="t">The analogy: the reception desk of an office building</h2>
   <div class="pageno">M7·05</div>
 </section>
 
-<!-- 4 · analogy: the reception desk -->
+<!-- 6 · the switchboard is already solved -->
 <section>
-  <h2 class="t">The analogy: the reception desk</h2>
+  <h2 class="t">The switchboard is already solved</h2>
+  <p class="s">Every company's switchboard is your M4 Service.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="An office building with three company floors, each with its own internal switchboard; a phone dials straight into one floor. The switchboard is the M4 Service, and that part is already solved.">
+    <g filter="url(#rough)">
+      <rect x="70" y="130" width="150" height="90" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="145" y="170" text-anchor="middle" class="lbl-b">a phone</text>
+    <text x="145" y="198" text-anchor="middle" class="lbl-sm">dials in</text>
+    <path d="M225,175 L330,175" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <g filter="url(#rough)">
+      <rect x="340" y="45" width="470" height="255" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+      <line x1="340" y1="130" x2="810" y2="130" stroke="#1e1e1e" stroke-width="2"/>
+      <line x1="340" y1="215" x2="810" y2="215" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="600" y="62" width="180" height="50" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="600" y="147" width="180" height="50" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="600" y="232" width="180" height="50" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="450" y="93" text-anchor="middle" class="lbl">a company</text>
+    <text x="450" y="178" text-anchor="middle" class="lbl">a company</text>
+    <text x="450" y="263" text-anchor="middle" class="lbl">a company</text>
+    <text x="690" y="93" text-anchor="middle" class="lbl-sm">switchboard</text>
+    <text x="690" y="178" text-anchor="middle" class="lbl-sm">switchboard</text>
+    <text x="690" y="263" text-anchor="middle" class="lbl-sm">switchboard</text>
+    <text x="945" y="168" text-anchor="middle" class="lbl-b">= Service</text>
+    <text x="945" y="200" text-anchor="middle" class="lbl-sm" fill="#2e7d32">already solved</text>
+  </svg>
+  <div class="pageno">M7·06</div>
+</section>
+
+<!-- 7 · the receptionist reads host and path -->
+<section>
+  <h2 class="t">The receptionist reads host and path</h2>
   <p class="s">One desk reads who you want, and sends you on.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="A visitor arrives at a lobby, a receptionist reads a slip that says here for Fernwood Sales, and directs the visitor to the correct internal door.">
     <g filter="url(#rough)">
@@ -263,10 +298,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="960" y="165" text-anchor="middle" class="lbl-g">the right</text>
     <text x="960" y="192" text-anchor="middle" class="lbl-g">internal door</text>
   </svg>
-  <div class="pageno">M7·06</div>
+  <div class="pageno">M7·07</div>
 </section>
 
-<!-- 5 · map the desk onto Kubernetes -->
+<!-- 8 · map the desk onto Kubernetes -->
 <section>
   <h2 class="t">Map the reception desk onto Kubernetes</h2>
   <p class="s">Each part of the lobby is a Kubernetes object.</p>
@@ -296,17 +331,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="212" text-anchor="middle" class="lbl-b">Service (M4)</text>
     <text x="805" y="284" text-anchor="middle" class="lbl-b">hostname + path</text>
   </svg>
-  <div class="pageno">M7·07</div>
-</section>
-
-<section>
-  <h2 class="t" style="font-size:2.2em">Service versus Ingress: two different jobs</h2>
   <div class="pageno">M7·08</div>
 </section>
 
-<!-- 6 · Service L4 vs Ingress L7 -->
+<!-- 9 · DIVIDER · Service vs Ingress -->
+<section class="divider">
+  <h2 class="t">Service versus Ingress: two different jobs</h2>
+  <div class="pageno">M7·09</div>
+</section>
+
+<!-- 10 · Service L4 vs Ingress L7 -->
 <section>
-  <h2 class="t">A Service is L4; an Ingress is L7</h2>
+  <h2 class="t">A Service is Layer 4; an Ingress is Layer 7</h2>
   <p class="s">Layer 4 moves connections; layer 7 reads the request.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: a Service works at layer 4, load-balancing by IP and port and blind to HTTP, while an Ingress works at layer 7, reading the request line and routing on host and path and terminating TLS.">
     <g filter="url(#rough)">
@@ -328,10 +364,10 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="635" y="235">terminates TLS</text>
     </g>
   </svg>
-  <div class="pageno">M7·09</div>
+  <div class="pageno">M7·10</div>
 </section>
 
-<!-- 7 · Ingress feeds the Service (lesson diagram 1) -->
+<!-- 11 · Ingress feeds the Service (lesson diagram 1) -->
 <section>
   <h2 class="t">The Ingress feeds the Service, it doesn't replace it</h2>
   <p class="s">L7 sorting on top of M4's L4 load-balancing.</p>
@@ -360,15 +396,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="940" y="100" text-anchor="middle" class="lbl-sm">Pods</text>
     <text x="940" y="250" text-anchor="middle" class="lbl-sm">Pods</text>
   </svg>
-  <div class="pageno">M7·10</div>
-</section>
-
-<section>
-  <h2 class="t" style="font-size:2.2em">An Ingress object is only a rule set</h2>
   <div class="pageno">M7·11</div>
 </section>
 
-<!-- 8 · Ingress object is only a rule set -->
+<!-- 12 · DIVIDER · Ingress object is only a rule set -->
+<section class="divider">
+  <h2 class="t">An Ingress object is only a rule set</h2>
+  <div class="pageno">M7·12</div>
+</section>
+
+<!-- 13 · Ingress object is only a rule set -->
 <section>
   <h2 class="t">An Ingress object is only a rule set</h2>
   <p class="s">Apply it and nothing routes yet.</p>
@@ -389,10 +426,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="268" text-anchor="middle" class="lbl-sm" fill="#c62828">no open socket</text>
     <text x="800" y="268" text-anchor="middle" class="lbl-sm" fill="#c62828">no traffic</text>
   </svg>
-  <div class="pageno">M7·12</div>
+  <div class="pageno">M7·13</div>
 </section>
 
-<!-- 9 · the controller makes the rules real -->
+<!-- 14 · the controller makes the rules real -->
 <section>
   <h2 class="t">The controller makes the rules real</h2>
   <p class="s">The object is the directory; the controller reads it.</p>
@@ -416,10 +453,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="145" text-anchor="middle" class="lbl-sm">to the lift</text>
     <text x="810" y="295" text-anchor="middle" class="lbl-sm" fill="#2e7d32">reads it, walks you there</text>
   </svg>
-  <div class="pageno">M7·13</div>
+  <div class="pageno">M7·14</div>
 </section>
 
-<!-- 10 · Kubernetes ships object, not controller -->
+<!-- 15 · Kubernetes ships object, not controller -->
 <section>
   <h2 class="t">Kubernetes ships the object, never the controller</h2>
   <p class="s">You choose and install one. Fernwood runs Envoy.</p>
@@ -444,10 +481,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="740" y="185" text-anchor="middle" class="lbl-b">Envoy</text>
     <text x="675" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">Fernwood's choice: Envoy (via Contour)</text>
   </svg>
-  <div class="pageno">M7·14</div>
+  <div class="pageno">M7·15</div>
 </section>
 
-<!-- 11 · Contour brain, Envoy muscle (lesson diagram 2) -->
+<!-- 16 · Contour brain, Envoy muscle (lesson diagram 2) -->
 <section>
   <h2 class="t">Contour is the brain, Envoy is the muscle</h2>
   <p class="s">One builds the config; one holds the port.</p>
@@ -473,17 +510,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="985" y="178" text-anchor="middle" class="lbl-sm">+ Pods</text>
     <text x="450" y="270" text-anchor="middle" class="lbl-sm">Contour speaks Ingress <tspan fill="#757575">and</tspan> Gateway API</text>
   </svg>
-  <div class="pageno">M7·15</div>
-</section>
-
-<section>
-  <h2 class="t" style="font-size:2.2em">How outside traffic actually reaches Envoy</h2>
   <div class="pageno">M7·16</div>
 </section>
 
-<!-- 12 · how traffic reaches Envoy (cloud LB) -->
+<!-- 17 · DIVIDER · how traffic reaches Envoy -->
+<section class="divider">
+  <h2 class="t">How outside traffic actually reaches Envoy</h2>
+  <div class="pageno">M7·17</div>
+</section>
+
+<!-- 18 · production cloud LoadBalancer -->
 <section>
-  <h2 class="t">How outside traffic reaches Envoy</h2>
+  <h2 class="t">In production, a cloud LoadBalancer gets you to Envoy</h2>
   <p class="s">A cloud LoadBalancer gives Envoy one public IP.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Outside traffic reaches a cloud LoadBalancer with a public IP, which lands on Envoy, which then forwards to the app Services.">
     <g filter="url(#rough)">
@@ -505,12 +543,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="1000" y="176" text-anchor="middle" class="lbl-sm">Services</text>
     <text x="555" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">one address, in front of every app Service</text>
   </svg>
-  <div class="pageno">M7·17</div>
+  <div class="pageno">M7·18</div>
 </section>
 
-<!-- 13 · KIND: no cloud LB -->
+<!-- 19 · KIND: no cloud LB -->
 <section>
-  <h2 class="t">On KIND there is no cloud load balancer</h2>
+  <h2 class="t">On KIND there's no cloud load balancer</h2>
   <p class="s">&lt;pending&gt; is expected. Port-forward reaches Envoy.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: on a cloud, the LoadBalancer Service gets a real public IP, while on KIND the external IP stays pending forever and you use kubectl port-forward to reach Envoy; only the last hop differs.">
     <g filter="url(#rough)">
@@ -534,17 +572,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="930" y="185" text-anchor="middle" class="lbl-sm">port-forward</text>
     <text x="810" y="242" text-anchor="middle" class="lbl-sm">only the last hop differs</text>
   </svg>
-  <div class="pageno">M7·18</div>
-</section>
-
-<section>
-  <h2 class="t" style="font-size:2.2em">When to use a Service, and when to use an Ingress</h2>
   <div class="pageno">M7·19</div>
 </section>
 
-<!-- 14 · bare Service vs Ingress -->
+<!-- 20 · DIVIDER · when to use a Service vs an Ingress -->
+<section class="divider">
+  <h2 class="t">When to use a Service, and when to use an Ingress</h2>
+  <div class="pageno">M7·20</div>
+</section>
+
+<!-- 21 · bare Service vs Ingress -->
 <section>
-  <h2 class="t">When a Service is enough, and when you need Ingress</h2>
+  <h2 class="t">One Service can be enough, or you need Ingress</h2>
   <p class="s">One shared front door beats a dozen public IPs.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: a bare LoadBalancer Service exposes one app on its own dedicated address but costs one billed load balancer each, while an Ingress puts many HTTP Services behind one IP and one certificate store sorted by host and path.">
     <g filter="url(#rough)">
@@ -566,17 +605,18 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">one door, one certificate store, many apps</text>
   </svg>
-  <div class="pageno">M7·20</div>
-</section>
-
-<section>
-  <h2 class="t" style="font-size:2.2em">Name-based virtual hosting versus path-based routing</h2>
   <div class="pageno">M7·21</div>
 </section>
 
-<!-- 15 · name-based virtual hosting -->
+<!-- 22 · DIVIDER · name-based vs path-based -->
+<section class="divider">
+  <h2 class="t">Name-based virtual hosting versus path-based routing</h2>
+  <div class="pageno">M7·22</div>
+</section>
+
+<!-- 23 · name-based virtual hosting -->
 <section>
-  <h2 class="t">Name-based hosting: sort by hostname</h2>
+  <h2 class="t">Name-based hosting sorts by hostname</h2>
   <p class="s">Many hostnames, one door, each to its own Service.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="One entry point fans out by hostname: fernwood.local reaches the frontend and returns the storefront HTML, while api.fernwood.local reaches the backend and returns JSON.">
     <g filter="url(#rough)">
@@ -597,12 +637,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="850" y="165" text-anchor="middle" class="lbl-sm">two hostnames</text>
     <text x="850" y="195" text-anchor="middle" class="lbl-sm">two Services</text>
   </svg>
-  <div class="pageno">M7·22</div>
+  <div class="pageno">M7·23</div>
 </section>
 
-<!-- 16 · path-based routing -->
+<!-- 24 · path-based routing -->
 <section>
-  <h2 class="t">Path-based routing: one host, sort by path</h2>
+  <h2 class="t">Path-based routing sorts by path, longer prefix wins</h2>
   <p class="s">The longer prefix wins, so /api beats /.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="One hostname shop.fernwood.local routes on the URL path: the catch-all slash goes to the frontend, while the longer prefix slash-api goes to the backend and wins over the catch-all.">
     <g filter="url(#rough)">
@@ -622,17 +662,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="610" y="265" text-anchor="middle" class="lbl-sm" fill="#2e7d32">longer prefix wins</text>
     <text x="890" y="238" text-anchor="middle" class="lbl-sm">/api/health &rarr; backend</text>
   </svg>
-  <div class="pageno">M7·23</div>
-</section>
-
-<section>
-  <h2 class="t" style="font-size:2.2em">The Gateway API: the same job, split across roles</h2>
   <div class="pageno">M7·24</div>
 </section>
 
-<!-- 17 · Gateway API problem: one flat object -->
+<!-- 25 · DIVIDER · the Gateway API -->
+<section class="divider">
+  <h2 class="t">The Gateway API: the same job, split across roles</h2>
+  <div class="pageno">M7·25</div>
+</section>
+
+<!-- 26 · Gateway API problem: one flat object -->
 <section>
-  <h2 class="t">One flat object, three concerns, one owner</h2>
+  <h2 class="t">One flat object, three concerns, one forced owner</h2>
   <p class="s">App teams must edit infra settings they shouldn't touch.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="A single flat Ingress object crams which controller, the entry point, and the routing rules into one YAML that one team must own, so the platform team and app teams end up in a tug-of-war over it.">
     <g filter="url(#rough)">
@@ -653,75 +694,133 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="925" y="140" text-anchor="middle" class="lbl">app teams</text>
     <text x="550" y="285" text-anchor="middle" class="lbl-sm" fill="#c62828">a tug-of-war over one YAML</text>
   </svg>
-  <div class="pageno">M7·25</div>
-</section>
-
-<!-- 18 · Gateway API three-owner split (lesson diagram 3) -->
-<section>
-  <h2 class="t">The Gateway API splits it across three owners</h2>
-  <p class="s">GatewayClass, Gateway, HTTPRoute: one owner each.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="The Gateway API splits the flat object into three: the platform team owns the GatewayClass naming Contour and Envoy, the infra team owns the Gateway listener on port 80, and app teams own the HTTPRoutes that attach to the Gateway.">
-    <g filter="url(#rough)">
-      <rect x="60" y="130" width="230" height="90" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <path d="M295,175 L385,175" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
-      <rect x="390" y="130" width="230" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
-      <path d="M720,90 C670,90 660,130 625,145" stroke="#757575" stroke-width="2.2" fill="none" marker-end="url(#ahg)"/>
-      <path d="M720,260 C670,260 660,220 625,205" stroke="#757575" stroke-width="2.2" fill="none" marker-end="url(#ahg)"/>
-      <rect x="725" y="50" width="290" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="725" y="220" width="290" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-    </g>
-    <text x="175" y="168" text-anchor="middle" class="lbl-b">GatewayClass</text>
-    <text x="175" y="198" text-anchor="middle" class="lbl-sm">= Contour / Envoy</text>
-    <text x="175" y="115" text-anchor="middle" class="lbl-g">platform team</text>
-    <text x="505" y="168" text-anchor="middle" class="lbl-b">Gateway</text>
-    <text x="505" y="198" text-anchor="middle" class="lbl-sm">listener :80</text>
-    <text x="505" y="115" text-anchor="middle" class="lbl-g">infra team</text>
-    <text x="870" y="85" text-anchor="middle" class="lbl">HTTPRoute &rarr; frontend</text>
-    <text x="870" y="115" text-anchor="middle" class="lbl-sm">store.fernwood.local</text>
-    <text x="870" y="255" text-anchor="middle" class="lbl">HTTPRoute &rarr; backend</text>
-    <text x="870" y="285" text-anchor="middle" class="lbl-sm">store-api.fernwood.local</text>
-    <text x="670" y="322" text-anchor="middle" class="lbl-g">app teams attach</text>
-  </svg>
   <div class="pageno">M7·26</div>
 </section>
 
-<!-- 19 · two APIs, one Envoy -->
+<!-- 27 · GatewayClass -->
 <section>
-  <h2 class="t">Two APIs, one Envoy, the same routing</h2>
-  <p class="s">Classic Ingress and Gateway API on one data plane.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Classic Ingress rules and Gateway API routes both feed the same Contour and the same Envoy, which forwards to the same clusters and Pods; both APIs return HTTP 200 side by side.">
+  <h2 class="t">GatewayClass names which implementation</h2>
+  <p class="s">Platform team names the engine, once.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="The GatewayClass is a cluster-scoped object that names which implementation backs the Gateway API, here Contour and Envoy; the platform team registers it once, the way a StorageClass named a provisioner in M6.">
+    <text x="550" y="40" text-anchor="middle" class="lbl-g">platform team owns</text>
     <g filter="url(#rough)">
-      <rect x="50" y="55" width="220" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="50" y="195" width="220" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <path d="M275,95 C340,95 360,150 415,150" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
-      <path d="M275,235 C340,235 360,180 415,180" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
-      <rect x="420" y="115" width="180" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
-      <path d="M605,165 L695,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
-      <rect x="700" y="115" width="180" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-      <path d="M885,165 L965,165" stroke="#757575" stroke-width="2.2" fill="none" marker-end="url(#ahg)"/>
-      <rect x="970" y="125" width="110" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="330" y="60" width="440" height="150" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="370" y="125" width="360" height="55" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
-    <text x="160" y="90" text-anchor="middle" class="lbl-b">Ingress rules</text>
-    <text x="160" y="118" text-anchor="middle" class="lbl-sm" fill="#2e7d32">200</text>
-    <text x="160" y="230" text-anchor="middle" class="lbl-b">Gateway + routes</text>
-    <text x="160" y="258" text-anchor="middle" class="lbl-sm" fill="#2e7d32">200</text>
-    <text x="510" y="158" text-anchor="middle" class="lbl-b">one</text>
-    <text x="510" y="188" text-anchor="middle" class="lbl-b">Contour</text>
-    <text x="790" y="158" text-anchor="middle" class="lbl-b">one</text>
-    <text x="790" y="188" text-anchor="middle" class="lbl-b">Envoy</text>
-    <text x="1025" y="160" text-anchor="middle" class="lbl-sm">same</text>
-    <text x="1025" y="185" text-anchor="middle" class="lbl-sm">Pods</text>
-    <text x="565" y="290" text-anchor="middle" class="lbl-sm" fill="#2e7d32">two control APIs, one data plane</text>
+    <text x="550" y="102" text-anchor="middle" class="lbl-b">GatewayClass</text>
+    <text x="550" y="160" text-anchor="middle" class="lbl">= Contour / Envoy</text>
+    <text x="550" y="248" text-anchor="middle" class="lbl-sm">cluster-scoped · registered once</text>
+    <text x="550" y="283" text-anchor="middle" class="lbl-sm" fill="#2e7d32">like M6's StorageClass named a provisioner</text>
   </svg>
   <div class="pageno">M7·27</div>
 </section>
 
+<!-- 28 · Gateway -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Where this leaves the app</h2>
+  <h2 class="t">Gateway is the listener, the shared entry point</h2>
+  <p class="s">Infra team owns one shared front door.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="The Gateway is the actual listener on a port and protocol; the infra team owns this one shared front door and defines it once for every app.">
+    <text x="500" y="40" text-anchor="middle" class="lbl-g">infra team owns</text>
+    <g filter="url(#rough)">
+      <rect x="280" y="60" width="440" height="150" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="320" y="125" width="360" height="55" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="800" y="95" width="70" height="130" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="855" cy="162" r="4" fill="#1e1e1e"/>
+    </g>
+    <text x="500" y="102" text-anchor="middle" class="lbl-b">Gateway</text>
+    <text x="500" y="160" text-anchor="middle" class="lbl">listener · port 80</text>
+    <text x="835" y="255" text-anchor="middle" class="lbl-sm">one shared front door</text>
+    <text x="500" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">defined once, opened once</text>
+  </svg>
   <div class="pageno">M7·28</div>
 </section>
 
-<!-- 20 · CLOSING -->
+<!-- 29 · HTTPRoute -->
+<section>
+  <h2 class="t">HTTPRoute holds the routing rules</h2>
+  <p class="s">App teams attach routes, never touch the Gateway.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Two HTTPRoute objects, each owned by an app team with its own hostname, attach upward to the one shared Gateway without ever editing it.">
+    <g filter="url(#rough)">
+      <rect x="420" y="45" width="260" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="150" y="215" width="330" height="95" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="620" y="215" width="330" height="95" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <path d="M315,210 C360,175 420,145 470,120" stroke="#757575" stroke-width="2.2" fill="none" marker-end="url(#ahg)"/>
+      <path d="M785,210 C740,175 680,145 630,120" stroke="#757575" stroke-width="2.2" fill="none" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="78" text-anchor="middle" class="lbl-b">Gateway</text>
+    <text x="550" y="103" text-anchor="middle" class="lbl-sm">the shared front door</text>
+    <text x="550" y="170" text-anchor="middle" class="lbl-g">attach, without touching it</text>
+    <text x="315" y="205" text-anchor="middle" class="lbl-g">app team A</text>
+    <text x="785" y="205" text-anchor="middle" class="lbl-g">app team B</text>
+    <text x="315" y="252" text-anchor="middle" class="lbl-b">HTTPRoute</text>
+    <text x="315" y="282" text-anchor="middle" class="lbl-sm">store.fernwood.local &rarr; frontend</text>
+    <text x="785" y="252" text-anchor="middle" class="lbl-b">HTTPRoute</text>
+    <text x="785" y="282" text-anchor="middle" class="lbl-sm">store-api.fernwood.local &rarr; backend</text>
+  </svg>
+  <div class="pageno">M7·29</div>
+</section>
+
+<!-- 30 · same routing, two APIs, one Envoy (worked example) -->
+<section>
+  <h2 class="t">Same routing, two APIs, one Envoy</h2>
+  <p class="s">Four routes, two APIs, all 200, one Envoy.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Four real curl checks: through the classic Ingress, fernwood.local and api.fernwood.local both return 200; through the Gateway API, store.fernwood.local and store-api.fernwood.local both return 200; all four hit the same Envoy.">
+    <g filter="url(#rough)">
+      <rect x="40" y="45" width="480" height="120" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="40" y="185" width="480" height="120" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="105" y="38" text-anchor="middle" class="lbl-g">Ingress</text>
+    <text x="120" y="215" text-anchor="middle" class="lbl-g">Gateway API</text>
+    <g class="lbl" text-anchor="start">
+      <text x="70" y="95">curl fernwood.local</text>
+      <text x="70" y="145">curl api.fernwood.local</text>
+      <text x="70" y="240">curl store.fernwood.local</text>
+      <text x="70" y="290">curl store-api.fernwood.local</text>
+    </g>
+    <g class="lbl-b" text-anchor="middle" fill="#2e7d32">
+      <text x="465" y="95">200</text>
+      <text x="465" y="145">200</text>
+      <text x="465" y="240">200</text>
+      <text x="465" y="290">200</text>
+    </g>
+    <g filter="url(#rough)">
+      <path d="M525,105 C605,105 625,160 700,165" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+      <path d="M525,245 C605,245 625,185 700,180" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+      <rect x="705" y="120" width="200" height="105" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="805" y="165" text-anchor="middle" class="lbl-b">one Envoy</text>
+    <text x="805" y="198" text-anchor="middle" class="lbl-sm">same data plane</text>
+    <text x="805" y="258" text-anchor="middle" class="lbl-sm" fill="#2e7d32">both APIs, one door</text>
+  </svg>
+  <div class="pageno">M7·30</div>
+</section>
+
+<!-- 31 · classic Ingress or Gateway API (decision) -->
+<section>
+  <h2 class="t">Classic Ingress, or the Gateway API</h2>
+  <p class="s">One team? Ingress. Many teams? Gateway API.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A decision: for one team with simple routing, reach for the classic Ingress; when several teams share the front door or you need routing Ingress cannot express, reach for the Gateway API. Both compile to the same Envoy.">
+    <g filter="url(#rough)">
+      <rect x="70" y="60" width="440" height="220" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="590" y="60" width="440" height="220" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="290" y="102" text-anchor="middle" class="lbl-b">classic Ingress</text>
+    <g class="lbl-sm" text-anchor="start">
+      <text x="110" y="150">one team</text>
+      <text x="110" y="190">simple routing</text>
+    </g>
+    <text x="290" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">everywhere, and perfectly fine</text>
+    <text x="810" y="102" text-anchor="middle" class="lbl-b">Gateway API</text>
+    <g class="lbl-sm" text-anchor="start">
+      <text x="630" y="150">several teams share the door</text>
+      <text x="630" y="190">routing Ingress can't express</text>
+    </g>
+    <text x="810" y="252" text-anchor="middle" class="lbl-sm">both compile to the same Envoy</text>
+  </svg>
+  <div class="pageno">M7·31</div>
+</section>
+
+<!-- 32 · CLOSING -->
 <section>
   <h2 class="t" style="font-size:2.0em">Fernwood has a real front door</h2>
   <p class="s" style="font-size:1.15em">M8 decides what traffic is allowed through it.</p>
@@ -741,7 +840,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
   </svg>
   <p class="credit">Now open <b>Module 7 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M7·29</div>
+  <div class="pageno">M7·32</div>
 </section>
 
 </div></div>

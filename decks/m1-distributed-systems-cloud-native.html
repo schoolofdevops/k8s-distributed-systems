@@ -112,6 +112,10 @@ footer, header, hgroup, main, menu, nav, section {
   .lbl-g{ fill:var(--gray); font-size:17px; }
   .lbl-b{ fill:var(--ink); font-size:23px; font-weight:700; }
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
+
+  /* §3a section divider slides — centre the lone title (base flex-start does not) */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
 </style>
 </head>
 <body>
@@ -134,45 +138,48 @@ footer, header, hgroup, main, menu, nav, section {
 
 <div class="reveal"><div class="slides">
 
+<!-- pos1 · TITLE · lesson open -->
 <section data-auto-animate>
-  <p class="kicker">MODULE 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:2.0em">Distributed Systems &amp; the Cloud Native Landscape</h2>
-  <p class="s" style="font-size:1.2em">From three containers by hand to a service on Kubernetes.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="One monolith process splits into three coordinating tiers — frontend, backend and database — connected left to right by arrows.">
+  <h2 class="t" style="font-size:2.0em">What is a Distributed System?</h2>
+  <p class="s" style="font-size:1.1em">Today’s app is split into separate services and separate processes. That creates a new layer of coordination risk.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="One three-tier app shows how a user error can appear in a different service than the original failure point.">
     <g filter="url(#rough)">
-      <rect x="60" y="115" width="200" height="80" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="60" y="120" width="210" height="80" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="160" y="152" text-anchor="middle" class="lbl-b">one process</text>
-    <text x="160" y="180" text-anchor="middle" class="lbl-g">the monolith</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round">
-      <path d="M262,155 C310,155 330,155 380,155" marker-end="url(#ahg)"/>
+    <text x="165" y="156" text-anchor="middle" class="lbl-b">Fernwood Goods · 3 tiers</text>
+    <text x="165" y="185" text-anchor="middle" class="lbl-g">frontend -> backend -> db</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="6 6">
+      <path d="M272,160 C420,160 620,160 748,160" marker-end="url(#ahg)"/>
     </g>
-    <text x="322" y="132" text-anchor="middle" class="lbl-g">split</text>
+    <text x="510" y="138" text-anchor="middle" class="lbl-g">one request is now a chain, not one line</text>
+    <text x="510" y="162" text-anchor="middle" class="lbl-g">new questions appear at each boundary</text>
+    <text x="510" y="186" text-anchor="middle" class="lbl-g">we will track this from symptom to root cause, then to controls</text>
     <g filter="url(#rough)">
-      <rect x="392" y="115" width="170" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="612" y="115" width="170" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="832" y="115" width="200" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="360" cy="160" r="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="450" cy="160" r="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="540" cy="160" r="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="630" cy="160" r="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
     </g>
-    <text x="477" y="160" text-anchor="middle" class="lbl-b">frontend</text>
-    <text x="697" y="160" text-anchor="middle" class="lbl-b">backend</text>
-    <text x="932" y="160" text-anchor="middle" class="lbl-b">database</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M564,155 L610,155" marker-end="url(#ah)"/>
-      <path d="M784,155 L830,155" marker-end="url(#ah)"/>
+    <g filter="url(#rough)">
+      <rect x="760" y="110" width="270" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
+    <text x="895" y="150" text-anchor="middle" class="lbl-b">Kubernetes</text>
+    <text x="895" y="182" text-anchor="middle" class="lbl-g">self-healing · scalable</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M1·01</div>
 </section>
 
-<section>
-  <h2 class="t" style="font-size:2.2em">Why this matters at work</h2>
+<!-- pos2 · DIVIDER · From one process to many -->
+<section class="divider">
+  <h2 class="t">Distributed Boundary Model</h2>
   <div class="pageno">M1·02</div>
 </section>
 
+<!-- pos3 · content · narration [2] failure propagation -->
 <section>
-  <h2 class="t">Split the monolith and you pay a tax for it</h2>
-  <p class="s">The problem shows up far from where it starts.</p>
+  <h2 class="t">Failure Propagation</h2>
+  <p class="s">One issue can show up in a different place.</p>
   <svg viewBox="0 0 1100 360" role="img" aria-label="A frontend reports a timeout while the real cause is the database three hops away; a dashed arrow traces the gap from symptom back to cause.">
     <g filter="url(#rough)">
       <rect x="70" y="150" width="200" height="100" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -190,28 +197,26 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M650,200 L828,200" marker-end="url(#ah)"/>
     </g>
     <text x="170" y="128" text-anchor="middle" class="lbl-b" fill="#c62828">shows up here</text>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round">
-        <path d="M920,150 C900,95 320,95 190,118" marker-end="url(#ahg)"/>
-      </g>
-      <text x="560" y="80" text-anchor="middle" class="lbl-g">you debug by tracing back across processes</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round">
+      <path d="M920,150 C900,95 320,95 190,118" marker-end="url(#ahg)"/>
     </g>
-    <g class="fragment">
-      <text x="930" y="128" text-anchor="middle" class="lbl-b" fill="#2e7d32">starts here</text>
-      <text x="550" y="330" text-anchor="middle" class="lbl">that gap is the tax you now pay on every request</text>
-    </g>
+    <text x="560" y="80" text-anchor="middle" class="lbl-g">you trace it back across processes</text>
+    <text x="930" y="128" text-anchor="middle" class="lbl-b" fill="#2e7d32">starts here</text>
+    <text x="550" y="330" text-anchor="middle" class="lbl">that gap is the tax you now pay on every request</text>
   </svg>
   <div class="pageno">M1·03</div>
 </section>
 
-<section>
-  <h2 class="t" style="font-size:2.2em">From one process to many: what a distributed system is</h2>
+<!-- pos4 · DIVIDER · From one process to many -->
+<section class="divider">
+  <h2 class="t">From Process to Services</h2>
   <div class="pageno">M1·04</div>
 </section>
 
+<!-- pos5 · content · narration [3] kitchen becomes restaurant -->
 <section>
-  <h2 class="t">A home kitchen becomes a restaurant</h2>
-  <p class="s">The new job is coordination.</p>
+  <h2 class="t">Service Decomposition</h2>
+  <p class="s">Service calls now cross network boundaries.</p>
   <svg viewBox="0 0 1100 360" role="img" aria-label="Two hand-drawn scenes: a single home kitchen where everything is in one room, versus a restaurant with a separate kitchen, bar and stockroom connected by a waiter carrying orders between them.">
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="550" y1="40" x2="550" y2="330"/></g>
     <text x="255" y="52" text-anchor="middle" class="lbl-b">home kitchen</text>
@@ -241,9 +246,42 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M1·05</div>
 </section>
 
+<!-- pos6 · content · narration [4] what a distributed system is (definition) · NEW -->
 <section>
-  <h2 class="t">Debugging: now you match logs across services</h2>
-  <p class="s">The cause is in another service's logs.</p>
+  <h2 class="t">Process Boundaries</h2>
+  <p class="s">Each service talks by clear network contract.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Three independent parts — frontend, backend and database — each in its own container on the network, joined only by messages; splitting the monolith this way changes how you debug, test and deploy.">
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 6">
+      <rect x="60" y="90" width="250" height="150" rx="14"/>
+      <rect x="425" y="90" width="250" height="150" rx="14"/>
+      <rect x="790" y="90" width="250" height="150" rx="14"/>
+    </g>
+    <text x="185" y="80" text-anchor="middle" class="lbl-sm">own container</text>
+    <text x="550" y="80" text-anchor="middle" class="lbl-sm">own container</text>
+    <text x="915" y="80" text-anchor="middle" class="lbl-sm">own container</text>
+    <g filter="url(#rough)">
+      <rect x="95" y="130" width="180" height="75" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="460" y="130" width="180" height="75" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="825" y="130" width="180" height="75" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="185" y="175" text-anchor="middle" class="lbl-b">frontend</text>
+    <text x="550" y="175" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="915" y="175" text-anchor="middle" class="lbl-b">database</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M277,167 L458,167" marker-end="url(#ah)"/>
+      <path d="M642,167 L823,167" marker-end="url(#ah)"/>
+    </g>
+    <text x="367" y="150" text-anchor="middle" class="lbl-g">message</text>
+    <text x="732" y="150" text-anchor="middle" class="lbl-g">message</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl">cross this line and three things change: debug · test · deploy</text>
+  </svg>
+  <div class="pageno">M1·06</div>
+</section>
+
+<!-- pos7 · content · narration [5] debugging -->
+<section>
+  <h2 class="t">Log Correlation</h2>
+  <p class="s">Follow one request across all service logs.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Left: one stack trace inside one process tells the whole story. Right: a single action becomes a chain of calls across three processes, each with its own log you must correlate.">
     <text x="270" y="46" text-anchor="middle" class="lbl-b">monolith</text>
     <text x="820" y="46" text-anchor="middle" class="lbl-b">distributed</text>
@@ -273,12 +311,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="835" y="255" text-anchor="middle" class="lbl-g">match one request across all three</text>
     <text x="835" y="290" text-anchor="middle" class="lbl-sm">request IDs · structured logs · tracing</text>
   </svg>
-  <div class="pageno">M1·06</div>
+  <div class="pageno">M1·07</div>
 </section>
 
+<!-- pos8 · content · narration [6] testing -->
 <section>
-  <h2 class="t">Testing: the bugs now live between services</h2>
-  <p class="s">It can be slow, return a 500, or be gone.</p>
+  <h2 class="t">Service Failure Modes</h2>
+  <p class="s">Latency, 500 errors, and outages are separate failure cases.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="A frontend calls a backend across a network; the backend can respond three distinct ways — slow, a 500 error, or simply gone — none of which happen when both run in one process on a laptop.">
     <g filter="url(#rough)">
       <rect x="90" y="130" width="200" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -297,17 +336,18 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="570" y="147" width="360" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
       <rect x="570" y="232" width="360" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="600" y="103" text-anchor="start" class="lbl">backend is <tspan fill="#1e1e1e">slow</tspan></text>
+    <text x="600" y="103" text-anchor="start" class="lbl">backend is slow</text>
     <text x="600" y="188" text-anchor="start" class="lbl">backend returns 500</text>
     <text x="600" y="273" text-anchor="start" class="lbl">backend is simply gone</text>
     <text x="510" y="325" text-anchor="middle" class="lbl-g">none of these happen in one process on a laptop</text>
   </svg>
-  <div class="pageno">M1·07</div>
+  <div class="pageno">M1·08</div>
 </section>
 
+<!-- pos9 · content · narration [7] deployment -->
 <section>
-  <h2 class="t">Deployment: each piece ships on its own version</h2>
-  <p class="s">A new backend must not break the old frontend.</p>
+  <h2 class="t">Independent Releases</h2>
+  <p class="s">Front-end and back-end can update on their own schedule.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="An old frontend still running the previous contract must keep working against a newly deployed backend; for real stretches of time the two run at different versions and must stay compatible.">
     <g filter="url(#rough)">
       <rect x="110" y="120" width="240" height="120" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -324,78 +364,166 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="545" y="215" text-anchor="middle" class="lbl" fill="#2e7d32">v2 must still answer a v1 call</text>
     <text x="545" y="300" text-anchor="middle" class="lbl-g">someone has to coordinate who ships when</text>
   </svg>
-  <div class="pageno">M1·08</div>
-</section>
-
-<section>
-  <h2 class="t">State: decide who owns the truth</h2>
-  <p class="s">Keep state in the DB, keep services stateless.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Left: one shared fridge everyone trusts. Right: three copies of a backend that each cached user data return three different answers to the same user — the divergence failure of misplaced state.">
-    <text x="255" y="46" text-anchor="middle" class="lbl-b">one owner of truth</text>
-    <text x="820" y="46" text-anchor="middle" class="lbl-b">state in the wrong place</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="520" y1="30" x2="520" y2="315"/></g>
-    <g filter="url(#rough)">
-      <rect x="170" y="80" width="170" height="120" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-    </g>
-    <text x="255" y="130" text-anchor="middle" class="lbl-b">the DB</text>
-    <text x="255" y="165" text-anchor="middle" class="lbl-g">owns state</text>
-    <text x="255" y="255" text-anchor="middle" class="lbl">everyone trusts</text>
-    <text x="255" y="288" text-anchor="middle" class="lbl">one fridge</text>
-    <g filter="url(#rough)">
-      <rect x="640" y="70" width="120" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="640" y="150" width="120" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="640" y="230" width="120" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
-    </g>
-    <text x="700" y="110" text-anchor="middle" class="lbl-sm">copy 1</text>
-    <text x="700" y="190" text-anchor="middle" class="lbl-sm">copy 2</text>
-    <text x="700" y="270" text-anchor="middle" class="lbl-sm">copy 3</text>
-    <g class="lbl" fill="#c62828" text-anchor="start">
-      <text x="800" y="110">answer A</text>
-      <text x="800" y="190">answer B</text>
-      <text x="800" y="270">answer C</text>
-    </g>
-    <text x="820" y="320" text-anchor="middle" class="lbl-g">same user, three answers, since each copy cached state</text>
-  </svg>
   <div class="pageno">M1·09</div>
 </section>
 
+<!-- pos10 · content · narration [8] three technical concerns · NEW · 3 fragments -->
 <section>
-  <h2 class="t">Scale by adding copies, but only stateless ones</h2>
-  <p class="s">Add more copies, not a bigger box.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Vertical scaling grows one instance to a bigger machine with a hard ceiling; horizontal scaling runs many stateless copies behind one address with no ceiling.">
-    <text x="255" y="44" text-anchor="middle" class="lbl-b">vertical</text>
-    <text x="810" y="44" text-anchor="middle" class="lbl-b">horizontal</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="500" y1="30" x2="500" y2="315"/></g>
-    <g filter="url(#rough)">
-      <rect x="185" y="150" width="140" height="140" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
+  <h2 class="t">Distributed Constraints</h2>
+  <p class="s">State, scale, and failure boundaries influence every design choice.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Three concerns appear one at a time — state, scalability and failure handling — the recurring themes the whole course is organised around.">
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="90" y="120" width="290" height="110" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/></g>
+      <text x="235" y="170" text-anchor="middle" class="lbl-b">state</text>
+      <text x="235" y="203" text-anchor="middle" class="lbl-g">who owns the truth</text>
     </g>
-    <text x="255" y="215" text-anchor="middle" class="lbl-b">1 big box</text>
-    <text x="255" y="248" text-anchor="middle" class="lbl-g">more CPU/RAM</text>
-    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.4" stroke-dasharray="6 5"><line x1="150" y1="120" x2="360" y2="120"/></g>
-    <text x="255" y="108" text-anchor="middle" class="lbl-sm" fill="#c62828">ceiling: the biggest machine you can buy</text>
-    <g filter="url(#rough)">
-      <rect x="580" y="150" width="90" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="690" y="150" width="90" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="800" y="150" width="90" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="910" y="150" width="90" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="405" y="120" width="290" height="110" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/></g>
+      <text x="550" y="170" text-anchor="middle" class="lbl-b">scalability</text>
+      <text x="550" y="203" text-anchor="middle" class="lbl-g">handle more by adding copies</text>
     </g>
-    <text x="790" y="205" text-anchor="middle" class="lbl-g">stateless copies</text>
-    <g filter="url(#rough)">
-      <rect x="700" y="270" width="200" height="46" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="720" y="120" width="290" height="110" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/></g>
+      <text x="865" y="170" text-anchor="middle" class="lbl-b">failure handling</text>
+      <text x="865" y="203" text-anchor="middle" class="lbl-g">part of it is always down</text>
     </g>
-    <text x="800" y="300" text-anchor="middle" class="lbl-sm">one address</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <path d="M625,242 L780,270" marker-end="url(#ahg)"/>
-      <path d="M955,242 L820,270" marker-end="url(#ahg)"/>
-    </g>
-    <text x="790" y="112" text-anchor="middle" class="lbl-sm" fill="#2e7d32">no ceiling, just add more</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">name them plainly — every later session comes back to one of these</text>
   </svg>
   <div class="pageno">M1·10</div>
 </section>
 
+<!-- pos11 · content · narration [9] state: who owns the truth · NEW -->
 <section>
-  <h2 class="t">Partial failure is the normal case</h2>
-  <p class="s">A small hiccup becomes a full outage.</p>
+  <h2 class="t">State Ownership</h2>
+  <p class="s">Keep one source of truth in the database.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="The database owns the durable state, like one fridge everyone trusts; the frontend and backend are stateless on purpose, keeping nothing between requests.">
+    <g filter="url(#rough)">
+      <rect x="420" y="100" width="260" height="150" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="550" y="160" text-anchor="middle" class="lbl-b">database</text>
+    <text x="550" y="195" text-anchor="middle" class="lbl-g">owns the state</text>
+    <text x="550" y="228" text-anchor="middle" class="lbl-sm">one fridge, everyone trusts</text>
+    <g filter="url(#rough)">
+      <rect x="90" y="130" width="230" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="780" y="130" width="230" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="205" y="170" text-anchor="middle" class="lbl-b">frontend</text>
+    <text x="205" y="200" text-anchor="middle" class="lbl-g">stateless</text>
+    <text x="895" y="170" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="895" y="200" text-anchor="middle" class="lbl-g">stateless</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M322,175 L418,175" marker-end="url(#ahg)"/>
+      <path d="M778,175 L682,175" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="300" text-anchor="middle" class="lbl-g">stateless = keeps nothing between requests, so any copy can answer</text>
+  </svg>
+  <div class="pageno">M1·11</div>
+</section>
+
+<!-- pos12 · content · narration [10] state: get it wrong · NEW -->
+<section>
+  <h2 class="t">State Placement</h2>
+  <p class="s">Duplicates in memory will drift and break consistency.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Three copies of a backend that each cache user data in their own memory return three different answers to the same user, depending on which copy the load balancer picks.">
+    <g filter="url(#rough)">
+      <rect x="120" y="150" width="180" height="70" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="210" y="182" text-anchor="middle" class="lbl-b">load balancer</text>
+    <text x="210" y="210" text-anchor="middle" class="lbl-g">picks one</text>
+    <g filter="url(#rough)">
+      <rect x="470" y="70" width="180" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="470" y="152" width="180" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="470" y="234" width="180" height="66" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="560" y="110" text-anchor="middle" class="lbl-sm">copy 1 · caches its own</text>
+    <text x="560" y="192" text-anchor="middle" class="lbl-sm">copy 2 · caches its own</text>
+    <text x="560" y="274" text-anchor="middle" class="lbl-sm">copy 3 · caches its own</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+      <path d="M302,175 C400,150 400,110 468,103" marker-end="url(#ah)"/>
+      <path d="M302,185 L468,185" marker-end="url(#ah)"/>
+      <path d="M302,195 C400,220 400,260 468,267" marker-end="url(#ah)"/>
+    </g>
+    <g class="lbl" fill="#c62828" text-anchor="start">
+      <text x="700" y="110">answer A</text>
+      <text x="700" y="192">answer B</text>
+      <text x="700" y="274">answer C</text>
+    </g>
+    <text x="560" y="328" text-anchor="middle" class="lbl-g">same user, three answers — that's why state stays in the DB</text>
+  </svg>
+  <div class="pageno">M1·12</div>
+</section>
+
+<!-- pos13 · content · narration [11] scalability: vertical vs horizontal · NEW -->
+<section>
+  <h2 class="t">Scaling Up and Out</h2>
+  <p class="s">Choose between bigger nodes and more replicas.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Vertical scaling grows one instance onto a bigger machine and hits a ceiling; horizontal scaling adds more same-size instances with no hard ceiling and no single point of failure.">
+    <text x="255" y="44" text-anchor="middle" class="lbl-b">vertical · bigger box</text>
+    <text x="800" y="44" text-anchor="middle" class="lbl-b">horizontal · more boxes</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="500" y1="30" x2="500" y2="315"/></g>
+    <g filter="url(#rough)">
+      <rect x="180" y="150" width="150" height="150" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="255" y="220" text-anchor="middle" class="lbl-b">1 big box</text>
+    <text x="255" y="252" text-anchor="middle" class="lbl-g">more CPU / RAM</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.4" stroke-dasharray="6 5"><line x1="150" y1="120" x2="360" y2="120"/></g>
+    <text x="255" y="108" text-anchor="middle" class="lbl-sm" fill="#c62828">ceiling + one point of failure</text>
+    <g filter="url(#rough)">
+      <rect x="600" y="150" width="85" height="85" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="705" y="150" width="85" height="85" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="810" y="150" width="85" height="85" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="915" y="150" width="85" height="85" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="800" y="270" text-anchor="middle" class="lbl-g">same-size copies</text>
+    <text x="800" y="108" text-anchor="middle" class="lbl-sm" fill="#2e7d32">no ceiling, no single point of failure</text>
+  </svg>
+  <div class="pageno">M1·13</div>
+</section>
+
+<!-- pos14 · content · narration [12] scalability: only stateless can · NEW -->
+<section>
+  <h2 class="t">Stateless Service Tiers</h2>
+  <p class="s">No local state means fast replacement and clean scale.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Ten copies of a stateless backend sit behind one address and any can serve any request; ten copies of Postgres cannot be run the same way because they each own data and would drift apart.">
+    <text x="270" y="44" text-anchor="middle" class="lbl-b" fill="#2e7d32">stateless backend · scales</text>
+    <text x="815" y="44" text-anchor="middle" class="lbl-b" fill="#c62828">Postgres · does not</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="540" y1="30" x2="540" y2="315"/></g>
+    <g filter="url(#rough)">
+      <rect x="80" y="90" width="60" height="50" rx="7" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="160" y="90" width="60" height="50" rx="7" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="240" y="90" width="60" height="50" rx="7" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="320" y="90" width="60" height="50" rx="7" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="400" y="90" width="60" height="50" rx="7" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="230" y="200" width="180" height="55" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="270" y="180" text-anchor="middle" class="lbl-sm">ten copies</text>
+    <text x="320" y="234" text-anchor="middle" class="lbl">one address</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
+      <path d="M110,142 L300,200" marker-end="url(#ahg)"/>
+      <path d="M430,142 L340,200" marker-end="url(#ahg)"/>
+    </g>
+    <text x="270" y="290" text-anchor="middle" class="lbl-sm" fill="#2e7d32">any copy serves any request</text>
+    <g filter="url(#rough)">
+      <rect x="620" y="90" width="90" height="60" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="730" y="90" width="90" height="60" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="840" y="90" width="90" height="60" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="665" y="126" text-anchor="middle" class="lbl-sm">DB</text>
+    <text x="775" y="126" text-anchor="middle" class="lbl-sm">DB</text>
+    <text x="885" y="126" text-anchor="middle" class="lbl-sm">DB</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.4" stroke-linecap="round">
+      <path d="M690,175 C740,205 740,205 700,235"/>
+      <path d="M860,175 C810,205 810,205 850,235"/>
+    </g>
+    <text x="775" y="270" text-anchor="middle" class="lbl-sm" fill="#c62828">each owns data — they drift apart</text>
+  </svg>
+  <div class="pageno">M1·14</div>
+</section>
+
+<!-- pos15 · content · narration [13] partial failure is normal -->
+<section>
+  <h2 class="t">Partial Failure</h2>
+  <p class="s">A weak tier must not break the full customer flow.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="A backend gets slow, the frontend times out and retries, the retries pile more load onto the already-struggling backend, forming a red feedback loop that turns a small hiccup into an outage.">
     <g filter="url(#rough)">
       <rect x="130" y="130" width="220" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -422,12 +550,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="545" y="322" text-anchor="middle" class="lbl" fill="#c62828">3 · slower still → retry storm → outage</text>
     </g>
   </svg>
-  <div class="pageno">M1·11</div>
+  <div class="pageno">M1·15</div>
 </section>
 
+<!-- pos16 · content · narration [14] graceful degradation -->
 <section>
-  <h2 class="t">Degrade on purpose</h2>
-  <p class="s">When a part is down, still show something useful.</p>
+  <h2 class="t">Graceful Degradation</h2>
+  <p class="s">Keep key actions running, even when one dependency fails.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="The sample app degrades gracefully: when the backend is down the frontend still renders and shows a banner; when the database is down the backend still answers and reports db unavailable instead of erroring.">
     <g filter="url(#rough)">
       <rect x="70" y="130" width="230" height="110" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -450,18 +579,53 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="105" text-anchor="middle" class="lbl-sm" fill="#2e7d32">db: unavailable, no 500</text>
     <text x="550" y="300" text-anchor="middle" class="lbl-g">a missing dependency is expected; you'll see this in today's code</text>
   </svg>
-  <div class="pageno">M1·12</div>
+  <div class="pageno">M1·16</div>
 </section>
 
+<!-- pos17 · content · narration [15] three tiers end to end · NEW · 2 fragments -->
 <section>
-  <h2 class="t" style="font-size:2.2em">The cloud native landscape: containers and orchestration</h2>
-  <div class="pageno">M1·13</div>
+  <h2 class="t">Service Data Boundaries</h2>
+  <p class="s">Store state in the database, not in app memory.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="The three tiers end to end — a stateless frontend calls a stateless backend over HTTP and the backend talks to Postgres, which owns the state; if the backend is down the frontend shows a banner, and if the database is down the backend still reports its status.">
+    <g filter="url(#rough)">
+      <rect x="80" y="120" width="240" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="430" y="120" width="240" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="780" y="120" width="240" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="200" y="162" text-anchor="middle" class="lbl-b">frontend</text>
+    <text x="200" y="193" text-anchor="middle" class="lbl-g">stateless</text>
+    <text x="550" y="162" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="550" y="193" text-anchor="middle" class="lbl-g">stateless</text>
+    <text x="900" y="162" text-anchor="middle" class="lbl-b">Postgres</text>
+    <text x="900" y="193" text-anchor="middle" class="lbl-g">owns the state</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M322,170 L428,170" marker-end="url(#ah)"/>
+      <path d="M672,170 L778,170" marker-end="url(#ah)"/>
+    </g>
+    <text x="375" y="150" text-anchor="middle" class="lbl-g">HTTP</text>
+    <text x="725" y="150" text-anchor="middle" class="lbl-g">SQL</text>
+    <g class="fragment">
+      <text x="200" y="255" text-anchor="middle" class="lbl-sm" fill="#2e7d32">backend down → shows banner</text>
+    </g>
+    <g class="fragment">
+      <text x="620" y="255" text-anchor="middle" class="lbl-sm" fill="#2e7d32">db down → still reports status</text>
+      <text x="550" y="315" text-anchor="middle" class="lbl">nothing crashes — that's a distributed system in one picture</text>
+    </g>
+  </svg>
+  <div class="pageno">M1·17</div>
 </section>
 
+<!-- pos18 · DIVIDER · The cloud native landscape -->
+<section class="divider">
+  <h2 class="t">Cloud-Native Layers</h2>
+  <div class="pageno">M1·18</div>
+</section>
+
+<!-- pos19 · content · narration [16] shipping container -->
 <section>
-  <h2 class="t">Any crane lifts it because the outside is standard</h2>
-  <p class="s">Standard outside, so any runtime can run it.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A hand-drawn shipping container of standard shape is handled interchangeably by a crane, a ship and a truck; an OCI image does the same for software — any compliant runtime runs it regardless of what is inside.">
+  <h2 class="t">Runtime Portability</h2>
+  <p class="s">Standard interfaces keep runtime behavior stable.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A hand-drawn shipping container with standard format is handled interchangeably by a crane, a ship and a truck. An OCI image does the same for software, so any compliant runtime can run it.">
     <g filter="url(#rough)">
       <rect x="430" y="140" width="240" height="120" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
       <line x1="470" y1="140" x2="470" y2="260"/>
@@ -471,7 +635,7 @@ footer, header, hgroup, main, menu, nav, section {
       <line x1="630" y1="140" x2="630" y2="260"/>
     </g>
     <text x="550" y="130" text-anchor="middle" class="lbl-b">OCI image</text>
-    <text x="550" y="212" text-anchor="middle" class="lbl-g">standard shape</text>
+    <text x="550" y="212" text-anchor="middle" class="lbl-g">standard format</text>
     <g filter="url(#rough)">
       <rect x="90" y="90" width="180" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
       <rect x="90" y="240" width="180" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -487,112 +651,356 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="315" text-anchor="middle" class="lbl-g">any compliant runtime runs it, without knowing what's inside</text>
   </svg>
-  <div class="pageno">M1·14</div>
+  <div class="pageno">M1·19</div>
 </section>
 
+<!-- pos20 · content · narration [17] cloud native: containerized world · NEW -->
 <section>
-  <h2 class="t">Containers package one; orchestration runs many</h2>
-  <p class="s">Docker runs one; Kubernetes runs many.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Left panel: Docker packages and runs one container on one host that you wire yourself. Right panel: Kubernetes schedules many containers across many hosts and keeps them running.">
-    <text x="270" y="44" text-anchor="middle" class="lbl-b">Docker · one host</text>
-    <text x="810" y="44" text-anchor="middle" class="lbl-b">Kubernetes · many hosts</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="530" y1="30" x2="530" y2="315"/></g>
+  <h2 class="t">Container Runtime Model</h2>
+  <p class="s">Build once, run anywhere, with repeatable behavior.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A cycle: an application is packaged as an image, run as a throwaway instance, and managed by software rather than by hand — the assumption cloud native is built on.">
     <g filter="url(#rough)">
-      <rect x="140" y="80" width="260" height="200" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
-      <rect x="180" y="130" width="80" height="60" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="280" y="130" width="80" height="60" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="80" y="120" width="240" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="430" y="120" width="240" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="780" y="120" width="240" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="270" y="112" text-anchor="middle" class="lbl-g">one machine</text>
-    <text x="270" y="240" text-anchor="middle" class="lbl-g">you start &amp; wire them</text>
-    <g filter="url(#rough)">
-      <rect x="600" y="80" width="200" height="90" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
-      <rect x="840" y="80" width="200" height="90" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
-      <rect x="720" y="200" width="200" height="90" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
-      <rect x="625" y="110" width="60" height="45" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="710" y="110" width="60" height="45" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="865" y="110" width="60" height="45" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="950" y="110" width="60" height="45" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="745" y="230" width="60" height="45" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="835" y="230" width="60" height="45" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
+    <text x="200" y="162" text-anchor="middle" class="lbl-b">image</text>
+    <text x="200" y="193" text-anchor="middle" class="lbl-g">packaged once</text>
+    <text x="550" y="162" text-anchor="middle" class="lbl-b">instance</text>
+    <text x="550" y="193" text-anchor="middle" class="lbl-g">run, throw away</text>
+    <text x="900" y="162" text-anchor="middle" class="lbl-b">managed</text>
+    <text x="900" y="193" text-anchor="middle" class="lbl-g">by software, not by hand</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M322,170 L428,170" marker-end="url(#ah)"/>
+      <path d="M672,170 L778,170" marker-end="url(#ah)"/>
     </g>
-    <text x="820" y="315" text-anchor="middle" class="lbl-g">scheduled, restarted, spread, and kept running</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">two layers make it work — and the course lives on the seam between them</text>
   </svg>
-  <div class="pageno">M1·15</div>
+  <div class="pageno">M1·20</div>
 </section>
 
+<!-- pos21 · content · narration [18] containers: packaging + isolation, one machine · NEW -->
 <section>
-  <h2 class="t">Kubernetes is the control plane everything plugs into</h2>
-  <p class="s">Everything else plugs in around it.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A hub-and-spoke: Kubernetes at the centre as the control plane, with CI/CD, service mesh and observability plugging in around the edges.">
+  <h2 class="t">Container Packaging</h2>
+  <p class="s">Single-host packaging is manual and local.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="On one machine, Docker gives each container a repeatable image and an isolated process with its own filesystem and network namespace; you start a handful and wire them together yourself.">
     <g filter="url(#rough)">
-      <circle cx="550" cy="175" r="95" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="150" y="70" width="800" height="210" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="6 6"/>
+      <rect x="230" y="140" width="150" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="470" y="140" width="150" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="710" y="140" width="150" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="105" text-anchor="middle" class="lbl-b">one machine · Docker</text>
+    <text x="305" y="190" text-anchor="middle" class="lbl">container</text>
+    <text x="545" y="190" text-anchor="middle" class="lbl">container</text>
+    <text x="785" y="190" text-anchor="middle" class="lbl">container</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M380,185 L468,185" marker-end="url(#ahg)"/>
+      <path d="M620,185 L708,185" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="255" text-anchor="middle" class="lbl-sm">own filesystem · own network namespace</text>
+    <text x="550" y="315" text-anchor="middle" class="lbl-g">you start them and wire them — that's where Docker's job ends</text>
+  </svg>
+  <div class="pageno">M1·21</div>
+</section>
+
+<!-- pos22 · content · narration [19] orchestration: many across many machines · NEW -->
+<section>
+  <h2 class="t">Orchestration Control Plane</h2>
+  <p class="s">It handles placement, restart, spreading, and lifecycle.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Kubernetes places containers onto many machines, restarts the ones that die, replaces whole machines and spreads copies so the service stays available across machines coming and going.">
+    <g filter="url(#rough)">
+      <rect x="400" y="40" width="300" height="66" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="550" y="82" text-anchor="middle" class="lbl-b">Kubernetes control plane</text>
+    <g filter="url(#rough)">
+      <rect x="90" y="180" width="270" height="120" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
+      <rect x="415" y="180" width="270" height="120" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
+      <rect x="740" y="180" width="270" height="120" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
+      <rect x="120" y="215" width="90" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="235" y="215" width="90" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="445" y="215" width="90" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="770" y="215" width="90" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="885" y="215" width="90" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="225" y="170" text-anchor="middle" class="lbl-sm">machine 1</text>
+    <text x="550" y="170" text-anchor="middle" class="lbl-sm">machine 2</text>
+    <text x="875" y="170" text-anchor="middle" class="lbl-sm">machine 3</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M470,106 L300,178" marker-end="url(#ahg)"/>
+      <path d="M550,106 L550,178" marker-end="url(#ahg)"/>
+      <path d="M630,106 L820,178" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="320" text-anchor="middle" class="lbl-g">restarts the dead, spreads copies, survives machines coming and going</text>
+  </svg>
+  <div class="pageno">M1·22</div>
+</section>
+
+<!-- pos23 · content · narration [20] keep the boundary clear · NEW -->
+<section>
+  <h2 class="t">Runtime vs Orchestration</h2>
+  <p class="s">Runtime stays local; Kubernetes manages where and how to run.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A split screen: Sessions 1 and 2 live on Docker's side — packaging and running one container; Sessions 3 to 8 live on Kubernetes' side — deciding where and how many containers run and keeping that true over time.">
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="4 6"><line x1="550" y1="30" x2="550" y2="300"/></g>
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="380" height="170" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="280" y="70" text-anchor="middle" class="lbl-b">Docker's side</text>
+    <text x="280" y="150" text-anchor="middle" class="lbl">packages &amp; runs</text>
+    <text x="280" y="188" text-anchor="middle" class="lbl">one container</text>
+    <text x="280" y="235" text-anchor="middle" class="lbl-sm" fill="#2e7d32">Sessions 1–2</text>
+    <g filter="url(#rough)">
+      <rect x="630" y="90" width="380" height="170" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="820" y="70" text-anchor="middle" class="lbl-b">Kubernetes' side</text>
+    <text x="820" y="150" text-anchor="middle" class="lbl">where &amp; how many</text>
+    <text x="820" y="188" text-anchor="middle" class="lbl">containers run</text>
+    <text x="820" y="235" text-anchor="middle" class="lbl-sm" fill="#2e7d32">Sessions 3–8</text>
+    <text x="550" y="315" text-anchor="middle" class="lbl-g">easy to blur — keep asking which side of the seam a tool sits on</text>
+  </svg>
+  <div class="pageno">M1·23</div>
+</section>
+
+<!-- pos24 · content · narration [21] kubernetes at center of CNCF map · adapt hub -->
+<section>
+  <h2 class="t">Kubernetes Control Plane</h2>
+  <p class="s">Most CNCF tools plug into this control plane.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Kubernetes sits at the centre as the shared control plane; hundreds of CNCF projects for networking, storage, observability, security and delivery sit faded around the edge, with three spokes ready to be named.">
+    <g filter="url(#rough)">
+      <circle cx="550" cy="175" r="100" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
     <text x="550" y="168" text-anchor="middle" class="lbl-b">Kubernetes</text>
-    <text x="550" y="198" text-anchor="middle" class="lbl-g">control plane</text>
-    <g filter="url(#rough)">
-      <rect x="120" y="140" width="190" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="790" y="140" width="190" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="455" y="285" width="190" height="46" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    <text x="550" y="200" text-anchor="middle" class="lbl-g">control plane</text>
+    <g filter="url(#rough)" fill="none" stroke="#bdbdbd" stroke-width="2" stroke-dasharray="4 5">
+      <circle cx="550" cy="175" r="150"/>
     </g>
-    <text x="215" y="172" text-anchor="middle" class="lbl">CI/CD</text>
-    <text x="215" y="198" text-anchor="middle" class="lbl-sm">hands a new state</text>
-    <text x="885" y="172" text-anchor="middle" class="lbl">service mesh</text>
-    <text x="885" y="198" text-anchor="middle" class="lbl-sm">traffic between</text>
-    <text x="550" y="314" text-anchor="middle" class="lbl-sm">observability watches it</text>
+    <text x="550" y="45" text-anchor="middle" class="lbl-sm" fill="#757575">hundreds of CNCF projects, faded around the edge</text>
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M312,175 L452,175" marker-end="url(#ahg)"/>
-      <path d="M788,175 L648,175" marker-end="url(#ahg)"/>
-      <path d="M550,285 L550,272" marker-end="url(#ahg)"/>
+      <path d="M270,175 L448,175" marker-end="url(#ahg)"/>
+      <path d="M830,175 L652,175" marker-end="url(#ahg)"/>
+      <path d="M550,320 L550,278" marker-end="url(#ahg)"/>
     </g>
+    <g filter="url(#rough)">
+      <rect x="120" y="150" width="150" height="50" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="5 5"/>
+      <rect x="830" y="150" width="150" height="50" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="5 5"/>
+      <rect x="475" y="285" width="150" height="46" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="5 5"/>
+    </g>
+    <text x="195" y="182" text-anchor="middle" class="lbl-sm">a tool?</text>
+    <text x="905" y="182" text-anchor="middle" class="lbl-sm">a tool?</text>
+    <text x="550" y="314" text-anchor="middle" class="lbl-sm">a tool?</text>
   </svg>
-  <div class="pageno">M1·16</div>
+  <div class="pageno">M1·24</div>
 </section>
 
+<!-- pos25 · content · narration [22] where CI/CD plugs in · NEW -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Portability: OCI images and the Kubernetes API</h2>
-  <div class="pageno">M1·17</div>
+  <h2 class="t">Desired-State Handoff</h2>
+  <p class="s">CI/CD sends desired state. The cluster applies policy.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A CI/CD pipeline builds an image and hands Kubernetes a new desired state; it plugs into the control plane rather than replacing it.">
+    <g filter="url(#rough)">
+      <rect x="90" y="120" width="320" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="680" y="110" width="320" height="120" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="250" y="162" text-anchor="middle" class="lbl-b">CI/CD pipeline</text>
+    <text x="250" y="194" text-anchor="middle" class="lbl-g">builds an image</text>
+    <text x="840" y="160" text-anchor="middle" class="lbl-b">Kubernetes</text>
+    <text x="840" y="192" text-anchor="middle" class="lbl-g">control plane</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M412,170 L678,170" marker-end="url(#ah)"/>
+    </g>
+    <text x="545" y="150" text-anchor="middle" class="lbl-g">"here is a new desired state"</text>
+    <text x="545" y="290" text-anchor="middle" class="lbl-sm" fill="#2e7d32">plugs in, does not replace</text>
+  </svg>
+  <div class="pageno">M1·25</div>
 </section>
 
+<!-- pos26 · content · narration [23] where a service mesh plugs in · NEW -->
 <section>
-  <h2 class="t">The image carries your software anywhere</h2>
-  <p class="s">The same bytes run on your laptop and in the cluster.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="An OCI image is a manifest listing read-only layers addressed by digest; the identical bytes built on a laptop are pulled and run unchanged by a Kubernetes node.">
+  <h2 class="t">Service Mesh</h2>
+  <p class="s">Service-mesh policy sits beside Kubernetes networking.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A service mesh draws managed traffic lines between the Pods Kubernetes is running, sitting beside the control plane rather than replacing it.">
     <g filter="url(#rough)">
-      <rect x="90" y="90" width="300" height="200" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="120" y="105" width="240" height="40" rx="6" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="120" y="165" width="240" height="34" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="120" y="205" width="240" height="34" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="120" y="245" width="240" height="34" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="120" y="90" width="120" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="330" y="200" width="120" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="120" y="200" width="120" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="330" y="90" width="120" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="240" y="132" text-anchor="middle" class="lbl-sm">manifest + config</text>
-    <text x="240" y="188" text-anchor="middle" class="lbl-sm">layer · digest</text>
-    <text x="240" y="228" text-anchor="middle" class="lbl-sm">layer · digest</text>
-    <text x="240" y="268" text-anchor="middle" class="lbl-sm">layer · digest</text>
-    <text x="240" y="80" text-anchor="middle" class="lbl-b">OCI image</text>
+    <text x="180" y="132" text-anchor="middle" class="lbl-sm">Pod</text>
+    <text x="390" y="132" text-anchor="middle" class="lbl-sm">Pod</text>
+    <text x="180" y="242" text-anchor="middle" class="lbl-sm">Pod</text>
+    <text x="390" y="242" text-anchor="middle" class="lbl-sm">Pod</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round">
+      <path d="M240,125 L330,125"/>
+      <path d="M180,160 L180,200"/>
+      <path d="M390,160 L390,200"/>
+      <path d="M240,235 L330,235"/>
+      <path d="M240,140 L330,220"/>
+    </g>
+    <text x="285" y="300" text-anchor="middle" class="lbl-sm">mesh manages service-to-service traffic</text>
     <g filter="url(#rough)">
-      <rect x="620" y="100" width="180" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="620" y="210" width="180" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="680" y="130" width="320" height="110" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="710" y="135" text-anchor="middle" class="lbl">laptop</text>
-    <text x="710" y="163" text-anchor="middle" class="lbl-sm">docker build</text>
-    <text x="710" y="245" text-anchor="middle" class="lbl">K8s node</text>
-    <text x="710" y="273" text-anchor="middle" class="lbl-sm">pulls &amp; runs</text>
+    <text x="840" y="178" text-anchor="middle" class="lbl-b">Kubernetes</text>
+    <text x="840" y="210" text-anchor="middle" class="lbl-g">runs the Pods</text>
+    <text x="580" y="185" text-anchor="middle" class="lbl-sm" fill="#2e7d32">beside, not on top</text>
+  </svg>
+  <div class="pageno">M1·26</div>
+</section>
+
+<!-- pos27 · content · narration [24] where observability plugs in · NEW -->
+<section>
+  <h2 class="t">Kubernetes Observability</h2>
+  <p class="s">Use metrics, logs, and traces to see control-plane impact.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="An observability stack of metrics, logs and traces watches the services Kubernetes is running and tells you when a partial failure is actually happening.">
+    <g filter="url(#rough)">
+      <rect x="120" y="60" width="220" height="60" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="120" y="135" width="220" height="60" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="120" y="210" width="220" height="60" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="230" y="98" text-anchor="middle" class="lbl">metrics</text>
+    <text x="230" y="173" text-anchor="middle" class="lbl">logs</text>
+    <text x="230" y="248" text-anchor="middle" class="lbl">traces</text>
+    <g filter="url(#rough)">
+      <rect x="620" y="120" width="330" height="120" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="785" y="170" text-anchor="middle" class="lbl-b">Kubernetes-run services</text>
+    <text x="785" y="205" text-anchor="middle" class="lbl-g">the thing being watched</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round">
+      <path d="M342,95 C480,110 500,150 618,160" marker-end="url(#ahg)"/>
+      <path d="M342,165 L618,175" marker-end="url(#ahg)"/>
+      <path d="M342,240 C480,225 500,200 618,192" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="300" text-anchor="middle" class="lbl-sm">tells you when a partial failure is really happening</text>
+  </svg>
+  <div class="pageno">M1·27</div>
+</section>
+
+<!-- pos28 · content · narration [25] the design-review question · NEW -->
+<section>
+  <h2 class="t">Tool Attachment Points</h2>
+  <p class="s">Attach each tool at its owning layer.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A speech bubble asks which layer is this, pointed at the Kubernetes control plane — the useful question to ask whenever a new tool shows up in a design review.">
+    <g filter="url(#rough)">
+      <path d="M120,70 L560,70 C580,70 580,90 580,110 L580,180 C580,200 560,200 540,200 L280,200 L200,260 L230,200 L140,200 C120,200 120,180 120,160 L120,90 C120,70 120,70 120,70 Z" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="350" y="120" text-anchor="middle" class="lbl-b">"Which layer is this,</text>
+    <text x="350" y="160" text-anchor="middle" class="lbl-b">and how does it plug in?"</text>
+    <g filter="url(#rough)">
+      <circle cx="850" cy="150" r="95" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="850" y="145" text-anchor="middle" class="lbl-b">control</text>
+    <text x="850" y="175" text-anchor="middle" class="lbl-b">plane</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M392,150 L618,140" marker-end="url(#ah)"/>
-      <path d="M392,235 L618,245" marker-end="url(#ah)"/>
+      <path d="M582,150 L752,150" marker-end="url(#ah)"/>
     </g>
-    <text x="900" y="195" text-anchor="middle" class="lbl" fill="#2e7d32">same</text>
-    <text x="900" y="228" text-anchor="middle" class="lbl" fill="#2e7d32">bytes</text>
-    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round">
-      <path d="M810,140 C870,150 870,220 812,240"/>
-    </g>
+    <text x="550" y="300" text-anchor="middle" class="lbl-g">this course gives you the control plane those tools attach to</text>
   </svg>
-  <div class="pageno">M1·18</div>
+  <div class="pageno">M1·28</div>
 </section>
 
+<!-- pos29 · DIVIDER · Portability -->
+<section class="divider">
+  <h2 class="t">Portability Contract</h2>
+  <div class="pageno">M1·29</div>
+</section>
+
+<!-- pos30 · content · narration [26] two standards · NEW -->
 <section>
-  <h2 class="t">The API carries your intent to any cluster</h2>
-  <p class="s">Say what you want; the cluster makes it real.</p>
+  <h2 class="t">Artifact and Intent</h2>
+  <p class="s">OCI defines the artifact. Kubernetes defines how to run it.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Two portability standards map cleanly onto the two layers: the OCI image is the portable unit of software for the container layer, and the Kubernetes API is the portable unit of intent for the orchestration layer.">
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="410" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="90" y="210" width="410" height="80" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
+    </g>
+    <text x="295" y="130" text-anchor="middle" class="lbl-b">OCI image</text>
+    <text x="295" y="162" text-anchor="middle" class="lbl-g">the portable unit of software</text>
+    <text x="295" y="258" text-anchor="middle" class="lbl">container layer</text>
+    <g filter="url(#rough)">
+      <rect x="600" y="90" width="410" height="90" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="600" y="210" width="410" height="80" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 6"/>
+    </g>
+    <text x="805" y="130" text-anchor="middle" class="lbl-b">Kubernetes API</text>
+    <text x="805" y="162" text-anchor="middle" class="lbl-g">the portable unit of intent</text>
+    <text x="805" y="258" text-anchor="middle" class="lbl">orchestration layer</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M295,180 L295,208" marker-end="url(#ahg)"/>
+      <path d="M805,180 L805,208" marker-end="url(#ahg)"/>
+    </g>
+  </svg>
+  <div class="pageno">M1·30</div>
+</section>
+
+<!-- pos31 · content · narration [27] the OCI image: a manifest of layers · 2 fragments -->
+<section>
+  <h2 class="t">OCI Image Layers</h2>
+  <p class="s">Digests guarantee the same content everywhere.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="An OCI image is a manifest listing read-only filesystem layers, each named by a digest, plus the settings to run them; because a digest hashes exact bytes, containerd, CRI-O and Podman all read it the same way.">
+    <g filter="url(#rough)">
+      <rect x="90" y="80" width="320" height="220" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="120" y="100" width="260" height="42" rx="6" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="120" y="165" width="260" height="36" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="120" y="212" width="260" height="36" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="120" y="259" width="260" height="36" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <text x="250" y="70" text-anchor="middle" class="lbl-b">OCI image</text>
+    <text x="250" y="128" text-anchor="middle" class="lbl-sm">manifest + settings</text>
+    <text x="250" y="189" text-anchor="middle" class="lbl-sm">layer · digest</text>
+    <text x="250" y="236" text-anchor="middle" class="lbl-sm">layer · digest</text>
+    <text x="250" y="283" text-anchor="middle" class="lbl-sm">layer · digest</text>
+    <g class="fragment">
+      <text x="250" y="322" text-anchor="middle" class="lbl-g">digest = a hash of exact bytes</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="620" y="110" width="180" height="60" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+        <rect x="620" y="190" width="180" height="60" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+        <rect x="830" y="150" width="180" height="60" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      </g>
+      <text x="710" y="147" text-anchor="middle" class="lbl-sm">containerd</text>
+      <text x="710" y="227" text-anchor="middle" class="lbl-sm">CRI-O · Podman</text>
+      <text x="920" y="187" text-anchor="middle" class="lbl-sm">K8s node runtime</text>
+      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+        <path d="M412,180 C500,150 520,140 618,140" marker-end="url(#ah)"/>
+        <path d="M412,200 C500,220 520,220 618,220" marker-end="url(#ah)"/>
+      </g>
+      <text x="512" y="118" text-anchor="middle" class="lbl-sm" fill="#2e7d32">all read it the same</text>
+    </g>
+  </svg>
+  <div class="pageno">M1·31</div>
+</section>
+
+<!-- pos32 · content · narration [28] worked example: the image you built · NEW · real captured value -->
+<section>
+  <h2 class="t">Artifact Consistency</h2>
+  <p class="s">One image artifact moves through build and deploy.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A real captured docker images row shows fernwood-backend tagged m1 with image ID ecb2c5ce776d at 251 megabytes; that exact set of bytes is what every Kubernetes node pulls and runs unchanged from Session 3.">
+    <g filter="url(#rough)">
+      <rect x="120" y="80" width="860" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="160" y="120" text-anchor="start" class="lbl-b">fernwood-backend:m1</text>
+    <text x="560" y="120" text-anchor="start" class="lbl">ecb2c5ce776d</text>
+    <text x="820" y="120" text-anchor="start" class="lbl">251MB</text>
+    <text x="160" y="152" text-anchor="start" class="lbl-sm" fill="#757575">REPOSITORY:TAG</text>
+    <text x="560" y="152" text-anchor="start" class="lbl-sm" fill="#757575">IMAGE ID</text>
+    <text x="820" y="152" text-anchor="start" class="lbl-sm" fill="#757575">SIZE</text>
+    <text x="160" y="60" text-anchor="start" class="lbl-sm">docker images (your laptop, today)</text>
+    <g filter="url(#rough)">
+      <rect x="360" y="230" width="380" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="273" text-anchor="middle" class="lbl">every K8s node pulls these exact bytes</text>
+    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linecap="round">
+      <path d="M550,172 L550,228" marker-end="url(#ah)"/>
+    </g>
+    <text x="700" y="205" text-anchor="middle" class="lbl-sm" fill="#2e7d32">nothing rebuilt · Session 3</text>
+  </svg>
+  <div class="pageno">M1·32</div>
+</section>
+
+<!-- pos33 · content · narration [29] declarative vs imperative -->
+<section>
+  <h2 class="t">Declarative Desired State</h2>
+  <p class="s">Submit object specs. The system keeps the result repeatable.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="An imperative script tied to one machine is crossed out; a declarative desired-state object is reconciled unchanged by any conformant cluster, on any cloud or on a laptop under KIND.">
     <g filter="url(#rough)">
       <rect x="90" y="110" width="330" height="150" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
@@ -600,69 +1008,121 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="255" y="150" text-anchor="middle" class="lbl-b">imperative script</text>
     <text x="255" y="185" text-anchor="middle" class="lbl-g">"do these steps</text>
     <text x="255" y="215" text-anchor="middle" class="lbl-g">on this machine"</text>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
-        <path d="M110,250 L400,120"/>
-      </g>
-      <text x="255" y="290" text-anchor="middle" class="lbl-sm" fill="#c62828">breaks the moment anything differs</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
+      <path d="M110,250 L400,120"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)">
-        <rect x="620" y="90" width="300" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-      </g>
-      <text x="770" y="128" text-anchor="middle" class="lbl-b">declarative object</text>
-      <text x="770" y="162" text-anchor="middle" class="lbl-g">"I want 3 of this image"</text>
-      <g filter="url(#rough)">
-        <rect x="620" y="225" width="140" height="60" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
-        <rect x="780" y="225" width="140" height="60" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
-      </g>
-      <text x="690" y="262" text-anchor="middle" class="lbl-sm">any cloud</text>
-      <text x="850" y="262" text-anchor="middle" class="lbl-sm">KIND laptop</text>
-      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-        <path d="M720,190 L690,223" marker-end="url(#ah)"/>
-        <path d="M820,190 L850,223" marker-end="url(#ah)"/>
-      </g>
-      <text x="500" y="150" text-anchor="middle" class="lbl-g" fill="#2e7d32">travels unchanged</text>
-      <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linecap="round">
-        <path d="M420,160 L618,150" marker-end="url(#ah)"/>
-      </g>
+    <text x="255" y="290" text-anchor="middle" class="lbl-sm" fill="#c62828">breaks the moment anything differs</text>
+    <g filter="url(#rough)">
+      <rect x="620" y="90" width="300" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="770" y="128" text-anchor="middle" class="lbl-b">declarative object</text>
+    <text x="770" y="162" text-anchor="middle" class="lbl-g">"I want 3 of this image"</text>
+    <g filter="url(#rough)">
+      <rect x="620" y="225" width="140" height="60" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="780" y="225" width="140" height="60" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="690" y="262" text-anchor="middle" class="lbl-sm">any cloud</text>
+    <text x="850" y="262" text-anchor="middle" class="lbl-sm">KIND laptop</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+      <path d="M720,190 L690,223" marker-end="url(#ah)"/>
+      <path d="M820,190 L850,223" marker-end="url(#ah)"/>
+    </g>
+    <text x="500" y="150" text-anchor="middle" class="lbl-g" fill="#2e7d32">travels unchanged</text>
+    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linecap="round">
+      <path d="M420,160 L618,150" marker-end="url(#ah)"/>
     </g>
   </svg>
-  <div class="pageno">M1·19</div>
+  <div class="pageno">M1·33</div>
 </section>
 
+<!-- pos34 · content · narration [30] any cluster reconciles · NEW -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Where this lands, and what comes next</h2>
-  <div class="pageno">M1·20</div>
-</section>
-
-<section>
-  <p class="kicker">MODULE 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:2.0em">From one process to a service spread across machines</h2>
-  <p class="s" style="font-size:1.15em">The pieces must first find each other.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Five numbered takeaways: distributed means coordinate over a network; state, scale and failure are the three concerns; containers and orchestration are the two layers; the OCI image and the Kubernetes API are the two portability standards; next up is networking.">
+  <h2 class="t">Reconciliation Loop</h2>
+  <p class="s">Observe. Compare. Act. Repeat until state matches desired.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Any conformant cluster reconciles reality toward the declared desired state — a loop that keeps checking and adjusting until reality matches what you asked for; your manifests move to a new cluster unchanged.">
     <g filter="url(#rough)">
-      <circle cx="80" cy="60" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="115" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="170" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="225" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="280" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="120" y="120" width="260" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="720" y="120" width="260" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="80" y="68" text-anchor="middle" class="num">1</text>
-    <text x="80" y="123" text-anchor="middle" class="num">2</text>
-    <text x="80" y="178" text-anchor="middle" class="num">3</text>
-    <text x="80" y="233" text-anchor="middle" class="num">4</text>
-    <text x="80" y="288" text-anchor="middle" class="num">5</text>
+    <text x="250" y="162" text-anchor="middle" class="lbl-b">desired state</text>
+    <text x="250" y="194" text-anchor="middle" class="lbl-g">what you asked for</text>
+    <text x="850" y="162" text-anchor="middle" class="lbl-b">reality</text>
+    <text x="850" y="194" text-anchor="middle" class="lbl-g">what's running now</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M382,150 L716,150" marker-end="url(#ah)"/>
+      <path d="M716,195 C560,240 540,240 384,195" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="135" text-anchor="middle" class="lbl-g">check</text>
+    <text x="550" y="245" text-anchor="middle" class="lbl-g">adjust — reconcile</text>
+    <text x="550" y="305" text-anchor="middle" class="lbl-sm" fill="#2e7d32">move clusters and your manifests come with you, unchanged</text>
+  </svg>
+  <div class="pageno">M1·34</div>
+</section>
+
+<!-- pos35 · DIVIDER · Course continuation path -->
+<section class="divider">
+  <h2 class="t">Course Sequence</h2>
+  <div class="pageno">M1·35</div>
+</section>
+
+<!-- pos36 · content · narration [31] recap: the map you now have -->
+<section>
+  <h2 class="t">Module Map</h2>
+  <p class="s">Three concerns, two layers, two portability contracts to remember.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A recap in four numbered rows: a distributed system trades simplicity for coordination; state, scale and partial failure are the three concerns; containers and orchestration are the two layers; the OCI image and the Kubernetes API are the two portability standards.">
+    <g filter="url(#rough)">
+      <circle cx="90" cy="70" r="20" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="140" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="210" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="280" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="90" y="78" text-anchor="middle" class="num">1</text>
+    <text x="90" y="148" text-anchor="middle" class="num">2</text>
+    <text x="90" y="218" text-anchor="middle" class="num">3</text>
+    <text x="90" y="288" text-anchor="middle" class="num">4</text>
     <g class="lbl" text-anchor="start">
-      <text x="120" y="68">distributed = pieces that coordinate over a network</text>
-      <text x="120" y="123">the three concerns: state · scale · partial failure</text>
-      <text x="120" y="178">the two layers: containers · orchestration</text>
-      <text x="120" y="233">the two standards: OCI image · Kubernetes API</text>
+      <text x="130" y="78">a distributed system trades simplicity for coordination</text>
+      <text x="130" y="148">the three concerns: state · scale · partial failure</text>
+      <text x="130" y="218">the two layers: containers · orchestration</text>
+      <text x="130" y="288">the two standards: OCI image · Kubernetes API</text>
     </g>
-    <text x="120" y="288" text-anchor="start" class="lbl" fill="#2e7d32">next: how the pieces find each other, Docker networking</text>
+  </svg>
+  <div class="pageno">M1·36</div>
+</section>
+
+<!-- pos37 · CLOSING · narration [32] reach targets by name -->
+<section>
+  <p class="kicker">MODULE 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS · TAKEAWAYS</p>
+  <h2 class="t" style="font-size:2.0em">Service Connectivity Baseline</h2>
+  <p class="s" style="font-size:1.15em">On one machine, first, make sure every service can reach the others.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="An arrow points forward from the map to a Docker network connecting the three tiers — the very first thing the map asks for is that the pieces find and reach each other on a single machine.">
+    <g filter="url(#rough)">
+      <rect x="90" y="110" width="240" height="90" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="210" y="150" text-anchor="middle" class="lbl-b">the map</text>
+    <text x="210" y="182" text-anchor="middle" class="lbl-g">what changes &amp; why</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M332,155 L470,155" marker-end="url(#ah)"/>
+    </g>
+    <text x="400" y="135" text-anchor="middle" class="lbl-g">next</text>
+    <g filter="url(#rough)">
+      <rect x="500" y="70" width="520" height="170" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="6 6"/>
+      <rect x="540" y="120" width="130" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="690" y="120" width="130" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="840" y="120" width="130" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="760" y="100" text-anchor="middle" class="lbl-b">Docker network</text>
+    <text x="605" y="162" text-anchor="middle" class="lbl-sm">frontend</text>
+    <text x="755" y="162" text-anchor="middle" class="lbl-sm">backend</text>
+    <text x="905" y="162" text-anchor="middle" class="lbl-sm">db</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+      <path d="M670,155 L688,155" marker-end="url(#ah)"/>
+      <path d="M820,155 L838,155" marker-end="url(#ah)"/>
+    </g>
+    <text x="760" y="222" text-anchor="middle" class="lbl-sm" fill="#2e7d32">find and reach each other, by name</text>
   </svg>
   <p class="credit">Next: <b>Lesson 2 · Docker Networking</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M1·21</div>
+  <div class="pageno">M1·37</div>
 </section>
 
 </div></div>

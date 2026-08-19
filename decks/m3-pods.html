@@ -96,6 +96,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal p{ margin:0; line-height:1.3; }
   .reveal p.s{ order:3; font-size:0.95em; color:var(--gray); margin:0; }
   .reveal .slides section:first-of-type svg{ min-height:32%; }
+  /* §3a section divider slides — centered, larger title, no visual */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
   .reveal svg{ order:2; width:100%; flex:1 1 0; min-height:0; max-height:68%; display:block; margin:auto 0; }
   .reveal .kicker{ order:0; font-size:.8em; color:var(--gray); letter-spacing:2px; }
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
@@ -153,12 +156,12 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · intro -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Meet the Pod</h2>
+<section class="divider">
+  <h2 class="t">Meet the Pod</h2>
   <div class="pageno">M3·02</div>
 </section>
 
-<!-- 2 · staircase -->
+<!-- 2 · staircase  (narr S1) -->
 <section>
   <h2 class="t">The Pod is the smallest thing you can run</h2>
   <p class="s">Everything later is a machine for making Pods.</p>
@@ -184,12 +187,12 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · The analogy -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The analogy: a shared studio flat, not a single bedroom</h2>
+<section class="divider">
+  <h2 class="t">The analogy: a shared studio flat, not a single bedroom</h2>
   <div class="pageno">M3·04</div>
 </section>
 
-<!-- 3 · shared flat analogy -->
+<!-- 3 · shared flat analogy  (narr S2) -->
 <section>
   <h2 class="t">A shared studio flat, not a single bedroom</h2>
   <p class="s">A container is one sealed room; a Pod is the flat.</p>
@@ -214,50 +217,114 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M3·05</div>
 </section>
 
-<!-- 4 · four shared things (4 fragments) -->
+<!-- 4 · one street address  (narr S3) -->
 <section>
-  <h2 class="t">One home, four shared things</h2>
-  <p class="s">One address, one phone line, one cupboard, move together.</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="Inside one Pod, two containers share four things revealed one at a time: one IP address, one localhost phone line between them, one shared volume cupboard, and they are scheduled onto one node together.">
+  <h2 class="t">First shared thing: one street address</h2>
+  <p class="s">One network namespace means one IP for the whole Pod.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Two containers inside one Pod share a single network namespace, so both answer on one IP address, shown here as 192.168.40.66 on the Pod's single front door.">
     <g filter="url(#rough)">
-      <rect x="300" y="90" width="500" height="150" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
-      <rect x="335" y="130" width="150" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="615" y="130" width="150" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="250" y="90" width="600" height="170" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="300" y="140" width="200" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="600" y="140" width="200" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="550" y="78" text-anchor="middle" class="lbl-b">Pod</text>
-    <text x="410" y="172" text-anchor="middle" class="lbl-sm">container</text>
-    <text x="690" y="172" text-anchor="middle" class="lbl-sm">container</text>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="465" y="55" width="170" height="34" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/></g>
-      <text x="550" y="80" text-anchor="middle" class="lbl-sm">one IP: 192.168.x.x</text>
+    <text x="550" y="78" text-anchor="middle" class="lbl-b">one Pod, one network namespace</text>
+    <text x="400" y="186" text-anchor="middle" class="lbl-sm">container</text>
+    <text x="700" y="186" text-anchor="middle" class="lbl-sm">container</text>
+    <g filter="url(#rough)">
+      <rect x="410" y="270" width="280" height="46" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-        <path d="M490,175 L610,175" marker-end="url(#ah)"/>
-        <path d="M610,150 L490,150" marker-end="url(#ah)"/>
-      </g>
-      <text x="550" y="135" text-anchor="middle" class="lbl-sm" fill="#2e7d32">localhost</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-b">IP 192.168.40.66</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="5 5" stroke-linecap="round">
+      <path d="M400,222 L520,270"/>
+      <path d="M700,222 L580,270"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round">
-        <path d="M410,205 L500,240"/>
-        <path d="M690,205 L600,240"/>
-      </g>
-      <g filter="url(#rough)"><rect x="475" y="243" width="150" height="48" rx="8" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/></g>
-      <text x="550" y="273" text-anchor="middle" class="lbl-sm">shared volume</text>
-    </g>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
-        <circle cx="410" cy="315" r="15"/>
-        <circle cx="690" cy="315" r="15"/>
-      </g>
-      <text x="550" y="335" text-anchor="middle" class="lbl">scheduled onto one node, together</text>
-    </g>
+    <text x="880" y="150" text-anchor="middle" class="lbl-g">both answer</text>
+    <text x="880" y="176" text-anchor="middle" class="lbl-g">on the same IP</text>
   </svg>
   <div class="pageno">M3·06</div>
 </section>
 
-<!-- 5 · definition -->
+<!-- 5 · one internal phone line  (narr S4) -->
+<section>
+  <h2 class="t">Second shared thing: one internal phone line</h2>
+  <p class="s">Containers in a Pod reach each other on localhost.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Because they share the network namespace, two containers in a Pod call each other over localhost with no DNS, no Service, and no network hop.">
+    <g filter="url(#rough)">
+      <rect x="230" y="80" width="640" height="150" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="280" y="120" width="200" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="620" y="120" width="200" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="550" y="68" text-anchor="middle" class="lbl-b">one Pod</text>
+    <text x="380" y="166" text-anchor="middle" class="lbl-sm">app</text>
+    <text x="720" y="166" text-anchor="middle" class="lbl-sm">helper</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <path d="M485,148 L615,148" marker-end="url(#ah)"/>
+      <path d="M615,175 L485,175" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="128" text-anchor="middle" class="lbl-b" fill="#2e7d32">localhost</text>
+    <text x="550" y="285" text-anchor="middle" class="lbl-g">no DNS, no Service, no network hop</text>
+  </svg>
+  <div class="pageno">M3·07</div>
+</section>
+
+<!-- 6 · one shared cupboard  (narr S5) -->
+<section>
+  <h2 class="t">Third shared thing: one shared cupboard</h2>
+  <p class="s">Both containers can mount the same volume.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Two containers in one Pod both mount the same volume, drawn as a shared cupboard, and pass files through it.">
+    <g filter="url(#rough)">
+      <rect x="230" y="70" width="640" height="130" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="280" y="100" width="200" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="620" y="100" width="200" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="380" y="142" text-anchor="middle" class="lbl-sm">container</text>
+    <text x="720" y="142" text-anchor="middle" class="lbl-sm">container</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M380,172 L500,240" marker-end="url(#ah)"/>
+      <path d="M720,172 L600,240" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="430" y="240" width="240" height="60" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <line x1="550" y1="240" x2="550" y2="300"/>
+    </g>
+    <text x="550" y="228" text-anchor="middle" class="lbl-b">shared volume</text>
+    <text x="900" y="150" text-anchor="middle" class="lbl-g">pass files</text>
+    <text x="900" y="176" text-anchor="middle" class="lbl-g">through it</text>
+  </svg>
+  <div class="pageno">M3·08</div>
+</section>
+
+<!-- 7 · they move together  (narr S6) -->
+<section>
+  <h2 class="t">Fourth shared thing: they move together</h2>
+  <p class="s">A Pod is scheduled onto one node, as a unit.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A whole Pod is scheduled onto one node as a unit with all its containers together; Kubernetes never splits a Pod across two nodes, shown crossed out.">
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="420" height="200" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="140" y="150" width="140" height="80" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="320" y="150" width="140" height="80" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="300" y="128" text-anchor="middle" class="lbl-b">one node</text>
+    <text x="210" y="196" text-anchor="middle" class="lbl-sm">container</text>
+    <text x="390" y="196" text-anchor="middle" class="lbl-sm">container</text>
+    <text x="300" y="268" text-anchor="middle" class="lbl-sm" fill="#2e7d32">whole Pod lands together</text>
+    <g filter="url(#rough)">
+      <rect x="600" y="90" width="200" height="200" rx="14" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7"/>
+      <rect x="850" y="90" width="200" height="200" rx="14" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7"/>
+      <rect x="640" y="160" width="120" height="70" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="890" y="160" width="120" height="70" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="700" y="128" text-anchor="middle" class="lbl-g">node A</text>
+    <text x="950" y="128" text-anchor="middle" class="lbl-g">node B</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
+      <path d="M610,285 L1045,100"/>
+    </g>
+    <text x="825" y="315" text-anchor="middle" class="lbl-sm" fill="#c62828">never split across two nodes</text>
+  </svg>
+  <div class="pageno">M3·09</div>
+</section>
+
+<!-- 8 · definition  (narr S7) -->
 <section>
   <h2 class="t">A Pod is a co-scheduled group of containers</h2>
   <p class="s">Shares a network namespace; can share storage.</p>
@@ -273,16 +340,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="655" y="186" text-anchor="middle" class="lbl-g">optional</text>
     <text x="550" y="288" text-anchor="middle" class="lbl-g">one network namespace · can share storage · most hold one</text>
   </svg>
-  <div class="pageno">M3·07</div>
+  <div class="pageno">M3·10</div>
 </section>
 
 <!-- DIVIDER · Why not just a container -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Why not just a container? The problem Pods solve</h2>
-  <div class="pageno">M3·08</div>
+<section class="divider">
+  <h2 class="t">Why not just a container? The problem Pods solve</h2>
+  <div class="pageno">M3·11</div>
 </section>
 
-<!-- 6 · why not just a container -->
+<!-- 9 · why not just a container  (narr S8) -->
 <section>
   <h2 class="t">Why not just a container?</h2>
   <p class="s">Some helpers must live right next to the app.</p>
@@ -309,38 +376,81 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="920" y="190" text-anchor="middle" class="lbl-sm">helper</text>
     <text x="810" y="264" text-anchor="middle" class="lbl-sm" fill="#2e7d32">placed · networked · managed as one</text>
   </svg>
-  <div class="pageno">M3·09</div>
+  <div class="pageno">M3·12</div>
 </section>
 
 <!-- DIVIDER · The object model -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The object model: the shape every manifest shares</h2>
-  <div class="pageno">M3·10</div>
+<section class="divider">
+  <h2 class="t">The object model: the shape every manifest shares</h2>
+  <div class="pageno">M3·13</div>
 </section>
 
-<!-- 7 · four-part object -->
+<!-- 10 · apiVersion + kind  (narr S9) -->
 <section>
-  <h2 class="t">Every object has the same four parts</h2>
-  <p class="s">apiVersion, kind, metadata, spec, plus labels.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="One manifest with four fields, each labelled with its job: apiVersion the API version, kind the object type, metadata the name and labels, spec the desired state.">
+  <h2 class="t">apiVersion and kind name the object</h2>
+  <p class="s">A Pod is core and stable, so it is just v1.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The top of a Pod manifest with apiVersion set to v1 and kind set to Pod highlighted; apiVersion is the API group and version, kind is the object type that tells the API server which controller cares.">
     <g filter="url(#rough)">
-      <rect x="150" y="55" width="800" height="255" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
-      <rect x="180" y="80" width="740" height="48" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="180" y="138" width="740" height="48" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="180" y="196" width="740" height="48" rx="6" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="180" y="254" width="740" height="48" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="180" y="70" width="740" height="180" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="210" y="95" width="680" height="55" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="210" y="165" width="680" height="55" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
     <g class="lbl" text-anchor="start">
-      <text x="200" y="111">apiVersion:  which version of the API</text>
-      <text x="200" y="169">kind:  which type of object</text>
-      <text x="200" y="227">metadata:  name + labels (identity)</text>
-      <text x="200" y="285">spec:  the desired state, what you want</text>
+      <text x="230" y="130">apiVersion: v1</text>
+      <text x="230" y="200">kind: Pod</text>
     </g>
+    <g class="lbl-g" text-anchor="start">
+      <text x="520" y="130">which API group + version</text>
+      <text x="520" y="200">which type of object</text>
+    </g>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">v1 = core and stable; later objects read apps/v1</text>
   </svg>
-  <div class="pageno">M3·11</div>
+  <div class="pageno">M3·14</div>
 </section>
 
-<!-- 8 · spec vs status -->
+<!-- 11 · metadata  (narr S10) -->
+<section>
+  <h2 class="t">metadata carries identity, and labels</h2>
+  <p class="s">Label now; selectors use them in Module 4.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The metadata block of the frontend Pod: name frontend, and labels app fernwood and tier frontend, which selectors will group by in a later module.">
+    <g filter="url(#rough)">
+      <rect x="180" y="60" width="740" height="200" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="210" y="85" width="680" height="45" rx="6" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="210" y="140" width="680" height="45" rx="6" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="210" y="195" width="680" height="45" rx="6" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <g class="lbl" text-anchor="start">
+      <text x="230" y="114">metadata:</text>
+      <text x="255" y="169">name: frontend</text>
+      <text x="255" y="224">labels: app: fernwood, tier: frontend</text>
+    </g>
+    <text x="550" y="298" text-anchor="middle" class="lbl-sm" fill="#2e7d32">labels look unimportant now; Module 4 selectors group by them</text>
+  </svg>
+  <div class="pageno">M3·15</div>
+</section>
+
+<!-- 12 · spec  (narr S11) -->
+<section>
+  <h2 class="t">spec is the desired state</h2>
+  <p class="s">Everything about what you want goes here.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The spec block of the frontend Pod lists its containers, one named frontend using the image fernwood-frontend m2; a controller reconciles this spec.">
+    <g filter="url(#rough)">
+      <rect x="180" y="60" width="740" height="200" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="210" y="85" width="680" height="45" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="210" y="140" width="680" height="45" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="210" y="195" width="680" height="45" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <g class="lbl" text-anchor="start">
+      <text x="230" y="114">spec:</text>
+      <text x="255" y="169">containers:  - name: frontend</text>
+      <text x="285" y="224">image: fernwood-frontend:m2</text>
+    </g>
+    <text x="550" y="298" text-anchor="middle" class="lbl-g">when a controller "reconciles the spec", this is the spec it means</text>
+  </svg>
+  <div class="pageno">M3·16</div>
+</section>
+
+<!-- 13 · spec vs status  (narr S12) -->
 <section>
   <h2 class="t">spec is what you want; status is what's true</h2>
   <p class="s">The whole system watches the gap between them.</p>
@@ -364,16 +474,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="825" y="165" text-anchor="middle" class="lbl">what's true now</text>
     <text x="825" y="205" text-anchor="middle" class="lbl-g">Kubernetes fills it in</text>
   </svg>
-  <div class="pageno">M3·12</div>
+  <div class="pageno">M3·17</div>
 </section>
 
 <!-- DIVIDER · Multi-container Pods -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Multi-container Pods: sidecar and init (recognize them now)</h2>
-  <div class="pageno">M3·13</div>
+<section class="divider">
+  <h2 class="t">Multi-container Pods: sidecar and init (recognize them now)</h2>
+  <div class="pageno">M3·18</div>
 </section>
 
-<!-- 9 · init vs sidecar -->
+<!-- 14 · init vs sidecar  (narr S13) -->
 <section>
   <h2 class="t">Two helpers, two lifecycles</h2>
   <p class="s">Init runs first and exits; a sidecar runs alongside.</p>
@@ -399,43 +509,168 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="905" y="190" text-anchor="middle" class="lbl-sm">sidecar</text>
     <text x="810" y="264" text-anchor="middle" class="lbl-g">runs alongside for the Pod's whole life</text>
   </svg>
-  <div class="pageno">M3·14</div>
+  <div class="pageno">M3·19</div>
 </section>
 
 <!-- DIVIDER · Health checks -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Health checks: three questions Kubernetes keeps asking</h2>
-  <div class="pageno">M3·15</div>
+<section class="divider">
+  <h2 class="t">Health checks: three questions Kubernetes keeps asking</h2>
+  <div class="pageno">M3·20</div>
 </section>
 
-<!-- 10 · three probes -->
+<!-- 15 · three questions announce  (narr S14) -->
 <section>
-  <h2 class="t">Three questions Kubernetes keeps asking</h2>
-  <p class="s">Alive? Ready for traffic? Done booting?</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Three probes, each a different question and action: liveness asks is it alive and restarts it if not, readiness asks is it ready and pulls it from traffic if not, startup asks is it done booting and holds the others off until it is.">
+  <h2 class="t">"Up" is not "working"</h2>
+  <p class="s">A process can run but be wedged, so Kubernetes asks.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A container looks up from the outside but is actually wedged inside; a question mark hovers over it, and three unlabelled probes wait to the side to ask three different questions.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="20" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="165" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="260" r="20" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="150" y="90" width="300" height="150" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="90" y="78" text-anchor="middle" class="num">1</text>
-    <text x="90" y="173" text-anchor="middle" class="num">2</text>
-    <text x="90" y="268" text-anchor="middle" class="num">3</text>
-    <g class="lbl-b" text-anchor="start">
-      <text x="130" y="60">liveness</text>
-      <text x="130" y="155">readiness</text>
-      <text x="130" y="250">startup</text>
+    <text x="300" y="140" text-anchor="middle" class="lbl-b">container: "up"</text>
+    <text x="300" y="182" text-anchor="middle" class="lbl-sm" fill="#c62828">running, but wedged</text>
+    <text x="300" y="285" text-anchor="middle" class="lbl-g">the OS says alive; the app is not serving</text>
+    <text x="560" y="175" text-anchor="middle" class="lbl-b" style="font-size:34px">?</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="5 5" stroke-linecap="round">
+      <path d="M460,165 L640,120" marker-end="url(#ahg)"/>
+      <path d="M460,165 L640,165" marker-end="url(#ahg)"/>
+      <path d="M460,165 L640,210" marker-end="url(#ahg)"/>
     </g>
-    <g class="lbl" text-anchor="start">
-      <text x="130" y="92">"still alive?"  &#8594;  no: restart the container</text>
-      <text x="130" y="187">"ready for traffic?"  &#8594;  no: pull from Service</text>
-      <text x="130" y="282">"done booting?"  &#8594;  hold the others off till yes</text>
+    <g filter="url(#rough)">
+      <rect x="650" y="100" width="330" height="40" rx="8" fill="none" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="650" y="150" width="330" height="40" rx="8" fill="none" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="650" y="200" width="330" height="40" rx="8" fill="none" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <g class="lbl-g" text-anchor="middle">
+      <text x="815" y="127">probe: one question</text>
+      <text x="815" y="177">probe: one question</text>
+      <text x="815" y="227">probe: one question</text>
     </g>
   </svg>
-  <div class="pageno">M3·16</div>
+  <div class="pageno">M3·21</div>
 </section>
 
-<!-- 11 · probe answers for its own container -->
+<!-- 16 · liveness  (narr S15) -->
+<section>
+  <h2 class="t">livenessProbe: is it still alive?</h2>
+  <p class="s">Fails, and Kubernetes kills and restarts the container.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A hung container fails its liveness probe, so Kubernetes kills it and starts a fresh container in its place; point it at a true health signal, not just an open port.">
+    <g filter="url(#rough)">
+      <rect x="80" y="90" width="230" height="130" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="195" y="140" text-anchor="middle" class="lbl-b">hung container</text>
+    <text x="195" y="180" text-anchor="middle" class="lbl-sm" fill="#c62828">liveness fails</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M315,155 L410,155" marker-end="url(#ah)"/>
+      <path d="M560,155 L655,155" marker-end="url(#ah)"/>
+    </g>
+    <text x="485" y="138" text-anchor="middle" class="lbl">kill it</text>
+    <g filter="url(#rough)">
+      <rect x="415" y="120" width="140" height="70" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="485" y="163" text-anchor="middle" class="lbl-sm">restart</text>
+    <g filter="url(#rough)">
+      <rect x="660" y="90" width="230" height="130" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="775" y="140" text-anchor="middle" class="lbl-b">fresh container</text>
+    <text x="775" y="180" text-anchor="middle" class="lbl-sm" fill="#2e7d32">running again</text>
+    <text x="550" y="285" text-anchor="middle" class="lbl-g">point it at a true health signal, not just "the port is open"</text>
+  </svg>
+  <div class="pageno">M3·22</div>
+</section>
+
+<!-- 17 · readiness  (narr S16) -->
+<section>
+  <h2 class="t">readinessProbe: is it ready for traffic?</h2>
+  <p class="s">Fails, and the Pod is pulled from traffic, not killed.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A Pod that is briefly warming a cache fails its readiness probe, so Kubernetes takes it out of Service load-balancing until it passes again, but leaves it running.">
+    <g filter="url(#rough)">
+      <rect x="120" y="90" width="250" height="140" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="245" y="140" text-anchor="middle" class="lbl-b">Pod warming up</text>
+    <text x="245" y="182" text-anchor="middle" class="lbl-sm" fill="#c62828">readiness fails</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M375,160 L470,160" marker-end="url(#ah)"/>
+    </g>
+    <text x="420" y="140" text-anchor="middle" class="lbl-g">pull</text>
+    <g filter="url(#rough)">
+      <rect x="480" y="90" width="270" height="140" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="615" y="135" text-anchor="middle" class="lbl">out of Service</text>
+    <text x="615" y="172" text-anchor="middle" class="lbl">load-balancing</text>
+    <text x="615" y="208" text-anchor="middle" class="lbl-sm" fill="#2e7d32">stays running</text>
+    <text x="900" y="150" text-anchor="middle" class="lbl-g">makes rolling</text>
+    <text x="900" y="176" text-anchor="middle" class="lbl-g">updates safe (M5)</text>
+    <text x="435" y="285" text-anchor="middle" class="lbl-g">no restart — just no requests until it passes again</text>
+  </svg>
+  <div class="pageno">M3·23</div>
+</section>
+
+<!-- 18 · startup  (narr S17) -->
+<section>
+  <h2 class="t">startupProbe: is it done booting?</h2>
+  <p class="s">Holds liveness and readiness off during a slow boot.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A slow-booting app such as a JVM warming up is guarded by a startup probe that holds off the liveness and readiness probes until the app first reports healthy, so a slow boot is not mistaken for a hang.">
+    <g filter="url(#rough)">
+      <rect x="90" y="100" width="240" height="120" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="210" y="150" text-anchor="middle" class="lbl-b">slow boot</text>
+    <text x="210" y="188" text-anchor="middle" class="lbl-sm">JVM warming up</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M335,160 L410,160" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="420" y="90" width="200" height="140" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="520" y="145" text-anchor="middle" class="lbl-b">startup probe</text>
+    <text x="520" y="185" text-anchor="middle" class="lbl-sm">holds the gate</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7" stroke-linecap="round">
+      <path d="M625,130 L720,130"/>
+      <path d="M625,190 L720,190"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="725" y="105" width="270" height="50" rx="8" fill="none" stroke="#757575" stroke-width="2.2"/>
+      <rect x="725" y="165" width="270" height="50" rx="8" fill="none" stroke="#757575" stroke-width="2.2"/>
+    </g>
+    <g class="lbl-g" text-anchor="middle">
+      <text x="860" y="136">liveness (held off)</text>
+      <text x="860" y="196">readiness (held off)</text>
+    </g>
+    <text x="520" y="290" text-anchor="middle" class="lbl-g">so a slow boot is not mistaken for a hang and killed</text>
+  </svg>
+  <div class="pageno">M3·24</div>
+</section>
+
+<!-- 19 · real probe YAML  (narr S18) -->
+<section>
+  <h2 class="t">The real pair you apply in the lab</h2>
+  <p class="s">Both hit /healthz on port 3000, at different intervals.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="The exact probe pair from the lab: a readinessProbe doing an httpGet on path healthz port 3000 every five seconds, and a livenessProbe on the same path and port every ten seconds.">
+    <g filter="url(#rough)">
+      <rect x="120" y="70" width="400" height="210" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="150" y="95" width="340" height="42" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <g class="lbl" text-anchor="start">
+      <text x="168" y="123">readinessProbe:</text>
+      <text x="185" y="170">httpGet: /healthz</text>
+      <text x="185" y="205">port: 3000</text>
+      <text x="185" y="240">periodSeconds: 5</text>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="580" y="70" width="400" height="210" rx="12" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="610" y="95" width="340" height="42" rx="6" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <g class="lbl" text-anchor="start">
+      <text x="628" y="123">livenessProbe:</text>
+      <text x="645" y="170">httpGet: /healthz</text>
+      <text x="645" y="205">port: 3000</text>
+      <text x="645" y="240">periodSeconds: 10</text>
+    </g>
+    <text x="550" y="312" text-anchor="middle" class="lbl-g">/healthz reports the frontend's own health, independent of the backend</text>
+  </svg>
+  <div class="pageno">M3·25</div>
+</section>
+
+<!-- 20 · probe answers for its own container  (narr S19) -->
 <section>
   <h2 class="t">A probe answers for its own container only</h2>
   <p class="s">Point liveness at the backend and you restart healthy Pods.</p>
@@ -461,41 +696,76 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="540" y="135" text-anchor="middle" class="lbl-sm" fill="#c62828">liveness points here</text>
     <text x="540" y="302" text-anchor="middle" class="lbl-sm" fill="#c62828">wrong: backend down &#8594; every healthy frontend restarts</text>
   </svg>
-  <div class="pageno">M3·17</div>
+  <div class="pageno">M3·26</div>
 </section>
 
 <!-- DIVIDER · Into the lab -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Into the lab</h2>
-  <div class="pageno">M3·18</div>
+<section class="divider">
+  <h2 class="t">Into the lab</h2>
+  <div class="pageno">M3·27</div>
 </section>
 
-<!-- 12 · CLOSING -->
+<!-- 21 · into the lab: build then break  (narr S20) -->
 <section>
-  <p class="kicker">MODULE 3 · LESSON 2 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:1.9em">Write a Pod, then break three</h2>
-  <p class="s" style="font-size:1.15em">Most of the job is reading the Pod that didn't come up.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="What the lab does in four steps: write and apply a frontend Pod, exec in and read its logs, watch its probes work, then break three Pods and learn to read why.">
+  <h2 class="t">Build it, then break it on purpose</h2>
+  <p class="s">Most of the job is diagnosing the Pod that didn't come up.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="First the happy path in three steps — write and apply the frontend Pod, exec in and read its logs, watch its probes — then three broken Pods to diagnose, labelled Pending, ImagePullBackOff and CrashLoopBackOff.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="60" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="120" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="180" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="240" r="20" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="80" cy="80" r="18" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="80" cy="150" r="18" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="80" cy="220" r="18" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="90" y="68" text-anchor="middle" class="num">1</text>
-    <text x="90" y="128" text-anchor="middle" class="num">2</text>
-    <text x="90" y="188" text-anchor="middle" class="num">3</text>
-    <text x="90" y="248" text-anchor="middle" class="num">4</text>
+    <text x="80" y="87" text-anchor="middle" class="num">1</text>
+    <text x="80" y="157" text-anchor="middle" class="num">2</text>
+    <text x="80" y="227" text-anchor="middle" class="num">3</text>
     <g class="lbl" text-anchor="start">
-      <text x="130" y="68">write &amp; apply a Pod for the frontend</text>
-      <text x="130" y="128">exec in and read its logs</text>
-      <text x="130" y="188">watch its liveness and readiness probes work</text>
+      <text x="115" y="87">write &amp; apply a frontend Pod</text>
+      <text x="115" y="157">exec in and read its logs</text>
+      <text x="115" y="227">watch its probes work</text>
     </g>
-    <text x="130" y="248" text-anchor="start" class="lbl" fill="#c62828">break three Pods and learn to read why</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.6" stroke-linecap="round">
+      <path d="M560,150 L640,150" marker-end="url(#ah)"/>
+    </g>
+    <text x="600" y="130" text-anchor="middle" class="lbl-sm" fill="#c62828">then break 3</text>
+    <g filter="url(#rough)">
+      <rect x="660" y="70" width="380" height="52" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="660" y="138" width="380" height="52" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="660" y="206" width="380" height="52" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <g class="lbl" text-anchor="middle">
+      <text x="850" y="102">Pending</text>
+      <text x="850" y="170">ImagePullBackOff</text>
+      <text x="850" y="238">CrashLoopBackOff</text>
+    </g>
+    <text x="550" y="310" text-anchor="middle" class="lbl-g">read what Kubernetes tells you in each case</text>
   </svg>
-  <p class="credit">Now open <b>Module 3 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M3·19</div>
+  <div class="pageno">M3·28</div>
 </section>
+
+<!-- 22 · CLOSING -->
+<section>
+  <p class="kicker">MODULE 3 · PODS &#8212; KEY TAKEAWAYS</p>
+  <h2 class="t" style="font-size:1.9em">Write a Pod, then break three</h2>
+  <p class="s" style="font-size:1.15em">One object, one shape, three probes — now go build it.</p>
+  <svg viewBox="0 0 1100 280" role="img" aria-label="One Pod comes up one out of one Running, and an arrow points to three broken Pods you learn to diagnose; reading the Pod that did not come up is most of the job.">
+    <g filter="url(#rough)">
+      <rect x="110" y="90" width="280" height="110" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="250" y="140" text-anchor="middle" class="lbl-b">frontend Pod</text>
+    <text x="250" y="176" text-anchor="middle" class="lbl-sm" fill="#2e7d32">1/1 Running</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <path d="M400,145 L470,145" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="490" y="100" width="500" height="90" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="740" y="140" text-anchor="middle" class="lbl-b">the three that don't come up</text>
+    <text x="740" y="174" text-anchor="middle" class="lbl-sm" fill="#c62828">Pending · ImagePullBackOff · CrashLoopBackOff</text>
+  </svg>
+  <p class="credit">Now open <b>Module 3 &middot; Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
+  <div class="pageno">M3·29</div>
+</section>
+
 
 </div></div>
 

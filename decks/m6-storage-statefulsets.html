@@ -97,6 +97,8 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal p.s{ order:3; font-size:0.95em; color:var(--gray); margin:0; }
   .reveal .slides section:first-of-type svg{ min-height:32%; }
   .reveal svg{ order:2; width:100%; flex:1 1 0; min-height:0; max-height:68%; display:block; margin:auto 0; }
+    .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
   .reveal .kicker{ order:0; font-size:.8em; color:var(--gray); letter-spacing:2px; }
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
@@ -134,7 +136,6 @@ footer, header, hgroup, main, menu, nav, section {
 
 <div class="reveal"><div class="slides">
 
-<!-- 1 · TITLE -->
 <section data-auto-animate>
   <p class="kicker">MODULE 6 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Storage that outlives the Pod that uses it</h2>
@@ -169,13 +170,11 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M6·01</div>
 </section>
 
-<!-- DIVIDER · intro / lead-in -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The tier you cannot throw away</h2>
+<section class="divider">
+  <h2 class="t">The tier you cannot throw away</h2>
   <div class="pageno">M6·02</div>
 </section>
 
-<!-- 2 · stateless was deliberate; a database can't -->
 <section>
   <h2 class="t">The tiers so far threw state away, a database can't</h2>
   <p class="s">Interchangeable Pods were the point, a database breaks it.</p>
@@ -199,13 +198,36 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M6·03</div>
 </section>
 
-<!-- DIVIDER · section: Why containers do not solve state for free -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Why containers do not solve state for free</h2>
+  <h2 class="t">Four new parts you're about to add</h2>
+  <p class="s">Storage that outlives the Pod, and a fixed identity.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Four Kubernetes objects surround a Postgres database: PersistentVolume, PersistentVolumeClaim, StorageClass, and the StatefulSet — the parts this module adds to run something stateful safely.">
+    <g filter="url(#rough)">
+      <rect x="80" y="45" width="290" height="72" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="730" y="45" width="290" height="72" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="80" y="223" width="290" height="72" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="730" y="223" width="290" height="72" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="550" cy="170" r="62" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+      <path d="M372,95 C450,110 470,140 495,158" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+      <path d="M728,95 C650,110 630,140 605,158" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+      <path d="M372,255 C450,238 470,208 495,186" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+      <path d="M728,255 C650,238 630,208 605,186" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+    </g>
+    <text x="225" y="88" text-anchor="middle" class="lbl-b">PersistentVolume</text>
+    <text x="875" y="88" text-anchor="middle" class="lbl-b">PersistentVolumeClaim</text>
+    <text x="225" y="266" text-anchor="middle" class="lbl-b">StorageClass</text>
+    <text x="875" y="266" text-anchor="middle" class="lbl-b">StatefulSet</text>
+    <text x="550" y="164" text-anchor="middle" class="lbl-b">Postgres</text>
+    <text x="550" y="192" text-anchor="middle" class="lbl-sm">in the cluster</text>
+  </svg>
   <div class="pageno">M6·04</div>
 </section>
 
-<!-- 3 · different lifecycles -->
+<section class="divider">
+  <h2 class="t">Why containers do not solve state for free</h2>
+  <div class="pageno">M6·05</div>
+</section>
+
 <section>
   <h2 class="t">A Pod and its storage live on different clocks</h2>
   <p class="s">The container's filesystem dies with the Pod.</p>
@@ -230,10 +252,9 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="530" y="283" text-anchor="middle" class="lbl-b">one durable volume, survives &amp; reattaches</text>
   </svg>
-  <div class="pageno">M6·05</div>
+  <div class="pageno">M6·06</div>
 </section>
 
-<!-- 4 · first-class object -->
 <section>
   <h2 class="t">Make storage a first-class object, requested not owned</h2>
   <p class="s">Requested by the Pod, owned by the cluster.</p>
@@ -250,16 +271,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="780" y="178" text-anchor="middle" class="lbl-sm">its own lifecycle</text>
     <text x="780" y="212" text-anchor="middle" class="lbl-sm" fill="#2e7d32">survives the Pod</text>
   </svg>
-  <div class="pageno">M6·06</div>
-</section>
-
-<!-- DIVIDER · section: The analogy: renting a self-storage unit -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The analogy: renting a self-storage unit</h2>
   <div class="pageno">M6·07</div>
 </section>
 
-<!-- 5 · analogy scene: rent a unit -->
+<section class="divider">
+  <h2 class="t">The analogy: renting a self-storage unit</h2>
+  <div class="pageno">M6·08</div>
+</section>
+
 <section>
   <h2 class="t">You rent a unit, you don't build one</h2>
   <p class="s">You sign for a unit; the office assigns you one.</p>
@@ -283,10 +302,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="625" y="228" text-anchor="middle" class="lbl-sm">of plans</text>
     <text x="940" y="155" text-anchor="middle" class="lbl-b">unit 03</text>
   </svg>
-  <div class="pageno">M6·08</div>
+  <div class="pageno">M6·09</div>
 </section>
 
-<!-- 6 · mapping -->
 <section>
   <h2 class="t">Map the self-storage facility onto Kubernetes</h2>
   <p class="s">Every part maps to one Kubernetes object.</p>
@@ -318,73 +336,90 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="625" y="317">CSI driver</text>
     </g>
   </svg>
-  <div class="pageno">M6·09</div>
-</section>
-
-<!-- DIVIDER · section: The object model, layer by layer -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The object model, layer by layer</h2>
   <div class="pageno">M6·10</div>
 </section>
 
-<!-- 7 · object model anatomy -->
-<section>
-  <h2 class="t">Four objects, each doing one job</h2>
-  <p class="s">How a Pod ends up with durable storage.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A flow: the Pod mounts a PersistentVolumeClaim, which references a StorageClass; the StorageClass dynamically provisions a PersistentVolume through a CSI driver on a backing disk; the claim binds to that volume.">
-    <g filter="url(#rough)">
-      <rect x="60" y="130" width="150" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="290" y="130" width="170" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="540" y="130" width="170" height="80" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="790" y="130" width="160" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-      <rect x="540" y="260" width="170" height="60" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="5 5"/>
-      <rect x="790" y="260" width="160" height="60" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
-      <path d="M212,170 L282,170" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
-      <path d="M462,170 L532,170" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
-      <path d="M712,170 L782,170" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
-      <path d="M625,215 L625,255" stroke="#757575" stroke-width="2" fill="none" stroke-dasharray="4 5" marker-end="url(#ahg)"/>
-      <path d="M712,290 L782,290" stroke="#757575" stroke-width="2" fill="none" stroke-dasharray="4 5" marker-end="url(#ahg)"/>
-      <path d="M375,212 C375,250 700,250 860,215" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
-    </g>
-    <text x="135" y="177" text-anchor="middle" class="lbl-b">Pod</text>
-    <text x="375" y="167" text-anchor="middle" class="lbl-b">PVC</text>
-    <text x="375" y="195" text-anchor="middle" class="lbl-sm">1Gi, RWO</text>
-    <text x="625" y="177" text-anchor="middle" class="lbl-b">StorageClass</text>
-    <text x="870" y="167" text-anchor="middle" class="lbl-b">PV</text>
-    <text x="870" y="195" text-anchor="middle" class="lbl-sm">the real unit</text>
-    <text x="247" y="163" text-anchor="middle" class="lbl-g">mounts</text>
-    <text x="497" y="163" text-anchor="middle" class="lbl-g">refs</text>
-    <text x="747" y="163" text-anchor="middle" class="lbl-g">provisions</text>
-    <text x="625" y="297" text-anchor="middle" class="lbl-sm">CSI driver</text>
-    <text x="870" y="297" text-anchor="middle" class="lbl-sm">backing disk</text>
-    <text x="600" y="243" text-anchor="middle" class="lbl-g" fill="#2e7d32">binds</text>
-  </svg>
+<section class="divider">
+  <h2 class="t">The object model, layer by layer</h2>
   <div class="pageno">M6·11</div>
 </section>
 
-<!-- 8 · StorageClass is a recipe -->
 <section>
-  <h2 class="t">A StorageClass is a recipe, not storage</h2>
-  <p class="s">How storage gets made, not the storage itself.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="A recipe card for a StorageClass listing three ingredients: a provisioner, a reclaim policy of Delete or Retain, and a volume binding mode; one class is marked as the cluster default.">
+  <h2 class="t">Four objects, each doing one job</h2>
+  <p class="s">Pod → PVC → StorageClass → PV, bound back.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Built hop by hop: the Pod mounts a PersistentVolumeClaim, which references a StorageClass, which provisions a PersistentVolume that binds back to the claim; underneath, the StorageClass calls a CSI driver that creates the real storage on a backing disk.">
     <g filter="url(#rough)">
-      <rect x="260" y="55" width="580" height="230" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
-      <line x1="290" y1="120" x2="810" y2="120" stroke="#1e1e1e" stroke-width="1.6"/>
-      <rect x="300" y="140" width="34" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="300" y="188" width="34" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="300" y="236" width="34" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="60" y="130" width="150" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="550" y="102" text-anchor="middle" class="lbl-b">StorageClass "standard" (default)</text>
-    <g class="lbl" text-anchor="start">
-      <text x="352" y="165">provisioner: what makes volumes</text>
-      <text x="352" y="213">reclaim policy: Delete or Retain</text>
-      <text x="352" y="261">binding mode: when the PV is created</text>
+    <text x="135" y="177" text-anchor="middle" class="lbl-b">Pod</text>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <path d="M212,170 L282,170" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+        <rect x="290" y="130" width="170" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
+      </g>
+      <text x="375" y="167" text-anchor="middle" class="lbl-b">PVC</text>
+      <text x="375" y="195" text-anchor="middle" class="lbl-sm">1Gi, RWO</text>
+      <text x="247" y="160" text-anchor="middle" class="lbl-g">mounts</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <path d="M462,170 L532,170" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+        <rect x="540" y="130" width="170" height="80" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      </g>
+      <text x="625" y="177" text-anchor="middle" class="lbl-b">StorageClass</text>
+      <text x="497" y="160" text-anchor="middle" class="lbl-g">refs</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <path d="M712,170 L782,170" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+        <rect x="790" y="130" width="160" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+      </g>
+      <text x="870" y="167" text-anchor="middle" class="lbl-b">PV</text>
+      <text x="870" y="195" text-anchor="middle" class="lbl-sm">the real unit</text>
+      <text x="747" y="160" text-anchor="middle" class="lbl-g">provisions</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <path d="M860,215 C860,255 470,255 375,214" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+      </g>
+      <text x="620" y="250" text-anchor="middle" class="lbl-g" fill="#2e7d32">binds back to the claim</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <path d="M625,215 L625,262" stroke="#757575" stroke-width="2" fill="none" stroke-dasharray="4 5" marker-end="url(#ahg)"/>
+        <rect x="540" y="267" width="170" height="58" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="5 5"/>
+        <path d="M712,296 L782,296" stroke="#757575" stroke-width="2" fill="none" stroke-dasharray="4 5" marker-end="url(#ahg)"/>
+        <rect x="790" y="267" width="160" height="58" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      </g>
+      <text x="625" y="302" text-anchor="middle" class="lbl-sm">CSI driver</text>
+      <text x="870" y="302" text-anchor="middle" class="lbl-sm">real disk</text>
+      <text x="655" y="250" text-anchor="middle" class="lbl-g">calls</text>
     </g>
   </svg>
   <div class="pageno">M6·12</div>
 </section>
 
-<!-- 9 · claim asks, volume answers -->
+<section>
+  <h2 class="t">A StorageClass is a recipe, not storage</h2>
+  <p class="s">How storage gets made, not the storage itself.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A recipe card for the standard default StorageClass on the KIND cluster: provisioner rancher.io/local-path, reclaim policy Delete which throws the volume away when its claim is deleted, and binding mode WaitForFirstConsumer.">
+    <g filter="url(#rough)">
+      <rect x="230" y="50" width="640" height="235" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+      <line x1="260" y1="116" x2="840" y2="116" stroke="#1e1e1e" stroke-width="1.6"/>
+      <rect x="270" y="136" width="34" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="270" y="185" width="34" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="270" y="234" width="34" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <text x="550" y="98" text-anchor="middle" class="lbl-b">StorageClass "standard" (default)</text>
+    <g class="lbl" text-anchor="start">
+      <text x="322" y="161">provisioner: rancher.io/local-path</text>
+      <text x="322" y="210">reclaim policy: Delete (Retain keeps it)</text>
+      <text x="322" y="259">binding mode: WaitForFirstConsumer</text>
+    </g>
+  </svg>
+  <div class="pageno">M6·13</div>
+</section>
+
 <section>
   <h2 class="t">A claim asks; a volume answers</h2>
   <p class="s">The Pod mounts the claim, never the volume.</p>
@@ -406,10 +441,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="840" y="190" text-anchor="middle" class="lbl-sm">the concrete storage</text>
     <text x="550" y="290" text-anchor="middle" class="lbl-sm">Pod spec names the claim → same manifest runs anywhere</text>
   </svg>
-  <div class="pageno">M6·13</div>
+  <div class="pageno">M6·14</div>
 </section>
 
-<!-- 10 · CSI loading dock -->
 <section>
   <h2 class="t">CSI is the loading dock every vendor backs a truck up to</h2>
   <p class="s">Same contract, so the same claim works anywhere.</p>
@@ -431,41 +465,108 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="915" y="248" text-anchor="middle" class="lbl-sm">ebs.csi.aws.com</text>
     <text x="915" y="272" text-anchor="middle" class="lbl-g">AWS</text>
   </svg>
-  <div class="pageno">M6·14</div>
-</section>
-
-<!-- DIVIDER · section: Access modes: who can mount, and how many at once -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Access modes: who can mount, and how many at once</h2>
   <div class="pageno">M6·15</div>
 </section>
 
-<!-- 11 · access modes -->
-<section>
-  <h2 class="t">Access mode is about nodes, not file permissions</h2>
-  <p class="s">"Once" means one node at a time, not one Pod.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Three access modes: ReadWriteOnce is one node read-write and suits a database, ReadOnlyMany is many nodes read-only, and ReadWriteMany is many nodes read-write but only shared filesystems support it.">
-    <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="19" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="160" r="19" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="250" r="19" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
-    </g>
-    <g class="lbl-b" text-anchor="start"><text x="135" y="66">RWO</text><text x="135" y="156">ROX</text><text x="135" y="246">RWX</text></g>
-    <g class="lbl" text-anchor="start">
-      <text x="270" y="66">one node, read-write</text>
-      <text x="270" y="156">many nodes, read-only</text>
-      <text x="270" y="246">many nodes, read-write</text>
-    </g>
-    <g class="lbl-sm" text-anchor="start" fill="#757575">
-      <text x="700" y="66" fill="#2e7d32">the right choice for a database</text>
-      <text x="700" y="156">ship static content to replicas</text>
-      <text x="700" y="246">shared filesystems only (NFS…)</text>
-    </g>
-  </svg>
+<section class="divider">
+  <h2 class="t">Access modes: who can mount, and how many at once</h2>
   <div class="pageno">M6·16</div>
 </section>
 
-<!-- 12 · RWX trap -->
+<section>
+  <h2 class="t">Access mode is about nodes, not file permissions</h2>
+  <p class="s">How many nodes can mount it, and can they write.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The accessMode field on a PVC is about how many nodes can mount the volume and whether they can write — not about file permissions like a padlock.">
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="330" height="150" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="120" y="165" width="270" height="46" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="255" y="132" text-anchor="middle" class="lbl-b">PVC</text>
+    <text x="255" y="195" text-anchor="middle" class="lbl-b">accessMode</text>
+    <g filter="url(#rough)">
+      <rect x="560" y="95" width="180" height="140" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="612" y="150" width="76" height="60" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <path d="M630,150 L630,128 A20,20 0 0 1 670,128 L670,150" fill="none" stroke="#1e1e1e" stroke-width="2.2"/>
+      <path d="M600,120 L700,215 M700,120 L600,215" stroke="#c62828" stroke-width="2.6" fill="none"/>
+      <rect x="840" y="95" width="180" height="140" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M905,150 L935,180 L985,120" fill="none" stroke="#2e7d32" stroke-width="3"/>
+    </g>
+    <text x="650" y="270" text-anchor="middle" class="lbl-sm" fill="#c62828">not file permissions</text>
+    <text x="930" y="270" text-anchor="middle" class="lbl-sm" fill="#2e7d32">it is about nodes</text>
+  </svg>
+  <div class="pageno">M6·17</div>
+</section>
+
+<section>
+  <h2 class="t">ReadWriteOnce: one node writes, no sharing</h2>
+  <p class="s">RWO says one node, not one Pod.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="ReadWriteOnce mounts a volume read-write on a single node at a time — the right choice for a database; several Pods on that same node can still share it.">
+    <g filter="url(#rough)">
+      <rect x="330" y="55" width="440" height="150" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="375" y="95" width="120" height="70" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <path d="M500,130 L590,130" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+      <rect x="600" y="95" width="130" height="70" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="82" text-anchor="middle" class="lbl-b">one node</text>
+    <text x="435" y="137" text-anchor="middle" class="lbl-sm">Pod</text>
+    <text x="545" y="118" text-anchor="middle" class="lbl-g">writes</text>
+    <text x="665" y="137" text-anchor="middle" class="lbl-b">RWO</text>
+    <text x="550" y="240" text-anchor="middle" class="lbl-sm" fill="#2e7d32">the right choice for a database — one writer</text>
+    <text x="550" y="278" text-anchor="middle" class="lbl-sm">several Pods on THIS node can still share it</text>
+  </svg>
+  <div class="pageno">M6·18</div>
+</section>
+
+<section>
+  <h2 class="t">ReadOnlyMany: many nodes read, none write</h2>
+  <p class="s">Ship the same fixed content to every replica.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="ReadOnlyMany mounts a volume read-only on many nodes at once — useful for shipping the same fixed content to many replicas, none of which write back.">
+    <g filter="url(#rough)">
+      <rect x="70" y="120" width="150" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="470" y="45" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="470" y="128" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="470" y="211" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <path d="M222,150 C330,150 360,80 466,80" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+      <path d="M222,162 L466,162" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+      <path d="M222,175 C330,175 360,240 466,240" stroke="#757575" stroke-width="2" fill="none" marker-end="url(#ahg)"/>
+    </g>
+    <text x="145" y="155" text-anchor="middle" class="lbl-b">volume</text>
+    <text x="145" y="184" text-anchor="middle" class="lbl-sm">read-only</text>
+    <text x="340" y="120" text-anchor="middle" class="lbl-g">read</text>
+    <text x="545" y="86" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="545" y="169" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="545" y="252" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="800" y="162" text-anchor="middle" class="lbl-b">ROX</text>
+  </svg>
+  <div class="pageno">M6·19</div>
+</section>
+
+<section>
+  <h2 class="t">ReadWriteMany: many nodes write at once</h2>
+  <p class="s">Shared filesystems only — NFS, CephFS.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="ReadWriteMany mounts a volume read-write on many nodes at the same time — only shared filesystems such as NFS or CephFS actually support it.">
+    <g filter="url(#rough)">
+      <rect x="440" y="120" width="220" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="70" y="45" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="70" y="211" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="880" y="45" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="880" y="211" width="150" height="65" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <path d="M224,80 C330,90 380,140 436,150" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+      <path d="M224,240 C330,230 380,180 436,168" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+      <path d="M876,80 C770,90 720,140 664,150" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+      <path d="M876,240 C770,230 720,180 664,168" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="155" text-anchor="middle" class="lbl-b">shared volume</text>
+    <text x="550" y="185" text-anchor="middle" class="lbl-b">RWX</text>
+    <text x="145" y="84" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="145" y="250" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="955" y="84" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="955" y="250" text-anchor="middle" class="lbl-sm">node</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-sm">every node reads and writes — shared filesystem only</text>
+  </svg>
+  <div class="pageno">M6·20</div>
+</section>
+
 <section>
   <h2 class="t">Writing RWX does not make the disk share</h2>
   <p class="s">The backing disk has to honour the mode you ask for.</p>
@@ -490,44 +591,61 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="915" y="145" text-anchor="middle" class="lbl-sm">db-1</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">corruption, not scale → each gets its own RWO</text>
   </svg>
-  <div class="pageno">M6·17</div>
+  <div class="pageno">M6·21</div>
 </section>
 
-<!-- DIVIDER · section: Dynamic provisioning is the payoff -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Dynamic provisioning is the payoff</h2>
-  <div class="pageno">M6·18</div>
+<section class="divider">
+  <h2 class="t">Dynamic provisioning is the payoff</h2>
+  <div class="pageno">M6·22</div>
 </section>
 
-<!-- 13 · static vs dynamic -->
 <section>
-  <h2 class="t">Static pre-builds a pile; dynamic builds on demand</h2>
-  <p class="s">No admin, no pre-provisioning, no guessing.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Static provisioning: an admin pre-creates a pile of PersistentVolumes and guesses sizes, and a claim binds to whichever spare one fits. Dynamic provisioning: the StorageClass provisioner creates exactly the right PV the moment a Pod needs it.">
+  <h2 class="t">Static provisioning: the old way</h2>
+  <p class="s">An admin pre-builds a pile, and guesses sizes.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Before dynamic provisioning, an admin pre-created a pile of PersistentVolumes by hand, days in advance, guessing how many of each size to build; a claim bound to whichever spare one fit.">
     <g filter="url(#rough)">
-      <rect x="70" y="70" width="440" height="210" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
-      <rect x="120" y="160" width="70" height="50" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="210" y="150" width="70" height="60" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="300" y="165" width="70" height="45" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="390" y="155" width="70" height="55" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="150" cy="110" r="30" stroke="#1e1e1e" stroke-width="2.6" fill="none"/>
+      <path d="M150,140 L150,210 M150,158 L112,192 M150,158 L188,192" stroke="#1e1e1e" stroke-width="2.4" fill="none"/>
+      <rect x="330" y="60" width="620" height="200" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
+      <rect x="380" y="150" width="80" height="55" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="490" y="135" width="80" height="70" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="600" y="160" width="80" height="45" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="710" y="140" width="80" height="65" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="820" y="155" width="80" height="50" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <path d="M182,110 L326,110" stroke="#1e1e1e" stroke-width="2.2" fill="none" marker-end="url(#ah)"/>
     </g>
-    <text x="290" y="118" text-anchor="middle" class="lbl-b">static</text>
-    <text x="290" y="252" text-anchor="middle" class="lbl-sm">admin pre-creates PVs, guesses sizes</text>
-    <g filter="url(#rough)">
-      <rect x="590" y="70" width="440" height="210" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-      <rect x="650" y="150" width="120" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
-      <path d="M772,180 L860,180" stroke="#2e7d32" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
-      <rect x="870" y="150" width="120" height="60" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-    </g>
-    <text x="810" y="118" text-anchor="middle" class="lbl-b">dynamic</text>
-    <text x="710" y="145" text-anchor="middle" class="lbl-sm">Pod needs it</text>
-    <text x="930" y="145" text-anchor="middle" class="lbl-sm">exact PV</text>
-    <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">provisioner makes it, right-sized, on demand</text>
+    <text x="150" y="245" text-anchor="middle" class="lbl-sm">admin</text>
+    <text x="250" y="95" text-anchor="middle" class="lbl-g">pre-builds</text>
+    <text x="640" y="110" text-anchor="middle" class="lbl-b">a pile of PVs, made days in advance</text>
+    <text x="640" y="292" text-anchor="middle" class="lbl-sm">your claim binds to whichever spare one fits</text>
   </svg>
-  <div class="pageno">M6·19</div>
+  <div class="pageno">M6·23</div>
 </section>
 
-<!-- 14 · Pending is the plan -->
+<section>
+  <h2 class="t">Dynamic provisioning is the payoff</h2>
+  <p class="s">The provisioner makes the exact PV on demand.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A demo PVC sits Pending; the moment a Pod mounts it the provisioner creates a brand-new PersistentVolume, bound, 1Gi, ReadWriteOnce, on the standard StorageClass — this PV did not exist a moment before.">
+    <g filter="url(#rough)">
+      <rect x="70" y="120" width="210" height="90" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <path d="M282,165 L380,165" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+      <rect x="390" y="120" width="180" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M572,165 L670,165" stroke="#2e7d32" stroke-width="2.8" fill="none" marker-end="url(#ah)"/>
+      <rect x="680" y="95" width="350" height="150" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="175" y="160" text-anchor="middle" class="lbl-b">demo-pvc</text>
+    <text x="175" y="192" text-anchor="middle" class="lbl-sm">Pending</text>
+    <text x="480" y="160" text-anchor="middle" class="lbl-b">Pod mounts</text>
+    <text x="480" y="192" text-anchor="middle" class="lbl-sm">the claim</text>
+    <text x="621" y="150" text-anchor="middle" class="lbl-g" fill="#2e7d32">provisions</text>
+    <text x="855" y="140" text-anchor="middle" class="lbl-b">pvc-1821b19a…</text>
+    <text x="855" y="178" text-anchor="middle" class="lbl-sm">Bound · 1Gi · RWO</text>
+    <text x="855" y="212" text-anchor="middle" class="lbl-sm">on the standard class</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-sm">that PV did not exist a moment before</text>
+  </svg>
+  <div class="pageno">M6·24</div>
+</section>
+
 <section>
   <h2 class="t">Pending is the plan, not a fault</h2>
   <p class="s">WaitForFirstConsumer: the healthy Pending.</p>
@@ -546,16 +664,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="790" y="180" text-anchor="middle" class="lbl-b">Bound</text>
     <text x="480" y="270" text-anchor="middle" class="lbl-sm">no consumer yet → the #1 "is my storage broken?" false alarm</text>
   </svg>
-  <div class="pageno">M6·20</div>
+  <div class="pageno">M6·25</div>
 </section>
 
-<!-- DIVIDER · section: Why a StatefulSet, and not a Deployment -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Why a StatefulSet, and not a Deployment</h2>
-  <div class="pageno">M6·21</div>
+<section class="divider">
+  <h2 class="t">Why a StatefulSet, and not a Deployment</h2>
+  <div class="pageno">M6·26</div>
 </section>
 
-<!-- 15 · why statefulset not deployment -->
 <section>
   <h2 class="t">A database needs an identity a Deployment can't give</h2>
   <p class="s">A durable volume alone is not enough.</p>
@@ -577,10 +693,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="188" text-anchor="middle" class="lbl-sm">this exact one, with its data</text>
     <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">breaks that rule: identity matters</text>
   </svg>
-  <div class="pageno">M6·22</div>
+  <div class="pageno">M6·27</div>
 </section>
 
-<!-- 16 · stable name -->
 <section>
   <h2 class="t">A stable name that comes back as itself</h2>
   <p class="s">Delete db-0 and it comes back as db-0.</p>
@@ -599,10 +714,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="785" y="172" text-anchor="middle" class="lbl-b">db-0</text>
     <text x="785" y="245" text-anchor="middle" class="lbl-sm" fill="#2e7d32">same name, not db-9f8c7</text>
   </svg>
-  <div class="pageno">M6·23</div>
+  <div class="pageno">M6·28</div>
 </section>
 
-<!-- 17 · own PVC kept -->
 <section>
   <h2 class="t">Its own claim, kept across restarts</h2>
   <p class="s">The Pod is disposable; its claim is not.</p>
@@ -624,10 +738,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="935" y="248" text-anchor="middle" class="lbl-sm">PV / disk</text>
     <text x="550" y="315" text-anchor="middle" class="lbl-sm">recreate the Pod → same claim, same data</text>
   </svg>
-  <div class="pageno">M6·24</div>
+  <div class="pageno">M6·29</div>
 </section>
 
-<!-- 18 · stable DNS + ordering -->
 <section>
   <h2 class="t">A fixed DNS name, and start in order</h2>
   <p class="s">One replica, one fixed address.</p>
@@ -653,10 +766,36 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="570" y="285" text-anchor="middle" class="lbl-sm">then db-1</text>
     <text x="720" y="285" text-anchor="start" class="lbl-g">ordered start / stop</text>
   </svg>
-  <div class="pageno">M6·25</div>
+  <div class="pageno">M6·30</div>
 </section>
 
-<!-- 19 · synthesis recipe -->
+<section>
+  <h2 class="t">Same name, new Pod, same volume, same data</h2>
+  <p class="s">Delete db-0 on purpose; the data does not move.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Before deleting db-0 its UID is d161bc7e and it is bound to PV pvc-87d43e84 with two rows of orders; after the StatefulSet recreates it the name is still db-0, the UID is a new b00fe447 so it is genuinely a new Pod, but the PV pvc-87d43e84 is identical and both rows are still there.">
+    <g filter="url(#rough)">
+      <rect x="60" y="70" width="420" height="200" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <path d="M500,170 L610,170" stroke="#c62828" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+      <rect x="630" y="70" width="420" height="200" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="270" y="108" text-anchor="middle" class="lbl-b">before delete</text>
+    <g class="lbl-sm" text-anchor="middle">
+      <text x="270" y="152">db-0 · uid d161bc7e…</text>
+      <text x="270" y="188">PV pvc-87d43e84…</text>
+      <text x="270" y="224">orders: 2 rows</text>
+    </g>
+    <text x="555" y="150" text-anchor="middle" class="lbl-sm" fill="#c62828">delete db-0</text>
+    <text x="840" y="108" text-anchor="middle" class="lbl-b">after recreate</text>
+    <g class="lbl-sm" text-anchor="middle">
+      <text x="840" y="152" fill="#c62828">db-0 · uid b00fe447… (new Pod)</text>
+      <text x="840" y="188" fill="#2e7d32">PV pvc-87d43e84… (same volume)</text>
+      <text x="840" y="224" fill="#2e7d32">orders: 2 rows still there</text>
+    </g>
+    <text x="555" y="312" text-anchor="middle" class="lbl-sm">the Deployment's failure, turned into a non-event</text>
+  </svg>
+  <div class="pageno">M6·31</div>
+</section>
+
 <section>
   <h2 class="t">The recipe for any stateful workload</h2>
   <p class="s">Durable storage plus a stable identity.</p>
@@ -681,16 +820,36 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="1030" y="238" text-anchor="middle" class="lbl-sm">PV</text>
     <text x="565" y="312" text-anchor="middle" class="lbl-sm">the database is just the most familiar example</text>
   </svg>
-  <div class="pageno">M6·26</div>
+  <div class="pageno">M6·32</div>
 </section>
 
-<!-- DIVIDER · section: Where this leaves you -->
+<section class="divider">
+  <h2 class="t">Where this leaves you</h2>
+  <div class="pageno">M6·33</div>
+</section>
+
 <section>
-  <h2 class="t" style="font-size:2.2em">Where this leaves you</h2>
-  <div class="pageno">M6·27</div>
+  <h2 class="t">The whole app now runs on Kubernetes</h2>
+  <p class="s">The backend reaches Postgres: db: connected.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The Fernwood architecture: the frontend talks to the backend, which now reaches a Postgres running as the db-0 StatefulSet over its stable DNS name, and reports db connected for the first time in the course.">
+    <g filter="url(#rough)">
+      <rect x="60" y="120" width="200" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M262,165 L350,165" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+      <rect x="360" y="120" width="200" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M562,165 L650,165" stroke="#2e7d32" stroke-width="2.8" fill="none" marker-end="url(#ah)"/>
+      <rect x="660" y="105" width="260" height="120" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="700" y="150" width="180" height="55" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="160" y="172" text-anchor="middle" class="lbl-b">frontend</text>
+    <text x="460" y="172" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="606" y="150" text-anchor="middle" class="lbl-g" fill="#2e7d32">stable DNS</text>
+    <text x="790" y="140" text-anchor="middle" class="lbl-b">db-0 StatefulSet</text>
+    <text x="790" y="188" text-anchor="middle" class="lbl-sm">Postgres</text>
+    <text x="490" y="285" text-anchor="middle" class="lbl-sm" fill="#2e7d32">db: connected — first in-cluster Postgres in the course</text>
+  </svg>
+  <div class="pageno">M6·34</div>
 </section>
 
-<!-- 20 · CLOSING -->
 <section>
   <p class="kicker">MODULE 6 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Survive the Pod's death, run a real database</h2>
@@ -711,7 +870,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
   </svg>
   <p class="credit">Now open <b>Module 6 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M6·28</div>
+  <div class="pageno">M6·35</div>
 </section>
 
 </div></div>

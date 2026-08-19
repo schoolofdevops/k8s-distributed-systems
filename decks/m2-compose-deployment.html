@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  /* §3a section divider slides — centered, larger title, no visual */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -166,13 +169,13 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M2·01</div>
 </section>
 
-<!-- DIVIDER -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Why write the wiring down?</h2>
+<!-- DIVIDER · intro -->
+<section class="divider">
+  <h2 class="t">Why write the wiring down?</h2>
   <div class="pageno">M2·02</div>
 </section>
 
-<!-- 2 · The problem -->
+<!-- S1 · the problem -->
 <section>
   <h2 class="t">The wiring lives in your head, not on disk</h2>
   <p class="s">Fine the first time, a problem every time after.</p>
@@ -199,16 +202,41 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M2·03</div>
 </section>
 
-<!-- DIVIDER -->
+<!-- S2 · the cost of keeping it in your head -->
 <section>
-  <h2 class="t" style="font-size:2.2em">The analogy: a prompt book, not shouting from the wings</h2>
+  <h2 class="t">The cost of keeping it in your head</h2>
+  <p class="s">A missed flag, a forgotten port — an hour lost.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Two scenes: on Monday a new QA misses the POSTGRES_DB flag and loses an hour chasing a bug that is not there; three weeks later you cannot remember whether the backend port was 8080 or 8000.">
+    <g filter="url(#rough)">
+      <rect x="60" y="80" width="450" height="210" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="95" y="120" width="380" height="46" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="285" y="68" text-anchor="middle" class="lbl-b">Monday — new QA</text>
+    <text x="285" y="149" text-anchor="middle" class="lbl-sm">runs the five commands…</text>
+    <text x="285" y="205" text-anchor="middle" class="lbl-sm">misses POSTGRES_DB=fernwood</text>
+    <text x="285" y="255" text-anchor="middle" class="lbl" fill="#c62828">an hour on a bug that isn't there</text>
+    <g filter="url(#rough)">
+      <rect x="590" y="80" width="450" height="210" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="625" y="120" width="380" height="46" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="815" y="68" text-anchor="middle" class="lbl-b">three weeks later — you</text>
+    <text x="815" y="149" text-anchor="middle" class="lbl-sm">back on this project…</text>
+    <text x="815" y="205" text-anchor="middle" class="lbl-sm">was the port 8080 or 8000?</text>
+    <text x="815" y="255" text-anchor="middle" class="lbl" fill="#c62828">fine once, a problem every time after</text>
+  </svg>
   <div class="pageno">M2·04</div>
 </section>
 
-<!-- 3 · Prompt book analogy -->
+<!-- DIVIDER · analogy -->
+<section class="divider">
+  <h2 class="t">The analogy: a prompt book, not shouting from the wings</h2>
+  <div class="pageno">M2·05</div>
+</section>
+
+<!-- S3 · prompt book -->
 <section>
   <h2 class="t">The prompt book runs the show</h2>
-  <p class="s">One master document lists every cast, prop and cue.</p>
+  <p class="s">One document lists every cast, prop and cue.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="In theatre, the stage manager runs every performance from one master prompt book that lists the cast, the props and the cues; the show repeats because it is written down.">
     <g filter="url(#rough)">
       <rect x="360" y="70" width="380" height="210" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
@@ -226,13 +254,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="645" y="220" text-anchor="middle" class="lbl">on which line</text>
     <text x="550" y="315" text-anchor="middle" class="lbl-g" fill="#2e7d32">written down, so every night repeats</text>
   </svg>
-  <div class="pageno">M2·05</div>
+  <div class="pageno">M2·06</div>
 </section>
 
-<!-- 4 · Wings vs calling the show -->
+<!-- S4 · wings vs calling the show -->
 <section>
   <h2 class="t">Shouting from the wings vs calling the show</h2>
-  <p class="s">M1 by hand every night vs one compose command.</p>
+  <p class="s">By hand every night vs one compose command.</p>
   <svg viewBox="0 0 1100 350" role="img" aria-label="Left: you stand in the wings pushing each container on stage by hand in the order you hope is right. Right: one prompt book called with a single command brings the whole cast on.">
     <g filter="url(#rough)">
       <rect x="50" y="70" width="470" height="250" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="9 7"/>
@@ -259,10 +287,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="240" text-anchor="middle" class="lbl">whole cast on, one command</text>
     <text x="805" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">the wiring is in the file, not your memory</text>
   </svg>
-  <div class="pageno">M2·06</div>
+  <div class="pageno">M2·07</div>
 </section>
 
-<!-- 5 · wiring becomes a file -->
+<!-- S5 · wiring becomes a file -->
 <section>
   <h2 class="t">The wiring becomes a file, not a ritual</h2>
   <p class="s">You keep it and review it, not re-perform it.</p>
@@ -287,44 +315,46 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="185" text-anchor="middle" class="lbl">see what changed</text>
     <text x="810" y="222" text-anchor="middle" class="lbl-g" fill="#2e7d32">repeatable for everyone</text>
   </svg>
-  <div class="pageno">M2·07</div>
-</section>
-
-<!-- DIVIDER -->
-<section>
-  <h2 class="t" style="font-size:2.2em">From "install on a server" to "declare a stack"</h2>
   <div class="pageno">M2·08</div>
 </section>
 
-<!-- 6 · procedural -> declarative -->
-<section>
-  <h2 class="t">Stop running steps; declare the end state</h2>
-  <p class="s">Say what you want; Compose works out the steps.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Procedural instructions — run these commands in this order — are crossed out and replaced by a declarative statement: here is the app I want, make it so. The same shift is how you describe workloads to Kubernetes.">
-    <g filter="url(#rough)">
-      <rect x="70" y="90" width="360" height="150" rx="12" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7"/>
-    </g>
-    <text x="250" y="78" text-anchor="middle" class="lbl-b">procedural</text>
-    <text x="250" y="145" text-anchor="middle" class="lbl-sm">"run these commands,</text>
-    <text x="250" y="180" text-anchor="middle" class="lbl-sm">in this exact order"</text>
-    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
-      <path d="M95,110 L415,225"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M440,165 L560,165" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)">
-      <rect x="590" y="90" width="430" height="150" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
-    </g>
-    <text x="805" y="78" text-anchor="middle" class="lbl-b">declarative</text>
-    <text x="805" y="145" text-anchor="middle" class="lbl">"here is the app I want —</text>
-    <text x="805" y="182" text-anchor="middle" class="lbl">make it so"</text>
-    <text x="560" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">the same shift you'll use for Kubernetes in Session 3</text>
-  </svg>
+<!-- DIVIDER · install -> declare -->
+<section class="divider">
+  <h2 class="t">From "install on a server" to "declare a stack"</h2>
   <div class="pageno">M2·09</div>
 </section>
 
-<!-- 7 · containers vs whole app -->
+<!-- S6 · before containers, drift -->
+<section>
+  <h2 class="t">Before containers, the old way drifted apart</h2>
+  <p class="s">Hand-built servers slowly stopped matching.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Two servers built by hand, each with slightly different versions of Python, Node and Postgres; the mismatch grows over time, which is where works-on-my-machine comes from.">
+    <g filter="url(#rough)">
+      <rect x="80" y="80" width="360" height="210" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="260" y="68" text-anchor="middle" class="lbl-b">server A — set up by hand</text>
+    <text x="260" y="130" text-anchor="middle" class="lbl-sm">Python 3.11</text>
+    <text x="260" y="170" text-anchor="middle" class="lbl-sm">Node 20.3</text>
+    <text x="260" y="210" text-anchor="middle" class="lbl-sm">Postgres 16.1</text>
+    <text x="260" y="258" text-anchor="middle" class="lbl-sm">+ process manager, config files</text>
+    <g filter="url(#rough)">
+      <rect x="660" y="80" width="360" height="210" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="840" y="68" text-anchor="middle" class="lbl-b">server B — set up again</text>
+    <text x="840" y="130" text-anchor="middle" class="lbl-sm" fill="#c62828">Python 3.9</text>
+    <text x="840" y="170" text-anchor="middle" class="lbl-sm" fill="#c62828">Node 18.7</text>
+    <text x="840" y="210" text-anchor="middle" class="lbl-sm" fill="#c62828">Postgres 15.4</text>
+    <text x="840" y="258" text-anchor="middle" class="lbl-sm">hope it matches…</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="7 6">
+      <path d="M442,185 L658,185"/>
+    </g>
+    <text x="550" y="170" text-anchor="middle" class="lbl-g" fill="#c62828">drift</text>
+    <text x="550" y="322" text-anchor="middle" class="lbl-sm">this is where "works on my machine" comes from</text>
+  </svg>
+  <div class="pageno">M2·10</div>
+</section>
+
+<!-- S7 · containers ship a tier; compose ships the app -->
 <section>
   <h2 class="t">Containers ship a tier; Compose ships the app</h2>
   <p class="s">Each tier was portable; the app was not.</p>
@@ -348,25 +378,25 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="760" y="140" width="110" height="70" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="885" y="140" width="110" height="70" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
-    <text x="825" y="118" text-anchor="middle" class="lbl-b">one unit</text>
+    <text x="825" y="118" text-anchor="middle" class="lbl-b">one unit — declared, not assembled</text>
     <text x="690" y="180" text-anchor="middle" class="lbl-sm">fe</text>
     <text x="815" y="180" text-anchor="middle" class="lbl-sm">be</text>
     <text x="940" y="180" text-anchor="middle" class="lbl-sm">db</text>
     <text x="825" y="250" text-anchor="middle" class="lbl-sm">+ network + storage that connect them</text>
-    <text x="825" y="285" text-anchor="middle" class="lbl-g" fill="#2e7d32">the whole application, described once</text>
+    <text x="825" y="285" text-anchor="middle" class="lbl-g" fill="#2e7d32">"here is the app I want — make it so"</text>
   </svg>
-  <div class="pageno">M2·10</div>
-</section>
-
-<!-- DIVIDER -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Read the app as a system first</h2>
   <div class="pageno">M2·11</div>
 </section>
 
-<!-- 8 · read the app as a system (table) -->
+<!-- DIVIDER · read the app as a system -->
+<section class="divider">
+  <h2 class="t">Read the app as a system first</h2>
+  <div class="pageno">M2·12</div>
+</section>
+
+<!-- S8 · three services, one table -->
 <section>
-  <h2 class="t">Three services, four facts each</h2>
+  <h2 class="t">Three services, one table</h2>
   <p class="s">Images, ports, dependencies, state.</p>
   <svg viewBox="0 0 1100 350" role="img" aria-label="A table of the three services: frontend built locally on port 3000 depends on backend and is stateless; backend built locally on port 8080 depends on db and is stateless; db is the pulled postgres image on port 5432 with no dependency and is stateful.">
     <g filter="url(#rough)">
@@ -400,12 +430,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="785" y="299" text-anchor="middle" class="lbl-sm">—</text>
     <text x="955" y="299" text-anchor="middle" class="lbl-b" fill="#c62828">stateful</text>
   </svg>
-  <div class="pageno">M2·12</div>
+  <div class="pageno">M2·13</div>
 </section>
 
-<!-- 9 · images: build vs pull -->
+<!-- S9 · fact one: build vs pull -->
 <section>
-  <h2 class="t">Two tiers are built, one is pulled</h2>
+  <h2 class="t">Fact one: two tiers built, one pulled</h2>
   <p class="s">Compose builds your code and pulls Postgres.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Two of the tiers are built from local Dockerfiles you wrote; the database is an off-the-shelf image pulled ready-made. Compose does both.">
     <g filter="url(#rough)">
@@ -423,12 +453,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="200" text-anchor="middle" class="lbl-sm">Compose pulls it</text>
     <text x="550" y="300" text-anchor="middle" class="lbl-g" fill="#2e7d32">one file handles both kinds</text>
   </svg>
-  <div class="pageno">M2·13</div>
+  <div class="pageno">M2·14</div>
 </section>
 
-<!-- 10 · dependencies one way -->
+<!-- S10 · fact two: dependencies one way -->
 <section>
-  <h2 class="t">Dependencies point one way</h2>
+  <h2 class="t">Fact two: dependencies point one way</h2>
   <p class="s">fe &#8594; be &#8594; db, and nothing points back.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="The dependency arrows run one way, frontend to backend to db; nothing points back, so Compose knows to start db first, then backend, then frontend.">
     <g filter="url(#rough)">
@@ -452,12 +482,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="545" y="235" text-anchor="middle" class="lbl-sm" fill="#c62828">nothing points back</text>
     <text x="545" y="272" text-anchor="middle" class="lbl-g" fill="#2e7d32">start db &#8594; backend &#8594; frontend — that's depends_on</text>
   </svg>
-  <div class="pageno">M2·14</div>
+  <div class="pageno">M2·15</div>
 </section>
 
-<!-- 11 · state -->
+<!-- S11 · fact three: state -->
 <section>
-  <h2 class="t">Only the database is stateful</h2>
+  <h2 class="t">Fact three: only the database is stateful</h2>
   <p class="s">Kill a web tier, lose nothing. Kill the db, lose data.</p>
   <svg viewBox="0 0 1100 350" role="img" aria-label="Frontend and backend are stateless and interchangeable — kill one and start another, nothing is lost. The database is stateful — it is its data — so it needs a volume; destroy it carelessly and the data goes with it.">
     <g filter="url(#rough)">
@@ -479,18 +509,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="255" text-anchor="middle" class="lbl-g" fill="#c62828">destroy it carelessly — data gone</text>
     <text x="550" y="322" text-anchor="middle" class="lbl-sm">&#8594; frontend becomes a Deployment (S5) · db becomes a StatefulSet (S6)</text>
   </svg>
-  <div class="pageno">M2·15</div>
-</section>
-
-<!-- DIVIDER -->
-<section>
-  <h2 class="t" style="font-size:2.2em">What Docker Compose actually is</h2>
   <div class="pageno">M2·16</div>
 </section>
 
-<!-- 12 · Compose is file + command -->
+<!-- DIVIDER · what compose is -->
+<section class="divider">
+  <h2 class="t">What Docker Compose actually is</h2>
+  <div class="pageno">M2·17</div>
+</section>
+
+<!-- S12 · compose is two things -->
 <section>
-  <h2 class="t">Compose is a file and a command</h2>
+  <h2 class="t">Compose is two things</h2>
   <p class="s">The prompt book, and the tool that calls it.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Two things share the name Compose: a file format, compose.yaml, that describes the services, networks and volumes; and a command-line tool, docker compose, whose up, down, ps and logs operate on the whole stack.">
     <g filter="url(#rough)">
@@ -508,10 +538,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="178" text-anchor="middle" class="lbl-sm">makes reality match the file</text>
     <text x="820" y="228" text-anchor="middle" class="lbl-g">calls the show</text>
   </svg>
-  <div class="pageno">M2·17</div>
+  <div class="pageno">M2·18</div>
 </section>
 
-<!-- 13 · every flag has a home -->
+<!-- S13 · every flag has a home -->
 <section>
   <h2 class="t">Every M1 flag has a home</h2>
   <p class="s">Same wiring as M1, now in one file.</p>
@@ -524,10 +554,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="150" y="163" text-anchor="middle" class="lbl">-e VAR=</text>
     <text x="150" y="208" text-anchor="middle" class="lbl">-p 8080:8080</text>
     <text x="150" y="253" text-anchor="middle" class="lbl">--name</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+    <g class="fragment" filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <path d="M300,112 L470,112" marker-end="url(#ah)"/>
+    </g>
+    <g class="fragment" filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <path d="M300,157 L470,157" marker-end="url(#ah)"/>
+    </g>
+    <g class="fragment" filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <path d="M300,202 L470,202" marker-end="url(#ah)"/>
+    </g>
+    <g class="fragment" filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <path d="M300,247 L470,247" marker-end="url(#ah)"/>
     </g>
     <g filter="url(#rough)">
@@ -538,17 +574,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="670" y="163" text-anchor="middle" class="lbl">environment:</text>
     <text x="670" y="208" text-anchor="middle" class="lbl">ports:</text>
     <text x="670" y="253" text-anchor="middle" class="lbl">service key = DNS name</text>
-    <g filter="url(#rough)">
-      <rect x="880" y="90" width="180" height="170" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="880" y="90" width="180" height="170" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      </g>
+      <text x="970" y="78" text-anchor="middle" class="lbl-b" fill="#2e7d32">new in M2</text>
+      <text x="970" y="160" text-anchor="middle" class="lbl">volumes</text>
+      <text x="970" y="205" text-anchor="middle" class="lbl">depends_on</text>
     </g>
-    <text x="970" y="78" text-anchor="middle" class="lbl-b" fill="#2e7d32">new in M2</text>
-    <text x="970" y="160" text-anchor="middle" class="lbl">volumes</text>
-    <text x="970" y="205" text-anchor="middle" class="lbl">depends_on</text>
   </svg>
-  <div class="pageno">M2·18</div>
+  <div class="pageno">M2·19</div>
 </section>
 
-<!-- 14 · the file describes this shape -->
+<!-- S14 · the file describes this shape -->
 <section>
   <h2 class="t">The file describes this whole shape</h2>
   <p class="s">One shared network; the db alone gets a volume.</p>
@@ -581,218 +619,424 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="905" y="335" text-anchor="middle" class="lbl-sm">named volume</text>
   </svg>
-  <div class="pageno">M2·19</div>
-</section>
-
-<!-- DIVIDER -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Why the file beats the five commands</h2>
   <div class="pageno">M2·20</div>
 </section>
 
-<!-- 15 · why the file beats commands -->
-<section>
-  <h2 class="t">The file gives you four properties</h2>
-  <p class="s">Not just easier to type. A stack you can operate.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Four properties you get from declaring the stack: one source of truth, idempotence, ordering by declaration, and whole-stack operations.">
-    <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="140" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="210" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="280" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-    </g>
-    <text x="90" y="78" text-anchor="middle" class="num">1</text>
-    <text x="90" y="148" text-anchor="middle" class="num">2</text>
-    <text x="90" y="218" text-anchor="middle" class="num">3</text>
-    <text x="90" y="288" text-anchor="middle" class="num">4</text>
-    <g class="lbl" text-anchor="start">
-      <text x="130" y="70">one source of truth — read, review, compare it</text>
-      <text x="130" y="140">safe to re-run — only fixes what changed</text>
-    </g>
-    <g class="lbl" text-anchor="start" fill="#2e7d32">
-      <text x="130" y="210">ordering by declaration — wait until ready, not just up</text>
-      <text x="130" y="280">whole-stack ops — logs, ps, down operate on the app</text>
-    </g>
-  </svg>
+<!-- DIVIDER · why the file beats the commands -->
+<section class="divider">
+  <h2 class="t">Why the file beats the five commands</h2>
   <div class="pageno">M2·21</div>
 </section>
 
-<!-- 16 · up is not ready (fragments) -->
+<!-- S15 · property one: one source of truth -->
 <section>
-  <h2 class="t">"Up" is not "ready"</h2>
-  <p class="s">The db is up seconds before it can take queries.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="With depends_on condition service_healthy, the backend is told to wait; only when the db healthcheck turns green — accepting connections — does the backend start. Up and ready are seconds apart, which is where a race condition hides.">
+  <h2 class="t">Property one: one source of truth</h2>
+  <p class="s">Read it, review it in a PR, compare what changed.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="One compose file fans out to three uses: reviewing it in a pull request, diffing what changed, and the new QA running docker compose up to get exactly the intended topology.">
     <g filter="url(#rough)">
-      <rect x="80" y="130" width="240" height="100" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="700" y="130" width="300" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="70" y="115" width="260" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="200" y="172" text-anchor="middle" class="lbl-b">backend</text>
-    <text x="200" y="205" text-anchor="middle" class="lbl-sm">told to wait</text>
-    <text x="850" y="172" text-anchor="middle" class="lbl-b">db</text>
-    <text x="850" y="205" text-anchor="middle" class="lbl-sm">container is up (booting)</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5">
-      <path d="M322,180 L698,180" marker-end="url(#ahg)"/>
+    <text x="200" y="165" text-anchor="middle" class="lbl-b">compose.yaml</text>
+    <text x="200" y="200" text-anchor="middle" class="lbl-sm">the one source of truth</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M332,140 C430,120 500,95 600,90" marker-end="url(#ahg)"/>
+      <path d="M332,170 C440,170 500,170 600,170" marker-end="url(#ahg)"/>
+      <path d="M332,200 C430,220 500,245 600,250" marker-end="url(#ahg)"/>
     </g>
-    <text x="510" y="160" text-anchor="middle" class="lbl-g">depends_on: service_healthy</text>
-    <g class="fragment">
-      <g filter="url(#rough)">
-        <rect x="700" y="130" width="300" height="100" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
-      </g>
-      <text x="850" y="172" text-anchor="middle" class="lbl-b">db</text>
-      <text x="850" y="205" text-anchor="middle" class="lbl-sm" fill="#2e7d32">healthcheck green — accepts connections</text>
+    <g filter="url(#rough)">
+      <rect x="610" y="60" width="410" height="62" rx="10" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="610" y="140" width="410" height="62" rx="10" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="610" y="220" width="410" height="62" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-        <path d="M200,230 L200,290" marker-end="url(#ah)"/>
-      </g>
-      <text x="200" y="318" text-anchor="middle" class="lbl" fill="#2e7d32">now the backend starts</text>
-      <text x="540" y="300" text-anchor="middle" class="lbl-sm">the seconds between up and ready is where a race hides</text>
-    </g>
+    <text x="815" y="98" text-anchor="middle" class="lbl">review it in a pull request</text>
+    <text x="815" y="178" text-anchor="middle" class="lbl">diff what changed</text>
+    <text x="815" y="258" text-anchor="middle" class="lbl" fill="#2e7d32">the new QA runs `up` — same topology</text>
   </svg>
   <div class="pageno">M2·22</div>
 </section>
 
-<!-- DIVIDER -->
+<!-- S16 · property two: idempotence -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Volumes: giving the stateful tier a memory</h2>
+  <h2 class="t">Property two: idempotence</h2>
+  <p class="s">Idempotence — run it twice, only drift changes.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="The first docker compose up creates all three services. The second run leaves the matching services untouched and recreates only the one line that drifted from the file.">
+    <g filter="url(#rough)">
+      <rect x="60" y="60" width="430" height="220" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="95" y="150" width="110" height="70" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="220" y="150" width="110" height="70" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="345" y="150" width="110" height="70" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="275" y="95" text-anchor="middle" class="lbl-b">first `up`</text>
+    <text x="150" y="192" text-anchor="middle" class="lbl-sm">fe</text>
+    <text x="275" y="192" text-anchor="middle" class="lbl-sm">be</text>
+    <text x="400" y="192" text-anchor="middle" class="lbl-sm">db</text>
+    <text x="275" y="255" text-anchor="middle" class="lbl-g" fill="#2e7d32">creates everything</text>
+    <g filter="url(#rough)">
+      <rect x="610" y="60" width="430" height="220" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="645" y="150" width="110" height="70" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 5"/>
+      <rect x="770" y="150" width="110" height="70" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="895" y="150" width="110" height="70" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="6 5"/>
+    </g>
+    <text x="825" y="95" text-anchor="middle" class="lbl-b">run it again</text>
+    <text x="700" y="192" text-anchor="middle" class="lbl-sm">fe</text>
+    <text x="825" y="192" text-anchor="middle" class="lbl-sm">be'</text>
+    <text x="950" y="192" text-anchor="middle" class="lbl-sm">db</text>
+    <text x="825" y="255" text-anchor="middle" class="lbl-g">only the drifted one is recreated</text>
+    <text x="550" y="315" text-anchor="middle" class="lbl-sm" fill="#2e7d32">no "did I already start the database?" in your head</text>
+  </svg>
   <div class="pageno">M2·23</div>
 </section>
 
-<!-- 17 · named volume memory (fragments) -->
+<!-- S17 · property three: ordering, proven for real -->
 <section>
-  <h2 class="t">A named volume is the db's memory</h2>
-  <p class="s">down keeps the data; only down -v deletes it.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="The db writes a row into a named volume that lives outside the container. When the container is destroyed the volume survives; a new db container re-attaches and finds the row. down removes containers but keeps volumes; only down dash v deletes the data.">
+  <h2 class="t">Property three: ordering, proven for real</h2>
+  <p class="s">"Up" is not "ready" — depends_on waits for healthy.</p>
+  <svg viewBox="0 0 1100 350" role="img" aria-label="A real captured run: the db goes Starting, Started, Waiting, Healthy; only after Healthy does the backend go Starting, Started. The Waiting-to-Healthy gap is where a race condition hides.">
     <g filter="url(#rough)">
-      <rect x="80" y="90" width="230" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <path d="M120,250 a55,16 0 0 0 110,0 a55,16 0 0 0 -110,0 l0,45 a55,16 0 0 0 110,0 l0,-45" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="60" y="70" width="620" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="195" y="150" text-anchor="middle" class="lbl-b">db container</text>
-    <text x="175" y="262" text-anchor="middle" class="lbl-sm">volume</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M195,200 L195,232" marker-end="url(#ah)"/>
+    <text x="120" y="60" text-anchor="middle" class="lbl-sm">fernwood-db-1</text>
+    <text x="140" y="122" text-anchor="middle" class="lbl-sm">Starting</text>
+    <text x="270" y="122" text-anchor="middle" class="lbl-sm">Started</text>
+    <text x="410" y="122" text-anchor="middle" class="lbl-b" fill="#c62828">Waiting</text>
+    <text x="560" y="122" text-anchor="middle" class="lbl-b" fill="#2e7d32">Healthy</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+      <path d="M190,115 L235,115" marker-end="url(#ah)"/>
+      <path d="M320,115 L365,115" marker-end="url(#ah)"/>
+      <path d="M455,115 L510,115" marker-end="url(#ah)"/>
     </g>
-    <text x="330" y="222" text-anchor="middle" class="lbl-g">writes a row</text>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
-        <path d="M100,100 L290,190"/>
-        <path d="M290,100 L100,190"/>
-      </g>
-      <text x="195" y="80" text-anchor="middle" class="lbl-sm" fill="#c62828">container destroyed</text>
-      <g filter="url(#rough)">
-        <path d="M470,250 a55,16 0 0 0 110,0 a55,16 0 0 0 -110,0 l0,45 a55,16 0 0 0 110,0 l0,-45" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      </g>
-      <text x="525" y="262" text-anchor="middle" class="lbl-sm" fill="#2e7d32">volume survives</text>
+    <text x="485" y="185" text-anchor="middle" class="lbl-g" fill="#c62828">up, but not yet taking connections</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <path d="M600,162 C600,210 420,215 380,238" marker-end="url(#ah)"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)">
-        <rect x="760" y="90" width="240" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-      </g>
-      <text x="880" y="150" text-anchor="middle" class="lbl-b">new db container</text>
-      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-        <path d="M760,200 C700,240 640,255 585,268" marker-end="url(#ah)"/>
-      </g>
-      <text x="820" y="245" text-anchor="middle" class="lbl-g" fill="#2e7d32">re-attaches, finds the row</text>
-      <text x="880" y="318" text-anchor="middle" class="lbl-sm">Session 6 scales this up: StorageClass · PVC</text>
+    <text x="470" y="228" text-anchor="middle" class="lbl-g">only now…</text>
+    <g filter="url(#rough)">
+      <rect x="150" y="248" width="460" height="80" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
+    <text x="210" y="240" text-anchor="middle" class="lbl-sm">fernwood-backend-1</text>
+    <text x="300" y="295" text-anchor="middle" class="lbl-sm">Starting</text>
+    <text x="460" y="295" text-anchor="middle" class="lbl-sm">Started</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
+      <path d="M360,288 L405,288" marker-end="url(#ah)"/>
+    </g>
+    <text x="880" y="150" text-anchor="middle" class="lbl-b">you wrote depends_on;</text>
+    <text x="880" y="190" text-anchor="middle" class="lbl-b">Compose did the sequencing</text>
+    <text x="880" y="250" text-anchor="middle" class="lbl-sm" fill="#c62828">the Waiting → Healthy gap</text>
+    <text x="880" y="285" text-anchor="middle" class="lbl-sm" fill="#c62828">is where a race hides</text>
   </svg>
   <div class="pageno">M2·24</div>
 </section>
 
-<!-- DIVIDER -->
+<!-- S18 · property four: whole-stack operations -->
 <section>
-  <h2 class="t" style="font-size:2.2em">The wall Compose runs into</h2>
+  <h2 class="t">Property four: whole-stack operations</h2>
+  <p class="s">logs, ps, exec, down act on the app, not one container.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Four commands — logs, ps, exec, down — each act on the whole stack of frontend, backend and db together, so you reason about the application rather than individual containers.">
+    <g filter="url(#rough)">
+      <rect x="70" y="70" width="230" height="52" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="70" y="135" width="230" height="52" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="70" y="200" width="230" height="52" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="70" y="265" width="230" height="52" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="185" y="104" text-anchor="middle" class="lbl">docker compose logs</text>
+    <text x="185" y="169" text-anchor="middle" class="lbl">docker compose ps</text>
+    <text x="185" y="234" text-anchor="middle" class="lbl">docker compose exec</text>
+    <text x="185" y="299" text-anchor="middle" class="lbl">docker compose down</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M302,96 C420,110 470,150 590,175" marker-end="url(#ah)"/>
+      <path d="M302,161 L590,180" marker-end="url(#ah)"/>
+      <path d="M302,226 L590,196" marker-end="url(#ah)"/>
+      <path d="M302,291 C420,270 470,225 590,200" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="600" y="110" width="440" height="150" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="635" y="165" width="110" height="60" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="765" y="165" width="110" height="60" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="895" y="165" width="110" height="60" rx="8" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="820" y="145" text-anchor="middle" class="lbl-b">the whole stack</text>
+    <text x="690" y="200" text-anchor="middle" class="lbl-sm">fe</text>
+    <text x="820" y="200" text-anchor="middle" class="lbl-sm">be</text>
+    <text x="950" y="200" text-anchor="middle" class="lbl-sm">db</text>
+    <text x="820" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">reason about the app, not containers</text>
+  </svg>
   <div class="pageno">M2·25</div>
 </section>
 
-<!-- 18 · everything on one machine -->
-<section>
-  <h2 class="t">Everything happens on one machine</h2>
-  <p class="s">One lever: restart a crashed process. That's all.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Everything Compose does happens on one host. The Docker daemon watches the three containers and restarts one whose process crashed — the restart policy — but the daemon itself lives on this single host.">
-    <g filter="url(#rough)">
-      <rect x="90" y="60" width="920" height="250" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="140" y="130" width="220" height="110" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="540" y="90" width="160" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="540" y="180" width="160" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="760" y="135" width="160" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-    </g>
-    <text x="250" y="48" text-anchor="middle" class="lbl-b">single Docker host</text>
-    <text x="250" y="180" text-anchor="middle" class="lbl-b">Docker daemon</text>
-    <text x="250" y="212" text-anchor="middle" class="lbl-sm">the supervisor</text>
-    <text x="620" y="130" text-anchor="middle" class="lbl-sm">frontend</text>
-    <text x="620" y="220" text-anchor="middle" class="lbl-sm">backend</text>
-    <text x="840" y="175" text-anchor="middle" class="lbl-sm">db</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 5">
-      <path d="M362,165 L538,120" marker-end="url(#ahg)"/>
-      <path d="M362,195 L538,210" marker-end="url(#ahg)"/>
-      <path d="M362,180 L758,168" marker-end="url(#ahg)"/>
-    </g>
-    <text x="470" y="285" text-anchor="middle" class="lbl-g">watches &amp; restarts crashes — restart: unless-stopped</text>
-  </svg>
+<!-- DIVIDER · volumes -->
+<section class="divider">
+  <h2 class="t">Volumes: giving the stateful tier a memory</h2>
   <div class="pageno">M2·26</div>
 </section>
 
-<!-- 19 · three walls -->
+<!-- S19 · a container filesystem is disposable -->
 <section>
-  <h2 class="t">Three walls a single host can't cross</h2>
-  <p class="s">No reschedule, no rolling update, no scale past it.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Three hard limits with no fix inside Compose: no rescheduling when the host itself dies, no rolling updates for zero-downtime releases, and no horizontal scale past this one machine's ports, CPU and memory.">
+  <h2 class="t">A container's filesystem is disposable</h2>
+  <p class="s">Remove the container and its writes are gone.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A container's own filesystem is thrown away when the container is removed, which is fine for the frontend and backend. A named volume lives outside the container, mounted at the path Postgres writes to, so the data survives.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="80" r="22" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="160" r="22" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="240" r="22" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="70" y="80" width="360" height="200" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="110" y="140" width="280" height="46" rx="6" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="110" y="196" width="280" height="46" rx="6" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
-    <text x="90" y="88" text-anchor="middle" class="num">1</text>
-    <text x="90" y="168" text-anchor="middle" class="num">2</text>
-    <text x="90" y="248" text-anchor="middle" class="num">3</text>
-    <g class="lbl" text-anchor="start">
-      <text x="135" y="72">no rescheduling</text>
-      <text x="135" y="152">no rolling updates</text>
-      <text x="135" y="232">no scale past the host</text>
+    <text x="250" y="68" text-anchor="middle" class="lbl-b">container filesystem</text>
+    <text x="250" y="170" text-anchor="middle" class="lbl-sm">whatever it writes inside</text>
+    <text x="250" y="226" text-anchor="middle" class="lbl-sm">stays inside the container</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
+      <path d="M90,100 L410,260"/>
     </g>
-    <g class="lbl-g" text-anchor="start">
-      <text x="135" y="102">host dies &#8594; the daemon dies with it, nowhere to move</text>
-      <text x="135" y="182">new version replaces in place — no gradual, zero-downtime shift</text>
-      <text x="135" y="262">more copies all land here, fighting for ports, CPU, memory</text>
+    <text x="250" y="308" text-anchor="middle" class="lbl-sm" fill="#c62828">remove it — all of it is gone (fine for fe/be)</text>
+    <g filter="url(#rough)">
+      <path d="M700,110 a80,22 0 0 0 160,0 a80,22 0 0 0 -160,0 l0,90 a80,22 0 0 0 160,0 l0,-90" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
+    <text x="780" y="175" text-anchor="middle" class="lbl-b">named volume</text>
+    <text x="780" y="235" text-anchor="middle" class="lbl-sm">outside the container's life</text>
+    <text x="780" y="285" text-anchor="middle" class="lbl-g" fill="#2e7d32">Postgres IS its data — mount it here</text>
   </svg>
   <div class="pageno">M2·27</div>
 </section>
 
-<!-- DIVIDER -->
+<!-- S20 · proof: a row survives a full teardown -->
 <section>
-  <h2 class="t" style="font-size:2.2em">What you will do in the lab</h2>
+  <h2 class="t">Proof: a row survives a full teardown</h2>
+  <p class="s">down keeps the volume; the row is still there.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A real captured run: you write the row 1 written before restart into the volume, then docker compose down removes the containers but keeps the volume, then up brings the stack back and the same row is still there.">
+    <g filter="url(#rough)">
+      <rect x="40" y="90" width="290" height="150" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="185" y="78" text-anchor="middle" class="lbl-b">write one row</text>
+    <text x="185" y="135" text-anchor="middle" class="lbl-sm">INSERT 0 1</text>
+    <text x="185" y="175" text-anchor="middle" class="lbl-sm">1 | written before</text>
+    <text x="185" y="205" text-anchor="middle" class="lbl-sm">restart</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M332,165 L400,165" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="410" y="90" width="290" height="150" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
+    </g>
+    <text x="555" y="78" text-anchor="middle" class="lbl-b">docker compose down</text>
+    <text x="555" y="140" text-anchor="middle" class="lbl-sm" fill="#c62828">containers removed</text>
+    <text x="555" y="185" text-anchor="middle" class="lbl-sm" fill="#2e7d32">volume kept</text>
+    <text x="555" y="222" text-anchor="middle" class="lbl-sm">(down -v would delete it)</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M702,165 L770,165" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="780" y="90" width="290" height="150" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="925" y="78" text-anchor="middle" class="lbl-b">up, read again</text>
+    <text x="925" y="145" text-anchor="middle" class="lbl-sm">1 | written before</text>
+    <text x="925" y="175" text-anchor="middle" class="lbl-sm">restart</text>
+    <text x="925" y="212" text-anchor="middle" class="lbl-sm" fill="#2e7d32">same row, still there</text>
+    <text x="555" y="300" text-anchor="middle" class="lbl-g" fill="#2e7d32">it never lived in the container — it lived in the volume</text>
+  </svg>
   <div class="pageno">M2·28</div>
 </section>
 
-<!-- 20 · closing -->
+<!-- DIVIDER · the wall -->
+<section class="divider">
+  <h2 class="t">The wall Compose runs into</h2>
+  <div class="pageno">M2·29</div>
+</section>
+
+<!-- S21 · restart policy, proven for real -->
+<section>
+  <h2 class="t">The one lever: restart policy, proven for real</h2>
+  <p class="s">A crashed container comes back — RestartCount=1.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="On one host the Docker daemon watches the containers. Crash the backend with a kill signal and a few seconds later it is back on its own, RestartCount reads 1 and Running is true — but the daemon doing the restarting lives on this single host.">
+    <g filter="url(#rough)">
+      <rect x="80" y="60" width="700" height="260" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="120" y="130" width="220" height="110" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="470" y="130" width="240" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="230" y="48" text-anchor="middle" class="lbl-b">single Docker host</text>
+    <text x="230" y="180" text-anchor="middle" class="lbl-b">Docker daemon</text>
+    <text x="230" y="214" text-anchor="middle" class="lbl-sm">the supervisor</text>
+    <text x="590" y="172" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="590" y="208" text-anchor="middle" class="lbl-sm">kill 1 — crashes</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M342,170 C400,150 420,150 468,160" marker-end="url(#ah)"/>
+    </g>
+    <text x="405" y="135" text-anchor="middle" class="lbl-g">restarts it</text>
+    <g filter="url(#rough)">
+      <rect x="820" y="120" width="230" height="130" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="935" y="165" text-anchor="middle" class="lbl-b" fill="#2e7d32">RestartCount=1</text>
+    <text x="935" y="210" text-anchor="middle" class="lbl-b" fill="#2e7d32">Running=true</text>
+    <text x="470" y="300" text-anchor="middle" class="lbl-g">restart: unless-stopped — but the daemon lives on this one host</text>
+  </svg>
+  <div class="pageno">M2·30</div>
+</section>
+
+<!-- S22 · limit one: no rescheduling -->
+<section>
+  <h2 class="t">Limit one: no rescheduling</h2>
+  <p class="s">Host dies and the daemon dies with it.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="If the single host itself dies from a kernel panic, power loss or the VM being killed, the daemon that would restart the containers dies with it, and there is no second machine for the work to move to.">
+    <g filter="url(#rough)">
+      <rect x="220" y="70" width="500" height="200" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="270" y="130" width="180" height="80" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="490" y="130" width="180" height="80" rx="10" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="470" y="58" text-anchor="middle" class="lbl-b">the one host</text>
+    <text x="360" y="176" text-anchor="middle" class="lbl-sm">daemon</text>
+    <text x="580" y="176" text-anchor="middle" class="lbl-sm">containers</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3.4" stroke-linecap="round">
+      <path d="M240,90 L700,250"/>
+      <path d="M700,90 L240,250"/>
+    </g>
+    <text x="470" y="300" text-anchor="middle" class="lbl" fill="#c62828">kernel panic · power loss · VM killed — nowhere to move</text>
+    <text x="900" y="150" text-anchor="middle" class="lbl-sm">no second</text>
+    <text x="900" y="185" text-anchor="middle" class="lbl-sm">machine</text>
+    <text x="900" y="220" text-anchor="middle" class="lbl-sm">in the picture</text>
+  </svg>
+  <div class="pageno">M2·31</div>
+</section>
+
+<!-- S23 · limit two: no rolling updates -->
+<section>
+  <h2 class="t">Limit two: no rolling updates</h2>
+  <p class="s">New version replaces the old in place.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="To ship a new version you run up again and the container is replaced in place, leaving a visible gap of downtime; there is no built-in way to shift traffic gradually with zero downtime.">
+    <g filter="url(#rough)">
+      <rect x="120" y="110" width="240" height="120" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="240" y="165" text-anchor="middle" class="lbl-b">v1</text>
+    <text x="240" y="205" text-anchor="middle" class="lbl-sm">running</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="7 6">
+      <path d="M380,170 L520,170" marker-end="url(#ah)"/>
+    </g>
+    <text x="450" y="150" text-anchor="middle" class="lbl-g" fill="#c62828">gap</text>
+    <text x="450" y="215" text-anchor="middle" class="lbl-sm" fill="#c62828">downtime</text>
+    <g filter="url(#rough)">
+      <rect x="540" y="110" width="240" height="120" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="660" y="165" text-anchor="middle" class="lbl-b">v2</text>
+    <text x="660" y="205" text-anchor="middle" class="lbl-sm">replaces it in place</text>
+    <text x="500" y="290" text-anchor="middle" class="lbl-g">no gradual, zero-downtime shift of traffic</text>
+  </svg>
+  <div class="pageno">M2·32</div>
+</section>
+
+<!-- S24 · limit three: no scaling past one machine -->
+<section>
+  <h2 class="t">Limit three: no scaling past one machine</h2>
+  <p class="s">More copies, same host, same CPU and ports.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="You can ask Compose for more copies of a service, but they all land on the same single host and compete for its CPU, its memory and its ports.">
+    <g filter="url(#rough)">
+      <rect x="150" y="60" width="640" height="210" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="200" y="120" width="120" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="330" y="120" width="120" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="460" y="120" width="120" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="590" y="120" width="120" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="470" y="48" text-anchor="middle" class="lbl-b">the same one host</text>
+    <text x="260" y="167" text-anchor="middle" class="lbl-sm">copy</text>
+    <text x="390" y="167" text-anchor="middle" class="lbl-sm">copy</text>
+    <text x="520" y="167" text-anchor="middle" class="lbl-sm">copy</text>
+    <text x="650" y="167" text-anchor="middle" class="lbl-sm">copy</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.4" stroke-linecap="round">
+      <path d="M260,200 L450,235" marker-end="url(#ah)"/>
+      <path d="M390,200 L455,235" marker-end="url(#ah)"/>
+      <path d="M520,200 L470,235" marker-end="url(#ah)"/>
+      <path d="M650,200 L480,235" marker-end="url(#ah)"/>
+    </g>
+    <text x="470" y="300" text-anchor="middle" class="lbl" fill="#c62828">all fighting for one CPU, one memory, one :8080</text>
+  </svg>
+  <div class="pageno">M2·33</div>
+</section>
+
+<!-- S25 · not a failing — the edge -->
+<section>
+  <h2 class="t">Not a failing — the edge of single-host tooling</h2>
+  <p class="s">Crossing it is the orchestrator's job.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Compose is genuinely good on one host; the three limits are simply the edge of what single-host tooling is for. Crossing that edge — many machines, rescheduling, rolling updates — is the job of an orchestrator like Kubernetes, which Session 3 picks up.">
+    <g filter="url(#rough)">
+      <rect x="60" y="80" width="410" height="190" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="265" y="68" text-anchor="middle" class="lbl-b">Compose — one host</text>
+    <text x="265" y="140" text-anchor="middle" class="lbl-sm">genuinely good at its job</text>
+    <text x="265" y="180" text-anchor="middle" class="lbl-sm">may be all you ever need</text>
+    <text x="265" y="230" text-anchor="middle" class="lbl-g" fill="#2e7d32">the edge of single-host tooling</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="8 7">
+      <path d="M525,60 L525,290"/>
+    </g>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M470,175 L610,175" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="630" y="80" width="410" height="190" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="835" y="68" text-anchor="middle" class="lbl-b">an orchestrator</text>
+    <text x="835" y="135" text-anchor="middle" class="lbl-sm">many machines · reschedule</text>
+    <text x="835" y="175" text-anchor="middle" class="lbl-sm">rolling updates · scale out</text>
+    <text x="835" y="235" text-anchor="middle" class="lbl-g">Kubernetes → Session 3</text>
+  </svg>
+  <div class="pageno">M2·34</div>
+</section>
+
+<!-- DIVIDER · what you will do in the lab -->
+<section class="divider">
+  <h2 class="t">What you will do in the lab</h2>
+  <div class="pageno">M2·35</div>
+</section>
+
+<!-- S26 · what you'll do in the lab -->
+<section>
+  <h2 class="t">What you'll do in the lab</h2>
+  <p class="s">One file up; volume survives; crash recovers.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The lab in five steps: write compose.yaml for all three tiers, bring the stack up with one command, verify the tiers discover each other by service name, prove the named volume survives a teardown, then crash the backend and watch a restart policy recover it.">
+    <g filter="url(#rough)">
+      <circle cx="90" cy="55" r="19" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="120" r="19" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="185" r="19" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="250" r="19" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="90" cy="300" r="19" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="90" y="63" text-anchor="middle" class="num">1</text>
+    <text x="90" y="128" text-anchor="middle" class="num">2</text>
+    <text x="90" y="193" text-anchor="middle" class="num">3</text>
+    <text x="90" y="258" text-anchor="middle" class="num">4</text>
+    <text x="90" y="308" text-anchor="middle" class="num">5</text>
+    <g class="lbl" text-anchor="start">
+      <text x="130" y="62">write compose.yaml for all three tiers</text>
+      <text x="130" y="127">bring the whole stack up with one command</text>
+      <text x="130" y="192">verify the tiers reach each other by service name</text>
+    </g>
+    <g class="lbl" text-anchor="start" fill="#2e7d32">
+      <text x="130" y="257">prove the named volume survives a teardown</text>
+      <text x="130" y="307">crash the backend, watch the restart policy recover it</text>
+    </g>
+  </svg>
+  <div class="pageno">M2·36</div>
+</section>
+
+<!-- CLOSING -->
 <section>
   <p class="kicker">MODULE 2 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:2.0em">Write one file; then meet its ceiling</h2>
   <p class="s" style="font-size:1.15em">One command up; then watch where it stops.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="What the lab proves in four steps: write compose.yaml for all three tiers, bring the stack up with one command, prove the named volume survives a teardown, then crash the backend and watch a restart policy recover it.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="One compose file stands up the whole application on a single host; beyond that host is the ceiling only an orchestrator can break through, which is where Session 3 and Kubernetes pick up.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="130" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="190" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="250" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="90" y="90" width="360" height="140" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="90" y="78" text-anchor="middle" class="num">1</text>
-    <text x="90" y="138" text-anchor="middle" class="num">2</text>
-    <text x="90" y="198" text-anchor="middle" class="num">3</text>
-    <text x="90" y="258" text-anchor="middle" class="num">4</text>
-    <g class="lbl" text-anchor="start">
-      <text x="130" y="78">write compose.yaml for all three tiers</text>
-      <text x="130" y="138">bring the stack up with one command</text>
+    <text x="270" y="150" text-anchor="middle" class="lbl-b">one file, one command</text>
+    <text x="270" y="192" text-anchor="middle" class="lbl-sm">the whole app, on one host</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M460,160 L600,160" marker-end="url(#ah)"/>
     </g>
-    <g class="lbl" text-anchor="start" fill="#2e7d32">
-      <text x="130" y="198">prove the named volume survives a teardown</text>
-      <text x="130" y="258">crash the backend, watch the restart policy recover it</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="9 8">
+      <path d="M640,70 L640,250"/>
     </g>
+    <text x="640" y="55" text-anchor="middle" class="lbl-g">the ceiling</text>
+    <g filter="url(#rough)">
+      <rect x="680" y="90" width="330" height="140" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="845" y="150" text-anchor="middle" class="lbl-b">many machines</text>
+    <text x="845" y="192" text-anchor="middle" class="lbl-g">Kubernetes → Session 3</text>
   </svg>
   <p class="credit">Now open <b>Module 2 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M2·29</div>
+  <div class="pageno">M2·37</div>
 </section>
 
 </div></div>

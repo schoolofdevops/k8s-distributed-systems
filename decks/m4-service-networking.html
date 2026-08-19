@@ -105,6 +105,10 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
 
+  /* §3a section divider slides — centered, larger title, no visual */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+
   /* SVG typographic helpers */
   text{ font-family:'Patrick Hand', cursive; }
   .lbl{ fill:var(--ink); font-size:21px; }
@@ -161,7 +165,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 2 · DIVIDER: lesson intro -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Why Pod IPs stop working</h2>
   <div class="pageno">M4·02</div>
 </section>
@@ -191,7 +195,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 4 · DIVIDER: The analogy: a company switchboard number -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">The analogy: a company switchboard number</h2>
   <div class="pageno">M4·04</div>
 </section>
@@ -271,7 +275,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 8 · DIVIDER: Service discovery: the name is the contract -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Service discovery: the name is the contract</h2>
   <div class="pageno">M4·08</div>
 </section>
@@ -331,33 +335,121 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 11 · DIVIDER: The four Service types, and when you would reach for each -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">The four Service types, and when you would reach for each</h2>
   <div class="pageno">M4·11</div>
 </section>
 
 <!-- 12 · four types as layers -->
 <section>
-  <h2 class="t">Four types, each reaches from further out</h2>
-  <p class="s">ClusterIP, NodePort, LoadBalancer, plus ExternalName.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Three Service types stacked as layers each reaching from further out — ClusterIP inside, NodePort on every node, LoadBalancer from the cloud — with ExternalName set apart as the odd one out that does no proxying.">
+  <h2 class="t">ClusterIP: reachable only from inside</h2>
+  <p class="s">The default — a stable IP, inside the cluster.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="ClusterIP, the default Service type: a green ClusterIP box with a stable virtual IP sits inside the cluster boundary and a Pod inside reaches it by name, while a client outside the cluster is blocked from reaching it.">
     <g filter="url(#rough)">
-      <rect x="120" y="240" width="300" height="66" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-      <rect x="300" y="160" width="300" height="66" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="480" y="80" width="300" height="66" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="820" y="160" width="220" height="90" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="9 7"/>
+      <rect x="70" y="55" width="700" height="230" rx="16" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="10 8"/>
+      <rect x="120" y="150" width="180" height="80" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="460" y="140" width="260" height="100" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="270" y="280" text-anchor="middle" class="lbl">ClusterIP · inside</text>
-    <text x="450" y="200" text-anchor="middle" class="lbl">NodePort · every node</text>
-    <text x="630" y="120" text-anchor="middle" class="lbl">LoadBalancer · cloud</text>
-    <text x="930" y="195" text-anchor="middle" class="lbl-b">ExternalName</text>
-    <text x="930" y="228" text-anchor="middle" class="lbl-sm">no proxying</text>
+    <text x="110" y="86" class="lbl-g" text-anchor="start">cluster</text>
+    <text x="210" y="183" text-anchor="middle" class="lbl-b">frontend Pod</text>
+    <text x="210" y="210" text-anchor="middle" class="lbl-sm">inside</text>
+    <text x="590" y="180" text-anchor="middle" class="lbl-b">ClusterIP</text>
+    <text x="590" y="212" text-anchor="middle" class="lbl-sm">10.96.x.x · DNS name</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M300,190 L455,190" marker-end="url(#ah)"/>
+    </g>
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M420,255 L455,230" marker-end="url(#ahg)"/>
-      <path d="M600,175 L635,150" marker-end="url(#ahg)"/>
+      <path d="M960,190 L785,190" marker-end="url(#ahg)"/>
     </g>
+    <text x="975" y="172" text-anchor="start" class="lbl-sm">outside client</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round">
+      <path d="M760,176 L784,204 M784,176 L760,204"/>
+    </g>
+    <text x="772" y="234" text-anchor="middle" class="lbl-sm" fill="#c62828">blocked</text>
   </svg>
   <div class="pageno">M4·12</div>
+</section>
+
+<section>
+  <h2 class="t">NodePort: a fixed port on every node</h2>
+  <p class="s">ClusterIP plus one open port on each node.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="NodePort Service type: it does everything ClusterIP does, and also opens the same fixed port on every node, so a client reaching any node's IP on that port reaches the Service.">
+    <g filter="url(#rough)">
+      <rect x="70" y="80" width="740" height="220" rx="16" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="10 8"/>
+      <rect x="130" y="150" width="210" height="120" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="410" y="150" width="210" height="120" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="662" y="180" width="128" height="86" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="190" y="132" width="90" height="36" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="470" y="132" width="90" height="36" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="110" y="108" class="lbl-g" text-anchor="start">cluster</text>
+    <text x="235" y="228" text-anchor="middle" class="lbl-b">node</text>
+    <text x="515" y="228" text-anchor="middle" class="lbl-b">node</text>
+    <text x="235" y="156" text-anchor="middle" class="lbl-sm">:30080</text>
+    <text x="515" y="156" text-anchor="middle" class="lbl-sm">:30080</text>
+    <text x="726" y="216" text-anchor="middle" class="lbl-sm">ClusterIP</text>
+    <text x="726" y="240" text-anchor="middle" class="lbl-sm">still here</text>
+    <text x="235" y="56" text-anchor="middle" class="lbl-b">any node IP : 30080</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M235,68 L235,128" marker-end="url(#ah)"/>
+    </g>
+  </svg>
+  <div class="pageno">M4·13</div>
+</section>
+
+<section>
+  <h2 class="t">LoadBalancer: a cloud address out front</h2>
+  <p class="s">NodePort plus a real load balancer from the cloud.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="LoadBalancer Service type: it does everything NodePort does, and also asks the cloud provider for a real external load balancer with one public IP sitting in front of the nodes.">
+    <g filter="url(#rough)">
+      <rect x="400" y="38" width="320" height="86" rx="20" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="90" y="178" width="760" height="132" rx="16" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="10 8"/>
+      <rect x="150" y="212" width="200" height="82" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="430" y="212" width="200" height="82" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="560" y="76" text-anchor="middle" class="lbl-b">cloud load balancer</text>
+    <text x="560" y="105" text-anchor="middle" class="lbl-sm">one public IP · 203.0.x.x</text>
+    <text x="130" y="203" class="lbl-g" text-anchor="start">cluster</text>
+    <text x="250" y="260" text-anchor="middle" class="lbl-b">node</text>
+    <text x="530" y="260" text-anchor="middle" class="lbl-b">node</text>
+    <text x="120" y="70" text-anchor="middle" class="lbl-b">users</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M168,80 L395,80" marker-end="url(#ah)"/>
+      <path d="M510,126 L300,208" marker-end="url(#ah)"/>
+      <path d="M610,126 L555,208" marker-end="url(#ah)"/>
+    </g>
+    <text x="835" y="300" text-anchor="end" class="lbl-sm" fill="#c62828">needs a cloud provider</text>
+  </svg>
+  <div class="pageno">M4·14</div>
+</section>
+
+<section>
+  <h2 class="t">ExternalName: a name that points outward</h2>
+  <p class="s">No Pods, no proxy — just a DNS alias.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="ExternalName Service type: a Pod inside the cluster calls a purple ExternalName Service that is only a DNS alias, mapping the in-cluster name to an external managed database outside the cluster, with no selector, Pods, or proxying.">
+    <g filter="url(#rough)">
+      <rect x="70" y="95" width="700" height="150" rx="16" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="10 8"/>
+      <rect x="120" y="135" width="180" height="76" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="420" y="128" width="260" height="92" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
+      <rect x="860" y="126" width="180" height="96" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="110" y="123" class="lbl-g" text-anchor="start">cluster</text>
+    <text x="210" y="170" text-anchor="middle" class="lbl-b">Pod</text>
+    <text x="210" y="196" text-anchor="middle" class="lbl-sm">calls "backend-db"</text>
+    <text x="550" y="165" text-anchor="middle" class="lbl-b">ExternalName</text>
+    <text x="550" y="196" text-anchor="middle" class="lbl-sm">DNS alias only</text>
+    <text x="950" y="168" text-anchor="middle" class="lbl-b">db.example.com</text>
+    <text x="950" y="196" text-anchor="middle" class="lbl-sm">managed database</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M300,173 L415,173" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="8 6">
+      <path d="M680,173 L855,173" marker-end="url(#ahg)"/>
+    </g>
+    <text x="768" y="152" text-anchor="middle" class="lbl-sm">maps to</text>
+    <text x="420" y="288" text-anchor="start" class="lbl-sm" fill="#c62828">no selector · no Pods · no proxy</text>
+  </svg>
+  <div class="pageno">M4·15</div>
 </section>
 
 <!-- 13 · which one to reach for -->
@@ -384,13 +476,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="130" y="303">→ ExternalName</text>
     </g>
   </svg>
-  <div class="pageno">M4·13</div>
+  <div class="pageno">M4·16</div>
 </section>
 
 <!-- 14 · DIVIDER: Under the hood: Endpoints, the cluster IP, and kube-proxy -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Under the hood: Endpoints, the cluster IP, and kube-proxy</h2>
-  <div class="pageno">M4·14</div>
+  <div class="pageno">M4·17</div>
 </section>
 
 <!-- 15 · selector picks Pods into Endpoints -->
@@ -422,7 +514,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M705,180 L795,195" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M4·15</div>
+  <div class="pageno">M4·18</div>
 </section>
 
 <!-- 16 · cluster IP is virtual -->
@@ -442,7 +534,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="300" text-anchor="middle" class="lbl-sm" fill="#2e7d32">tied to no Pod's lifecycle, so it never changes</text>
   </svg>
-  <div class="pageno">M4·16</div>
+  <div class="pageno">M4·19</div>
 </section>
 
 <!-- 17 · kube-proxy programs the dataplane -->
@@ -472,13 +564,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="290" text-anchor="middle" class="lbl-sm">destination rewritten in place, no extra network hop</text>
   </svg>
-  <div class="pageno">M4·17</div>
+  <div class="pageno">M4·20</div>
 </section>
 
 <!-- 18 · DIVIDER: What this replaces, and where you are going -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">What this replaces, and where you are going</h2>
-  <div class="pageno">M4·18</div>
+  <div class="pageno">M4·21</div>
 </section>
 
 <!-- 19 · name -> raw IP -> name again -->
@@ -506,7 +598,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="298" text-anchor="middle" class="lbl-g">the platform underneath got stronger</text>
   </svg>
-  <div class="pageno">M4·19</div>
+  <div class="pageno">M4·22</div>
 </section>
 
 <!-- 20 · CLOSING -->
@@ -533,7 +625,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="130" y="258" text-anchor="start" class="lbl" fill="#c62828">break a selector → no endpoints</text>
   </svg>
   <p class="credit">Now open <b>Module 4 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M4·20</div>
+  <div class="pageno">M4·23</div>
 </section>
 
 </div></div>

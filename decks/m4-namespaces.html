@@ -105,6 +105,10 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
 
+  /* §3a section divider slides — centered, larger title, no visual */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+
   /* SVG typographic helpers */
   text{ font-family:'Patrick Hand', cursive; }
   .lbl{ fill:var(--ink); font-size:21px; }
@@ -158,7 +162,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 2 · DIVIDER: lesson intro -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Why a shared cluster needs boundaries</h2>
   <div class="pageno">M4·02</div>
 </section>
@@ -186,7 +190,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 4 · DIVIDER: The analogy: floors in an office building -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">The analogy: floors in an office building</h2>
   <div class="pageno">M4·04</div>
 </section>
@@ -276,7 +280,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 9 · DIVIDER: Namespaced vs cluster-wide: not everything lives on a floor -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Namespaced vs cluster-wide: not everything lives on a floor</h2>
   <div class="pageno">M4·09</div>
 </section>
@@ -309,7 +313,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 11 · DIVIDER: Contexts: which cluster, which namespace, which user -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Contexts: which cluster, which namespace, which user</h2>
   <div class="pageno">M4·11</div>
 </section>
@@ -370,7 +374,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 14 · DIVIDER: Two ways to work in a namespace, and which to use -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Two ways to work in a namespace, and which to use</h2>
   <div class="pageno">M4·14</div>
 </section>
@@ -419,7 +423,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 17 · DIVIDER: Into the rest of the module -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Into the rest of the module</h2>
   <div class="pageno">M4·17</div>
 </section>

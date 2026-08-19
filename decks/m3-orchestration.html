@@ -96,6 +96,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal p{ margin:0; line-height:1.3; }
   .reveal p.s{ order:3; font-size:0.95em; color:var(--gray); margin:0; }
   .reveal .slides section:first-of-type svg{ min-height:32%; }
+  /* §3a section divider slides — centered, larger title, no visual */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
   .reveal svg{ order:2; width:100%; flex:1 1 0; min-height:0; max-height:68%; display:block; margin:auto 0; }
   .reveal .kicker{ order:0; font-size:.8em; color:var(--gray); letter-spacing:2px; }
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
@@ -179,12 +182,12 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · intro -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Why this module exists</h2>
+<section class="divider">
+  <h2 class="t">Why this module exists</h2>
   <div class="pageno">M3·02</div>
 </section>
 
-<!-- 2 · One host is the ceiling -->
+<!-- 2 · One host is the ceiling  (narr S1) -->
 <section>
   <h2 class="t">One host is the ceiling</h2>
   <p class="s">One machine can't reschedule, scale, or self-heal.</p>
@@ -217,12 +220,12 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · Where Docker's job ends -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Where Docker's job ends and Kubernetes' begins</h2>
+<section class="divider">
+  <h2 class="t">Where Docker's job ends and Kubernetes' begins</h2>
   <div class="pageno">M3·04</div>
 </section>
 
-<!-- 3 · the seam -->
+<!-- 3 · the seam  (narr S2) -->
 <section>
   <h2 class="t">Docker runs a container; Kubernetes decides which run</h2>
   <p class="s">Placement, healing, scaling, rollout. That's orchestration.</p>
@@ -248,12 +251,12 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · The analogy -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The analogy: an airport, not a single gate</h2>
+<section class="divider">
+  <h2 class="t">The analogy: an airport, not a single gate</h2>
   <div class="pageno">M3·06</div>
 </section>
 
-<!-- 4 · airport analogy -->
+<!-- 4 · airport analogy  (narr S3) -->
 <section>
   <h2 class="t">A busy airport, not a single gate</h2>
   <p class="s">One gate runs one plane; an airport runs hundreds.</p>
@@ -291,7 +294,7 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M3·07</div>
 </section>
 
-<!-- 5 · tower vs tarmac -->
+<!-- 5 · tower vs tarmac  (narr S4) -->
 <section>
   <h2 class="t">Two jobs, deliberately kept apart</h2>
   <p class="s">The tower decides; the ground crews do the work.</p>
@@ -324,7 +327,7 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M3·08</div>
 </section>
 
-<!-- 6 · you file a plan -->
+<!-- 6 · you file a plan  (narr S5) -->
 <section>
   <h2 class="t">You file a plan; you never park the plane</h2>
   <p class="s">You tell the tower what you want, not how.</p>
@@ -367,12 +370,12 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · Declarative not imperative -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Declarative, not imperative: the one idea behind everything</h2>
+<section class="divider">
+  <h2 class="t">Declarative, not imperative: the one idea behind everything</h2>
   <div class="pageno">M3·10</div>
 </section>
 
-<!-- 7 · declarative -->
+<!-- 7 · declarative  (narr S6) -->
 <section>
   <h2 class="t">Declare the end state, not the steps</h2>
   <p class="s">Say what should be true, not the steps to get there.</p>
@@ -405,7 +408,7 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M3·11</div>
 </section>
 
-<!-- 8 · reconciliation (2 fragments) -->
+<!-- 8 · reconciliation (2 fragments)  (narr S7) -->
 <section>
   <h2 class="t">Compare, act, repeat, forever</h2>
   <p class="s">Reconciliation: close the gap between want and reality.</p>
@@ -448,95 +451,304 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- DIVIDER · Inside the control tower -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Inside the control tower: the control-plane components</h2>
+<section class="divider">
+  <h2 class="t">Inside the control tower: the control-plane components</h2>
   <div class="pageno">M3·13</div>
 </section>
 
-<!-- 9 · control-plane anatomy (4 fragments) -->
+<!-- 9 · control-plane announce  (narr S8) -->
 <section>
-  <h2 class="t">Inside the tower: four jobs</h2>
-  <p class="s">API server, etcd, scheduler, controllers.</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="The control plane outline fills in with four components: the API server every request passes through, etcd the source of truth, the scheduler that picks a node for each Pod, and the controllers that reconcile desired against actual.">
+  <h2 class="t">Inside the tower: four jobs, one each</h2>
+  <p class="s">Not one program — a handful of parts talking to each other.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="The control plane drawn as an empty tower outline with four dashed empty slots, ready to fill in with its four components, each doing one job.">
     <g filter="url(#rough)">
-      <rect x="60" y="70" width="980" height="240" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="60" y="70" width="980" height="220" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
     </g>
     <text x="550" y="58" text-anchor="middle" class="lbl-b">control plane: the tower &amp; ops office</text>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="100" y="120" width="200" height="150" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/></g>
-      <text x="200" y="158" text-anchor="middle" class="lbl-b">API server</text>
-      <text x="200" y="196" text-anchor="middle" class="lbl-g">tower radio</text>
-      <text x="200" y="224" text-anchor="middle" class="lbl-g">every request</text>
-      <text x="200" y="252" text-anchor="middle" class="lbl-g">goes through it</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7">
+      <rect x="100" y="115" width="200" height="135" rx="10"/>
+      <rect x="330" y="115" width="200" height="135" rx="10"/>
+      <rect x="560" y="115" width="200" height="135" rx="10"/>
+      <rect x="790" y="115" width="210" height="135" rx="10"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="330" y="120" width="200" height="150" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/></g>
-      <text x="430" y="158" text-anchor="middle" class="lbl-b">etcd</text>
-      <text x="430" y="196" text-anchor="middle" class="lbl-g">the records</text>
-      <text x="430" y="224" text-anchor="middle" class="lbl-g">the one source</text>
-      <text x="430" y="252" text-anchor="middle" class="lbl-g">of truth</text>
+    <g class="lbl-g" text-anchor="middle">
+      <text x="200" y="190">one job</text>
+      <text x="430" y="190">one job</text>
+      <text x="660" y="190">one job</text>
+      <text x="895" y="190">one job</text>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="560" y="120" width="200" height="150" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.6"/></g>
-      <text x="660" y="158" text-anchor="middle" class="lbl-b">scheduler</text>
-      <text x="660" y="196" text-anchor="middle" class="lbl-g">gate assignment</text>
-      <text x="660" y="224" text-anchor="middle" class="lbl-g">picks a node</text>
-      <text x="660" y="252" text-anchor="middle" class="lbl-g">for each Pod</text>
-    </g>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="790" y="120" width="210" height="150" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/></g>
-      <text x="895" y="158" text-anchor="middle" class="lbl-b">controllers</text>
-      <text x="895" y="196" text-anchor="middle" class="lbl-g">watch the radar</text>
-      <text x="895" y="224" text-anchor="middle" class="lbl-g">reconcile</text>
-      <text x="895" y="252" text-anchor="middle" class="lbl-g">desired vs actual</text>
-    </g>
+    <text x="550" y="320" text-anchor="middle" class="lbl-g">let's fill them in, one at a time</text>
   </svg>
   <div class="pageno">M3·14</div>
 </section>
 
-<!-- DIVIDER · On the airfield -->
+<!-- 10 · API server  (narr S9) -->
 <section>
-  <h2 class="t" style="font-size:2.2em">On the airfield: the node components</h2>
+  <h2 class="t">Every request goes through the API server</h2>
+  <p class="s">The tower radio — nothing touches state except through it.</p>
+  <svg viewBox="0 0 1100 360" role="img" aria-label="The API server sits in the middle; kubectl, the other control-plane components, and etcd all connect through it, and it is the only thing that reads and writes the source of truth.">
+    <g filter="url(#rough)">
+      <rect x="90" y="150" width="150" height="70" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="165" y="192" text-anchor="middle" class="lbl-b">kubectl</text>
+    <g filter="url(#rough)">
+      <rect x="410" y="60" width="280" height="55" rx="8" fill="none" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="550" y="94" text-anchor="middle" class="lbl-sm">other components</text>
+    <g filter="url(#rough)">
+      <rect x="410" y="145" width="280" height="90" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="550" y="182" text-anchor="middle" class="lbl-b">API server</text>
+    <text x="550" y="212" text-anchor="middle" class="lbl-g">the tower radio</text>
+    <g filter="url(#rough)">
+      <rect x="860" y="150" width="150" height="70" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="935" y="192" text-anchor="middle" class="lbl-b">etcd</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M242,185 L402,185" marker-end="url(#ah)"/>
+      <path d="M550,117 L550,143" marker-end="url(#ah)"/>
+      <path d="M692,178 L856,178" marker-end="url(#ah)"/>
+      <path d="M856,196 L694,196" marker-end="url(#ah)"/>
+    </g>
+    <text x="322" y="170" text-anchor="middle" class="lbl-g">validates</text>
+    <text x="775" y="230" text-anchor="middle" class="lbl-g">only reader/writer</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-sm" fill="#c62828">API server down &#8594; planes keep flying, but no new plans can be filed</text>
+  </svg>
   <div class="pageno">M3·15</div>
 </section>
 
-<!-- 10 · node anatomy (3 fragments) -->
+<!-- 11 · etcd  (narr S10) -->
 <section>
-  <h2 class="t">On the airfield: three jobs per node</h2>
-  <p class="s">kubelet, kube-proxy, the container runtime.</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="A node outline fills in with three components: the kubelet ground-crew chief that starts Pods and reports back, kube-proxy the taxiway signage that routes traffic, and containerd the runtime that actually runs containers via the CRI.">
+  <h2 class="t">etcd holds the whole plan on disk</h2>
+  <p class="s">The records — lose it without a backup, lose the plan.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="etcd drawn as a locked filing cabinet holding a key-value store of every declared object and its last known status; in the lab it runs as a Pod named etcd-distsys-control-plane.">
     <g filter="url(#rough)">
-      <rect x="120" y="70" width="860" height="240" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="120" y="70" width="300" height="230" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+      <line x1="120" y1="140" x2="420" y2="140"/>
+      <line x1="120" y1="210" x2="420" y2="210"/>
+      <circle cx="270" cy="105" r="8" fill="none"/>
+      <circle cx="270" cy="175" r="8" fill="none"/>
+      <circle cx="270" cy="245" r="8" fill="none"/>
     </g>
-    <text x="550" y="58" text-anchor="middle" class="lbl-b">node: a gate + ground crew</text>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="160" y="120" width="240" height="160" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/></g>
-      <text x="280" y="158" text-anchor="middle" class="lbl-b">kubelet</text>
-      <text x="280" y="196" text-anchor="middle" class="lbl-g">ground-crew chief</text>
-      <text x="280" y="228" text-anchor="middle" class="lbl-g">starts Pods, checks</text>
-      <text x="280" y="258" text-anchor="middle" class="lbl-g">them, reports back</text>
+    <text x="270" y="55" text-anchor="middle" class="lbl-b">etcd: a locked cabinet</text>
+    <g class="lbl-sm" text-anchor="middle">
+      <text x="215" y="112">key</text>
+      <text x="215" y="182">key</text>
+      <text x="215" y="252">key</text>
+      <text x="345" y="112">value</text>
+      <text x="345" y="182">value</text>
+      <text x="345" y="252">value</text>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="430" y="120" width="240" height="160" rx="10" fill="none" stroke="#1e1e1e" stroke-width="2.6"/></g>
-      <text x="550" y="158" text-anchor="middle" class="lbl-b">kube-proxy</text>
-      <text x="550" y="196" text-anchor="middle" class="lbl-g">taxiway signage</text>
-      <text x="550" y="228" text-anchor="middle" class="lbl-g">routes traffic to</text>
-      <text x="550" y="258" text-anchor="middle" class="lbl-g">Pods (used in M4)</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M430,150 L520,150" marker-end="url(#ah)"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)"><rect x="700" y="120" width="240" height="160" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/></g>
-      <text x="820" y="158" text-anchor="middle" class="lbl-b">containerd</text>
-      <text x="820" y="196" text-anchor="middle" class="lbl-g">tugs &amp; jet bridges</text>
-      <text x="820" y="228" text-anchor="middle" class="lbl-g">runs containers,</text>
-      <text x="820" y="258" text-anchor="middle" class="lbl-g">reached via the CRI</text>
+    <g filter="url(#rough)">
+      <rect x="530" y="90" width="480" height="120" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
+    <g class="lbl" text-anchor="middle">
+      <text x="770" y="135">every declared object</text>
+      <text x="770" y="180">+ its last known status</text>
+    </g>
+    <text x="770" y="258" text-anchor="middle" class="lbl-g">in the lab it runs as a Pod:</text>
+    <text x="770" y="288" text-anchor="middle" class="lbl-sm">etcd-distsys-control-plane</text>
   </svg>
   <div class="pageno">M3·16</div>
 </section>
 
-<!-- 11 · pluggable interfaces -->
+<!-- 12 · scheduler  (narr S11) -->
 <section>
-  <h2 class="t">Standard interfaces make the pieces swappable</h2>
+  <h2 class="t">The scheduler decides where a Pod runs</h2>
+  <p class="s">Gate assignment — it picks the node, it doesn't start it.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A new unplaced Pod asks for CPU and memory; the scheduler weighs that request against two nodes' free capacity and picks the node with room, writing its choice back through the API server.">
+    <g filter="url(#rough)">
+      <rect x="70" y="130" width="170" height="90" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="155" y="165" text-anchor="middle" class="lbl-b">new Pod</text>
+    <text x="155" y="195" text-anchor="middle" class="lbl-g">asks: cpu, memory</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M245,175 L330,175" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="340" y="120" width="200" height="110" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="440" y="165" text-anchor="middle" class="lbl-b">scheduler</text>
+    <text x="440" y="197" text-anchor="middle" class="lbl-g">weighs ask vs free</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5">
+      <path d="M545,150 L640,110" marker-end="url(#ahg)"/>
+      <path d="M545,200 L640,240" marker-end="url(#ahg)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="650" y="70" width="240" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="650" y="200" width="240" height="80" rx="10" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7"/>
+    </g>
+    <text x="770" y="105" text-anchor="middle" class="lbl-b">node A</text>
+    <text x="770" y="135" text-anchor="middle" class="lbl-sm" fill="#2e7d32">has room &#8594; picked</text>
+    <text x="770" y="235" text-anchor="middle" class="lbl-b">node B</text>
+    <text x="770" y="263" text-anchor="middle" class="lbl-g">full: skipped</text>
+    <text x="930" y="150" text-anchor="middle" class="lbl-g">decides</text>
+    <text x="930" y="176" text-anchor="middle" class="lbl-g">where only</text>
+  </svg>
+  <div class="pageno">M3·17</div>
+</section>
+
+<!-- 13 · controllers  (narr S12) -->
+<section>
+  <h2 class="t">Controllers reconcile, over and over</h2>
+  <p class="s">Each watches one kind of object and closes its gap.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A bundle of controllers, each watching a different kind of object and running the same observe-compare-act loop; the node controller notices a silent node, another keeps replica counts correct.">
+    <g filter="url(#rough)">
+      <rect x="70" y="80" width="300" height="90" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="70" y="200" width="300" height="90" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="220" y="120" text-anchor="middle" class="lbl-b">node controller</text>
+    <text x="220" y="150" text-anchor="middle" class="lbl-g">notices a silent node</text>
+    <text x="220" y="240" text-anchor="middle" class="lbl-b">replica controller</text>
+    <text x="220" y="270" text-anchor="middle" class="lbl-g">keeps the count right</text>
+    <text x="220" y="60" text-anchor="middle" class="lbl-g">…and more, one per concern</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M375,185 L470,185" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="480" y="110" width="540" height="150" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="620" cy="185" r="45" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M620,140 C700,140 700,230 620,230" marker-end="url(#ah)"/>
+    </g>
+    <g class="lbl" text-anchor="middle">
+      <text x="620" y="180">observe</text>
+      <text x="620" y="205">compare</text>
+    </g>
+    <text x="850" y="170" text-anchor="middle" class="lbl-b">act</text>
+    <text x="850" y="205" text-anchor="middle" class="lbl-g">then repeat, forever</text>
+    <text x="750" y="290" text-anchor="middle" class="lbl-g">the same reconciliation loop, pointed at each concern</text>
+  </svg>
+  <div class="pageno">M3·18</div>
+</section>
+
+<!-- DIVIDER · On the airfield -->
+<section class="divider">
+  <h2 class="t">On the airfield: the node components</h2>
+  <div class="pageno">M3·19</div>
+</section>
+
+<!-- 14 · node announce  (narr S13) -->
+<section>
+  <h2 class="t">On the airfield: three jobs per node</h2>
+  <p class="s">A machine that runs your containers, with real parts on it.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="A node drawn as an empty outline of a gate plus ground crew, with three dashed empty slots ready to fill in with its three components.">
+    <g filter="url(#rough)">
+      <rect x="120" y="70" width="860" height="220" rx="14" fill="none" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="550" y="58" text-anchor="middle" class="lbl-b">node: a gate + ground crew (a VM, or KIND's container)</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7">
+      <rect x="160" y="115" width="240" height="140" rx="10"/>
+      <rect x="430" y="115" width="240" height="140" rx="10"/>
+      <rect x="700" y="115" width="240" height="140" rx="10"/>
+    </g>
+    <g class="lbl-g" text-anchor="middle">
+      <text x="280" y="192">one job</text>
+      <text x="550" y="192">one job</text>
+      <text x="820" y="192">one job</text>
+    </g>
+    <text x="550" y="320" text-anchor="middle" class="lbl-g">every node runs these same three</text>
+  </svg>
+  <div class="pageno">M3·20</div>
+</section>
+
+<!-- 15 · kubelet  (narr S14) -->
+<section>
+  <h2 class="t">The kubelet makes the Pod real</h2>
+  <p class="s">The ground-crew chief that bridges plan and work.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="The kubelet on a node watches the API server for Pods assigned to it, tells the container runtime to start them, and reports their status back up.">
+    <g filter="url(#rough)">
+      <rect x="410" y="55" width="280" height="60" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="92" text-anchor="middle" class="lbl-b">API server</text>
+    <g filter="url(#rough)">
+      <rect x="380" y="150" width="340" height="90" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="550" y="188" text-anchor="middle" class="lbl-b">kubelet</text>
+    <text x="550" y="218" text-anchor="middle" class="lbl-g">the ground-crew chief</text>
+    <g filter="url(#rough)">
+      <rect x="410" y="270" width="280" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="305" text-anchor="middle" class="lbl-b">Pod running</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M470,117 L470,148" marker-end="url(#ah)"/>
+      <path d="M550,242 L550,268" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5">
+      <path d="M630,148 L630,119" marker-end="url(#ahg)"/>
+    </g>
+    <text x="360" y="138" text-anchor="end" class="lbl-g">watches for its Pods</text>
+    <text x="740" y="138" text-anchor="start" class="lbl-g">reports status up</text>
+    <text x="740" y="258" text-anchor="start" class="lbl-g">tells the runtime to start</text>
+  </svg>
+  <div class="pageno">M3·21</div>
+</section>
+
+<!-- 16 · kube-proxy  (narr S15) -->
+<section>
+  <h2 class="t">kube-proxy wires up Service traffic</h2>
+  <p class="s">Taxiway signage — already running, waiting for Module 4.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="kube-proxy programs the node's networking so that traffic aimed at a Service reaches a healthy Pod; the Service box is greyed out and labelled coming in Module four.">
+    <g filter="url(#rough)">
+      <rect x="120" y="130" width="240" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="240" y="172" text-anchor="middle" class="lbl-b">kube-proxy</text>
+    <text x="240" y="202" text-anchor="middle" class="lbl-g">taxiway signage</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M365,180 L455,180" marker-end="url(#ah)"/>
+    </g>
+    <text x="410" y="160" text-anchor="middle" class="lbl-g">programs</text>
+    <g filter="url(#rough)">
+      <rect x="465" y="130" width="240" height="100" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="585" y="172" text-anchor="middle" class="lbl">node network rules</text>
+    <text x="585" y="202" text-anchor="middle" class="lbl-g">traffic &#8594; a healthy Pod</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5">
+      <path d="M710,180 L800,180" marker-end="url(#ahg)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="810" y="130" width="200" height="100" rx="12" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7"/>
+    </g>
+    <text x="910" y="172" text-anchor="middle" class="lbl-g">Service</text>
+    <text x="910" y="202" text-anchor="middle" class="lbl-sm" fill="#c62828">coming in Module 4</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">running on every node now, waiting for that job</text>
+  </svg>
+  <div class="pageno">M3·22</div>
+</section>
+
+<!-- 17 · containerd  (narr S16) -->
+<section>
+  <h2 class="t">containerd actually runs the containers</h2>
+  <p class="s">The tugs and jet bridges — reached through the CRI.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="The kubelet asks containerd through the standard CRI socket to start a container; containerd does the physical work of running it.">
+    <g filter="url(#rough)">
+      <rect x="410" y="55" width="280" height="60" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="92" text-anchor="middle" class="lbl-b">kubelet</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M550,117 L550,158" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="440" y="150" width="220" height="40" rx="6" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="550" y="177" text-anchor="middle" class="lbl-sm">CRI socket (a standard plug)</text>
+    <g filter="url(#rough)">
+      <rect x="380" y="200" width="340" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="550" y="238" text-anchor="middle" class="lbl-b">containerd</text>
+    <text x="550" y="268" text-anchor="middle" class="lbl-g">runs the container for real</text>
+    <text x="770" y="175" text-anchor="start" class="lbl-g">"start this container"</text>
+    <text x="880" y="245" text-anchor="middle" class="lbl-sm">"Docker uses containers"</text>
+    <text x="880" y="270" text-anchor="middle" class="lbl-sm">really means: via the CRI</text>
+  </svg>
+  <div class="pageno">M3·23</div>
+</section>
+
+<!-- 18 · pluggable interfaces  (narr S17) -->
+<section>
+  <h2 class="t">Standard sockets make the pieces swappable</h2>
   <p class="s">You swapped in Calico and Kubernetes didn't care.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Kubernetes exposes three standard sockets — CRI for the runtime, CNI for networking, CSI for storage; the default network plugin is crossed out and Calico plugs into the same CNI socket because it speaks the CNI.">
     <g filter="url(#rough)">
@@ -576,16 +788,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="280" text-anchor="middle" class="lbl-b" fill="#2e7d32">Calico</text>
     <text x="820" y="235" text-anchor="middle" class="lbl-g">speaks CNI &#8594; just works</text>
   </svg>
-  <div class="pageno">M3·17</div>
+  <div class="pageno">M3·24</div>
 </section>
 
 <!-- DIVIDER · What you actually send -->
-<section>
-  <h2 class="t" style="font-size:2.2em">What you actually send: objects, described as YAML</h2>
-  <div class="pageno">M3·18</div>
+<section class="divider">
+  <h2 class="t">What you actually send: objects, described as YAML</h2>
+  <div class="pageno">M3·25</div>
 </section>
 
-<!-- 12 · the object shape -->
+<!-- 19 · the object shape  (narr S18) -->
 <section>
   <h2 class="t">Everything you send is an object</h2>
   <p class="s">apiVersion, kind, metadata, spec. Every time.</p>
@@ -620,16 +832,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="960" y="245" text-anchor="middle" class="lbl-g">stored as</text>
     <text x="960" y="272" text-anchor="middle" class="lbl-g">desired state</text>
   </svg>
-  <div class="pageno">M3·19</div>
+  <div class="pageno">M3·26</div>
 </section>
 
 <!-- DIVIDER · Why this is worth your attention -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Why this is worth your attention</h2>
-  <div class="pageno">M3·20</div>
+<section class="divider">
+  <h2 class="t">Why this is worth your attention</h2>
+  <div class="pageno">M3·27</div>
 </section>
 
-<!-- 13 · payoff -->
+<!-- 20 · payoff  (narr S19) -->
 <section>
   <h2 class="t">Why this changes the job</h2>
   <p class="s">"Where does it run, what keeps it up?" now has an answer.</p>
@@ -656,35 +868,61 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="810" y="258" text-anchor="middle" class="lbl-g" fill="#2e7d32">a dead node reschedules, you sleep</text>
   </svg>
-  <div class="pageno">M3·21</div>
+  <div class="pageno">M3·28</div>
 </section>
 
-<!-- 14 · CLOSING -->
+<!-- 21 · what's ahead / into the lab  (narr S20) -->
 <section>
-  <p class="kicker">MODULE 3 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:1.8em">Stand up the tower and the tarmac</h2>
-  <p class="s" style="font-size:1.15em">A real control plane and a real node, then a Pod.</p>
+  <h2 class="t">What's ahead: a real control plane, then a real Pod</h2>
+  <p class="s">In the lab you stand up exactly this, and see the parts.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="What the lab does in four steps: create a KIND cluster, see the control-plane pods running, see the kubelet and kube-proxy and runtime on the node, then run your first Pod on it.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="60" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="120" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="180" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="240" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="90" cy="55" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="115" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="175" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="235" r="20" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="90" y="68" text-anchor="middle" class="num">1</text>
-    <text x="90" y="128" text-anchor="middle" class="num">2</text>
-    <text x="90" y="188" text-anchor="middle" class="num">3</text>
-    <text x="90" y="248" text-anchor="middle" class="num">4</text>
+    <text x="90" y="63" text-anchor="middle" class="num">1</text>
+    <text x="90" y="123" text-anchor="middle" class="num">2</text>
+    <text x="90" y="183" text-anchor="middle" class="num">3</text>
+    <text x="90" y="243" text-anchor="middle" class="num">4</text>
     <g class="lbl" text-anchor="start">
-      <text x="130" y="68">create a KIND cluster (control plane + node)</text>
-      <text x="130" y="128">see the control-plane pods running</text>
-      <text x="130" y="188">see the kubelet, kube-proxy, runtime on the node</text>
+      <text x="130" y="63">create a KIND cluster (control plane + node)</text>
+      <text x="130" y="123">see the control-plane pods running in kube-system</text>
+      <text x="130" y="183">see the kubelet, kube-proxy, containerd on the node</text>
     </g>
-    <text x="130" y="248" text-anchor="start" class="lbl" fill="#2e7d32">then run your first Pod on it (Lesson 2)</text>
+    <text x="130" y="243" text-anchor="start" class="lbl" fill="#2e7d32">then run your first Pod on it (next lesson)</text>
   </svg>
-  <p class="credit">Now open <b>Module 3 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M3·22</div>
+  <div class="pageno">M3·29</div>
 </section>
+
+<!-- 22 · CLOSING -->
+<section>
+  <p class="kicker">MODULE 3 &nbsp;·&nbsp; ORCHESTRATION &#8212; KEY TAKEAWAYS</p>
+  <h2 class="t" style="font-size:1.8em">Stand up the tower and the tarmac</h2>
+  <p class="s" style="font-size:1.15em">Then Fernwood Goods runs on it, as a Pod.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A real control plane and a real node stand ready, and an arrow hands off to the lab and to Lesson 2 where the first Fernwood Goods Pod runs on the cluster.">
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="230" height="120" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="360" y="90" width="230" height="120" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="205" y="145" text-anchor="middle" class="lbl-b">control plane</text>
+    <text x="205" y="178" text-anchor="middle" class="lbl-sm" fill="#2e7d32">running</text>
+    <text x="475" y="145" text-anchor="middle" class="lbl-b">node</text>
+    <text x="475" y="178" text-anchor="middle" class="lbl-sm" fill="#2e7d32">ready</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <path d="M600,150 L690,150" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="700" y="90" width="300" height="120" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="850" y="140" text-anchor="middle" class="lbl-b">your first Pod</text>
+    <text x="850" y="175" text-anchor="middle" class="lbl-g">Lesson 2, on this cluster</text>
+  </svg>
+  <p class="credit">Now open <b>Module 3 &middot; Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
+  <div class="pageno">M3·30</div>
+</section>
+
 
 </div></div>
 

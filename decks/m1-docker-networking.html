@@ -112,6 +112,10 @@ footer, header, hgroup, main, menu, nav, section {
   .lbl-g{ fill:var(--gray); font-size:17px; }
   .lbl-b{ fill:var(--ink); font-size:23px; font-weight:700; }
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
+
+  /* §3a section divider slides — centre the lone title (base flex-start does not) */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
 </style>
 </head>
 <body>
@@ -134,11 +138,12 @@ footer, header, hgroup, main, menu, nav, section {
 
 <div class="reveal"><div class="slides">
 
+<!-- pos1 · TITLE · narration [1] from Part 1: pieces have to find each other -->
 <section data-auto-animate>
   <p class="kicker">MODULE 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:2.0em">Docker Networking: How Containers Find Each Other</h2>
   <p class="s" style="font-size:1.2em">The pieces must find and reach each other, on one host.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Two containers on one host, one asking where the other is; on a single host, making them find each other is Docker's job.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Part 1 leads into Part 2: two containers on one host, one asking where the other is; on a single host, making them find each other is Docker's job.">
     <g filter="url(#rough)">
       <rect x="120" y="110" width="230" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
       <rect x="750" y="110" width="230" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
@@ -157,114 +162,194 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M1·01</div>
 </section>
 
-<section>
-  <h2 class="t" style="font-size:2.2em">How a container gets a network at all</h2>
+<!-- pos2 · DIVIDER · How a container gets a network at all -->
+<section class="divider">
+  <h2 class="t">How a container gets a network at all</h2>
   <div class="pageno">M1·02</div>
 </section>
 
+<!-- pos3 · content · narration [2] private mailroom analogy -->
 <section>
   <h2 class="t">Every container gets its own private mailroom</h2>
-  <p class="s">Its own IP, its own interfaces, its own ports.</p>
-  <svg viewBox="0 0 1100 350" role="img" aria-label="An apartment building where each apartment has its own private mailroom — a network namespace with its own IP and interfaces — while all share the one real network card downstairs; two apartments can both use port 8080 without colliding.">
+  <p class="s">Dozens of flats, one real card downstairs.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="An apartment building where each flat has its own private mailroom with its own address, while all the flats share the one real network card downstairs in the basement.">
     <g filter="url(#rough)">
-      <rect x="90" y="60" width="600" height="220" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="120" y="90" width="250" height="80" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="410" y="90" width="250" height="80" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="220" y="200" width="340" height="55" rx="8" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="150" y="60" width="800" height="200" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="200" y="100" width="250" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="640" y="100" width="250" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="380" y="205" width="330" height="45" rx="8" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="390" y="52" text-anchor="middle" class="lbl-b">the host (apartment building)</text>
-    <text x="245" y="122" text-anchor="middle" class="lbl">container A</text>
-    <text x="245" y="152" text-anchor="middle" class="lbl-sm">own IP · :8080</text>
-    <text x="535" y="122" text-anchor="middle" class="lbl">container B</text>
-    <text x="535" y="152" text-anchor="middle" class="lbl-sm">own IP · :8080</text>
-    <text x="390" y="234" text-anchor="middle" class="lbl-sm">one real network card (shared mailroom)</text>
+    <text x="550" y="48" text-anchor="middle" class="lbl-b">the host (apartment building)</text>
+    <text x="325" y="140" text-anchor="middle" class="lbl">flat A</text>
+    <text x="325" y="170" text-anchor="middle" class="lbl-sm">own private mailroom</text>
+    <text x="765" y="140" text-anchor="middle" class="lbl">flat B</text>
+    <text x="765" y="170" text-anchor="middle" class="lbl-sm">own private mailroom</text>
+    <text x="545" y="234" text-anchor="middle" class="lbl-sm">one real network card (shared, downstairs)</text>
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <path d="M245,170 L340,198" marker-end="url(#ahg)"/>
-      <path d="M535,170 L440,198" marker-end="url(#ahg)"/>
+      <path d="M325,190 L420,205" marker-end="url(#ahg)"/>
+      <path d="M765,190 L670,205" marker-end="url(#ahg)"/>
     </g>
-    <g filter="url(#rough)">
-      <rect x="760" y="110" width="270" height="130" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-    </g>
-    <text x="895" y="150" text-anchor="middle" class="lbl-b">network namespace</text>
-    <text x="895" y="185" text-anchor="middle" class="lbl-sm">= a private mailroom:</text>
-    <text x="895" y="215" text-anchor="middle" class="lbl-sm">own interfaces + routing</text>
-    <text x="560" y="320" text-anchor="middle" class="lbl-g">that isolation is why both can listen on 8080 without colliding</text>
+    <text x="550" y="315" text-anchor="middle" class="lbl-g">each flat acts as if it owns the whole mailroom</text>
   </svg>
   <div class="pageno">M1·03</div>
 </section>
 
+<!-- pos4 · content · narration [3] what a network namespace actually is · 2 fragments -->
 <section>
-  <h2 class="t" style="font-size:2.2em">The three built-in networks</h2>
+  <h2 class="t">A network namespace is that private mailroom</h2>
+  <p class="s">Its own IP, its own interfaces, its own ports.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Docker creates a kernel-level network namespace and puts the container inside it, giving it its own IP, interfaces and ports; that isolation is why two containers can both listen on port 8080 without clashing.">
+    <g filter="url(#rough)">
+      <rect x="120" y="90" width="330" height="180" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="165" y="150" width="240" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="285" y="80" text-anchor="middle" class="lbl-b">network namespace</text>
+    <text x="285" y="130" text-anchor="middle" class="lbl-sm">own IP · interfaces · routing</text>
+    <text x="285" y="200" text-anchor="middle" class="lbl">container A · :8080</text>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="640" y="90" width="330" height="180" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+        <rect x="685" y="150" width="240" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      </g>
+      <text x="805" y="80" text-anchor="middle" class="lbl-b">another namespace</text>
+      <text x="805" y="130" text-anchor="middle" class="lbl-sm">separate from the host &amp; from A</text>
+      <text x="805" y="200" text-anchor="middle" class="lbl">container B · :8080</text>
+    </g>
+    <g class="fragment">
+      <text x="550" y="315" text-anchor="middle" class="lbl-g" fill="#2e7d32">both listen on 8080 without clashing — each inside its own namespace</text>
+    </g>
+  </svg>
   <div class="pageno">M1·04</div>
 </section>
 
-<section>
-  <h2 class="t">Docker ships three networks</h2>
-  <p class="s">Each is backed by a driver.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Three built-in Docker networks side by side — bridge, host and none — each labelled with its driver and what the container gets from it.">
-    <g filter="url(#rough)">
-      <rect x="70" y="80" width="300" height="210" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
-      <rect x="400" y="80" width="300" height="210" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="730" y="80" width="300" height="210" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
-    </g>
-    <text x="220" y="122" text-anchor="middle" class="lbl-b">bridge</text>
-    <text x="220" y="158" text-anchor="middle" class="lbl-g">driver: bridge</text>
-    <text x="220" y="205" text-anchor="middle" class="lbl-sm">private IP on a</text>
-    <text x="220" y="235" text-anchor="middle" class="lbl-sm">virtual switch</text>
-    <text x="220" y="268" text-anchor="middle" class="lbl-sm">out via NAT · the default</text>
-    <text x="550" y="122" text-anchor="middle" class="lbl-b">host</text>
-    <text x="550" y="158" text-anchor="middle" class="lbl-g">driver: host</text>
-    <text x="550" y="205" text-anchor="middle" class="lbl-sm">no separate</text>
-    <text x="550" y="235" text-anchor="middle" class="lbl-sm">namespace,</text>
-    <text x="550" y="268" text-anchor="middle" class="lbl-sm">shares the host stack</text>
-    <text x="880" y="122" text-anchor="middle" class="lbl-b">none</text>
-    <text x="880" y="158" text-anchor="middle" class="lbl-g">driver: null</text>
-    <text x="880" y="205" text-anchor="middle" class="lbl-sm">loopback only</text>
-    <text x="880" y="235" text-anchor="middle" class="lbl-sm">and nothing else</text>
-    <text x="880" y="268" text-anchor="middle" class="lbl-sm">cut off on purpose</text>
-    <text x="550" y="318" text-anchor="middle" class="lbl-g">the driver decides what "being on this network" physically means</text>
-  </svg>
+<!-- pos5 · DIVIDER · The three built-in networks -->
+<section class="divider">
+  <h2 class="t">The three built-in networks</h2>
   <div class="pageno">M1·05</div>
 </section>
 
+<!-- pos6 · content · narration [4] docker ships three networks (ls preview) -->
 <section>
-  <h2 class="t">host and none are the exceptions</h2>
-  <p class="s">Both remove the default behaviour on purpose.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Left: host removes namespace isolation so a container binds the host's real ports directly. Right: none gives only a loopback, deliberately cutting the container off from the network.">
-    <text x="270" y="46" text-anchor="middle" class="lbl-b">host</text>
-    <text x="810" y="46" text-anchor="middle" class="lbl-b">none</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6"><line x1="540" y1="30" x2="540" y2="315"/></g>
+  <h2 class="t">Docker starts with three networks</h2>
+  <p class="s">You can see them with docker network ls.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A preview of docker network ls output: three rows — bridge, host and none — each with its network driver, the software that decides what being on that network means.">
     <g filter="url(#rough)">
-      <rect x="120" y="80" width="330" height="90" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="180" y="200" width="210" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="150" y="70" width="800" height="220" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+      <line x1="150" y1="120" x2="950" y2="120"/>
+      <line x1="150" y1="177" x2="950" y2="177"/>
+      <line x1="150" y1="234" x2="950" y2="234"/>
+      <line x1="560" y1="70" x2="560" y2="290"/>
     </g>
-    <text x="285" y="118" text-anchor="middle" class="lbl">host network stack</text>
-    <text x="285" y="150" text-anchor="middle" class="lbl-sm">no NAT hop, no isolation</text>
-    <text x="285" y="242" text-anchor="middle" class="lbl">container</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M285,200 L285,172" marker-end="url(#ah)"/>
-    </g>
-    <text x="285" y="300" text-anchor="middle" class="lbl-sm">reverse proxy · host-metrics agent</text>
-    <g filter="url(#rough)">
-      <rect x="700" y="120" width="220" height="110" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
-    </g>
-    <text x="810" y="165" text-anchor="middle" class="lbl">container</text>
-    <text x="810" y="198" text-anchor="middle" class="lbl-sm">loopback only</text>
-    <text x="810" y="300" text-anchor="middle" class="lbl-sm">batch job · must-not-phone-home step</text>
-    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.4" stroke-linecap="round">
-      <path d="M930,110 L960,140"/>
-      <path d="M960,110 L930,140"/>
-    </g>
-    <text x="985" y="130" text-anchor="middle" class="lbl-sm" fill="#c62828">no net</text>
+    <text x="180" y="105" text-anchor="start" class="lbl-b">NETWORK</text>
+    <text x="590" y="105" text-anchor="start" class="lbl-b">DRIVER</text>
+    <text x="180" y="158" text-anchor="start" class="lbl">bridge</text>
+    <text x="590" y="158" text-anchor="start" class="lbl-g">bridge</text>
+    <text x="180" y="215" text-anchor="start" class="lbl">host</text>
+    <text x="590" y="215" text-anchor="start" class="lbl-g">host</text>
+    <text x="180" y="272" text-anchor="start" class="lbl">none</text>
+    <text x="590" y="272" text-anchor="start" class="lbl-g">null</text>
+    <text x="550" y="55" text-anchor="middle" class="lbl-sm">$ docker network ls</text>
+    <text x="550" y="318" text-anchor="middle" class="lbl-g">the driver decides what "being on this network" means</text>
   </svg>
   <div class="pageno">M1·06</div>
 </section>
 
+<!-- pos7 · content · narration [5] bridge: the default -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Why the default bridge is an operational trap</h2>
+  <h2 class="t">bridge: a private IP, out through NAT</h2>
+  <p class="s">Docker's default for a container you didn't place.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A container on the bridge driver gets a private IP on Docker's own virtual switch and reaches the outside world through NAT, address translation at the host's edge.">
+    <g filter="url(#rough)">
+      <rect x="90" y="120" width="220" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="420" y="110" width="240" height="120" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="780" y="130" width="220" height="80" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="200" y="162" text-anchor="middle" class="lbl-b">container</text>
+    <text x="200" y="194" text-anchor="middle" class="lbl-g">private IP</text>
+    <text x="540" y="155" text-anchor="middle" class="lbl-b">virtual switch</text>
+    <text x="540" y="188" text-anchor="middle" class="lbl-sm">Docker's own bridge</text>
+    <text x="890" y="165" text-anchor="middle" class="lbl">NAT → internet</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M312,170 L418,170" marker-end="url(#ah)"/>
+      <path d="M662,170 L778,170" marker-end="url(#ah)"/>
+    </g>
+    <text x="890" y="230" text-anchor="middle" class="lbl-sm">address translation at the host's edge</text>
+    <text x="540" y="300" text-anchor="middle" class="lbl-g">the default for a container you didn't place anywhere specific</text>
+  </svg>
   <div class="pageno">M1·07</div>
 </section>
 
+<!-- pos8 · content · narration [6] host: no isolation at all -->
+<section>
+  <h2 class="t">host: no separate namespace at all</h2>
+  <p class="s">Reach for it when isolation is the problem.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="On the host network the container shares the host's network stack directly, with no separate namespace and no NAT hop — used for a latency-sensitive proxy or a monitoring agent that must see the host's real interfaces.">
+    <g filter="url(#rough)">
+      <rect x="230" y="70" width="640" height="90" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="380" y="190" width="340" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="112" text-anchor="middle" class="lbl-b">host's network stack</text>
+    <text x="550" y="145" text-anchor="middle" class="lbl-sm">no NAT hop, no isolation</text>
+    <text x="550" y="238" text-anchor="middle" class="lbl">container (shares it directly)</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M550,190 L550,162" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="305" text-anchor="middle" class="lbl-g">latency-sensitive proxy · monitoring agent — accept losing isolation to get it</text>
+  </svg>
+  <div class="pageno">M1·08</div>
+</section>
+
+<!-- pos9 · content · narration [7] none: cut off on purpose -->
+<section>
+  <h2 class="t">none: a loopback, and nothing else</h2>
+  <p class="s">A guardrail — the network removed on purpose.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A container on the none network gets only a loopback interface and nothing else, deliberately cut off from the network — used for a batch job that only crunches a mounted file or a step that must not phone home.">
+    <g filter="url(#rough)">
+      <rect x="380" y="90" width="340" height="150" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
+    </g>
+    <text x="550" y="140" text-anchor="middle" class="lbl-b">container</text>
+    <text x="550" y="180" text-anchor="middle" class="lbl-sm">loopback only</text>
+    <text x="550" y="212" text-anchor="middle" class="lbl-sm">nothing else</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.6" stroke-linecap="round">
+      <path d="M740,100 L790,150"/>
+      <path d="M790,100 L740,150"/>
+    </g>
+    <text x="820" y="130" text-anchor="middle" class="lbl-sm" fill="#c62828">no net</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-g">batch job on a mounted file · a step that must not phone home</text>
+  </svg>
+  <div class="pageno">M1·09</div>
+</section>
+
+<!-- pos10 · content · narration [8] both extremes, hands-on -->
+<section>
+  <h2 class="t">host and none are both the exception</h2>
+  <p class="s">Want the driver's behaviour — not the default network.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="host and none are the exceptions; for an application whose parts must talk, you want the default driver's behaviour — a private network they share — but not the default network itself, as the next section shows.">
+    <g filter="url(#rough)">
+      <rect x="90" y="100" width="260" height="120" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="420" y="100" width="260" height="120" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-dasharray="9 7"/>
+    </g>
+    <text x="220" y="150" text-anchor="middle" class="lbl-b">host</text>
+    <text x="220" y="185" text-anchor="middle" class="lbl-sm">exception</text>
+    <text x="550" y="150" text-anchor="middle" class="lbl-b">none</text>
+    <text x="550" y="185" text-anchor="middle" class="lbl-sm">exception</text>
+    <g filter="url(#rough)">
+      <rect x="760" y="100" width="260" height="120" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="890" y="145" text-anchor="middle" class="lbl-b">a shared private net</text>
+    <text x="890" y="185" text-anchor="middle" class="lbl-sm">what an app wants</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g" fill="#c62828">but the default bridge network itself is the trap — next</text>
+  </svg>
+  <div class="pageno">M1·10</div>
+</section>
+
+<!-- pos11 · DIVIDER · Why the default bridge is an operational trap -->
+<section class="divider">
+  <h2 class="t">Why the default bridge is an operational trap</h2>
+  <div class="pageno">M1·11</div>
+</section>
+
+<!-- pos12 · content · narration [9] the default bridge: IP only, no names -->
 <section>
   <h2 class="t">The default bridge works in the demo, breaks in the app</h2>
   <p class="s">You reach it by IP only; names don't work here.</p>
@@ -285,56 +370,66 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="112" text-anchor="middle" class="lbl-g">only "172.17.0.3" works</text>
     <text x="550" y="215" text-anchor="middle" class="lbl" fill="#c62828">no name resolution and no directory here</text>
   </svg>
-  <div class="pageno">M1·08</div>
+  <div class="pageno">M1·12</div>
 </section>
 
+<!-- pos13 · content · narration [10] the IP changes at every restart · NEW · real captured value -->
+<section>
+  <h2 class="t">The IP is handed out at start, and can change</h2>
+  <p class="s">Restart, and the address you noted is gone.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="Docker gives a container its IP from the bridge subnet at start time; in this module's lab the backend gets an address like 172.27.0.3 on the appnet subnet, and that exact address can change every time the container restarts.">
+    <g filter="url(#rough)">
+      <rect x="120" y="110" width="260" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="250" y="152" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="250" y="186" text-anchor="middle" class="lbl-g">172.27.0.3</text>
+    <text x="250" y="90" text-anchor="middle" class="lbl-sm">at first start · appnet subnet</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="6 5" stroke-linecap="round">
+      <path d="M382,165 C500,165 560,165 620,165" marker-end="url(#ahg)"/>
+    </g>
+    <text x="500" y="145" text-anchor="middle" class="lbl-g">restart</text>
+    <g filter="url(#rough)">
+      <rect x="640" y="110" width="260" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="770" y="152" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="770" y="186" text-anchor="middle" class="lbl-g" fill="#c62828">now a different IP</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-sm">so someone must find the current IP and stash it somewhere</text>
+  </svg>
+  <div class="pageno">M1·13</div>
+</section>
+
+<!-- pos14 · content · narration [11] hardcode it, and the next restart breaks it -->
 <section>
   <h2 class="t">Hardcode an IP and the next restart breaks it</h2>
-  <p class="s">Restart, new IP, stale pointer.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A container starts with IP 172.17.0.3 and someone hardcodes it; after a restart the container comes back with a different IP and the hardcoded pointer is now stale, pointing at nothing.">
+  <p class="s">Nothing changed, yet the app is broken.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="An old IP is hardcoded into config; after a restart the container comes back on a different IP, the config now points at nothing, and the frontend cannot reach the backend — a stale address that looks like an outage.">
     <g filter="url(#rough)">
-      <rect x="90" y="120" width="240" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="110" y="110" width="240" height="100" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="210" y="162" text-anchor="middle" class="lbl-b">backend</text>
-    <text x="210" y="195" text-anchor="middle" class="lbl-g">172.17.0.3</text>
+    <text x="230" y="150" text-anchor="middle" class="lbl-sm">config: BACKEND=</text>
+    <text x="230" y="182" text-anchor="middle" class="lbl-sm">172.27.0.3</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round">
+      <path d="M360,160 L560,160" marker-end="url(#ah)"/>
+    </g>
+    <text x="460" y="140" text-anchor="middle" class="lbl-g" fill="#c62828">points at nothing now</text>
     <g filter="url(#rough)">
-      <rect x="430" y="140" width="240" height="70" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="580" y="110" width="260" height="100" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="9 7"/>
     </g>
-    <text x="550" y="172" text-anchor="middle" class="lbl-sm">config: BACKEND=</text>
-    <text x="550" y="198" text-anchor="middle" class="lbl-sm">172.17.0.3</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M330,175 L428,175" marker-end="url(#ah)"/>
-    </g>
-    <text x="380" y="150" text-anchor="middle" class="lbl-g">hardcode</text>
-    <g class="fragment">
-      <g filter="url(#rough)">
-        <rect x="90" y="120" width="240" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-      </g>
-      <text x="210" y="162" text-anchor="middle" class="lbl-b">backend</text>
-      <text x="210" y="195" text-anchor="middle" class="lbl-g" fill="#c62828">now 172.17.0.7</text>
-      <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="6 5" stroke-linecap="round">
-        <path d="M210,120 C210,70 210,70 210,60"/>
-      </g>
-      <text x="210" y="48" text-anchor="middle" class="lbl-sm">restart after a crash</text>
-    </g>
-    <g class="fragment">
-      <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round">
-        <path d="M550,210 L550,270" marker-end="url(#ah)"/>
-      </g>
-      <text x="550" y="300" text-anchor="middle" class="lbl" fill="#c62828">pointer is stale, points at nothing</text>
-      <text x="880" y="180" text-anchor="middle" class="lbl-sm">the classic 2-tier failure:</text>
-      <text x="880" y="212" text-anchor="middle" class="lbl-sm">"nothing changed, yet</text>
-      <text x="880" y="240" text-anchor="middle" class="lbl-sm">the app is broken"</text>
-    </g>
+    <text x="710" y="150" text-anchor="middle" class="lbl">old address</text>
+    <text x="710" y="182" text-anchor="middle" class="lbl-sm">gone after restart</text>
+    <text x="550" y="270" text-anchor="middle" class="lbl" fill="#c62828">frontend can't reach the backend — a stale address, not an outage</text>
+    <text x="550" y="305" text-anchor="middle" class="lbl-g">hardcoding IPs guarantees breakage the first time a container restarts</text>
   </svg>
-  <div class="pageno">M1·09</div>
+  <div class="pageno">M1·14</div>
 </section>
 
-<section>
-  <h2 class="t" style="font-size:2.2em">User-defined bridge networks and DNS by name</h2>
-  <div class="pageno">M1·10</div>
+<!-- pos15 · DIVIDER · User-defined bridge networks and DNS by name -->
+<section class="divider">
+  <h2 class="t">User-defined bridge networks and DNS by name</h2>
+  <div class="pageno">M1·15</div>
 </section>
 
+<!-- pos16 · content · narration [12] an office floor with its own directory -->
 <section>
   <h2 class="t">A user-defined bridge is an office floor with a directory</h2>
   <p class="s">The floor you join decides who you can reach.</p>
@@ -365,9 +460,10 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="700" y="150" text-anchor="middle" class="lbl-sm" fill="#c62828">no listing</text>
   </svg>
-  <div class="pageno">M1·11</div>
+  <div class="pageno">M1·16</div>
 </section>
 
+<!-- pos17 · content · narration [13] embedded DNS: resolve by name -->
 <section>
   <h2 class="t">The name stays fixed; the IP can change</h2>
   <p class="s">You use the name; DNS finds the current IP.</p>
@@ -377,33 +473,30 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="200" y="160" text-anchor="middle" class="lbl-b">frontend</text>
     <text x="200" y="192" text-anchor="middle" class="lbl-sm">http://backend:8080</text>
-    <g class="fragment">
-      <g filter="url(#rough)">
-        <rect x="430" y="120" width="240" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
-      </g>
-      <text x="550" y="160" text-anchor="middle" class="lbl-b">embedded DNS</text>
-      <text x="550" y="192" text-anchor="middle" class="lbl-sm">on the user-defined net</text>
-      <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-        <path d="M320,170 L428,170" marker-end="url(#ah)"/>
-      </g>
-      <text x="375" y="150" text-anchor="middle" class="lbl-sm">"backend"?</text>
+    <g filter="url(#rough)">
+      <rect x="430" y="120" width="240" height="100" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <g class="fragment">
-      <g filter="url(#rough)">
-        <rect x="780" y="120" width="240" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-      </g>
-      <text x="900" y="160" text-anchor="middle" class="lbl-b">backend</text>
-      <text x="900" y="192" text-anchor="middle" class="lbl-g">whatever IP it has now</text>
-      <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linecap="round">
-        <path d="M670,170 L778,170" marker-end="url(#ah)"/>
-      </g>
-      <text x="724" y="150" text-anchor="middle" class="lbl-sm" fill="#2e7d32">current IP</text>
-      <text x="550" y="290" text-anchor="middle" class="lbl-g">that's why BACKEND_URL defaults to a name, not an address</text>
+    <text x="550" y="160" text-anchor="middle" class="lbl-b">embedded DNS</text>
+    <text x="550" y="192" text-anchor="middle" class="lbl-sm">on the user-defined net</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M320,170 L428,170" marker-end="url(#ah)"/>
     </g>
+    <text x="375" y="150" text-anchor="middle" class="lbl-sm">"backend"?</text>
+    <g filter="url(#rough)">
+      <rect x="780" y="120" width="240" height="100" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="900" y="160" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="900" y="192" text-anchor="middle" class="lbl-g">whatever IP it has now</text>
+    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linecap="round">
+      <path d="M670,170 L778,170" marker-end="url(#ah)"/>
+    </g>
+    <text x="724" y="150" text-anchor="middle" class="lbl-sm" fill="#2e7d32">current IP</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">that's why BACKEND_URL defaults to a name, not an address</text>
   </svg>
-  <div class="pageno">M1·12</div>
+  <div class="pageno">M1·17</div>
 </section>
 
+<!-- pos18 · content · narration [14] same building, different floor, no listing -->
 <section>
   <h2 class="t">Same directory, or no answer</h2>
   <p class="s">Same building but a different floor: no listing.</p>
@@ -436,9 +529,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="815" y="140" text-anchor="middle" class="lbl-sm" fill="#c62828">172.x</text>
     <text x="815" y="290" text-anchor="middle" class="lbl-sm" fill="#c62828">must chase an IP that changes every run</text>
   </svg>
-  <div class="pageno">M1·13</div>
+  <div class="pageno">M1·18</div>
 </section>
 
+<!-- pos19 · content · narration [15] this becomes a Kubernetes Service -->
 <section>
   <h2 class="t">This grows into a Kubernetes Service</h2>
   <p class="s">A stable DNS name, so nobody uses Pod IPs.</p>
@@ -457,18 +551,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="530" y="185" text-anchor="middle" class="lbl-g">same idea, whole cluster</text>
     <text x="545" y="315" text-anchor="middle" class="lbl-g">learn the habit here on one host and the Kubernetes version feels familiar</text>
   </svg>
-  <div class="pageno">M1·14</div>
+  <div class="pageno">M1·19</div>
 </section>
 
+<!-- pos20 · content · narration [16] the one habit to keep -->
 <section>
-  <h2 class="t" style="font-size:2.2em">What the lab is about to prove</h2>
-  <div class="pageno">M1·15</div>
-</section>
-
-<section>
-  <p class="kicker">MODULE 1 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:2.0em">One habit: put them on a user-defined network</h2>
-  <p class="s" style="font-size:1.15em">Use names; never type an IP by hand.</p>
+  <h2 class="t">One habit: put them on a user-defined network</h2>
+  <p class="s">Use names; never type an IP by hand.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="Four numbered steps of the one habit: create a user-defined bridge, attach the containers, call each other by name, and never wire IPs by hand.">
     <g filter="url(#rough)">
       <circle cx="90" cy="70" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -489,8 +578,35 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="130" y="258">never wire an IP address by hand</text>
     </g>
   </svg>
+  <div class="pageno">M1·20</div>
+</section>
+
+<!-- pos21 · CLOSING · narration [17] what the lab is about to prove -->
+<section>
+  <p class="kicker">MODULE 1 &nbsp;·&nbsp; DOCKER NETWORKING · TAKEAWAYS</p>
+  <h2 class="t" style="font-size:2.0em">Now go prove it: names should work, IPs you never type</h2>
+  <p class="s" style="font-size:1.15em">All three tiers on one network, found by name.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="In the lab you build the frontend and backend images, put all three tiers on one user-defined network, and watch them find each other by name; the frontend fetches the catalogue from backend and the backend reports whether it can reach db.">
+    <g filter="url(#rough)">
+      <rect x="120" y="90" width="860" height="130" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="170" y="130" width="200" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="450" y="130" width="200" height="70" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="730" y="130" width="200" height="70" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="70" text-anchor="middle" class="lbl-b">appnet · one user-defined network</text>
+    <text x="270" y="172" text-anchor="middle" class="lbl">frontend</text>
+    <text x="550" y="172" text-anchor="middle" class="lbl">backend</text>
+    <text x="830" y="172" text-anchor="middle" class="lbl">db</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M372,165 L448,165" marker-end="url(#ah)"/>
+      <path d="M652,165 L728,165" marker-end="url(#ah)"/>
+    </g>
+    <text x="410" y="148" text-anchor="middle" class="lbl-sm">by name</text>
+    <text x="690" y="148" text-anchor="middle" class="lbl-sm">by name</text>
+    <text x="550" y="265" text-anchor="middle" class="lbl-sm" fill="#2e7d32">and see the default bridge fail to resolve by name — proof, not faith</text>
+  </svg>
   <p class="credit">Now open <b>Module 1 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M1·16</div>
+  <div class="pageno">M1·21</div>
 </section>
 
 </div></div>

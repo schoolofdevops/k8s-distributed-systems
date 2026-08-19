@@ -112,6 +112,10 @@ footer, header, hgroup, main, menu, nav, section {
   .lbl-g{ fill:var(--gray); font-size:17px; }
   .lbl-b{ fill:var(--ink); font-size:23px; font-weight:700; }
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
+
+  /* Section divider slides (style-guide §3a) */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
 </style>
 </head>
 <body>
@@ -134,111 +138,162 @@ footer, header, hgroup, main, menu, nav, section {
 
 <div class="reveal"><div class="slides">
 
-<!-- 1 · TITLE -->
+<!-- ============================================================
+     M5 lesson deck slides — reworked 2026-08-11 to match
+     planning/narration/m5-narration.md (32 narration slides, 1:1)
+     + 7 section divider slides (§3a). 39 sections total.
+     Divider positions (no [Slide N] marker): 2,7,12,15,23,26,30.
+     ============================================================ -->
+
+<!-- pos 1 · TITLE · narration [Slide 1] -->
 <section data-auto-animate>
   <p class="kicker">MODULE 5 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Release without closing the kitchen</h2>
-  <p class="s" style="font-size:1.2em">Ship a new version while customers keep ordering.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A head chef at the pass, a row of three cooks on the line, and a full dining room — the kitchen keeps serving while the menu changes.">
+  <p class="s" style="font-size:1.2em">A stable app is not yet a releasable one.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Fernwood's frontend and backend are stable and running, but a stop sign reads there is no safe way to ship a new version yet.">
     <g filter="url(#rough)">
-      <rect x="70" y="70" width="180" height="180" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
-      <circle cx="160" cy="128" r="24" stroke="#1e1e1e" stroke-width="2.4" fill="none"/>
-      <path d="M160,152 L160,208 M160,166 L132,194 M160,166 L188,194" stroke="#1e1e1e" stroke-width="2.4" fill="none"/>
+      <rect x="70" y="95" width="300" height="120" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="410" y="95" width="300" height="120" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="160" y="278" text-anchor="middle" class="lbl-sm">head chef</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <line x1="330" y1="235" x2="720" y2="235"/>
-      <circle cx="400" cy="120" r="22"/><path d="M400,142 L400,196 M400,155 L374,182 M400,155 L426,182"/>
-      <circle cx="525" cy="120" r="22"/><path d="M525,142 L525,196 M525,155 L499,182 M525,155 L551,182"/>
-      <circle cx="650" cy="120" r="22"/><path d="M650,142 L650,196 M650,155 L624,182 M650,155 L676,182"/>
-    </g>
-    <text x="525" y="272" text-anchor="middle" class="lbl-sm">cooks on the line</text>
+    <text x="220" y="140" text-anchor="middle" class="lbl-b">frontend &times;3</text>
+    <text x="220" y="180" text-anchor="middle" class="lbl-sm" fill="#2e7d32">running</text>
+    <text x="560" y="140" text-anchor="middle" class="lbl-b">backend &times;2</text>
+    <text x="560" y="180" text-anchor="middle" class="lbl-sm" fill="#2e7d32">running</text>
     <g filter="url(#rough)">
-      <rect x="810" y="80" width="220" height="160" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="860" cy="130" r="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
-      <circle cx="920" cy="130" r="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
-      <circle cx="980" cy="130" r="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
-      <circle cx="890" cy="185" r="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
-      <circle cx="950" cy="185" r="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
+      <path d="M840,70 L960,70 L1015,125 L1015,215 L960,270 L840,270 L785,215 L785,125 Z" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="920" y="272" text-anchor="middle" class="lbl-sm">dining room, full</text>
+    <text x="900" y="160" text-anchor="middle" class="lbl-b">STOP</text>
+    <text x="900" y="200" text-anchor="middle" class="lbl-sm">no safe way</text>
+    <text x="900" y="228" text-anchor="middle" class="lbl-sm">to ship yet</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M5·01</div>
 </section>
 
-<!-- divider: intro / lead-in -->
-<section>
-  <h2 class="t" style="font-size:2.2em">From stable to releasable</h2>
+<!-- pos 2 · DIVIDER 1 -->
+<section class="divider">
+  <h2 class="t">Why a ReplicaSet is not enough to release with</h2>
   <div class="pageno">M5·02</div>
 </section>
 
-<!-- 2 · RS keeps alive, can't release -->
+<!-- pos 3 · narration [Slide 2] · a ReplicaSet only knows "right now" -->
 <section>
-  <h2 class="t">A ReplicaSet keeps copies alive, not versions moving</h2>
-  <p class="s">It keeps one version, it cannot move across.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: a ReplicaSet is good at keeping three Pods alive, but when you edit its template it does not gently migrate — it only ever reconciles toward one current spec.">
+  <h2 class="t">A ReplicaSet only knows &ldquo;right now&rdquo;</h2>
+  <p class="s">It keeps one template true — it cannot move across.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A ReplicaSet holds one Pod template and keeps N Pods matching that template right now; it has no slot for a previous template, so it cannot migrate gently from one version to another.">
     <g filter="url(#rough)">
-      <rect x="70" y="75" width="440" height="205" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="150" y="160" width="80" height="52" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="250" y="160" width="80" height="52" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="350" y="160" width="80" height="52" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="70" y="70" width="360" height="210" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="120" y="120" width="260" height="60" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
-    <text x="290" y="120" text-anchor="middle" class="lbl-b">keep N alive</text>
-    <text x="290" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">the right job, done well</text>
+    <text x="250" y="102" text-anchor="middle" class="lbl-b">ReplicaSet</text>
+    <text x="250" y="158" text-anchor="middle" class="lbl">one Pod template</text>
+    <text x="250" y="230" text-anchor="middle" class="lbl-sm">are there enough Pods</text>
+    <text x="250" y="258" text-anchor="middle" class="lbl-sm">matching THIS, right now?</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <line x1="430" y1="150" x2="560" y2="150" marker-end="url(#ah)"/>
+      <rect x="590" y="105" width="70" height="90" rx="8"/>
+      <rect x="680" y="105" width="70" height="90" rx="8"/>
+      <rect x="770" y="105" width="70" height="90" rx="8"/>
+    </g>
+    <text x="715" y="235" text-anchor="middle" class="lbl-sm">N Pods matching this template</text>
     <g filter="url(#rough)">
-      <rect x="590" y="75" width="440" height="205" rx="14" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
-      <rect x="660" y="150" width="140" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2" stroke-dasharray="9 7"/>
-      <rect x="850" y="150" width="140" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="880" y="105" width="150" height="90" rx="8" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="9 7"/>
+      <path d="M900,120 L1010,180 M1010,120 L900,180" stroke="#c62828" stroke-width="2.2" fill="none"/>
     </g>
-    <text x="810" y="120" text-anchor="middle" class="lbl-b">change the version</text>
-    <text x="730" y="186" text-anchor="middle" class="lbl-sm">A</text>
-    <text x="920" y="186" text-anchor="middle" class="lbl-sm">B</text>
-    <text x="810" y="252" text-anchor="middle" class="lbl-sm" fill="#c62828">no gentle move from A to B</text>
+    <text x="955" y="230" text-anchor="middle" class="lbl-sm" fill="#c62828">no previous template</text>
   </svg>
   <div class="pageno">M5·03</div>
 </section>
 
-<!-- divider: Why a ReplicaSet is not enough -->
+<!-- pos 4 · narration [Slide 3] · need #1 controlled move -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Why a ReplicaSet is not enough to release with</h2>
+  <h2 class="t">Need one: a controlled move, a few Pods at a time</h2>
+  <p class="s">Prove each new Pod healthy before retiring an old one.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Old-version Pods on the left and new-version Pods on the right, with one Pod crossing a checkmark gate at a time so the app never drops below the capacity it needs.">
+    <g filter="url(#rough)">
+      <rect x="70" y="90" width="260" height="130" rx="12" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7"/>
+      <rect x="110" y="130" width="50" height="50" rx="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="175" y="130" width="50" height="50" rx="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="240" y="130" width="50" height="50" rx="7" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <text x="200" y="118" text-anchor="middle" class="lbl-b" fill="#757575">version A</text>
+    <g filter="url(#rough)">
+      <circle cx="550" cy="150" r="46" fill="none" stroke="#2e7d32" stroke-width="2.8"/>
+      <path d="M528,152 L544,168 L576,130" stroke="#2e7d32" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="470" y="120" width="50" height="50" rx="7" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="550" y="222" text-anchor="middle" class="lbl-sm" fill="#2e7d32">healthy? one moves</text>
+    <g filter="url(#rough)">
+      <rect x="770" y="90" width="260" height="130" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="810" y="130" width="50" height="50" rx="7" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="875" y="130" width="50" height="50" rx="7" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <text x="900" y="118" text-anchor="middle" class="lbl-b">version B</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M330,150 L500,150" marker-end="url(#ah)"/>
+      <path d="M600,150 L768,150" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="280" text-anchor="middle" class="lbl-g">never drop below the capacity you need</text>
+  </svg>
   <div class="pageno">M5·04</div>
 </section>
 
-<!-- 3 · releasing needs three things -->
+<!-- pos 5 · narration [Slide 4] · need #2 memory -->
 <section>
-  <h2 class="t">Releasing safely needs three things a ReplicaSet lacks</h2>
-  <p class="s">A controlled move, a memory, a record.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Three capabilities a safe release needs: a controlled transition a few Pods at a time, memory of the previous version kept intact, and a record of what changed and when.">
+  <h2 class="t">Need two: memory of the version that came before</h2>
+  <p class="s">Keep the old version whole, so going back is instant.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="The current version stands live while the previous version sits kept whole on a shelf, not deleted, so returning to it is a scale-up rather than a rebuild.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="20" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="150" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="230" r="20" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="120" y="70" width="320" height="150" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
-    <text x="90" y="78" text-anchor="middle" class="num">1</text>
-    <text x="90" y="158" text-anchor="middle" class="num">2</text>
-    <text x="90" y="238" text-anchor="middle" class="num">3</text>
-    <g class="lbl-b" text-anchor="start">
-      <text x="140" y="66">a controlled move</text>
-      <text x="140" y="146">memory of what came before</text>
-      <text x="140" y="226">a record of what changed</text>
+    <text x="280" y="130" text-anchor="middle" class="lbl-b">current version</text>
+    <text x="280" y="172" text-anchor="middle" class="lbl-sm" fill="#2e7d32">live</text>
+    <g filter="url(#rough)">
+      <rect x="640" y="70" width="320" height="150" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <line x1="600" y1="240" x2="1000" y2="240" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round"/>
     </g>
-    <g class="lbl-g" text-anchor="start">
-      <text x="140" y="94">move A → B a few Pods at a time</text>
-      <text x="140" y="174">keep the old version whole, return in an instant</text>
-      <text x="140" y="254">a history to read during an incident</text>
+    <text x="800" y="120" text-anchor="middle" class="lbl-b">previous version</text>
+    <text x="800" y="162" text-anchor="middle" class="lbl-sm">kept whole, on a shelf</text>
+    <text x="800" y="270" text-anchor="middle" class="lbl-sm">not deleted, not thrown away</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 5">
+      <path d="M638,145 L442,145" marker-end="url(#ahg)"/>
     </g>
+    <text x="540" y="128" text-anchor="middle" class="lbl-g">back = scale-up, not rebuild</text>
   </svg>
   <div class="pageno">M5·05</div>
 </section>
 
-<!-- divider: The analogy: a head chef swapping the menu mid-service -->
+<!-- pos 6 · narration [Slide 5] · need #3 record -->
 <section>
-  <h2 class="t" style="font-size:2.2em">The analogy: a head chef swapping the menu mid-service</h2>
+  <h2 class="t">Need three: a record of what changed, and when</h2>
+  <p class="s">A history you can read during an incident.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A numbered list of revisions with a magnifying glass over it, answering one question during an incident: what did we ship, and when.">
+    <g filter="url(#rough)">
+      <rect x="150" y="55" width="520" height="46" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="150" y="113" width="520" height="46" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="150" y="171" width="520" height="46" rx="6" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <g class="lbl" text-anchor="start">
+      <text x="175" y="86">revision 1 · release 1.0</text>
+      <text x="175" y="144">revision 2 · release 2.0</text>
+      <text x="175" y="202">revision 3 · current</text>
+    </g>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <circle cx="820" cy="140" r="60"/>
+      <line x1="864" y1="184" x2="930" y2="245"/>
+    </g>
+    <text x="820" y="270" text-anchor="middle" class="lbl-sm">what shipped, and when</text>
+  </svg>
   <div class="pageno">M5·06</div>
 </section>
 
-<!-- 4 · analogy: chef swaps menu -->
+<!-- pos 7 · DIVIDER 2 -->
+<section class="divider">
+  <h2 class="t">The analogy: a head chef swapping the menu mid-service</h2>
+  <div class="pageno">M5·07</div>
+</section>
+
+<!-- pos 8 · narration [Slide 6] · kitchen analogy part 1 -->
 <section>
   <h2 class="t">A head chef swaps the menu mid-service</h2>
   <p class="s">The line never stops while the menu changes.</p>
@@ -264,10 +319,38 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="830" y="272" text-anchor="middle" class="lbl-sm">cooks keep plating, the room stays served</text>
   </svg>
-  <div class="pageno">M5·07</div>
+  <div class="pageno">M5·08</div>
 </section>
 
-<!-- 5 · map kitchen onto k8s -->
+<!-- pos 9 · narration [Slide 7] · recipe drawer part 2 -->
+<section>
+  <h2 class="t">The old recipe cards stay in the drawer</h2>
+  <p class="s">Call menu 1 back, and the line serves it in seconds.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="When plates come back wrong from menu two, the chef pulls the menu-one recipe cards back out of a drawer where they were never thrown away, and the line is serving the known-good food again in seconds.">
+    <g filter="url(#rough)">
+      <rect x="90" y="120" width="300" height="150" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <line x1="90" y1="170" x2="390" y2="170" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="240" cy="196" r="9" fill="none" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="150" y="60" width="90" height="70" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="170" y="45" width="90" height="70" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="240" y="245" text-anchor="middle" class="lbl-b">drawer</text>
+    <text x="215" y="90" text-anchor="middle" class="lbl-sm">menu 1 cards</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M400,140 L640,140" marker-end="url(#ah)"/>
+    </g>
+    <text x="520" y="122" text-anchor="middle" class="lbl">call menu 1 back</text>
+    <g filter="url(#rough)">
+      <rect x="680" y="80" width="340" height="160" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="850" y="140" text-anchor="middle" class="lbl-b">known-good food</text>
+    <text x="850" y="182" text-anchor="middle" class="lbl-sm" fill="#2e7d32">serving again in seconds</text>
+    <text x="850" y="285" text-anchor="middle" class="lbl-sm">nothing had to be re-written</text>
+  </svg>
+  <div class="pageno">M5·09</div>
+</section>
+
+<!-- pos 10 · narration [Slide 8] · map kitchen onto Kubernetes -->
 <section>
   <h2 class="t">Map the kitchen onto Kubernetes</h2>
   <p class="s">Each kitchen part is one Kubernetes object.</p>
@@ -301,19 +384,46 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="575" y="304">rollout history</text>
     </g>
   </svg>
-  <div class="pageno">M5·08</div>
+  <div class="pageno">M5·10</div>
 </section>
 
-<!-- divider: What a Deployment actually is -->
+<!-- pos 11 · narration [Slide 9] · one more layer of the same pattern -->
 <section>
-  <h2 class="t" style="font-size:2.2em">What a Deployment actually is</h2>
-  <div class="pageno">M5·09</div>
+  <h2 class="t">It is one more layer of the same pattern</h2>
+  <p class="s">A Deployment manages ReplicaSets like a RS manages Pods.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Two stacked reconcile loops: a ReplicaSet keeps a fixed number of Pods true below, and a Deployment keeps its ReplicaSets true above — the same declare-it-and-something-keeps-it-true pattern, layered.">
+    <g filter="url(#rough)">
+      <rect x="120" y="180" width="380" height="110" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M170,235 a40,28 0 1 1 40,26" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+      <path d="M210,261 l-14,-4 l4,16" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round"/>
+    </g>
+    <text x="330" y="222" text-anchor="middle" class="lbl-b">ReplicaSet → Pods</text>
+    <text x="330" y="278" text-anchor="middle" class="lbl-sm">keep N Pods true</text>
+    <g filter="url(#rough)">
+      <rect x="600" y="40" width="380" height="110" rx="14" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <path d="M650,95 a40,28 0 1 1 40,26" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+      <path d="M690,121 l-14,-4 l4,16" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round"/>
+    </g>
+    <text x="810" y="82" text-anchor="middle" class="lbl-b">Deployment → ReplicaSets</text>
+    <text x="810" y="138" text-anchor="middle" class="lbl-sm">keep the right RS true</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5">
+      <path d="M600,120 L500,200" marker-end="url(#ahg)"/>
+    </g>
+    <text x="560" y="305" text-anchor="middle" class="lbl-g">declare what you want; something keeps it true — stacked</text>
+  </svg>
+  <div class="pageno">M5·11</div>
 </section>
 
-<!-- 6 · Deployment drives RS drives Pods -->
+<!-- pos 12 · DIVIDER 3 -->
+<section class="divider">
+  <h2 class="t">What a Deployment actually is</h2>
+  <div class="pageno">M5·12</div>
+</section>
+
+<!-- pos 13 · narration [Slide 10] · what a Deployment actually is -->
 <section>
   <h2 class="t">A Deployment drives ReplicaSets; a ReplicaSet drives Pods</h2>
-  <p class="s">One template live, the old one kept at zero.</p>
+  <p class="s">New template live at 3; the old one kept at 0.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="A Deployment owns two ReplicaSets: the current one for release 2.0 scaled to three running Pods, and the previous one for release 1.0 retained but scaled to zero.">
     <g filter="url(#rough)">
       <rect x="380" y="35" width="340" height="66" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
@@ -339,68 +449,119 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M470,103 L300,146" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M5·10</div>
-</section>
-
-<!-- 7 · new template = new RS + hash -->
-<section>
-  <h2 class="t">A new template makes a new ReplicaSet, not an edit</h2>
-  <p class="s">A template hash keeps the two versions apart.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Changing the image does not edit the existing ReplicaSet; the Deployment creates a new ReplicaSet and shifts replicas to it, and each ReplicaSet gets a pod-template-hash added to its selector so their Pods never mix.">
-    <g filter="url(#rough)">
-      <rect x="80" y="90" width="300" height="110" rx="12" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7"/>
-      <rect x="720" y="90" width="300" height="110" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
-    </g>
-    <text x="230" y="130" text-anchor="middle" class="lbl-b" fill="#757575">ReplicaSet :m2</text>
-    <text x="230" y="170" text-anchor="middle" class="lbl-sm" fill="#757575">hash 5556758bfd</text>
-    <text x="870" y="130" text-anchor="middle" class="lbl-b">ReplicaSet :m5</text>
-    <text x="870" y="170" text-anchor="middle" class="lbl-sm">hash 68cf68cbbc</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M385,145 L715,145" marker-end="url(#ah)"/>
-    </g>
-    <text x="550" y="128" text-anchor="middle" class="lbl">new image →</text>
-    <text x="550" y="176" text-anchor="middle" class="lbl-sm">a NEW ReplicaSet, not an edit</text>
-    <text x="550" y="270" text-anchor="middle" class="lbl-sm">the <tspan class="lbl-b">pod-template-hash</tspan> in the selector is why their Pods never mix</text>
-  </svg>
-  <div class="pageno">M5·11</div>
-</section>
-
-<!-- divider: Rolling update vs recreate: what happens to Pod counts -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Rolling update vs recreate: what happens to Pod counts</h2>
-  <div class="pageno">M5·12</div>
-</section>
-
-<!-- 8 · RollingUpdate two knobs -->
-<section>
-  <h2 class="t">RollingUpdate has two knobs for the pace</h2>
-  <p class="s">maxUnavailable sets the floor, maxSurge the ceiling.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Around a desired line of three ready Pods, maxUnavailable sets how far below ready Pods may drop and maxSurge sets how many extra Pods may run above desired during the rollout.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <line x1="120" y1="165" x2="980" y2="165"/>
-    </g>
-    <text x="1030" y="172" text-anchor="middle" class="lbl-b">desired 3</text>
-    <g filter="url(#rough)">
-      <rect x="300" y="60" width="130" height="70" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="620" y="200" width="130" height="70" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
-    </g>
-    <text x="365" y="102" text-anchor="middle" class="lbl-b">maxSurge</text>
-    <text x="365" y="150" text-anchor="middle" class="lbl-sm">extra Pods above</text>
-    <text x="685" y="242" text-anchor="middle" class="lbl-b">maxUnavailable</text>
-    <text x="685" y="192" text-anchor="middle" class="lbl-sm">ready Pods below</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M365,133 L365,162" marker-end="url(#ahg)"/>
-      <path d="M685,197 L685,168" marker-end="url(#ahg)"/>
-    </g>
-    <text x="550" y="305" text-anchor="middle" class="lbl-g">frontend rollout: maxUnavailable 0, maxSurge 1 → zero downtime</text>
-  </svg>
   <div class="pageno">M5·13</div>
 </section>
 
-<!-- 9 · one at a time (FRAGMENTS) -->
+<!-- pos 14 · narration [Slide 11] · pod-template-hash -->
 <section>
-  <h2 class="t">Bring cooks over one at a time; the room stays full</h2>
-  <p class="s">maxUnavailable 0 means never fewer than desired.</p>
+  <h2 class="t">A template hash keeps two versions&rsquo; Pods apart</h2>
+  <p class="s">Same app and tier labels; a different hash each.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Each ReplicaSet a Deployment creates carries its own pod-template-hash added to the shared app and tier selector, so each ReplicaSet owns only the Pods carrying its own hash and the two versions never mix.">
+    <g filter="url(#rough)">
+      <rect x="80" y="80" width="300" height="120" rx="12" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7"/>
+      <rect x="720" y="80" width="300" height="120" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="230" y="120" text-anchor="middle" class="lbl-b" fill="#757575">ReplicaSet :m2</text>
+    <text x="230" y="162" text-anchor="middle" class="lbl-sm" fill="#757575">hash 5556758bfd</text>
+    <text x="870" y="120" text-anchor="middle" class="lbl-b">ReplicaSet :m5</text>
+    <text x="870" y="162" text-anchor="middle" class="lbl-sm">hash 68cf68cbbc</text>
+    <text x="550" y="118" text-anchor="middle" class="lbl-sm">shared: app=frontend, tier=frontend</text>
+    <text x="550" y="230" text-anchor="middle" class="lbl">the <tspan class="lbl-b">pod-template-hash</tspan> in the selector</text>
+    <text x="550" y="268" text-anchor="middle" class="lbl-sm">is why each RS owns only its own Pods</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
+      <path d="M300,205 L360,150" marker-end="url(#ahg)"/>
+      <path d="M800,205 L740,150" marker-end="url(#ahg)"/>
+    </g>
+  </svg>
+  <div class="pageno">M5·14</div>
+</section>
+
+<!-- pos 15 · DIVIDER 4 -->
+<section class="divider">
+  <h2 class="t">Rolling update vs recreate: what happens to Pod counts</h2>
+  <div class="pageno">M5·15</div>
+</section>
+
+<!-- pos 16 · narration [Slide 12] · a Deployment has a strategy -->
+<section>
+  <h2 class="t">A strategy is the rule for how a change happens</h2>
+  <p class="s">Two kinds: RollingUpdate (default) and Recreate.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A Deployment's strategy forks into two paths: RollingUpdate, the default, which swaps the menu mid-service, and Recreate, which works very differently.">
+    <g filter="url(#rough)">
+      <rect x="380" y="120" width="300" height="70" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="530" y="163" text-anchor="middle" class="lbl-b">strategy</text>
+    <g filter="url(#rough)">
+      <rect x="770" y="40" width="290" height="80" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="770" y="190" width="290" height="80" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="915" y="76" text-anchor="middle" class="lbl-b">RollingUpdate</text>
+    <text x="915" y="104" text-anchor="middle" class="lbl-sm" fill="#2e7d32">default</text>
+    <text x="915" y="226" text-anchor="middle" class="lbl-b">Recreate</text>
+    <text x="915" y="254" text-anchor="middle" class="lbl-sm">very different</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M682,145 L766,90" marker-end="url(#ah)"/>
+      <path d="M682,165 L766,222" marker-end="url(#ah)"/>
+    </g>
+  </svg>
+  <div class="pageno">M5·16</div>
+</section>
+
+<!-- pos 17 · narration [Slide 13] · maxUnavailable the floor -->
+<section>
+  <h2 class="t">maxUnavailable is the floor under ready Pods</h2>
+  <p class="s">Set it to 0 — never fewer than desired, at any moment.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Around a desired line of three ready Pods, maxUnavailable set to zero draws a floor exactly at three, meaning ready Pods must never drop below the full desired count during the rollout.">
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <line x1="140" y1="110" x2="960" y2="110"/>
+    </g>
+    <text x="1010" y="117" text-anchor="middle" class="lbl-b">desired 3</text>
+    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="2 0">
+      <line x1="140" y1="110" x2="960" y2="110"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="360" y="150" width="380" height="80" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="550" y="192" text-anchor="middle" class="lbl-b">maxUnavailable: 0</text>
+    <text x="550" y="222" text-anchor="middle" class="lbl-sm">no drop below the floor</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M550,148 L550,118" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="270" text-anchor="middle" class="lbl-g">ready Pods must never drop below 3</text>
+  </svg>
+  <div class="pageno">M5·17</div>
+</section>
+
+<!-- pos 18 · narration [Slide 14] · maxSurge the ceiling -->
+<section>
+  <h2 class="t">maxSurge is the ceiling above the desired count</h2>
+  <p class="s">Set it to 1 — up to one extra Pod, briefly.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Above the desired line of three, maxSurge set to one draws a ceiling at four, meaning the Deployment may run up to one extra Pod above desired for a short while during the rollout.">
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <line x1="140" y1="200" x2="960" y2="200"/>
+    </g>
+    <text x="1010" y="207" text-anchor="middle" class="lbl-b">desired 3</text>
+    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="8 6">
+      <line x1="140" y1="90" x2="960" y2="90"/>
+    </g>
+    <text x="1010" y="97" text-anchor="middle" class="lbl-sm" fill="#2e7d32">up to 4</text>
+    <g filter="url(#rough)">
+      <rect x="360" y="110" width="380" height="70" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="550" y="145" text-anchor="middle" class="lbl-b">maxSurge: 1</text>
+    <text x="550" y="172" text-anchor="middle" class="lbl-sm">one extra Pod, briefly</text>
+    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
+      <path d="M550,108 L550,96" marker-end="url(#ahg)"/>
+    </g>
+    <text x="550" y="262" text-anchor="middle" class="lbl-g">may run one more than desired while it swaps</text>
+  </svg>
+  <div class="pageno">M5·18</div>
+</section>
+
+<!-- pos 19 · narration [Slide 15] · worked walkthrough (4 fragments) -->
+<section>
+  <h2 class="t">Desired 3, maxUnavailable 0, maxSurge 1 — step by step</h2>
+  <p class="s">Surge one, wait for ready, retire one, repeat.</p>
   <svg viewBox="0 0 1100 330" role="img" aria-label="The rolling update in four steps: surge one new Pod above desired, wait for its readiness probe to pass, retire one old Pod, and repeat until every Pod is the new version — never dropping below three ready.">
     <g filter="url(#rough)">
       <rect x="60" y="60" width="200" height="210" rx="12" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
@@ -440,108 +601,148 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="920" y="228" text-anchor="middle" class="lbl-sm" fill="#2e7d32">never below 3 ready</text>
     </g>
   </svg>
-  <div class="pageno">M5·14</div>
-</section>
-
-<!-- 10 · readiness probe is the gate -->
-<section>
-  <h2 class="t">A new Pod must prove it serves before an old one dies</h2>
-  <p class="s">The readiness probe is the gate. Bad versions stall.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="A readiness gate stands between a new Pod and the retirement of an old one: if the probe passes the old Pod is retired, but if it fails the old Pod stays and the rollout stalls without losing capacity.">
-    <g filter="url(#rough)">
-      <rect x="70" y="120" width="150" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="440" y="115" width="70" height="90" rx="8" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-dasharray="5 5"/>
-    </g>
-    <text x="145" y="155" text-anchor="middle" class="lbl-b">new Pod</text>
-    <text x="145" y="185" text-anchor="middle" class="lbl-sm">just started</text>
-    <text x="475" y="95" text-anchor="middle" class="lbl-sm">readiness</text>
-    <text x="475" y="235" text-anchor="middle" class="lbl-sm">gate</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M222,160 L436,160" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)">
-      <rect x="620" y="55" width="380" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="620" y="185" width="380" height="90" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
-    </g>
-    <text x="810" y="92" text-anchor="middle" class="lbl-b" fill="#2e7d32">passes</text>
-    <text x="810" y="124" text-anchor="middle" class="lbl-sm">old Pod retired</text>
-    <text x="810" y="222" text-anchor="middle" class="lbl-b" fill="#c62828">never ready</text>
-    <text x="810" y="254" text-anchor="middle" class="lbl-sm">old Pod stays · rollout stalls</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M512,140 L616,100" marker-end="url(#ahg)"/>
-      <path d="M512,180 L616,230" marker-end="url(#ahg)"/>
-    </g>
-  </svg>
-  <div class="pageno">M5·15</div>
-</section>
-
-<!-- 11 · Recreate -->
-<section>
-  <h2 class="t">Recreate accepts a gap when versions can't overlap</h2>
-  <p class="s">Kill all, then create. Downtime, but never mixed.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Two strategies compared: RollingUpdate overlaps old and new with no gap, while Recreate kills every old Pod first and then creates the new ones, accepting a downtime gap to avoid running two versions at once.">
-    <g filter="url(#rough)">
-      <rect x="70" y="70" width="440" height="200" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="150" y="150" width="70" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="230" y="150" width="70" height="60" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
-      <rect x="310" y="150" width="70" height="60" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
-    </g>
-    <text x="290" y="115" text-anchor="middle" class="lbl-b">RollingUpdate</text>
-    <text x="290" y="252" text-anchor="middle" class="lbl-sm" fill="#2e7d32">overlap → no gap</text>
-    <g filter="url(#rough)">
-      <rect x="590" y="70" width="440" height="200" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="690" y="150" width="90" height="60" rx="8" fill="#ffffff" stroke="#c62828" stroke-width="2.2" stroke-dasharray="6 5"/>
-      <rect x="840" y="150" width="90" height="60" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2"/>
-    </g>
-    <text x="810" y="115" text-anchor="middle" class="lbl-b">Recreate</text>
-    <text x="735" y="186" text-anchor="middle" class="lbl-sm" fill="#c62828">gap</text>
-    <text x="885" y="186" text-anchor="middle" class="lbl-sm">new</text>
-    <text x="810" y="252" text-anchor="middle" class="lbl-sm">for single-writer locks / schema migrations</text>
-  </svg>
-  <div class="pageno">M5·16</div>
-</section>
-
-<!-- divider: Rollout status and history are first-class -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Rollout status and history are first-class</h2>
-  <div class="pageno">M5·17</div>
-</section>
-
-<!-- 12 · status & history first-class -->
-<section>
-  <h2 class="t">Status and history are first-class</h2>
-  <p class="s">One command watches; another lists the revisions.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Because the Deployment drives the transition it reports it: rollout status watches a release until it finishes or stalls, and rollout history lists numbered revisions, each one a retained ReplicaSet you can roll back to.">
-    <g filter="url(#rough)">
-      <rect x="70" y="80" width="440" height="180" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
-    </g>
-    <text x="290" y="125" text-anchor="middle" class="lbl-b">rollout status</text>
-    <text x="290" y="172" text-anchor="middle" class="lbl-sm">waits until done…</text>
-    <text x="290" y="210" text-anchor="middle" class="lbl-sm" fill="#c62828">…or stalled → CI fails loudly</text>
-    <g filter="url(#rough)">
-      <rect x="590" y="80" width="440" height="180" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="620" y="115" width="380" height="38" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
-      <rect x="620" y="163" width="380" height="38" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.8"/>
-      <rect x="620" y="211" width="380" height="38" rx="5" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="1.8"/>
-    </g>
-    <text x="810" y="102" text-anchor="middle" class="lbl-b">rollout history</text>
-    <g class="lbl-sm" text-anchor="start">
-      <text x="640" y="140">revision 1 · release 1.0</text>
-      <text x="640" y="188">revision 2 · release 2.0</text>
-      <text x="640" y="236">revision 3 · current</text>
-    </g>
-    <text x="810" y="288" text-anchor="middle" class="lbl-g">each revision = one retained ReplicaSet = the audit trail</text>
-  </svg>
-  <div class="pageno">M5·18</div>
-</section>
-
-<!-- divider: Rollback is just scaling an old ReplicaSet back up -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Rollback is just scaling an old ReplicaSet back up</h2>
   <div class="pageno">M5·19</div>
 </section>
 
-<!-- 13 · rollback = scale old RS up -->
+<!-- pos 20 · narration [Slide 16] · real proof zero downtime 7012 -->
+<section>
+  <h2 class="t">Proven: 7,012 requests across the roll, 0 failed</h2>
+  <p class="s">Old and new Pods answered in the same second.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Real captured evidence from the lab: a sampler hit the frontend 7,012 times across the whole rollout with zero failures, and at 19:35:16 both an old Pod with no version field and a new Pod reporting version 2.0 answered in the same second.">
+    <g filter="url(#rough)">
+      <rect x="70" y="55" width="440" height="90" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="3"/>
+    </g>
+    <text x="290" y="95" text-anchor="middle" class="lbl-b">7,012 samples</text>
+    <text x="290" y="128" text-anchor="middle" class="lbl-sm" fill="#2e7d32">0 REQUEST_FAILED</text>
+    <text x="290" y="185" text-anchor="middle" class="lbl-sm">at 19:35:16, both answered:</text>
+    <g filter="url(#rough)">
+      <rect x="70" y="205" width="440" height="46" rx="8" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="6 5"/>
+      <rect x="70" y="259" width="440" height="46" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="90" y="234" text-anchor="start" class="lbl-sm" fill="#757575">frontend-5556758bfd-97tct · (no version)</text>
+    <text x="90" y="288" text-anchor="start" class="lbl-sm">frontend-68cf68cbbc-4rh6n · &quot;version&quot;:&quot;2.0&quot;</text>
+    <g filter="url(#rough)">
+      <rect x="590" y="90" width="440" height="150" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="810" y="140" text-anchor="middle" class="lbl-b">never below 3 ready</text>
+    <text x="810" y="182" text-anchor="middle" class="lbl-sm">the overlap IS the rolling update,</text>
+    <text x="810" y="212" text-anchor="middle" class="lbl-sm">not just a diagram</text>
+    <text x="810" y="285" text-anchor="middle" class="lbl-g">zero downtime comes from maxUnavailable 0</text>
+  </svg>
+  <div class="pageno">M5·20</div>
+</section>
+
+<!-- pos 21 · narration [Slide 17] · Recreate, the other strategy -->
+<section>
+  <h2 class="t">Recreate kills all old Pods, then makes new ones</h2>
+  <p class="s">A real gap — for when versions can&rsquo;t overlap.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Recreate kills every old Pod first, leaving a gap where nothing runs, then creates the new Pods — the trade you make when two versions cannot run at once, such as a single-writer lock or a schema migration.">
+    <g filter="url(#rough)">
+      <rect x="60" y="100" width="200" height="110" rx="12" fill="#ffffff" stroke="#c62828" stroke-width="2.4" stroke-dasharray="6 5"/>
+      <path d="M80,120 L240,190 M240,120 L80,190" stroke="#c62828" stroke-width="2.2" fill="none"/>
+    </g>
+    <text x="160" y="240" text-anchor="middle" class="lbl-sm" fill="#c62828">kill all old</text>
+    <g filter="url(#rough)">
+      <rect x="330" y="100" width="150" height="110" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="405" y="160" text-anchor="middle" class="lbl-b">gap</text>
+    <text x="405" y="240" text-anchor="middle" class="lbl-sm">nothing running</text>
+    <g filter="url(#rough)">
+      <rect x="550" y="100" width="200" height="110" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="650" y="240" text-anchor="middle" class="lbl-sm">then create new</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M262,155 L326,155" marker-end="url(#ah)"/>
+      <path d="M482,155 L546,155" marker-end="url(#ah)"/>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="810" y="80" width="230" height="60" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="810" y="170" width="230" height="60" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
+    </g>
+    <text x="925" y="117" text-anchor="middle" class="lbl-sm">single-writer lock</text>
+    <text x="925" y="207" text-anchor="middle" class="lbl-sm">schema migration</text>
+  </svg>
+  <div class="pageno">M5·21</div>
+</section>
+
+<!-- pos 22 · narration [Slide 18] · rolling vs recreate side by side -->
+<section>
+  <h2 class="t">RollingUpdate vs Recreate, side by side</h2>
+  <p class="s">Gradual and gapless, or a full stop with no mix.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Two strategies compared: RollingUpdate moves gradually with zero downtime and depends on the readiness probe, while Recreate stops everything and takes a gap but guarantees the two versions are never live at once.">
+    <g filter="url(#rough)">
+      <rect x="70" y="60" width="440" height="210" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="290" y="105" text-anchor="middle" class="lbl-b">RollingUpdate</text>
+    <g class="lbl-sm" text-anchor="start">
+      <text x="120" y="150">gradual, a few at a time</text>
+      <text x="120" y="188" fill="#2e7d32">serves the whole time</text>
+      <text x="120" y="226">needs a passing readiness probe</text>
+    </g>
+    <g filter="url(#rough)">
+      <rect x="590" y="60" width="440" height="210" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="810" y="105" text-anchor="middle" class="lbl-b">Recreate</text>
+    <g class="lbl-sm" text-anchor="start">
+      <text x="640" y="150">a full stop</text>
+      <text x="640" y="188" fill="#c62828">a real downtime gap</text>
+      <text x="640" y="226">never two versions at once</text>
+    </g>
+  </svg>
+  <div class="pageno">M5·22</div>
+</section>
+
+<!-- pos 23 · DIVIDER 5 -->
+<section class="divider">
+  <h2 class="t">Rollout status and history are first-class</h2>
+  <div class="pageno">M5·23</div>
+</section>
+
+<!-- pos 24 · narration [Slide 19] · kubectl rollout status -->
+<section>
+  <h2 class="t">kubectl rollout status watches a release</h2>
+  <p class="s">The command CI runs, so a stalled deploy fails loudly.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A terminal running kubectl rollout status on the frontend Deployment shows a spinner while it waits, then prints successfully rolled out — or, if the release stalls, it never returns success and an automated deploy fails loudly.">
+    <g filter="url(#rough)">
+      <rect x="150" y="70" width="800" height="160" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <line x1="150" y1="112" x2="950" y2="112" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="178" cy="91" r="6" fill="none" stroke="#1e1e1e" stroke-width="1.8"/>
+      <circle cx="200" cy="91" r="6" fill="none" stroke="#1e1e1e" stroke-width="1.8"/>
+      <circle cx="222" cy="91" r="6" fill="none" stroke="#1e1e1e" stroke-width="1.8"/>
+    </g>
+    <text x="175" y="160" text-anchor="start" class="lbl-sm">$ kubectl rollout status deployment/frontend</text>
+    <text x="175" y="200" text-anchor="start" class="lbl-sm" fill="#2e7d32">deployment &quot;frontend&quot; successfully rolled out</text>
+    <text x="550" y="272" text-anchor="middle" class="lbl-g">run it right after shipping, or let CI run it</text>
+  </svg>
+  <div class="pageno">M5·24</div>
+</section>
+
+<!-- pos 25 · narration [Slide 20] · kubectl rollout history -->
+<section>
+  <h2 class="t">kubectl rollout history is the audit trail</h2>
+  <p class="s">Numbered revisions, each an annotated change-cause.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="kubectl rollout history lists the numbered revisions the Deployment has been through, each matching a retained ReplicaSet and carrying a change-cause annotation — the audit trail you read during an incident and pick from when you roll back.">
+    <g filter="url(#rough)">
+      <rect x="230" y="60" width="640" height="50" rx="6" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="230" y="122" width="640" height="50" rx="6" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <g class="lbl" text-anchor="start">
+      <text x="255" y="93">revision 1 · release 1.0 · CHANGE-CAUSE</text>
+      <text x="255" y="155">revision 2 · release 2.0 · CHANGE-CAUSE</text>
+    </g>
+    <text x="550" y="215" text-anchor="middle" class="lbl-sm">each revision = one retained ReplicaSet</text>
+    <text x="550" y="262" text-anchor="middle" class="lbl-g">read it during an incident; pick from it to roll back</text>
+  </svg>
+  <div class="pageno">M5·25</div>
+</section>
+
+<!-- pos 26 · DIVIDER 6 -->
+<section class="divider">
+  <h2 class="t">Rollback is just scaling an old ReplicaSet back up</h2>
+  <div class="pageno">M5·26</div>
+</section>
+
+<!-- pos 27 · narration [Slide 21] · rollback mechanism -->
 <section>
   <h2 class="t">Rollback is just scaling an old ReplicaSet back up</h2>
   <p class="s">The drawer kept every menu, so going back is instant.</p>
@@ -562,19 +763,99 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="140" text-anchor="middle" class="lbl">rollout undo</text>
     <text x="550" y="285" text-anchor="middle" class="lbl-sm">nothing rebuilt, nothing re-pulled, as fast as a scale-up</text>
   </svg>
-  <div class="pageno">M5·20</div>
+  <div class="pageno">M5·27</div>
 </section>
 
-<!-- divider: Autoscaling: closing the manual-scale gap -->
+<!-- pos 28 · narration [Slide 22] · real proof bad release + undo -->
 <section>
-  <h2 class="t" style="font-size:2.2em">Autoscaling: closing the manual-scale gap</h2>
-  <div class="pageno">M5·21</div>
+  <h2 class="t">Proven: a bad release stalls, and undo recovers it</h2>
+  <p class="s">Readiness 500, rollout times out, undo returns to 3/3.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Real captured evidence: a deliberately broken release fails its readiness probe with HTTP 500, kubectl rollout status times out, the deployment reads three of three ready but only one updated, and kubectl rollout undo recovers to the good image at three of three.">
+    <g filter="url(#rough)">
+      <rect x="70" y="60" width="440" height="90" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="70" y="170" width="440" height="90" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="290" y="95" text-anchor="middle" class="lbl-b">:m5-bad</text>
+    <text x="290" y="128" text-anchor="middle" class="lbl-sm" fill="#c62828">readiness 500 (×13)</text>
+    <text x="290" y="205" text-anchor="middle" class="lbl-sm">rollout status --timeout=45s</text>
+    <text x="290" y="238" text-anchor="middle" class="lbl-sm" fill="#c62828">error: timed out</text>
+    <g filter="url(#rough)">
+      <rect x="590" y="60" width="440" height="90" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="590" y="170" width="440" height="90" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="810" y="95" text-anchor="middle" class="lbl-sm">get deploy → READY 3/3</text>
+    <text x="810" y="128" text-anchor="middle" class="lbl-sm">UP-TO-DATE 1 · bad Pod 0/1, no traffic</text>
+    <text x="810" y="205" text-anchor="middle" class="lbl-b">rollout undo</text>
+    <text x="810" y="238" text-anchor="middle" class="lbl-sm" fill="#2e7d32">back to :m5, 3/3, in seconds</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M810,152 L810,168" marker-end="url(#ah)"/>
+    </g>
+  </svg>
+  <div class="pageno">M5·28</div>
 </section>
 
-<!-- 14 · chef watches the room (HPA analogy) -->
+<!-- pos 29 · narration [Slide 23] · revisionHistoryLimit -->
 <section>
-  <h2 class="t">The chef watches the dining room and calls in cooks</h2>
-  <p class="s">The HPA does the same thing on its own.</p>
+  <h2 class="t">revisionHistoryLimit is how much memory you keep</h2>
+  <p class="s">Ten old revisions by default; the oldest drop off.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A Deployment keeps a configurable stack of old ReplicaSets, ten deep by default, so going back one version or several is always possible; the oldest revisions drop off the bottom of the stack.">
+    <g filter="url(#rough)">
+      <rect x="380" y="45" width="340" height="34" rx="5" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="380" y="87" width="340" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="380" y="129" width="340" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="380" y="171" width="340" height="34" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="380" y="213" width="340" height="34" rx="5" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="6 5"/>
+    </g>
+    <text x="550" y="69" text-anchor="middle" class="lbl-sm">current</text>
+    <text x="550" y="111" text-anchor="middle" class="lbl-sm">revision −1</text>
+    <text x="550" y="153" text-anchor="middle" class="lbl-sm">revision −2 …</text>
+    <text x="550" y="195" text-anchor="middle" class="lbl-sm">up to 10 kept</text>
+    <text x="550" y="237" text-anchor="middle" class="lbl-sm" fill="#757575">oldest drops off</text>
+    <text x="820" y="130" text-anchor="start" class="lbl-g">default 10</text>
+    <text x="820" y="165" text-anchor="start" class="lbl-g">going back is</text>
+    <text x="820" y="198" text-anchor="start" class="lbl-g">always instant</text>
+  </svg>
+  <div class="pageno">M5·29</div>
+</section>
+
+<!-- pos 30 · DIVIDER 7 -->
+<section class="divider">
+  <h2 class="t">Autoscaling: closing the manual-scale gap</h2>
+  <div class="pageno">M5·30</div>
+</section>
+
+<!-- pos 31 · narration [Slide 24] · gap manual scaling leaves -->
+<section>
+  <h2 class="t">Manual scaling means someone has to be watching</h2>
+  <p class="s">kubectl scale by hand, exactly when load climbs.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A person watches a load dashboard late at night and types kubectl scale by hand — scaling works, but only if someone is watching and typing the command at the exact moment traffic climbs.">
+    <g filter="url(#rough)">
+      <rect x="90" y="70" width="330" height="180" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M130,220 L180,150 L230,190 L280,120 L330,160 L380,110" fill="none" stroke="#c62828" stroke-width="2.6" stroke-linecap="round"/>
+    </g>
+    <text x="255" y="110" text-anchor="middle" class="lbl-sm">load, climbing</text>
+    <g filter="url(#rough)">
+      <circle cx="600" cy="120" r="26" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+      <path d="M600,146 L600,205 M600,160 L570,190 M600,160 L630,190" fill="none" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="600" y="240" text-anchor="middle" class="lbl-sm">you, watching at 2am</text>
+    <g filter="url(#rough)">
+      <rect x="740" y="120" width="290" height="70" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="885" y="163" text-anchor="middle" class="lbl-sm">$ kubectl scale …</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M420,150 L560,140" marker-end="url(#ah)"/>
+      <path d="M632,140 L736,150" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="285" text-anchor="middle" class="lbl-g">it works — but only if a human is there to do it</text>
+  </svg>
+  <div class="pageno">M5·31</div>
+</section>
+
+<!-- pos 32 · narration [Slide 25] · same chef watching the dining room -->
+<section>
+  <h2 class="t">The chef watches the room and calls in cooks</h2>
+  <p class="s">The HPA does the same thing, on its own.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="As the dining room fills the chef waves another cook in from the back; as it empties the chef sends a cook home — the horizontal pod autoscaler is that same reflex done automatically.">
     <g filter="url(#rough)">
       <rect x="70" y="70" width="360" height="200" rx="14" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
@@ -598,13 +879,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="110" text-anchor="middle" class="lbl-b">room empties</text>
     <text x="900" y="270" text-anchor="middle" class="lbl-sm" fill="#c62828">send one home</text>
   </svg>
-  <div class="pageno">M5·22</div>
+  <div class="pageno">M5·32</div>
 </section>
 
-<!-- 15 · HPA holds a target -->
+<!-- pos 33 · narration [Slide 26] · how the HPA decides -->
 <section>
   <h2 class="t">The HPA edits the replica count to hold a target</h2>
-  <p class="s">Above target it adds Pods; below, it removes them.</p>
+  <p class="s">Above target it adds Pods; below, after a cool-down, removes.</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="The HPA reads CPU as a percentage of each Pod's request and edits the Deployment's replica count: above the target it adds Pods, and well below the target, after a cool-down, it removes them.">
     <g filter="url(#rough)">
       <rect x="410" y="120" width="280" height="80" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
@@ -629,31 +910,119 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M692,175 L796,228" marker-end="url(#ah)"/>
     </g>
   </svg>
-  <div class="pageno">M5·23</div>
+  <div class="pageno">M5·33</div>
 </section>
 
-<!-- 16 · what HPA needs -->
+<!-- pos 34 · narration [Slide 27] · requirement #1 CPU request -->
 <section>
-  <h2 class="t">The HPA needs a request and a metrics source</h2>
-  <p class="s">"50% of what?" You need a number to divide by.</p>
-  <svg viewBox="0 0 1100 310" role="img" aria-label="Two prerequisites for CPU-based autoscaling: each Pod must declare a CPU request to be the denominator for the percentage, and the cluster must run a metrics-server feeding kubectl top.">
+  <h2 class="t">Requirement one: a CPU request to divide by</h2>
+  <p class="s">50% of what? The backend requests just 50m.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="For CPU-based scaling each Pod must declare a CPU request to be the denominator for the percentage; the lab backend sets it deliberately small at fifty millicores so a real load pushes utilization well past target.">
     <g filter="url(#rough)">
-      <rect x="70" y="70" width="440" height="180" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="90" y="70" width="380" height="170" rx="14" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="130" y="150" width="300" height="60" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
     </g>
-    <text x="290" y="115" text-anchor="middle" class="lbl-b">a CPU request</text>
-    <text x="290" y="165" text-anchor="middle" class="lbl">50% of what?</text>
-    <text x="290" y="212" text-anchor="middle" class="lbl-sm" fill="#c62828">no request → no percentage</text>
-    <g filter="url(#rough)">
-      <rect x="590" y="70" width="440" height="180" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    <text x="280" y="115" text-anchor="middle" class="lbl-b">backend Pod spec</text>
+    <text x="280" y="188" text-anchor="middle" class="lbl-sm">resources.requests.cpu: 50m</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
+      <path d="M640,90 a45,45 0 1 1 -20,78" />
+      <line x1="620" y1="168" x2="620" y2="196"/>
+      <circle cx="620" cy="225" r="4"/>
     </g>
-    <text x="810" y="115" text-anchor="middle" class="lbl-b">a metrics-server</text>
-    <text x="810" y="165" text-anchor="middle" class="lbl">feeds kubectl top</text>
-    <text x="810" y="212" text-anchor="middle" class="lbl-sm" fill="#c62828">no numbers → HPA sits at &lt;unknown&gt;</text>
+    <text x="760" y="130" text-anchor="start" class="lbl-b">50% of what?</text>
+    <text x="620" y="270" text-anchor="middle" class="lbl-sm" fill="#c62828">no request → no percentage → no autoscaling</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M470,155 L560,155" marker-end="url(#ah)"/>
+    </g>
   </svg>
-  <div class="pageno">M5·24</div>
+  <div class="pageno">M5·34</div>
 </section>
 
-<!-- 17 · two controllers, one job each -->
+<!-- pos 35 · narration [Slide 28] · requirement #2 metrics source -->
+<section>
+  <h2 class="t">Requirement two: a metrics source to read</h2>
+  <p class="s">metrics-server feeds kubectl top; KIND needs one flag.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="The cluster must run the metrics-server feeding kubectl top; without numbers the HPA sits at unknown, and on a KIND cluster the metrics-server needs the kubelet-insecure-tls flag to connect at all.">
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="330" height="120" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="255" y="140" text-anchor="middle" class="lbl-b">metrics-server</text>
+    <text x="255" y="180" text-anchor="middle" class="lbl-sm">--kubelet-insecure-tls</text>
+    <g filter="url(#rough)">
+      <rect x="680" y="90" width="330" height="120" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="845" y="140" text-anchor="middle" class="lbl-b">kubectl top pods</text>
+    <text x="845" y="180" text-anchor="middle" class="lbl-sm" fill="#2e7d32">returns real numbers</text>
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
+      <path d="M420,150 L676,150" marker-end="url(#ah)"/>
+    </g>
+    <text x="550" y="135" text-anchor="middle" class="lbl-sm">feeds</text>
+    <text x="550" y="272" text-anchor="middle" class="lbl-g">no numbers → the HPA sits at &lt;unknown&gt;</text>
+  </svg>
+  <div class="pageno">M5·35</div>
+</section>
+
+<!-- pos 36 · narration [Slide 29] · real proof scaling up (3 fragments) -->
+<section>
+  <h2 class="t">Proven: 2 to 6 Pods under load, in about a minute</h2>
+  <p class="s">18%, then 72%, then a 656% peak against a 50% target.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Real captured HPA scale-up on the backend: it started at two Pods sitting at eighteen percent, climbed to seventy-two percent and added a third Pod, then peaked at six hundred fifty-six percent and scaled all the way to six Pods within about a minute.">
+    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
+      <line x1="120" y1="270" x2="1000" y2="270"/>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="160" y="200" width="150" height="70" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      </g>
+      <text x="235" y="242" text-anchor="middle" class="lbl-b">2 Pods</text>
+      <text x="235" y="180" text-anchor="middle" class="lbl-sm">18% / 50%</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="450" y="150" width="150" height="120" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      </g>
+      <text x="525" y="220" text-anchor="middle" class="lbl-b">3 Pods</text>
+      <text x="525" y="130" text-anchor="middle" class="lbl-sm">72% / 50%</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="740" y="70" width="150" height="200" rx="8" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      </g>
+      <text x="815" y="185" text-anchor="middle" class="lbl-b">6 Pods</text>
+      <text x="815" y="50" text-anchor="middle" class="lbl-sm" fill="#c62828">656% / 50%</text>
+    </g>
+    <text x="550" y="305" text-anchor="middle" class="lbl-g">2 → 3 → 6, all within about a minute</text>
+  </svg>
+  <div class="pageno">M5·36</div>
+</section>
+
+<!-- pos 37 · narration [Slide 30] · real proof scaling down (2 fragments) -->
+<section>
+  <h2 class="t">Proven: it waits before scaling back down</h2>
+  <p class="s">Held five minutes, then 6 to 4 to 3 to 2.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Real captured HPA scale-down: utilization fell to about nineteen percent within seconds, but the replica count held at six for about five minutes — the stabilization window — then stepped down six, four, three, two, each drop about five minutes apart.">
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="90" y="80" width="430" height="160" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      </g>
+      <text x="305" y="125" text-anchor="middle" class="lbl-b">util → ~19%</text>
+      <text x="305" y="165" text-anchor="middle" class="lbl-sm">but replicas hold at 6</text>
+      <text x="305" y="205" text-anchor="middle" class="lbl-sm">~5 min: stabilization window</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)">
+        <rect x="600" y="80" width="430" height="160" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      </g>
+      <text x="815" y="125" text-anchor="middle" class="lbl-b">6 → 4 → 3 → 2</text>
+      <text x="815" y="165" text-anchor="middle" class="lbl-sm">each drop ~5 min apart</text>
+      <text x="815" y="205" text-anchor="middle" class="lbl-sm" fill="#2e7d32">settles at the floor of 2</text>
+    </g>
+    <text x="550" y="285" text-anchor="middle" class="lbl-g">a brief dip must not cause a scale-down then scale-up</text>
+  </svg>
+  <div class="pageno">M5·37</div>
+</section>
+
+<!-- pos 38 · narration [Slide 31] · two controllers, one job each -->
 <section>
   <h2 class="t">Two controllers, one job each</h2>
   <p class="s">HPA decides how many; the Deployment, which version.</p>
@@ -670,40 +1039,37 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="208" text-anchor="middle" class="lbl-sm">and how to transition</text>
     <text x="550" y="278" text-anchor="middle" class="lbl-g">each keeps one declared truth true, layered</text>
   </svg>
-  <div class="pageno">M5·25</div>
+  <div class="pageno">M5·38</div>
 </section>
 
-<!-- divider: Where this leaves you -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Where this leaves you</h2>
-  <div class="pageno">M5·26</div>
-</section>
-
-<!-- 18 · CLOSING -->
+<!-- pos 39 · CLOSING · narration [Slide 32] · what you'll prove in the lab -->
 <section>
   <p class="kicker">MODULE 5 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:1.9em">Release, survive a bad deploy, autoscale</h2>
   <p class="s" style="font-size:1.15em">The same pattern, proven next in Java.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="What the lab proves in four steps: a zero-downtime rollout, a broken release refused and rolled back, a backend autoscaled from two to six and back, and the same Deployment pattern applied unchanged to a Spring Boot service.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="What the lab proves in five steps: convert both ReplicaSets to Deployments, a zero-downtime rollout, a broken release refused and rolled back, a backend autoscaled from two to six and back, and the same Deployment pattern applied unchanged to a Spring Boot service.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="60" r="19" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="128" r="19" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="196" r="19" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="90" cy="264" r="19" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="52" r="18" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="110" r="18" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="168" r="18" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="226" r="18" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <circle cx="90" cy="284" r="18" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="90" y="68" text-anchor="middle" class="num">1</text>
-    <text x="90" y="136" text-anchor="middle" class="num">2</text>
-    <text x="90" y="204" text-anchor="middle" class="num">3</text>
-    <text x="90" y="272" text-anchor="middle" class="num">4</text>
+    <text x="90" y="60" text-anchor="middle" class="num">1</text>
+    <text x="90" y="118" text-anchor="middle" class="num">2</text>
+    <text x="90" y="176" text-anchor="middle" class="num">3</text>
+    <text x="90" y="234" text-anchor="middle" class="num">4</text>
+    <text x="90" y="292" text-anchor="middle" class="num">5</text>
     <g class="lbl" text-anchor="start">
-      <text x="135" y="68">roll out a new version: zero dropped requests</text>
-      <text x="135" y="136">ship a broken release: refused, then rolled back</text>
-      <text x="135" y="204">put the backend under an HPA: scaled 2 → 6 → 2</text>
-      <text x="135" y="272">deploy Spring Boot: same pattern, unchanged</text>
+      <text x="135" y="60">turn both ReplicaSets into Deployments</text>
+      <text x="135" y="118">roll out a new version: zero dropped requests</text>
+      <text x="135" y="176">ship a broken release: refused, then rolled back</text>
+      <text x="135" y="234">put the backend under an HPA: scaled 2 → 6 → 2</text>
+      <text x="135" y="292">deploy Spring Boot: same pattern, unchanged</text>
     </g>
   </svg>
   <p class="credit">Now open <b>Module 5 · Lab</b> &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M5·27</div>
+  <div class="pageno">M5·39</div>
 </section>
 
 </div></div>

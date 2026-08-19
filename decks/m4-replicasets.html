@@ -105,6 +105,10 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
 
+  /* §3a section divider slides — centered, larger title, no visual */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+
   /* SVG typographic helpers */
   text{ font-family:'Patrick Hand', cursive; }
   .lbl{ fill:var(--ink); font-size:21px; }
@@ -163,7 +167,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 2 · DIVIDER: lesson intro -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">From one Pod to a managed set</h2>
   <div class="pageno">M4·02</div>
 </section>
@@ -193,7 +197,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 4 · DIVIDER: Why one Pod is never enough -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Why one Pod is never enough</h2>
   <div class="pageno">M4·04</div>
 </section>
@@ -228,7 +232,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 6 · DIVIDER: The analogy: a lifeguard supervisor keeping the rota full -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">The analogy: a lifeguard supervisor keeping the rota full</h2>
   <div class="pageno">M4·06</div>
 </section>
@@ -312,7 +316,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 10 · DIVIDER: Labels and selectors: the mechanism under everything -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Labels and selectors: the mechanism under everything</h2>
   <div class="pageno">M4·10</div>
 </section>
@@ -388,7 +392,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 14 · DIVIDER: ReplicationController: the ancestor, and why it is gone -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">ReplicationController: the ancestor, and why it is gone</h2>
   <div class="pageno">M4·14</div>
 </section>
@@ -422,7 +426,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 16 · DIVIDER: The ReplicaSet spec: three parts that must agree -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">The ReplicaSet spec: three parts that must agree</h2>
   <div class="pageno">M4·16</div>
 </section>
@@ -473,7 +477,7 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- 19 · DIVIDER: Self-healing and scaling, in one sentence each -->
-<section>
+<section class="divider">
   <h2 class="t" style="font-size:2.2em">Self-healing and scaling, in one sentence each</h2>
   <div class="pageno">M4·19</div>
 </section>

@@ -112,6 +112,9 @@ footer, header, hgroup, main, menu, nav, section {
   .lbl-g{ fill:var(--gray); font-size:17px; }
   .lbl-b{ fill:var(--ink); font-size:23px; font-weight:700; }
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
+  /* section divider slides (style-guide 3a) */
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
 </style>
 </head>
 <body>
@@ -134,11 +137,11 @@ footer, header, hgroup, main, menu, nav, section {
 
 <div class="reveal"><div class="slides">
 
-<!-- 1 · TITLE -->
+<!-- 1 · TITLE (narr Slide 1) -->
 <section data-auto-animate>
   <p class="kicker">MODULE 8 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
-  <h2 class="t" style="font-size:2.3em">The Microservices Outlook</h2>
-  <p class="s" style="font-size:1.2em">Name what you built, and what it costs.</p>
+  <h2 class="t" style="font-size:2.1em">Eight modules — now name what you built</h2>
+  <p class="s" style="font-size:1.2em">Step back from kubectl and see the whole shape.</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A department store, one large building with a single door, beside a shopping district, a row of separate small shops along a street.">
     <line x1="40" y1="262" x2="1060" y2="262" stroke="#757575" stroke-width="2"/>
     <g filter="url(#rough)">
@@ -160,43 +163,13 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M8·01</div>
 </section>
 
-<!-- DIVIDER · intro lead-in -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Step back and name it</h2>
+<!-- DIVIDER · The analogy: a department store versus a shopping district -->
+<section class="divider">
+  <h2 class="t">The analogy: a department store versus a shopping district</h2>
   <div class="pageno">M8·02</div>
 </section>
 
-<!-- 2 · eight modules, now name it -->
-<section>
-  <h2 class="t">Eight modules built one system — now name it</h2>
-  <p class="s">Step back from kubectl and see the whole shape.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="A staircase climbing from three containers on one machine in Module 1 up to hardened services on a cluster in Module 8.">
-    <g filter="url(#rough)">
-      <rect x="90" y="230" width="200" height="70" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="450" y="150" width="200" height="150" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="810" y="70" width="200" height="230" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
-    </g>
-    <text x="190" y="200" text-anchor="middle" class="lbl-sm">M1</text>
-    <text x="190" y="270" text-anchor="middle" class="lbl-sm">3 containers,</text>
-    <text x="190" y="292" text-anchor="middle" class="lbl-sm">one machine</text>
-    <text x="550" y="130" text-anchor="middle" class="lbl-sm">…</text>
-    <text x="550" y="230" text-anchor="middle" class="lbl-sm">grown in place</text>
-    <text x="910" y="120" text-anchor="middle" class="lbl-sm">M8</text>
-    <text x="910" y="180" text-anchor="middle" class="lbl-sm">hardened services</text>
-    <text x="910" y="212" text-anchor="middle" class="lbl-sm">on a cluster</text>
-    <path d="M300,240 C360,235 380,175 445,168" stroke="#757575" stroke-width="2.4" fill="none" marker-end="url(#ahg)"/>
-    <path d="M660,160 C720,150 740,95 805,88" stroke="#757575" stroke-width="2.4" fill="none" marker-end="url(#ahg)"/>
-  </svg>
-  <div class="pageno">M8·03</div>
-</section>
-
-<!-- DIVIDER · The analogy: a department store versus a shopping district -->
-<section>
-  <h2 class="t" style="font-size:2.2em">The analogy: a department store versus a shopping district</h2>
-  <div class="pageno">M8·04</div>
-</section>
-
-<!-- 3 · two ways to run retail -->
+<!-- 2 · content (narr Slide 2) two ways to run retail -->
 <section>
   <h2 class="t">Two ways to run a retail business</h2>
   <p class="s">One roof, or many shops with roads between.</p>
@@ -218,10 +191,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="130" text-anchor="middle" class="lbl-b">separate shops</text>
     <text x="810" y="320" text-anchor="middle" class="lbl-g">microservices</text>
   </svg>
-  <div class="pageno">M8·05</div>
+  <div class="pageno">M8·03</div>
 </section>
 
-<!-- 4 · department store coupled -->
+<!-- 3 · content (narr Slide 3) department store coupled -->
 <section>
   <h2 class="t">The department store: coupled by its own walls</h2>
   <p class="s">Everything shares one building, so everything is coupled.</p>
@@ -242,10 +215,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="890" y="217" text-anchor="middle" class="lbl-sm">without shrinking another</text>
     <text x="550" y="305" text-anchor="middle" class="lbl-g" fill="#c62828">everything under one roof is coupled</text>
   </svg>
-  <div class="pageno">M8·06</div>
+  <div class="pageno">M8·04</div>
 </section>
 
-<!-- 5 · shopping district independent -->
+<!-- 4 · content (narr Slide 4) shopping district independent -->
 <section>
   <h2 class="t">The shopping district: independent, shop by shop</h2>
   <p class="s">Own door, own staff, own hours.</p>
@@ -266,10 +239,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="890" y="217" text-anchor="middle" class="lbl-sm">when busy</text>
     <text x="550" y="305" text-anchor="middle" class="lbl-g" fill="#2e7d32">fail, change, and scale independently</text>
   </svg>
-  <div class="pageno">M8·07</div>
+  <div class="pageno">M8·05</div>
 </section>
 
-<!-- 6 · streets are kubernetes -->
+<!-- 5 · content (narr Slide 5) streets are kubernetes -->
 <section>
   <h2 class="t">The hidden cost is the streets — and they are Kubernetes</h2>
   <p class="s">The roads between shops are not incidental.</p>
@@ -289,16 +262,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="255" text-anchor="middle" class="lbl-b">streets · signage · traffic control</text>
     <text x="550" y="292" text-anchor="middle" class="lbl-sm">= Kubernetes</text>
   </svg>
-  <div class="pageno">M8·08</div>
+  <div class="pageno">M8·06</div>
 </section>
 
 <!-- DIVIDER · Monolith versus microservices, honestly -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Monolith versus microservices, honestly</h2>
-  <div class="pageno">M8·09</div>
+<section class="divider">
+  <h2 class="t">Monolith versus microservices, honestly</h2>
+  <div class="pageno">M8·07</div>
 </section>
 
-<!-- 7 · monolith often right -->
+<!-- 6 · content (narr Slide 6) monolith often right -->
 <section>
   <h2 class="t">A monolith is one unit — and often the right call</h2>
   <p class="s">Not a slur: simpler, and faster inside.</p>
@@ -320,56 +293,201 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="150" text-anchor="middle" class="lbl-g">function call</text>
     <text x="800" y="255" text-anchor="middle" class="lbl-g" fill="#2e7d32">not a network round trip</text>
   </svg>
+  <div class="pageno">M8·08</div>
+</section>
+
+<!-- 7 · content (narr Slide 7) gain: independent deployment -->
+<section>
+  <h2 class="t">Gain: ship one service without touching the rest</h2>
+  <p class="s">A small, contained release, not a whole-system event.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A backend deployment pipeline runs and ships a new version, while the frontend sits untouched beside it.">
+    <g filter="url(#rough)">
+      <rect x="70" y="90" width="480" height="150" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="110" y="140" width="90" height="55" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="250" y="140" width="90" height="55" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <rect x="390" y="140" width="90" height="55" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
+      <path d="M200,167 L248,167 M340,167 L388,167" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    </g>
+    <text x="310" y="122" text-anchor="middle" class="lbl-b">backend — deploying</text>
+    <text x="155" y="172" text-anchor="middle" class="lbl-sm">build</text>
+    <text x="295" y="172" text-anchor="middle" class="lbl-sm">test</text>
+    <text x="435" y="172" text-anchor="middle" class="lbl-sm">ship</text>
+    <g filter="url(#rough)">
+      <rect x="650" y="90" width="380" height="150" rx="14" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="840" y="150" text-anchor="middle" class="lbl-b">frontend</text>
+    <text x="840" y="190" text-anchor="middle" class="lbl-g">untouched</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">a change to one service is one contained release</text>
+  </svg>
+  <div class="pageno">M8·09</div>
+</section>
+
+<!-- 8 · content (narr Slide 8) gain: independent scaling -->
+<section>
+  <h2 class="t">Gain: scale the busy service, leave the quiet one</h2>
+  <p class="s">You did this in M5 — backend on CPU, frontend still.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The backend scales from two replicas to six under load, while the frontend stays flat at three replicas.">
+    <g filter="url(#rough)">
+      <rect x="90" y="120" width="70" height="110" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="175" y="120" width="70" height="110" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="330" y="90" width="55" height="140" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="395" y="90" width="55" height="140" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="460" y="90" width="55" height="140" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="525" y="90" width="55" height="140" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="590" y="90" width="55" height="140" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="655" y="90" width="55" height="140" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="167" y="260" text-anchor="middle" class="lbl-sm">backend: 2</text>
+    <path d="M260,175 L325,175" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <text x="520" y="260" text-anchor="middle" class="lbl-sm" fill="#2e7d32">backend: 6 under load</text>
+    <g filter="url(#rough)">
+      <rect x="800" y="120" width="60" height="110" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="870" y="120" width="60" height="110" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="940" y="120" width="60" height="110" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="900" y="260" text-anchor="middle" class="lbl-sm">frontend: 3, flat</text>
+  </svg>
   <div class="pageno">M8·10</div>
 </section>
 
-<!-- 8 · microservices gains -->
+<!-- 9 · content (narr Slide 9) gain: independent failure -->
 <section>
-  <h2 class="t">Microservices: what you gain</h2>
-  <p class="s">Each tied to something you built in Fernwood.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Four gains: independent deployment, independent scaling as seen with the Module 5 backend, independent failure through graceful degradation, and team autonomy with technology fit across Node, Python, and Java.">
+  <h2 class="t">Gain: one service crashing spares the others</h2>
+  <p class="s">Fernwood degrades — frontend renders without the backend.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The backend is down, drawn crossed out, while the frontend still renders a degraded but working user interface.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="135" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="200" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="265" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="620" y="100" width="260" height="150" rx="14" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <path d="M635,235 L865,115" stroke="#c62828" stroke-width="3" fill="none"/>
     </g>
-    <text x="90" y="79" text-anchor="middle" class="num">1</text>
-    <text x="90" y="144" text-anchor="middle" class="num">2</text>
-    <text x="90" y="209" text-anchor="middle" class="num">3</text>
-    <text x="90" y="274" text-anchor="middle" class="num">4</text>
-    <text x="140" y="78" class="lbl">independent deployment — ship one service alone</text>
-    <text x="140" y="143" class="lbl">independent scaling — the M5 backend, frontend still</text>
-    <text x="140" y="208" class="lbl">independent failure — Fernwood degrades gracefully</text>
-    <text x="140" y="273" class="lbl">team autonomy + tech fit — Node, Python, Java</text>
+    <text x="750" y="160" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="750" y="200" text-anchor="middle" class="lbl-b" fill="#c62828">down</text>
+    <g filter="url(#rough)">
+      <rect x="180" y="100" width="260" height="150" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="215" y="140" width="190" height="30" rx="4" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+      <rect x="215" y="185" width="130" height="30" rx="4" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+    </g>
+    <text x="310" y="128" text-anchor="middle" class="lbl-sm">frontend</text>
+    <text x="310" y="285" text-anchor="middle" class="lbl-g" fill="#2e7d32">still renders a working UI</text>
+    <path d="M615,175 L445,175" stroke="#757575" stroke-width="2.2" fill="none" stroke-dasharray="7 6" marker-end="url(#ahg)"/>
+    <text x="530" y="158" text-anchor="middle" class="lbl-g">degraded</text>
   </svg>
   <div class="pageno">M8·11</div>
 </section>
 
-<!-- 9 · microservices costs -->
+<!-- 10 · content (narr Slide 10) gain: team autonomy + tech fit -->
 <section>
-  <h2 class="t">Microservices: what it costs</h2>
-  <p class="s">Every gain is paid for somewhere.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Four costs: the network is now in the middle of everything, operational overhead multiplies, debugging spans processes, and data is harder to keep consistent across services.">
+  <h2 class="t">Gain: different teams, even different languages</h2>
+  <p class="s">Fernwood is Node, Python, and Java behind one door.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A Node frontend, a Python backend, and a Java springboot-demo all sit behind one front door, and none of the tiers cares what the others are written in.">
     <g filter="url(#rough)">
-      <circle cx="90" cy="70" r="24" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="135" r="24" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="200" r="24" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
-      <circle cx="90" cy="265" r="24" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="70" y="90" width="230" height="140" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="340" y="90" width="230" height="140" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="610" y="90" width="230" height="140" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="890" y="70" width="150" height="180" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
-    <text x="90" y="79" text-anchor="middle" class="num">1</text>
-    <text x="90" y="144" text-anchor="middle" class="num">2</text>
-    <text x="90" y="209" text-anchor="middle" class="num">3</text>
-    <text x="90" y="274" text-anchor="middle" class="num">4</text>
-    <text x="140" y="78" class="lbl">the network is now in the middle — calls can fail</text>
-    <text x="140" y="143" class="lbl">operational overhead multiplies — ten of everything</text>
-    <text x="140" y="208" class="lbl">debugging spans processes — not one log file</text>
-    <text x="140" y="273" class="lbl">data is harder — consistency across boundaries</text>
+    <text x="185" y="150" text-anchor="middle" class="lbl-b">frontend</text>
+    <text x="185" y="185" text-anchor="middle" class="lbl-sm">Node</text>
+    <text x="455" y="150" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="455" y="185" text-anchor="middle" class="lbl-sm">Python</text>
+    <text x="725" y="150" text-anchor="middle" class="lbl-b">springboot-demo</text>
+    <text x="725" y="185" text-anchor="middle" class="lbl-sm">Java</text>
+    <text x="965" y="155" text-anchor="middle" class="lbl-sm">one</text>
+    <text x="965" y="185" text-anchor="middle" class="lbl-sm">front door</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">none of the tiers cares what the others are written in</text>
   </svg>
   <div class="pageno">M8·12</div>
 </section>
 
-<!-- 10 · the trade -->
+<!-- 11 · content (narr Slide 11) cost: network in the middle -->
+<section>
+  <h2 class="t">Cost: the network is now in the middle of everything</h2>
+  <p class="s">A call that never failed can now fail.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="On the left, an in-process function call that is instant and never fails. On the right, a network call between services that can time out, arrive twice, or vanish entirely.">
+    <g filter="url(#rough)">
+      <rect x="70" y="90" width="200" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="330" y="90" width="200" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M272,130 L328,130" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    </g>
+    <text x="170" y="135" text-anchor="middle" class="lbl-sm">module</text>
+    <text x="430" y="135" text-anchor="middle" class="lbl-sm">module</text>
+    <text x="300" y="215" text-anchor="middle" class="lbl-g" fill="#2e7d32">function call — instant, never fails</text>
+    <g filter="url(#rough)">
+      <rect x="610" y="90" width="180" height="80" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="850" y="90" width="180" height="80" rx="10" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M792,130 C815,130 825,130 848,130" stroke="#c62828" stroke-width="2.6" fill="none" stroke-dasharray="6 5" marker-end="url(#ah)"/>
+    </g>
+    <text x="700" y="135" text-anchor="middle" class="lbl-sm">service</text>
+    <text x="940" y="135" text-anchor="middle" class="lbl-sm">service</text>
+    <text x="820" y="215" text-anchor="middle" class="lbl-g" fill="#c62828">network call — times out, arrives twice, vanishes</text>
+  </svg>
+  <div class="pageno">M8·13</div>
+</section>
+
+<!-- 12 · content (narr Slide 12) cost: operational overhead multiplies -->
+<section>
+  <h2 class="t">Cost: one of everything becomes ten of everything</h2>
+  <p class="s">Kubernetes is the tax microservices charge you.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="One service is one thing to deploy, monitor, and secure. Ten services are ten of each, which is why orchestration, service discovery, ingress, and policy became necessary.">
+    <g filter="url(#rough)">
+      <rect x="90" y="100" width="360" height="140" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="650" y="100" width="360" height="140" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="270" y="150" text-anchor="middle" class="lbl-b">1 service</text>
+    <text x="270" y="200" text-anchor="middle" class="lbl-sm">1× deploy, monitor, secure</text>
+    <path d="M455,170 C510,170 530,170 645,170" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <text x="830" y="150" text-anchor="middle" class="lbl-b" fill="#c62828">10 services</text>
+    <text x="830" y="200" text-anchor="middle" class="lbl-sm">10× of everything</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">orchestration, discovery, ingress, policy — the tax you pay</text>
+  </svg>
+  <div class="pageno">M8·14</div>
+</section>
+
+<!-- 13 · content (narr Slide 13) cost: debugging spans processes -->
+<section>
+  <h2 class="t">Cost: one request now crosses several processes</h2>
+  <p class="s">"Why was this slow" is no longer one log file.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A single request crosses the frontend, the backend, and the database, each a separate process with its own log, so there is no single log file to read.">
+    <g filter="url(#rough)">
+      <rect x="90" y="120" width="180" height="90" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="370" y="120" width="180" height="90" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
+      <ellipse cx="740" cy="165" rx="80" ry="48" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="180" y="170" text-anchor="middle" class="lbl-sm">frontend</text>
+    <text x="460" y="170" text-anchor="middle" class="lbl-sm">backend</text>
+    <text x="740" y="172" text-anchor="middle" class="lbl-sm">db</text>
+    <path d="M272,165 L368,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <path d="M552,165 L658,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <text x="320" y="90" text-anchor="middle" class="lbl-g">one request →</text>
+    <text x="550" y="285" text-anchor="middle" class="lbl-g" fill="#c62828">no single log file answers "why was this slow?"</text>
+  </svg>
+  <div class="pageno">M8·15</div>
+</section>
+
+<!-- 14 · content (narr Slide 14) cost: data is harder -->
+<section>
+  <h2 class="t">Cost: data spread across services is harder</h2>
+  <p class="s">Consistency across boundaries is a genuinely hard problem.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="On the left, one shared database is easy to reason about. On the right, data spread across three services is hard to keep consistent.">
+    <g filter="url(#rough)">
+      <ellipse cx="230" cy="165" rx="110" ry="70" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="230" y="160" text-anchor="middle" class="lbl-b">one shared db</text>
+    <text x="230" y="195" text-anchor="middle" class="lbl-g" fill="#2e7d32">easy to reason about</text>
+    <g filter="url(#rough)">
+      <ellipse cx="700" cy="110" rx="70" ry="42" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <ellipse cx="920" cy="150" rx="70" ry="42" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <ellipse cx="720" cy="240" rx="70" ry="42" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M760,130 C820,135 850,140 880,145 M860,175 C820,200 790,215 760,225 M700,155 C700,180 705,200 710,220" stroke="#c62828" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+    </g>
+    <text x="700" y="115" text-anchor="middle" class="lbl-sm">data</text>
+    <text x="920" y="155" text-anchor="middle" class="lbl-sm">data</text>
+    <text x="720" y="245" text-anchor="middle" class="lbl-sm">data</text>
+    <text x="810" y="300" text-anchor="middle" class="lbl-g" fill="#c62828">hard to keep consistent across boundaries</text>
+  </svg>
+  <div class="pageno">M8·16</div>
+</section>
+
+<!-- 15 · content (narr Slide 15) the honest trade -->
 <section>
   <h2 class="t">The trade: internal simplicity for operational complexity</h2>
   <p class="s">A business call, not just a technical one.</p>
@@ -387,20 +505,20 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="755" y="244" text-anchor="middle" class="lbl-g">taken on</text>
     <text x="550" y="305" text-anchor="middle" class="lbl-g">tip it only when independent scale, deploy, and autonomy are worth more</text>
   </svg>
-  <div class="pageno">M8·13</div>
+  <div class="pageno">M8·17</div>
 </section>
 
 <!-- DIVIDER · Twelve-factor: the principles under the patterns -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Twelve-factor: the principles under the patterns</h2>
-  <div class="pageno">M8·14</div>
+<section class="divider">
+  <h2 class="t">Twelve-factor: the principles under the patterns</h2>
+  <div class="pageno">M8·18</div>
 </section>
 
-<!-- 11 · twelve-factor intro -->
+<!-- 16 · content (narr Slide 16) twelve-factor intro -->
 <section>
-  <h2 class="t">Twelve-factor: the principles under the patterns</h2>
-  <p class="s">You followed several without reading the list.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="A set of twelve-factor principles describes how to build a service that behaves well when a platform deploys, scales, and operates it.">
+  <h2 class="t">You followed twelve-factor without reading the list</h2>
+  <p class="s">Principles for a service a platform can run well.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="A set of twelve-factor principles, described long before microservices was a common word, describes how to build a service that behaves well when a platform deploys, scales, and operates it.">
     <g filter="url(#rough)">
       <rect x="90" y="110" width="320" height="110" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
@@ -414,44 +532,159 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="815" y="150" text-anchor="middle" class="lbl-b">a well-behaved service</text>
     <text x="815" y="190" text-anchor="middle" class="lbl-sm">deploy · scale · operate</text>
   </svg>
-  <div class="pageno">M8·15</div>
+  <div class="pageno">M8·19</div>
 </section>
 
-<!-- 12 · five factors mapped -->
+<!-- 17 · content (narr Slide 17) factor III config in env -->
 <section>
-  <h2 class="t">Five factors, mapped to where you built them</h2>
-  <p class="s">Not a checklist you bolt on at the end.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Five twelve-factor principles mapped to modules: config in the environment in Lesson 1, stateless processes in Modules 4 and 5, backing services as attached resources in Modules 4 and 6, separate build-release-run in Module 5, and disposability in Modules 3 and 5.">
+  <h2 class="t">Factor III: config lives in the environment</h2>
+  <p class="s">Exactly what you did in Lesson 1.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The Lesson 1 ConfigMap and Secret feed the backend image through envFrom, so the same image runs against any database without a rebuild.">
     <g filter="url(#rough)">
-      <circle cx="80" cy="60" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="118" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="176" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="234" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <circle cx="80" cy="292" r="20" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.4"/>
+      <rect x="70" y="70" width="220" height="80" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="70" y="190" width="220" height="80" rx="10" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="470" y="130" width="280" height="90" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="3"/>
+      <rect x="850" y="130" width="180" height="90" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="80" y="67" text-anchor="middle" class="lbl-b">III</text>
-    <text x="80" y="125" text-anchor="middle" class="lbl-b">VI</text>
-    <text x="80" y="183" text-anchor="middle" class="lbl-b">IV</text>
-    <text x="80" y="241" text-anchor="middle" class="lbl-b">V</text>
-    <text x="80" y="299" text-anchor="middle" class="lbl-b">IX</text>
-    <text x="125" y="67" class="lbl">config in the environment — Lesson 1</text>
-    <text x="125" y="125" class="lbl">stateless processes — M4, M5</text>
-    <text x="125" y="183" class="lbl">backing services attached — M4, M6</text>
-    <text x="125" y="241" class="lbl">separate build, release, run — M5</text>
-    <text x="125" y="299" class="lbl">disposability — M3, M5</text>
+    <text x="180" y="105" text-anchor="middle" class="lbl-sm">ConfigMap</text>
+    <text x="180" y="135" text-anchor="middle" class="lbl-sm">DB_HOST…</text>
+    <text x="180" y="225" text-anchor="middle" class="lbl-sm">Secret</text>
+    <text x="180" y="255" text-anchor="middle" class="lbl-sm">DB_PASSWORD</text>
+    <text x="610" y="170" text-anchor="middle" class="lbl-b">backend image</text>
+    <text x="610" y="200" text-anchor="middle" class="lbl-sm">built once</text>
+    <text x="940" y="170" text-anchor="middle" class="lbl-sm">any database</text>
+    <text x="940" y="200" text-anchor="middle" class="lbl-g" fill="#2e7d32">no rebuild</text>
+    <path d="M292,110 C380,130 400,150 465,165" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <path d="M292,230 C380,210 400,190 465,178" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <text x="390" y="150" text-anchor="middle" class="lbl-g">envFrom</text>
+    <path d="M752,175 L848,175" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
   </svg>
-  <div class="pageno">M8·16</div>
+  <div class="pageno">M8·20</div>
+</section>
+
+<!-- 18 · content (narr Slide 18) factor VI stateless -->
+<section>
+  <h2 class="t">Factor VI: processes hold no state between requests</h2>
+  <p class="s">That is why three replicas can share one Service.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Three frontend replicas behind one Service, any one of them able to answer any request because none holds lasting state.">
+    <g filter="url(#rough)">
+      <rect x="450" y="60" width="200" height="70" rx="10" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="120" y="210" width="180" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="460" y="210" width="180" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="800" y="210" width="180" height="80" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="550" y="103" text-anchor="middle" class="lbl-b">one Service</text>
+    <text x="210" y="257" text-anchor="middle" class="lbl-sm">replica</text>
+    <text x="550" y="257" text-anchor="middle" class="lbl-sm">replica</text>
+    <text x="890" y="257" text-anchor="middle" class="lbl-sm">replica</text>
+    <path d="M520,132 C420,160 300,185 240,207" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <path d="M550,132 L550,207" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <path d="M580,132 C680,160 810,185 870,207" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <text x="550" y="308" text-anchor="middle" class="lbl-g" fill="#2e7d32">any replica serves any request — none is special</text>
+  </svg>
+  <div class="pageno">M8·21</div>
+</section>
+
+<!-- 19 · content (narr Slide 19) factor IV backing services -->
+<section>
+  <h2 class="t">Factor IV: backing services are attached resources</h2>
+  <p class="s">Postgres is reached by name, and swappable in place.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The backend reaches Postgres over the network by name, through a Service and a StatefulSet. Swapping the database host in the ConfigMap attaches a different database.">
+    <g filter="url(#rough)">
+      <rect x="90" y="120" width="200" height="90" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
+      <ellipse cx="640" cy="165" rx="90" ry="55" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <ellipse cx="920" cy="165" rx="80" ry="48" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="8 6"/>
+    </g>
+    <text x="190" y="160" text-anchor="middle" class="lbl-b">backend</text>
+    <text x="190" y="192" text-anchor="middle" class="lbl-sm">reaches by name</text>
+    <text x="640" y="160" text-anchor="middle" class="lbl-b">Postgres</text>
+    <text x="640" y="192" text-anchor="middle" class="lbl-sm">Service + StatefulSet</text>
+    <text x="920" y="170" text-anchor="middle" class="lbl-sm">another db</text>
+    <path d="M292,165 L548,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <path d="M732,165 C780,165 800,165 838,165" stroke="#757575" stroke-width="2.2" fill="none" stroke-dasharray="7 6" marker-end="url(#ahg)"/>
+    <text x="790" y="145" text-anchor="middle" class="lbl-g">swap the host</text>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g">a plug-in dependency, not something built in</text>
+  </svg>
+  <div class="pageno">M8·22</div>
+</section>
+
+<!-- 20 · content (narr Slide 20) factor V build/release/run -->
+<section>
+  <h2 class="t">Factor V: build, release, and run stay separate</h2>
+  <p class="s">One build becomes many releases.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The image is the build, the image plus its ConfigMap and Secret is the release, and the running Pod is the run. Because config is separate, a rollback is just running a previous release again.">
+    <g filter="url(#rough)">
+      <rect x="70" y="110" width="250" height="110" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="420" y="110" width="250" height="110" rx="12" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="770" y="110" width="250" height="110" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="195" y="155" text-anchor="middle" class="lbl-b">build</text>
+    <text x="195" y="190" text-anchor="middle" class="lbl-sm">the image</text>
+    <text x="545" y="155" text-anchor="middle" class="lbl-b">release</text>
+    <text x="545" y="190" text-anchor="middle" class="lbl-sm">image + CM + Secret</text>
+    <text x="895" y="155" text-anchor="middle" class="lbl-b">run</text>
+    <text x="895" y="190" text-anchor="middle" class="lbl-sm">the running Pod</text>
+    <path d="M322,165 L418,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <path d="M672,165 L768,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <text x="550" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">a rollback is just running a previous release again</text>
+  </svg>
+  <div class="pageno">M8·23</div>
+</section>
+
+<!-- 21 · content (narr Slide 21) factor IX disposability -->
+<section>
+  <h2 class="t">Factor IX: a Pod can be killed at any moment</h2>
+  <p class="s">Probes and rolling updates all assume it.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Readiness and liveness probes and rolling updates all assume a Pod is disposable and replaceable, which is what makes self-healing and zero-downtime rollout work.">
+    <g filter="url(#rough)">
+      <rect x="90" y="90" width="260" height="150" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <rect x="430" y="90" width="260" height="150" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="220" y="150" text-anchor="middle" class="lbl-b">probes (M3)</text>
+    <text x="220" y="190" text-anchor="middle" class="lbl-sm">readiness · liveness</text>
+    <text x="560" y="150" text-anchor="middle" class="lbl-b">rolling updates (M5)</text>
+    <text x="560" y="190" text-anchor="middle" class="lbl-sm">replace, don't repair</text>
+    <path d="M692,165 C740,165 760,165 800,165" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <g filter="url(#rough)">
+      <rect x="810" y="110" width="220" height="110" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="920" y="155" text-anchor="middle" class="lbl-sm">self-healing +</text>
+    <text x="920" y="188" text-anchor="middle" class="lbl-sm" fill="#2e7d32">zero-downtime</text>
+    <text x="390" y="290" text-anchor="middle" class="lbl-g">a Pod is disposable and replaceable, by design</text>
+  </svg>
+  <div class="pageno">M8·24</div>
+</section>
+
+<!-- 22 · content (narr Slide 22) not a checklist -->
+<section>
+  <h2 class="t">Twelve-factor is not a checklist you bolt on</h2>
+  <p class="s">It is the assumptions that let a platform run you well.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Twelve-factor is drawn not as a checklist bolted on at the end, but as the foundation of assumptions a platform relies on to run a service well.">
+    <g filter="url(#rough)">
+      <rect x="140" y="70" width="300" height="150" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="9 7"/>
+      <path d="M160,215 L420,80" stroke="#c62828" stroke-width="3" fill="none"/>
+    </g>
+    <text x="290" y="135" text-anchor="middle" class="lbl-sm">a checklist</text>
+    <text x="290" y="170" text-anchor="middle" class="lbl-sm" fill="#c62828">bolted on at the end</text>
+    <path d="M460,150 C520,150 540,150 600,150" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <g filter="url(#rough)">
+      <rect x="610" y="70" width="410" height="150" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="815" y="130" text-anchor="middle" class="lbl-b">the assumptions</text>
+    <text x="815" y="168" text-anchor="middle" class="lbl-sm">a platform runs you on</text>
+  </svg>
+  <div class="pageno">M8·25</div>
 </section>
 
 <!-- DIVIDER · What you actually built: the patterns, mapped -->
-<section>
-  <h2 class="t" style="font-size:2.2em">What you actually built: the patterns, mapped</h2>
-  <div class="pageno">M8·17</div>
+<section class="divider">
+  <h2 class="t">What you actually built: the patterns, mapped</h2>
+  <div class="pageno">M8·26</div>
 </section>
 
-<!-- 13 · patterns mapped -->
+<!-- 23 · content (narr Slide 23) patterns mapped architecture -->
 <section>
-  <h2 class="t">What you actually built: the patterns, mapped</h2>
+  <h2 class="t">Every pattern has a name — and a module</h2>
   <p class="s">The whole course, restated as architecture.</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="The whole system as architecture: a client reaches Ingress and Envoy from Module 7, which routes to the frontend from Modules 4 and 5, which calls the backend from Modules 4 and 5, which reaches Postgres from Module 6. Cluster DNS and Services from Module 4 resolve all of them by name.">
     <g filter="url(#rough)">
@@ -479,10 +712,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="300" text-anchor="middle" class="lbl-sm">cluster DNS + Services</text>
     <text x="550" y="322" text-anchor="middle" class="lbl-g">M4 — resolves every hop by name</text>
   </svg>
-  <div class="pageno">M8·18</div>
+  <div class="pageno">M8·27</div>
 </section>
 
-<!-- 14 · service discovery -->
+<!-- 24 · content (narr Slide 24) service discovery M4 -->
 <section>
   <h2 class="t">Service discovery: the district's signage (M4)</h2>
   <p class="s">Find a service by name, with no hardcoded address.</p>
@@ -503,10 +736,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="335" y="220" text-anchor="middle" class="lbl-g">by name</text>
     <text x="550" y="305" text-anchor="middle" class="lbl-g" fill="#2e7d32">Pods come and go, IPs change, names keep resolving</text>
   </svg>
-  <div class="pageno">M8·19</div>
+  <div class="pageno">M8·28</div>
 </section>
 
-<!-- 15 · gateway vs ingress -->
+<!-- 25 · content (narr Slide 25) gateway vs ingress M7 -->
 <section>
   <h2 class="t">API gateway vs Ingress: you built the front gate (M7)</h2>
   <p class="s">Ingress is routing; a gateway does more.</p>
@@ -527,33 +760,54 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="810" y="225" text-anchor="middle" class="lbl-sm">aggregate</text>
     <text x="810" y="263" text-anchor="middle" class="lbl-g">frisks and directs too</text>
   </svg>
-  <div class="pageno">M8·20</div>
+  <div class="pageno">M8·29</div>
 </section>
 
-<!-- 16 · resilience -->
+<!-- 26 · content (narr Slide 26) resilience through change M5 -->
 <section>
-  <h2 class="t">Resilience: surviving deploy, spike, and restart</h2>
-  <p class="s">Two modules built staying-up through change.</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="Two panels: Module 5 gave rolling updates, rollbacks, and the HorizontalPodAutoscaler. Module 6 gave durable state through a StatefulSet with a PersistentVolumeClaim.">
+  <h2 class="t">Resilience through change: rollouts and autoscaling (M5)</h2>
+  <p class="s">Ship, undo, and grow — with no downtime.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Module 5 gave rolling updates to ship a new version with no downtime, rollbacks to undo a bad release in one command, and the HorizontalPodAutoscaler to add replicas under load.">
     <g filter="url(#rough)">
-      <rect x="70" y="65" width="440" height="215" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <circle cx="120" cy="80" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="120" cy="160" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
+      <circle cx="120" cy="240" r="24" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="290" y="110" text-anchor="middle" class="lbl-b">M5 — change safely</text>
-    <text x="290" y="160" text-anchor="middle" class="lbl-sm">rolling updates</text>
-    <text x="290" y="200" text-anchor="middle" class="lbl-sm">rollbacks · HPA</text>
-    <text x="290" y="250" text-anchor="middle" class="lbl-g">survives a deploy and a spike</text>
-    <g filter="url(#rough)">
-      <rect x="590" y="65" width="440" height="215" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
-    </g>
-    <text x="810" y="110" text-anchor="middle" class="lbl-b">M6 — durable state</text>
-    <text x="810" y="160" text-anchor="middle" class="lbl-sm">StatefulSet + PVC</text>
-    <text x="810" y="200" text-anchor="middle" class="lbl-sm">data outlives any Pod</text>
-    <text x="810" y="250" text-anchor="middle" class="lbl-g">survives a Pod restart</text>
+    <text x="120" y="89" text-anchor="middle" class="num">1</text>
+    <text x="120" y="169" text-anchor="middle" class="num">2</text>
+    <text x="120" y="249" text-anchor="middle" class="num">3</text>
+    <text x="170" y="88" class="lbl">rolling updates — a new version, no downtime</text>
+    <text x="170" y="168" class="lbl">rollbacks — undo a bad release in one command</text>
+    <text x="170" y="248" class="lbl">HPA — add replicas under load, remove them after</text>
   </svg>
-  <div class="pageno">M8·21</div>
+  <div class="pageno">M8·30</div>
 </section>
 
-<!-- 17 · isolation and access control (M8) -->
+<!-- 27 · content (narr Slide 27) resilience through failure M6 -->
+<section>
+  <h2 class="t">Resilience through failure: durable state (M6)</h2>
+  <p class="s">Data outlives any single Pod.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The Postgres StatefulSet with its PersistentVolumeClaim: the Pod can be replaced while the data on the persistent volume outlives it.">
+    <g filter="url(#rough)">
+      <rect x="150" y="90" width="220" height="120" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
+      <path d="M165,205 L355,95" stroke="#c62828" stroke-width="2.6" fill="none"/>
+      <rect x="200" y="245" width="220" height="60" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.4"/>
+    </g>
+    <text x="260" y="150" text-anchor="middle" class="lbl-b">db Pod</text>
+    <text x="260" y="185" text-anchor="middle" class="lbl-sm" fill="#c62828">replaced</text>
+    <text x="310" y="283" text-anchor="middle" class="lbl-sm">new db Pod</text>
+    <g filter="url(#rough)">
+      <rect x="640" y="120" width="320" height="130" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="800" y="175" text-anchor="middle" class="lbl-b">PersistentVolume</text>
+    <text x="800" y="212" text-anchor="middle" class="lbl-sm" fill="#2e7d32">data survives</text>
+    <path d="M425,180 C520,180 560,185 638,185" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <text x="530" y="165" text-anchor="middle" class="lbl-g">PVC</text>
+  </svg>
+  <div class="pageno">M8·31</div>
+</section>
+
+<!-- 28 · content (narr Slide 28) isolation and access control M8 -->
 <section>
   <h2 class="t">Isolation and access control: the locks (M8)</h2>
   <p class="s">This module's place on the pattern map.</p>
@@ -571,16 +825,32 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="895" y="185" text-anchor="middle" class="lbl-sm">config apart from code</text>
     <text x="550" y="285" text-anchor="middle" class="lbl-g">a district with no locks is not one you would run a business in</text>
   </svg>
-  <div class="pageno">M8·22</div>
+  <div class="pageno">M8·32</div>
 </section>
 
 <!-- DIVIDER · Common pitfalls migrating from a monolith -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Common pitfalls migrating from a monolith</h2>
-  <div class="pageno">M8·23</div>
+<section class="divider">
+  <h2 class="t">Common pitfalls migrating from a monolith</h2>
+  <div class="pageno">M8·33</div>
 </section>
 
-<!-- 18 · distributed monolith -->
+<!-- 29 · content (narr Slide 29) most pain from splitting wrong -->
+<section>
+  <h2 class="t">Most pain comes from splitting wrong</h2>
+  <p class="s">Too early, too finely, or along the wrong lines.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="One warning to carry away: most microservices pain comes from splitting too early, too finely, or along the wrong lines, and the same failures repeat.">
+    <g filter="url(#rough)">
+      <path d="M300,70 L640,70 L470,230 Z" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="470" y="130" text-anchor="middle" class="lbl-b">!</text>
+    <text x="470" y="180" text-anchor="middle" class="lbl-sm">split wrong</text>
+    <text x="470" y="275" text-anchor="middle" class="lbl-g">too early · too finely · along the wrong lines</text>
+    <text x="820" y="150" text-anchor="middle" class="lbl-g">and the failures repeat</text>
+  </svg>
+  <div class="pageno">M8·34</div>
+</section>
+
+<!-- 30 · content (narr Slide 30) distributed monolith -->
 <section>
   <h2 class="t">The distributed monolith: all cost, no independence</h2>
   <p class="s">The most common bad outcome.</p>
@@ -597,10 +867,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="460" y="235" text-anchor="middle" class="lbl-b" fill="#c62828">deploy in lockstep</text>
     <text x="460" y="285" text-anchor="middle" class="lbl-g">split along tech layers, not business capabilities</text>
   </svg>
-  <div class="pageno">M8·24</div>
+  <div class="pageno">M8·35</div>
 </section>
 
-<!-- 19 · split before domain -->
+<!-- 31 · content (narr Slide 31) split before domain -->
 <section>
   <h2 class="t">Split before you know the domain, lock in wrong seams</h2>
   <p class="s">Boundaries are expensive to move once teams form.</p>
@@ -620,10 +890,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="830" y="185" text-anchor="middle" class="lbl-sm">split when seams show</text>
     <text x="550" y="295" text-anchor="middle" class="lbl-g">drawn before you know the seams, they are painful to redraw</text>
   </svg>
-  <div class="pageno">M8·25</div>
+  <div class="pageno">M8·36</div>
 </section>
 
-<!-- 20 · network failure modes -->
+<!-- 32 · content (narr Slide 32) network failure modes -->
 <section>
   <h2 class="t">Ignoring the network's new failure modes cascades</h2>
   <p class="s">Every inter-service call can fail.</p>
@@ -646,84 +916,162 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="895" y="182" text-anchor="middle" class="lbl-g">the small version</text>
     <text x="550" y="285" text-anchor="middle" class="lbl-g">a design that assumes calls always succeed turns one outage into all</text>
   </svg>
-  <div class="pageno">M8·26</div>
+  <div class="pageno">M8·37</div>
 </section>
 
-<!-- 21 · operational bill -->
+<!-- 33 · content (narr Slide 33) operational bill -->
 <section>
-  <h2 class="t">The operational bill is real — this course was it</h2>
-  <p class="s">Ten services need ten times the ops.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="One service is one thing to deploy, monitor, and secure. Ten services are ten times each. If you are not ready to run that platform, the split buries you.">
+  <h2 class="t">Underestimating the operational bill buries you</h2>
+  <p class="s">This whole course was that bill, made real.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="One service is one thing to deploy, monitor, log, and secure. Ten services are ten times each. If you are not ready to run that platform, the split buries you.">
     <g filter="url(#rough)">
       <rect x="90" y="100" width="360" height="140" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.6"/>
       <rect x="650" y="100" width="360" height="140" rx="12" fill="var(--p-red)" stroke="#1e1e1e" stroke-width="2.8"/>
     </g>
     <text x="270" y="150" text-anchor="middle" class="lbl-b">1 service</text>
-    <text x="270" y="200" text-anchor="middle" class="lbl-sm">1× deploy, monitor, secure</text>
+    <text x="270" y="200" text-anchor="middle" class="lbl-sm">1× deploy, monitor, log, secure</text>
     <path d="M455,170 C510,170 530,170 645,170" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
     <text x="830" y="150" text-anchor="middle" class="lbl-b" fill="#c62828">10 services</text>
     <text x="830" y="200" text-anchor="middle" class="lbl-sm">10× of everything</text>
     <text x="550" y="285" text-anchor="middle" class="lbl-g">if you are not ready to run the platform, the split buries you</text>
   </svg>
-  <div class="pageno">M8·27</div>
+  <div class="pageno">M8·38</div>
+</section>
+
+<!-- 34 · content (narr Slide 34) not a reason to avoid -->
+<section>
+  <h2 class="t">Not a reason to avoid microservices</h2>
+  <p class="s">Split on purpose, along business capabilities.</p>
+  <svg viewBox="0 0 1100 300" role="img" aria-label="These pitfalls are reasons to split on purpose along business capabilities when the benefits are real, keeping each service as independently deployable as the move from department store to district promises.">
+    <g filter="url(#rough)">
+      <rect x="130" y="90" width="360" height="120" rx="12" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="310" y="140" text-anchor="middle" class="lbl-sm">split on purpose</text>
+    <text x="310" y="178" text-anchor="middle" class="lbl-sm">along business capabilities</text>
+    <path d="M495,150 C550,150 570,150 630,150" stroke="#1e1e1e" stroke-width="2.6" fill="none" marker-end="url(#ah)"/>
+    <g filter="url(#rough)">
+      <rect x="640" y="90" width="360" height="120" rx="12" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="820" y="140" text-anchor="middle" class="lbl-sm">each service</text>
+    <text x="820" y="178" text-anchor="middle" class="lbl-sm" fill="#2e7d32">independently deployable</text>
+    <text x="550" y="270" text-anchor="middle" class="lbl-g">when the benefits are real — as the district actually promises</text>
+  </svg>
+  <div class="pageno">M8·39</div>
 </section>
 
 <!-- DIVIDER · Program wrap-up -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Program wrap-up</h2>
-  <div class="pageno">M8·28</div>
+<section class="divider">
+  <h2 class="t">Program wrap-up</h2>
+  <div class="pageno">M8·40</div>
 </section>
 
-<!-- 22 · the whole arc -->
+<!-- 35 · content (narr Slide 35) the arc part one (3 fragments) -->
 <section>
-  <h2 class="t">The whole arc: three containers to a hardened cluster</h2>
-  <p class="s">The journey a production application makes.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A staircase of eight rungs from Module 1 to Module 8: flat Docker network, Compose, Pods, namespaces and Services, Deployments, StatefulSet, Ingress, and hardened, climbing to a green summit.">
+  <h2 class="t">The arc, part one: from a flat network to Services</h2>
+  <p class="s">M1 to M4, revealed a module at a time.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A staircase of the first four modules, revealed one at a time: Module 1 distributed-systems basics and a flat Docker network, Module 2 Docker and Compose, Module 3 Pods on Kubernetes, and Module 4 namespaces, ReplicaSets, and Services.">
     <g filter="url(#rough)">
-      <rect x="40" y="285" width="120" height="30" rx="4" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="170" y="255" width="120" height="60" rx="4" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="300" y="225" width="120" height="90" rx="4" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="430" y="195" width="120" height="120" rx="4" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="560" y="165" width="120" height="150" rx="4" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="690" y="135" width="120" height="180" rx="4" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.2"/>
-      <rect x="820" y="105" width="120" height="210" rx="4" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.4"/>
-      <rect x="950" y="70" width="120" height="245" rx="4" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+      <rect x="60" y="240" width="230" height="55" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
-    <text x="100" y="305" text-anchor="middle" class="lbl-sm">M1</text>
-    <text x="230" y="290" text-anchor="middle" class="lbl-sm">M2</text>
-    <text x="360" y="275" text-anchor="middle" class="lbl-sm">M3</text>
-    <text x="490" y="260" text-anchor="middle" class="lbl-sm">M4</text>
-    <text x="620" y="245" text-anchor="middle" class="lbl-sm">M5</text>
-    <text x="750" y="230" text-anchor="middle" class="lbl-sm">M6</text>
-    <text x="880" y="215" text-anchor="middle" class="lbl-sm">M7</text>
-    <text x="1010" y="110" text-anchor="middle" class="lbl-b">M8</text>
-    <text x="1010" y="150" text-anchor="middle" class="lbl-sm">hardened</text>
-    <text x="100" y="270" text-anchor="middle" class="lbl-g">flat net</text>
+    <text x="105" y="277" text-anchor="middle" class="lbl-b">M1</text>
+    <text x="205" y="277" text-anchor="middle" class="lbl-sm">flat Docker net</text>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="310" y="185" width="230" height="55" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/></g>
+      <text x="355" y="222" text-anchor="middle" class="lbl-b">M2</text>
+      <text x="455" y="222" text-anchor="middle" class="lbl-sm">Docker + Compose</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="560" y="130" width="230" height="55" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/></g>
+      <text x="605" y="167" text-anchor="middle" class="lbl-b">M3</text>
+      <text x="700" y="167" text-anchor="middle" class="lbl-sm">Pods on K8s</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="810" y="75" width="240" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/></g>
+      <text x="855" y="112" text-anchor="middle" class="lbl-b">M4</text>
+      <text x="960" y="112" text-anchor="middle" class="lbl-sm">ns + Services</text>
+    </g>
   </svg>
-  <div class="pageno">M8·29</div>
+  <div class="pageno">M8·41</div>
 </section>
 
-<!-- 23 · CLOSING · where you go next -->
+<!-- 36 · content (narr Slide 36) the arc part two (3 fragments) -->
+<section>
+  <h2 class="t">The arc, part two: from safe releases to hardened</h2>
+  <p class="s">M5 to M8, revealed a module at a time.</p>
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A staircase of the last four modules, revealed one at a time: Module 5 safe releases and autoscaling, Module 6 durable state, Module 7 Envoy-based Ingress, and Module 8 hardened with config, RBAC, and NetworkPolicy.">
+    <g filter="url(#rough)">
+      <rect x="60" y="240" width="230" height="55" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="105" y="277" text-anchor="middle" class="lbl-b">M5</text>
+    <text x="205" y="277" text-anchor="middle" class="lbl-sm">safe releases</text>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="310" y="185" width="230" height="55" rx="8" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/></g>
+      <text x="355" y="222" text-anchor="middle" class="lbl-b">M6</text>
+      <text x="455" y="222" text-anchor="middle" class="lbl-sm">durable state</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="560" y="130" width="230" height="55" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.6"/></g>
+      <text x="605" y="167" text-anchor="middle" class="lbl-b">M7</text>
+      <text x="700" y="167" text-anchor="middle" class="lbl-sm">Ingress</text>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="810" y="75" width="240" height="55" rx="8" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/></g>
+      <text x="855" y="112" text-anchor="middle" class="lbl-b">M8</text>
+      <text x="960" y="112" text-anchor="middle" class="lbl-sm">hardened</text>
+    </g>
+  </svg>
+  <div class="pageno">M8·42</div>
+</section>
+
+<!-- 37 · content (narr Slide 37) what you built -->
+<section>
+  <h2 class="t">What you built is one coherent system</h2>
+  <p class="s">The same journey a production application makes.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Fernwood Goods, taken from three containers on one machine to a hardened, self-healing, independently scalable set of services on a real cluster.">
+    <g filter="url(#rough)">
+      <rect x="70" y="120" width="200" height="90" rx="10" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="2.6"/>
+    </g>
+    <text x="170" y="160" text-anchor="middle" class="lbl-sm">3 containers</text>
+    <text x="170" y="190" text-anchor="middle" class="lbl-sm">one machine</text>
+    <path d="M275,165 C360,165 380,165 460,165" stroke="#1e1e1e" stroke-width="2.8" fill="none" marker-end="url(#ah)"/>
+    <g filter="url(#rough)">
+      <rect x="470" y="70" width="560" height="190" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
+    </g>
+    <text x="750" y="120" text-anchor="middle" class="lbl-b">Fernwood Goods — hardened</text>
+    <text x="750" y="165" text-anchor="middle" class="lbl-sm">self-healing · independently scalable</text>
+    <text x="750" y="205" text-anchor="middle" class="lbl-sm">network-isolated services, on a real cluster</text>
+    <text x="750" y="240" text-anchor="middle" class="lbl-g" fill="#2e7d32">every pattern, built with your own hands</text>
+  </svg>
+  <div class="pageno">M8·43</div>
+</section>
+
+<!-- 38 · CLOSING (narr Slide 38) where you go next (2 fragments) -->
 <section>
   <p class="kicker">MODULE 8 &nbsp;·&nbsp; THE MICROSERVICES OUTLOOK</p>
   <h2 class="t" style="font-size:2.0em">Where you go next builds on what you have</h2>
   <p class="s" style="font-size:1.1em">Not new syntax — depth in disciplines you touched.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="From the Module 8 foundation, three natural continuations rise: observability, delivery automation, and a service mesh, each building on what the course already delivered.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="From the Module 8 foundation, three natural continuations rise, revealed in turn: observability, delivery automation, and a service mesh, each building on what the course already delivered.">
     <g filter="url(#rough)">
       <rect x="150" y="215" width="800" height="65" rx="10" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
       <rect x="180" y="90" width="200" height="70" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="450" y="90" width="200" height="70" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
-      <rect x="720" y="90" width="200" height="70" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/>
     </g>
     <text x="550" y="255" text-anchor="middle" class="lbl-b">the foundation you built — M1 to M8</text>
     <text x="280" y="132" text-anchor="middle" class="lbl-sm">observability</text>
-    <text x="550" y="122" text-anchor="middle" class="lbl-sm">delivery</text>
-    <text x="550" y="146" text-anchor="middle" class="lbl-sm">automation</text>
-    <text x="820" y="132" text-anchor="middle" class="lbl-sm">service mesh</text>
-    <path d="M280,215 L280,162 M550,215 L550,162 M820,215 L820,162" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <path d="M280,215 L280,162" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="450" y="90" width="200" height="70" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/></g>
+      <text x="550" y="122" text-anchor="middle" class="lbl-sm">delivery</text>
+      <text x="550" y="146" text-anchor="middle" class="lbl-sm">automation</text>
+      <path d="M550,215 L550,162" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    </g>
+    <g class="fragment">
+      <g filter="url(#rough)"><rect x="720" y="90" width="200" height="70" rx="10" fill="#ffffff" stroke="#1e1e1e" stroke-width="2.6"/></g>
+      <text x="820" y="132" text-anchor="middle" class="lbl-sm">service mesh</text>
+      <path d="M820,215 L820,162" stroke="#1e1e1e" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+    </g>
   </svg>
   <p class="credit">You built it, module by module, on Fernwood. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M8·30</div>
+  <div class="pageno">M8·44</div>
 </section>
 
 </div></div>
