@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Docker Network & DNS Playground</title>
+<style>
+  :root{
+    --bg:#0d1220;
+    --panel:#151c2e;
+    --panel2:#101726;
+    --line:#26324e;
+    --line2:#1c2740;
+    --txt:#dbe4f5;
+    --dim:#8494b3;
+    --faint:#5a6a8c;
+    --accent:#4cc9f0;
+    --accent2:#7b6cf6;
+    --ok:#3ddc97;
+    --warn:#f5b842;
+    --bad:#ff6b6b;
+    --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  html{font-size:clamp(10px,0.42vw + 8.9px,16px)}
+  body{
+    font:1rem/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    padding:8px;
+    overflow:auto;
+  }
+  #app{display:flex;flex-direction:column;gap:7px}
+  header{display:flex;align-items:center;gap:10px}
+  h1{font-size:1.06rem;margin:0}
+  h1 .title{color:var(--accent)}
+  #subtitle{font-size:.82rem;color:var(--dim)}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:8px}
+  h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.55px;color:var(--faint);margin:0 0 7px}
+  #layout{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+  .wide{grid-column:1 / span 3}
+  .card{display:flex;flex-direction:column;gap:6px;padding:6px;border:1px solid var(--line);border-radius:7px;background:var(--panel2)}
+  .row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .node{padding:7px;border:1px solid var(--line2);border-radius:7px;background:var(--panel2);margin-bottom:6px}
+  .name{font-size:.9rem;font-weight:700;font-family:var(--mono)}
+  .meta{font-size:.72rem;color:var(--dim)}
+  .badge{font-size:.68rem;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--faint)}
+  .badge.host{border-color:#6b7280;color:#cbd5e1}
+  .badge.none{border-color:#334155;color:#94a3b8}
+  .badge.bridge{border-color:#2f6e9f}
+  .badge.app{border-color:#2f9f79;color:var(--ok)}
+  .btn{border:1px solid var(--line);background:none;color:var(--txt);border-radius:7px;padding:5px 9px;font-size:.84rem}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.on{border-color:var(--ok);background:rgba(61,220,151,.12);color:var(--ok)}
+  .btn.warn{border-color:var(--bad);color:var(--bad)}
+  .btn.warn:hover{border-color:var(--warn);color:var(--warn)}
+  select{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:4px 7px}
+  input{background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--txt);padding:5px 7px;font-family:var(--mono);font-size:.85rem}
+  #challenge{display:flex;align-items:center;gap:7px;background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));border:1px solid #3a3f6e;border-radius:8px;padding:4px 9px}
+  .tag{font-size:.74rem;font-weight:700;letter-spacing:.6px;color:var(--accent2);text-transform:uppercase}
+  .dot{width:1.2rem;height:1.2rem;border-radius:99px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.68rem;color:var(--faint)}
+  .dot.cur{border-color:var(--accent);color:var(--accent)}
+  .dot.done{border-color:var(--ok);color:var(--ok);background:rgba(61,220,151,.14)}
+  #challengeText{flex:1;font-size:.9rem}
+  #challenge.success{background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.05));border-color:#2c7a5b}
+  #challenge.success .tag{color:var(--ok)}
+  #hint{
+    font-size:.75rem;
+    color:var(--faint);
+    margin-top:4px;
+  }
+  .footnote{
+    font-size:.76rem;
+    color:var(--faint);
+    margin-top:6px;
+  }
+  .helpTip{
+    cursor:help;
+    border-bottom:1px dotted var(--line);
+  }
+  #result{font-family:var(--mono);font-size:.86rem;min-height:28px;padding:6px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+  #result.ok{color:var(--ok);border-color:rgba(61,220,151,.4)}
+  #result.bad{color:var(--bad);border-color:rgba(255,107,107,.4)}
+  #result.warn{color:var(--warn);border-color:rgba(245,184,66,.4)}
+  #trace{font-family:var(--mono);font-size:.74rem;white-space:pre-wrap;max-height:130px;overflow:auto;border-radius:6px;background:var(--panel2);border:1px solid var(--line);padding:6px;line-height:1.4}
+  .stepCmds{font-family:var(--mono);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px;min-height:92px;white-space:pre-wrap}
+  @media (max-width:980px){#layout{grid-template-columns:1fr}}
+  @media (max-width:980px){#layout .wide{grid-column:auto}}
+</style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1><span class="title">Docker Networking</span> Interactive Lab</h1>
+      <span id="subtitle">Default bridge, host, none, and user-defined DNS by name.</span>
+    </header>
+
+    <div id="challenge">
+      <span class="tag">Hands-on checks</span>
+      <span id="steps"></span>
+      <span id="challengeText"></span>
+    </div>
+
+    <div id="layout">
+      <section class="panel">
+        <h2>Topology</h2>
+        <div class="row">
+          <button id="createAppNet" class="btn" type="button">Create appnet</button>
+          <button id="resetBtn" class="btn warn" type="button">Reset module state</button>
+        </div>
+        <div id="nodes"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Probe</h2>
+        <div class="card">
+          <label>From container</label>
+          <div class="row">
+            <select id="fromSel"></select>
+            <select id="actionSel">
+              <option value="dns">Resolve by name</option>
+              <option value="http">Call backend route</option>
+            </select>
+          </div>
+          <label>Target</label>
+          <div class="row">
+            <input id="targetIn" value="backend" />
+            <input id="portIn" value="8080" style="width:80px" />
+          </div>
+          <div class="row">
+            <button id="runProbe" class="btn" type="button">Run probe</button>
+            <button id="seedBackend" class="btn" type="button">Probe backend from frontend</button>
+            <button id="seedDb" class="btn" type="button">Probe db from backend</button>
+          </div>
+          <div id="result" class="warn">No probe yet. Pick topology and run one.</div>
+          <div id="hint" class="footnote">This teaches the networking behavior, not raw Docker output and timing.</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Command checker</h2>
+        <div id="commands" class="stepCmds"></div>
+      </section>
+
+      <section class="panel wide">
+        <h2>Probe trace</h2>
+        <div id="trace"></div>
+      </section>
+    </div>
+    <div class="footnote">Model note: this sim simplifies Docker internals so you can safely practise the flow.
+      <strong>It keeps the same decision points — network mode, DNS name discovery, and reachability — without
+      representing every CLI edge-case.</strong>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const NETWORKS = {
+    default: {name:'default bridge (docker0)', dns:false, canCreateNames:false},
+    host: {name:'host', dns:false, canCreateNames:true},
+    none: {name:'none', dns:false, canCreateNames:false},
+    appnet: {name:'appnet', dns:true, canCreateNames:true},
+  };
+  const BASES = {default:'172.17.0.', appnet:'172.22.0.'};
+  const IMAGE = ['frontend','backend','db'];
+  const DEFAULT_STATE = {
+    appnetCreated: false,
+    containers: [
+      {name:'frontend', network:'default', ip:'172.17.0.2', port:3000},
+      {name:'backend', network:'default', ip:'172.17.0.3', port:8080},
+      {name:'db', network:'default', ip:'172.17.0.4', port:5432},
+    ],
+    counters: {appnet:2},
+    challengeIndex:0,
+    challengeDone:[false, false, false, false],
+    probeCount:0,
+    last:[],
+  };
+  const CHALLENGES = [
+    {
+      goal:'Start on default bridge: from frontend to backend, resolve by name should fail.',
+      verify:(s)=>s.challengeDone[0] || (s.last.some(x=>x.from==='frontend'&&x.target==='backend'&&x.action==='dns'&&x.fail)),
+    },
+    {
+      goal:'Create `appnet` and place frontend, backend, db on appnet.',
+      verify:(s)=>s.containers.every(c=>c.network==='appnet'),
+    },
+    {
+      goal:'Now resolve by name from frontend to backend successfully.',
+      verify:(s)=>s.last.some(x=>x.from==='frontend'&&x.target==='backend'&&x.action==='dns'&&x.ok&&x.network==='appnet'),
+    },
+    {
+      goal:'Set db to network none. Backend should fail to reach db by name.',
+      verify:(s)=>s.containers.find(c=>c.name==='db').network==='none' && s.last.some(x=>x.from==='backend'&&x.target==='db'&&x.action==='dns'&&x.fail),
+    },
+  ];
+
+  let state = structuredClone(DEFAULT_STATE);
+
+  const els = {
+    nodes: document.getElementById('nodes'),
+    createAppNet: document.getElementById('createAppNet'),
+    resetBtn: document.getElementById('resetBtn'),
+    fromSel: document.getElementById('fromSel'),
+    actionSel: document.getElementById('actionSel'),
+    targetIn: document.getElementById('targetIn'),
+    portIn: document.getElementById('portIn'),
+    runProbe: document.getElementById('runProbe'),
+    seedBackend: document.getElementById('seedBackend'),
+    seedDb: document.getElementById('seedDb'),
+    result: document.getElementById('result'),
+    trace: document.getElementById('trace'),
+    steps: document.getElementById('steps'),
+    challengeText: document.getElementById('challengeText'),
+    challenge: document.getElementById('challenge'),
+    commands: document.getElementById('commands'),
+  };
+
+  function updateFromOptions(){
+    els.fromSel.innerHTML = state.containers.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  }
+
+  function container(name){
+    return state.containers.find(c=>c.name===name);
+  }
+
+  function networkAvailableForContainer(net){
+    return net !== 'appnet' || state.appnetCreated;
+  }
+
+  function ipFor(cont){
+    if (cont.network==='appnet') {
+      if (cont.ip && cont.ip.startsWith('172.22.')) return cont.ip;
+      const ip = `172.22.0.${state.counters.appnet++}`;
+      cont.ip = ip;
+      return ip;
+    }
+    if (cont.network==='default'){
+      if (!cont.ip || !cont.ip.startsWith('172.17.')) return '172.17.0.2';
+      return cont.ip;
+    }
+    if (cont.network==='host') return '127.0.0.1/hoststack';
+    return null;
+  }
+
+  function render(){
+    updateFromOptions();
+    els.nodes.innerHTML = state.containers.map(c=>{
+      const net = NETWORKS[c.network];
+      const cls = c.network === 'appnet' ? 'badge app' : c.network === 'host' ? 'badge host' : c.network === 'none' ? 'badge none' : 'badge bridge';
+      const dns = net.canCreateNames ? 'yes' : 'no';
+      const options = Object.keys(NETWORKS).filter(n => n === 'default' || n === 'host' || n === 'none' || n === 'appnet' && networkAvailableForContainer('appnet'))
+        .map(n => `<option value="${n}" ${n===c.network?'selected':''}>${NETWORKS[n].name}</option>`).join('');
+      return `<div class="node">
+        <div class="row">
+          <span class="name">${c.name}</span>
+          <span class="badge ${cls.includes('app')?'app':''}">${c.network}</span>
+          <span class="meta">IP ${ipFor(c) || 'none'}</span>
+          <span class="meta">DNS ${dns}</span>
+        </div>
+        <div class="card row">
+          <label>Attach to</label>
+          <select data-name="${c.name}">${options}</select>
+        </div>
+      </div>`;
+    }).join('');
+
+    const selects = document.querySelectorAll('[data-name]');
+    selects.forEach(sel=>{
+      sel.onchange = () => {
+        const name = sel.dataset.name;
+        const net = sel.value;
+        const cont = container(name);
+        cont.network = net;
+        if (net === 'default' && (!cont.ip || !cont.ip.startsWith('172.17.'))){
+          cont.ip = `172.17.0.${2 + state.containers.indexOf(cont)}`;
+        } else if(net === 'appnet'){
+          if (!state.appnetCreated) {
+            state.appnetCreated = true;
+            els.createAppNet.classList.add('on');
+          }
+          cont.ip = `172.22.0.${state.counters.appnet++}`;
+        } else if (net === 'none' || net === 'host'){
+          cont.ip = '';
+        }
+        render();
+        updateChallenges();
+      };
+    });
+
+    els.createAppNet.disabled = state.appnetCreated;
+    if (state.appnetCreated) els.createAppNet.classList.add('on');
+    els.result.textContent = 'Topology changed. Run probes to validate.';
+    els.result.className = '';
+    renderChallenge();
+    renderCommands();
+    renderTrace();
+  }
+
+  function canUseName(from, target){
+    if (!from || !target || from.network === 'none') return {ok:false, reason:'source has no network'};
+    if (from.network === 'host') return {ok:false, reason:'host mode has no embedded Docker DNS'};
+    if (!toContainer(target)) return {ok:false, reason:'target name unknown in this lab topology'};
+    const to = toContainer(target);
+    if (to.network === 'none') return {ok:false, reason:`${target} has no network`};
+    if (from.network !== to.network) return {ok:false, reason:`${from.name} and ${target} are on different networks`};
+    if (!NETWORKS[from.network].dns) return {ok:false, reason:`${from.network} has IP-level only networking in this sim`};
+    return {ok:true, ip: to.ip || (to.network==='host'?'127.0.0.1/hoststack':'')};
+  }
+
+  function toContainer(target){
+    return state.containers.find(c=>c.name===target);
+  }
+
+  function runProbe(){
+    const from = container(els.fromSel.value);
+    const action = els.actionSel.value;
+    const target = els.targetIn.value.trim() || '';
+    const port = (els.portIn.value || '').trim();
+    state.probeCount += 1;
+    const check = canUseName(from, target);
+    let msg = '';
+    let detail = '';
+    if (action === 'dns'){
+      if (check.ok){
+        msg = `[${state.probeCount}] DNS resolve ${from.name} → ${target} = ${check.ip}`;
+        detail = 'ok';
+      } else {
+        msg = `[${state.probeCount}] DNS resolve ${from.name} → ${target} failed: ${check.reason}`;
+        detail = 'fail';
+      }
+    } else {
+      if (check.ok){
+        const addr = target.includes(':') ? target : `${target}:${port}`;
+        msg = `[${state.probeCount}] ${from.name} -> http://${addr} succeeded`;
+        detail = 'ok';
+      } else {
+        msg = `[${state.probeCount}] HTTP http://${target}:${port} from ${from.name} failed: ${check.reason}`;
+        detail = 'fail';
+      }
+    }
+    state.last.unshift({
+      from:from.name,
+      target,
+      action,
+      ok: detail==='ok',
+      fail: detail==='fail',
+      network: from.network,
+    });
+    if (state.last.length > 16) state.last.pop();
+    els.result.textContent = msg;
+    els.result.className = detail;
+    renderTrace();
+    updateChallenges();
+  }
+
+  function renderTrace(){
+    if (!state.last.length) {
+      els.trace.textContent = 'No traffic yet.';
+      return;
+    }
+    els.trace.textContent = state.last.map(r =>
+      `${r.action.toUpperCase()} ${r.from} -> ${r.target}: ${r.ok ? 'OK' : 'FAIL'} (mode=${r.network})`
+    ).join('\n');
+  }
+
+  function renderCommands(){
+    const c = [
+      'docker network ls',
+      'docker network create appnet',
+      'docker run -d --name frontend --network appnet --env BACKEND_URL=http://backend:8080 ...',
+      'docker run -d --name backend --network appnet --env DB_HOST=db --env DB_PORT=5432 ...',
+      'docker run -d --name db --network appnet --publish 5432:5432 ...',
+    ];
+    if (!state.appnetCreated) {
+      c.unshift('# step 1: create user-defined bridge');
+    }
+    els.commands.textContent = c.join('\n');
+  }
+
+  function renderChallenge(){
+    const ch = CHALLENGES[state.challengeIndex];
+    if (!ch) {
+      els.challengeText.textContent = 'All module-1 networking checks complete.';
+      return;
+    }
+    els.steps.innerHTML = CHALLENGES.map((_,i)=>
+      `<span class="dot ${state.challengeDone[i] ? 'done' : i===state.challengeIndex ? 'cur' : ''}">${i + 1}</span>`
+    ).join('');
+    els.challengeText.innerHTML = ch.goal;
+    if (state.challengeDone.every(Boolean)) {
+      els.challenge.className = 'success';
+      els.challengeText.textContent = 'All checks complete. You can now prove name-based container networking with appnet.';
+    }
+  }
+
+  function updateChallenges(){
+    CHALLENGES.forEach((c, i) => {
+      if (!state.challengeDone[i] && c.verify(state)) {
+        state.challengeDone[i] = true;
+        if (state.challengeIndex === i && state.challengeIndex < CHALLENGES.length - 1) state.challengeIndex += 1;
+      }
+    });
+    renderChallenge();
+  }
+
+  els.createAppNet.addEventListener('click', () => {
+    state.appnetCreated = true;
+    render();
+  });
+  els.resetBtn.addEventListener('click', () => {
+    state = structuredClone(DEFAULT_STATE);
+    render();
+  });
+  els.runProbe.addEventListener('click', runProbe);
+  els.seedBackend.addEventListener('click', () => {
+    els.fromSel.value = 'frontend';
+    els.targetIn.value = 'backend';
+    els.actionSel.value = 'http';
+    runProbe();
+  });
+  els.seedDb.addEventListener('click', () => {
+    els.fromSel.value = 'backend';
+    els.targetIn.value = 'db';
+    els.actionSel.value = 'dns';
+    runProbe();
+  });
+
+  render();
+
+  window.__sim = {
+    reset() {
+      state = structuredClone(DEFAULT_STATE);
+      render();
+    },
+    runProbe: runProbe,
+    state: () => structuredClone(state),
+  };
+})();
+</script>
+</body>
+</html>

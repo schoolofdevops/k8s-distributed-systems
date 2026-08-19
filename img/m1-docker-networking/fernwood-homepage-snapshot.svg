@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Placeholder screenshot of Fernwood Goods home page">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 36px Arial, sans-serif; fill: #17335f; font-weight: bold; }
+      .sub { font: 22px Arial, sans-serif; fill: #333; }
+      .card { fill: #f3f8ff; stroke: #5d86bf; stroke-width: 2; }
+      .pill { fill: #dff2e8; stroke: #1b5e20; stroke-width: 2; }
+      .txt { font: 20px Arial, sans-serif; fill: #111; }
+      .meta { font: 18px Arial, sans-serif; fill: #444; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="680"/>
+  <text x="60" y="56" class="title">Fernwood Goods</text>
+  <text x="60" y="92" class="sub">Placeholder screenshot: run `curl`/browser output after Step 5</text>
+  <rect class="pill" x="820" y="44" width="320" height="46" rx="14" />
+  <text x="980" y="76" text-anchor="middle" class="sub">Backend reachable · by frontend container</text>
+
+  <rect x="60" y="120" width="1080" height="120" fill="#f7fafc" stroke="#b7c6de" stroke-width="2" />
+  <text x="80" y="162" class="meta">Container identity: eb4298aa00ba</text>
+  <text x="80" y="188" class="meta">Product list loaded from backend API</text>
+  <text x="80" y="214" class="meta">Use cards below as visual cue for the real output</text>
+
+  <rect class="card" x="60" y="270" width="320" height="190" rx="12" />
+  <rect class="card" x="440" y="270" width="320" height="190" rx="12" />
+  <rect class="card" x="820" y="270" width="320" height="190" rx="12" />
+  <text x="220" y="365" text-anchor="middle" class="txt">Cedar Plant Stand</text>
+  <text x="600" y="365" text-anchor="middle" class="txt">Soy Wax Candle</text>
+  <text x="980" y="365" text-anchor="middle" class="txt">Walnut Cutting Board</text>
+
+  <rect x="60" y="500" width="1080" height="110" fill="#e8f5e9" stroke="#86a78a" stroke-width="2" />
+  <text x="80" y="545" class="sub">Expected UI pattern:</text>
+  <text x="80" y="575" class="meta">• Product cards with names</text>
+  <text x="520" y="575" class="meta">• Green banner when backend is reachable</text>
+</svg>

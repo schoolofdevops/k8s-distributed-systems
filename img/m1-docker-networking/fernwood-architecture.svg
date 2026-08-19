@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Fernwood Goods architecture">
+  <defs>
+    <style>
+      .title { font: 600 26px Arial, sans-serif; fill: #222; }
+      .box { fill: #f4f9ff; stroke: #1f3d7a; stroke-width: 2; rx: 10; }
+      .label { font: 700 24px Arial, sans-serif; fill: #1a365d; }
+      .small { font: 20px Arial, sans-serif; fill: #333; }
+      .line { stroke: #333; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333" stroke-width="2"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="500" fill="white"/>
+  <text x="32" y="44" class="title">Fernwood Goods (Session 1)</text>
+
+  <rect class="box" x="40" y="90" width="290" height="150" />
+  <text x="185" y="130" text-anchor="middle" class="label">frontend</text>
+  <text x="185" y="158" text-anchor="middle" class="small">Node.js</text>
+  <text x="185" y="182" text-anchor="middle" class="small">localhost:3000</text>
+  <text x="185" y="206" text-anchor="middle" class="small">shows product grid</text>
+
+  <rect class="box" x="455" y="90" width="290" height="150" />
+  <text x="600" y="130" text-anchor="middle" class="label">backend</text>
+  <text x="600" y="158" text-anchor="middle" class="small">Python API</text>
+  <text x="600" y="182" text-anchor="middle" class="small">/api/products</text>
+  <text x="600" y="206" text-anchor="middle" class="small">/health</text>
+
+  <rect class="box" x="870" y="90" width="290" height="150" />
+  <text x="1015" y="130" text-anchor="middle" class="label">db</text>
+  <text x="1015" y="158" text-anchor="middle" class="small">Postgres</text>
+  <text x="1015" y="182" text-anchor="middle" class="small">orders/products data</text>
+  <text x="1015" y="206" text-anchor="middle" class="small">state owner</text>
+
+  <path class="line" d="M330,165 C390,165 455,165 455,165" />
+  <path class="line" d="M745,165 C805,165 870,165 870,165" />
+
+  <text x="420" y="150" class="small" text-anchor="middle">http://backend:8080</text>
+  <text x="810" y="150" class="small" text-anchor="middle">db:5432</text>
+
+  <rect class="box" x="455" y="330" width="290" height="110" />
+  <text x="600" y="370" text-anchor="middle" class="label">appnet</text>
+  <text x="600" y="395" text-anchor="middle" class="small">user-defined bridge</text>
+  <text x="600" y="420" text-anchor="middle" class="small">names: frontend, backend, db</text>
+
+  <path class="line" d="M185,240 L185,330" />
+  <path class="line" d="M600,240 L600,330" />
+  <path class="line" d="M1015,240 L1015,330" />
+
+  <text x="600" y="290" text-anchor="middle" class="small">All three containers stay on this one network</text>
+</svg>

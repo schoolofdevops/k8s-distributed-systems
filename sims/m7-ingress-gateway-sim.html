@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ingress & Gateway Routing Simulator</title>
+<style>
+  :root{
+    --bg:#0d1220;
+    --panel:#151c2e;
+    --panel2:#101726;
+    --line:#26324e;
+    --line2:#1c2740;
+    --txt:#dbe4f5;
+    --dim:#8494b3;
+    --faint:#5a6a8c;
+    --accent:#4cc9f0;
+    --accent2:#7b6cf6;
+    --ok:#3ddc97;
+    --warn:#f5b842;
+    --bad:#ff6b6b;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  html{font-size:clamp(10px,0.42vw + 8.8px,16px)}
+  body{
+    font:1rem/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    padding:8px;
+    overflow:auto;
+  }
+  #app{display:flex;flex-direction:column;gap:7px;min-height:100%}
+  header{display:flex;align-items:center;gap:9px}
+  h1{font-size:1.06rem;margin:0}
+  .svc{color:var(--accent)}
+  #subtitle{color:var(--dim);font-size:.85rem}
+  h1 .svc{color:var(--accent2)}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:9px;padding:8px;display:flex;flex-direction:column;gap:7px}
+  h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;color:var(--faint);margin:0}
+  #layout{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:7px;min-height:0}
+  .wide{grid-column:1 / span 3}
+  .route{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+  .route .chip{border:1px solid var(--line);border-radius:7px;padding:4px 7px;font-size:.74rem;color:var(--dim);background:var(--panel2)}
+  .meta{font-family:var(--mono);font-size:.74rem;color:var(--dim);display:grid;gap:3px}
+  .meta b{color:var(--accent)}
+  .btn{border:1px solid var(--line);background:none;border-radius:7px;color:var(--txt);padding:5px 9px;font-size:.86rem;cursor:pointer}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.warn{border-color:var(--bad);color:var(--bad)}
+  .btn.warn:hover{border-color:var(--warn);color:var(--warn)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn.on{border-color:var(--accent);background:rgba(76,201,240,.12)}
+  .inputs{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+  label{font-size:.74rem;color:var(--dim)}
+  input{background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--txt);padding:6px 7px;font-size:.9rem;font-family:var(--mono)}
+  .mode{display:flex;gap:5px}
+  .mode .btn{padding:4px 8px}
+  #challenge{display:flex;align-items:center;gap:8px;background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));border:1px solid #3a3f6e;border-radius:8px;padding:4px 8px;min-height:30px}
+  .tag{font-size:.74rem;font-weight:700;letter-spacing:.6px;color:var(--accent2);text-transform:uppercase}
+  .steps{display:flex;gap:5px}
+  .dot{width:1.2rem;height:1.2rem;border-radius:99px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:.7rem}
+  .dot.cur{border-color:var(--accent);color:var(--accent)}
+  .dot.done{border-color:var(--ok);color:var(--ok);background:rgba(61,220,151,.16)}
+  #challengeText{flex:1;color:var(--txt);font-size:.91rem}
+  #challenge.success{border-color:#2c7a5b;background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.06))}
+  #challenge.success .tag{color:var(--ok)}
+  #log{min-height:120px;max-height:240px;overflow:auto;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;padding:6px 8px;font-family:var(--mono);font-size:.75rem}
+  .line{display:flex;gap:7px}
+  .ok{color:var(--ok)}
+  .bad{color:var(--bad)}
+  .act{color:var(--warn)}
+  .tiny{font-size:.7rem;color:var(--faint)}
+  .rules{display:flex;flex-direction:column;gap:5px}
+  .rule{display:flex;justify-content:space-between;gap:7px;border:1px solid var(--line);border-radius:7px;padding:5px 7px;background:var(--panel2);font-size:.73rem;align-items:center}
+  .rule .left{display:flex;flex-direction:column;gap:2px}
+  .rule .pill{font-family:var(--mono);font-size:.68rem;color:var(--faint)}
+  .rule .rm{border:1px solid var(--line);background:none;color:var(--dim);border-radius:6px;padding:1px 6px}
+  .rule .rm:hover{color:var(--bad);border-color:var(--bad)}
+  .status{font-family:var(--mono);font-size:.76rem}
+  .status.ok{color:var(--ok)}
+  .status.bad{color:var(--bad)}
+  #commands{font-family:var(--mono);font-size:.74rem;white-space:pre-wrap;background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:7px;min-height:100px}
+  @media (max-width:1000px){#layout{grid-template-columns:1fr}}
+  @media (max-width:820px){#layout .wide{grid-column:auto}}
+</style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1><span class="svc">Ingress</span> & Gateway Routing Simulator</h1>
+      <span id="subtitle">Host + path routing, order, and precedence.</span>
+    </header>
+
+    <div id="challenge">
+      <span class="tag">Hands-on</span>
+      <span class="steps" id="steps"></span>
+      <span id="challengeText"></span>
+    </div>
+
+    <div id="layout">
+      <section class="panel wide">
+        <h2>Control plane mode</h2>
+        <div class="route" style="justify-content:space-between">
+          <div class="mode">
+            <button id="modeIngress" class="btn on" type="button">Classic Ingress</button>
+            <button id="modeGateway" class="btn" type="button">Gateway API</button>
+          </div>
+          <div class="meta">
+            <span id="modeHint"></span>
+            <span id="statusText" class="status"></span>
+          </div>
+        </div>
+        <div class="meta">
+          <span><b>Current control</b>: <span id="controlHint"></span></span>
+          <span><b>Rules</b>: <span id="ruleHint"></span></span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Route builder</h2>
+        <div id="ruleList" class="rules"></div>
+        <div class="route">
+          <button id="addRoute" class="btn" type="button">Add shop.fernwood.local/api → backend</button>
+          <button id="addLegacy" class="btn" type="button">Add wildcard fallback</button>
+          <button id="resetRoutes" class="btn warn" type="button">Reset routes</button>
+        </div>
+        <div class="tiny">
+          Ingress mode applies rules in list order. Gateway mode uses longest path match for the same host.
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Live request</h2>
+        <div class="inputs">
+          <label for="hostInput">Host</label>
+          <input id="hostInput" value="shop.fernwood.local" />
+          <label for="pathInput">Path</label>
+          <input id="pathInput" value="/" />
+        </div>
+        <div class="route">
+          <button id="sendReq" class="btn" type="button">Send request</button>
+          <button id="seedApi" class="btn" type="button">Load api.fernwood.local/</button>
+          <button id="seedShopApi" class="btn" type="button">Load shop.fernwood.local/api</button>
+          <button id="seedUnknown" class="btn" type="button">Load legacy.fernwood.local/</button>
+        </div>
+        <div id="result" class="status"></div>
+      </section>
+
+      <section class="panel wide">
+        <h2>Request trace</h2>
+        <div id="log"></div>
+      </section>
+
+      <section class="panel wide">
+        <h2>Verify with kubectl</h2>
+        <div id="commands"></div>
+      </section>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const INGRESS_BASE = [
+    {id:'r1', host:'shop.fernwood.local', path:'/', pathType:'Prefix', backend:'frontend', enabled:true},
+    {id:'r2', host:'api.fernwood.local', path:'/', pathType:'Prefix', backend:'backend', enabled:true},
+  ];
+  const GATEWAY_BASE = [
+    {id:'g1', host:'store.fernwood.local', path:'/', pathType:'Prefix', backend:'frontend'},
+    {id:'g2', host:'store-api.fernwood.local', path:'/', pathType:'Prefix', backend:'backend'},
+  ];
+  const CHALLENGES = [
+    {
+      goal: 'Send two requests: <code>shop.fernwood.local/</code> -> frontend and <code>api.fernwood.local/</code> -> backend.',
+      verify: (state) => state.hits.frontend >= 1 && state.hits.backend >= 1 && state.mode === 'Ingress',
+    },
+    {
+      goal: 'Add host/path rule <code>shop.fernwood.local/api</code> to backend, then verify path <code>/api</code> routes to backend.',
+      verify: (state) => state.mode === 'Ingress' && state.hitsShopApiToBackend >= 1 && state.routes.some(r => r.host === 'shop.fernwood.local' && r.path === '/api'),
+    },
+    {
+      goal: 'Switch to Gateway mode and verify <code>store-api.fernwood.local/</code> reaches backend.',
+      verify: (state) => state.mode === 'Gateway' && state.hitsGatewayStoreApi >= 1,
+    },
+    {
+      goal: 'Send one request with <code>legacy.fernwood.local</code>. It should be handled by fallback or return 404.',
+      verify: (state) => {
+        if (state.mode === 'Ingress') return state.hitsLegacy >= 1;
+        return state.hitsLegacy === 1;
+      },
+    },
+  ];
+
+  const state = {
+    mode: 'Ingress',
+    routes: INGRESS_BASE.map(x => ({...x})),
+    hits: {frontend:0, backend:0, other:0},
+    hitsShopApiToBackend:0,
+    hitsGatewayStoreApi:0,
+    hitsLegacy:0,
+    challengeIndex:0,
+    stepDone:[false, false, false, false],
+    log:[],
+    reqCount:0,
+  };
+
+  const els = {
+    modeIngress: document.getElementById('modeIngress'),
+    modeGateway: document.getElementById('modeGateway'),
+    modeHint: document.getElementById('modeHint'),
+    ruleHint: document.getElementById('ruleHint'),
+    controlHint: document.getElementById('controlHint'),
+    steps: document.getElementById('steps'),
+    challenge: document.getElementById('challenge'),
+    challengeText: document.getElementById('challengeText'),
+    hostInput: document.getElementById('hostInput'),
+    pathInput: document.getElementById('pathInput'),
+    sendReq: document.getElementById('sendReq'),
+    seedApi: document.getElementById('seedApi'),
+    seedShopApi: document.getElementById('seedShopApi'),
+    seedUnknown: document.getElementById('seedUnknown'),
+    addRoute: document.getElementById('addRoute'),
+    addLegacy: document.getElementById('addLegacy'),
+    resetRoutes: document.getElementById('resetRoutes'),
+    ruleList: document.getElementById('ruleList'),
+    result: document.getElementById('result'),
+    log: document.getElementById('log'),
+    statusText: document.getElementById('statusText'),
+    commands: document.getElementById('commands'),
+  };
+
+  function routeMatch(route, host, path){
+    const hostMatch = !route.host || route.host === host || (route.host.startsWith('*.') && host.endsWith(route.host.slice(1)));
+    if (!hostMatch) return false;
+    if (!route.path || route.path === '/') return true;
+    if (route.pathType === 'Exact') return path === route.path;
+    const prefix = route.path.endsWith('/') ? route.path : route.path + '/';
+    return path === route.path || path.startsWith(prefix);
+  }
+
+  function gatewayMatch(route, host, path){
+    const hostMatch = route.hostes ? route.hostes.includes(host) : route.host === host;
+    if (!hostMatch) return false;
+    if (route.pathType === 'Exact') return path === route.path;
+    return path === route.path || path.startsWith(route.path.endsWith('/') ? route.path : route.path + '/');
+  }
+
+  function resolveHostService(host, path){
+    if (state.mode === 'Ingress') {
+      const match = state.routes.find(r => r.enabled !== false && routeMatch(r, host, path));
+      if (!match) return null;
+      return {backend: match.backend, ruleId: match.id, rule: match};
+    }
+    const candidates = state.routes
+      .filter(r => gatewayMatch(r, host, path))
+      .sort((a,b)=> b.path.length - a.path.length || state.routes.indexOf(a)-state.routes.indexOf(b));
+    const winner = candidates[0];
+    if (!winner) return null;
+    return {backend: winner.backend, ruleId:winner.id, rule:winner};
+  }
+
+  function setMode(mode){
+    state.mode = mode;
+    state.routes = mode === 'Ingress'
+      ? INGRESS_BASE.map(r => ({...r}))
+      : GATEWAY_BASE.map(r => ({...r}));
+    state.hits = {frontend:0, backend:0, other:0};
+    state.hitsShopApiToBackend = 0;
+    state.hitsGatewayStoreApi = 0;
+    state.hitsLegacy = 0;
+    state.log = [];
+    state.reqCount = 0;
+    state.challengeIndex = Math.min(state.challengeIndex, CHALLENGES.length - 1);
+    els.modeIngress.classList.toggle('on', mode === 'Ingress');
+    els.modeGateway.classList.toggle('on', mode === 'Gateway');
+    render();
+  }
+
+  function challengeText(){
+    const ch = CHALLENGES[state.challengeIndex];
+    if (!ch) {
+      els.challengeText.textContent = 'All routing challenges complete.';
+      return;
+    }
+    els.steps.innerHTML = CHALLENGES.map((_,i) => {
+      const cls = state.stepDone[i] ? 'dot done' : i === state.challengeIndex ? 'dot cur' : 'dot';
+      return `<span class="${cls}">${i + 1}</span>`;
+    }).join('');
+    els.challengeText.innerHTML = ch.goal;
+    if (state.stepDone.every(Boolean)) {
+      els.challenge.className = 'success';
+      els.challengeText.textContent = 'All routing checks complete. Compare these flows before building labs.';
+    }
+  }
+
+  function validate(){
+    const ch = CHALLENGES[state.challengeIndex];
+    if (!ch) return;
+    if (ch.verify(state)) {
+      state.stepDone[state.challengeIndex] = true;
+      if (state.challengeIndex < CHALLENGES.length - 1) {
+        state.challengeIndex += 1;
+      }
+      challengeText();
+    }
+  }
+
+  function appendLog(text, kind='act'){
+    const item = {text, kind};
+    state.log.push(item);
+    if (state.log.length > 18) state.log.shift();
+    renderLog();
+  }
+
+  function renderLog(){
+    els.log.innerHTML = state.log.slice().reverse().map(item => `<div class="line ${item.kind}">${item.text}</div>`).join('');
+  }
+
+  function commandHint(){
+    if (state.mode === 'Ingress') {
+      const commands = [
+        'kubectl get ingress fernwood -n fernwood',
+        'kubectl describe ingress fernwood -n fernwood',
+        'kubectl get svc backend -n fernwood',
+      ];
+      if (!state.routes.some(r => r.path === '/api' && r.host === 'shop.fernwood.local')) {
+        commands.push('kubectl apply -f path-rule.yaml');
+      }
+      els.commands.textContent = commands.join('\n');
+      return;
+    }
+    const g = [
+      'kubectl get httproute -A',
+      'kubectl get gateway contour -n projectcontour',
+      'kubectl describe httproute store-api -n fernwood',
+      'kubectl describe gateway contour -n projectcontour',
+    ];
+    els.commands.textContent = g.join('\n');
+  }
+
+  function renderHint(){
+    if (state.mode === 'Ingress') {
+      els.modeHint.textContent = 'Control: ingress controller reads Ingress rules in order.';
+      els.controlHint.textContent = 'Ingress object mode';
+      els.ruleHint.textContent = `${state.routes.filter(r=>r.enabled!==false).length} rules`;
+    } else {
+      els.modeHint.textContent = 'Control: Gateway API with HTTPRoute + shared Listener.';
+      els.controlHint.textContent = 'Gateway API mode';
+      els.ruleHint.textContent = `${state.routes.length} routes`;
+    }
+  }
+
+  function renderRules(){
+    els.ruleList.innerHTML = state.routes.map((route, idx) => {
+      const hostText = route.host || '*';
+      return `<div class="rule" data-id="${route.id}">
+        <div class="left">
+          <strong>${state.mode} #${idx + 1}: ${hostText} ${route.pathType} ${route.path}</strong>
+          <span class="pill">→ ${route.backend}</span>
+        </div>
+        <button class="rm" type="button" data-remove="${route.id}">remove</button>
+      </div>`;
+    }).join('');
+    const removeButtons = els.ruleList.querySelectorAll('[data-remove]');
+    removeButtons.forEach(btn => btn.addEventListener('click', e => {
+      const id = e.currentTarget.dataset.remove;
+      state.routes = state.routes.filter(r => r.id !== id);
+      render();
+    }));
+  }
+
+  function handleSend(){
+    const host = els.hostInput.value.trim();
+    const path = els.pathInput.value.trim() || '/';
+    const match = resolveHostService(host, path);
+    state.reqCount += 1;
+    let status = '404';
+    let service = null;
+    if (match) {
+      service = match.backend;
+      state.hits[service] = (state.hits[service] || 0) + 1;
+      state.hits[service] += 1;
+      status = service + ' hit';
+    }
+    if (host === 'shop.fernwood.local' && path === '/api' && service === 'backend') {
+      state.hitsShopApiToBackend += 1;
+    }
+    if (host === 'store-api.fernwood.local' && service === 'backend') {
+      state.hitsGatewayStoreApi += 1;
+    }
+    if (host.includes('legacy') && service === null) {
+      state.hitsLegacy += 1;
+    }
+    const when = `[${state.reqCount}] ${host}${path} via ${state.mode} => ${status}`;
+    if (service) {
+      appendLog(`<span class="ok">${when}</span> ${match.ruleId}`, 'ok');
+      els.result.className = 'status ok';
+      if (state.mode === 'Ingress' && host === 'shop.fernwood.local' && path === '/api') {
+        appendLog(`<span class="act">Match path:</span> ${match.backend} backend selected`, 'act');
+      }
+    } else {
+      appendLog(`<span class="bad">${when}</span>`, 'bad');
+      els.result.className = 'status bad';
+    }
+    els.result.textContent = status === '404'
+      ? 'No route matched: 404 Not Found / default backend missing.'
+      : `Routed to ${service} service (before ClusterIP/L7 policy and pod readiness).`;
+    validate();
+    setTimeout(validate, 100);
+    commandHint();
+    renderHint();
+  }
+
+  function resetMode(mode = 'Ingress'){
+    state.challengeIndex = 0;
+    state.stepDone = [false, false, false, false];
+    state.hits = {frontend:0, backend:0, other:0};
+    state.hitsShopApiToBackend = 0;
+    state.hitsGatewayStoreApi = 0;
+    state.hitsLegacy = 0;
+    state.reqCount = 0;
+    state.log = [];
+    setMode(mode);
+    state.challengeIndex = 0;
+    challengeText();
+    render();
+  }
+
+  function addIngressPathRule(){
+    if (!state.routes.some(r => r.host === 'shop.fernwood.local' && r.path === '/api')) {
+      const id = `u${Date.now()}`;
+      if (state.mode !== 'Ingress') {
+        setMode('Ingress');
+      }
+      state.routes.push({id, host:'shop.fernwood.local', path:'/api', pathType:'Prefix', backend:'backend', enabled:true});
+      appendLog('<span class="act">Added shop.fernwood.local/api → backend rule.</span>', 'act');
+      render();
+    } else {
+      appendLog('<span class="act">The path rule already exists.</span>', 'act');
+    }
+  }
+
+  function addWildcardFallback(){
+    if (state.mode !== 'Ingress') {
+      setMode('Ingress');
+    }
+    if (state.routes.some(r => r.host === '*.fernwood.local' && r.path === '/')) {
+      appendLog('<span class="act">Fallback already exists.</span>', 'act');
+      return;
+    }
+    state.routes.push({id:`u${Date.now()}`, host:'*.fernwood.local', path:'/', pathType:'Prefix', backend:'frontend', enabled:true});
+    appendLog('<span class="act">Added *.fernwood.local fallback route.</span>', 'act');
+    render();
+  }
+
+  function render(){
+    renderHint();
+    renderRules();
+    challengeText();
+    renderLog();
+    commandHint();
+  }
+
+  els.modeIngress.addEventListener('click', () => {state.challengeIndex = Math.min(state.challengeIndex, CHALLENGES.length - 1); setMode('Ingress');});
+  els.modeGateway.addEventListener('click', () => {state.challengeIndex = Math.min(state.challengeIndex, CHALLENGES.length - 1); setMode('Gateway');});
+  els.sendReq.addEventListener('click', handleSend);
+  els.seedApi.addEventListener('click', () => {els.hostInput.value='api.fernwood.local'; els.pathInput.value='/'; handleSend();});
+  els.seedShopApi.addEventListener('click', () => {els.hostInput.value='shop.fernwood.local'; els.pathInput.value='/api'; handleSend();});
+  els.seedUnknown.addEventListener('click', () => {els.hostInput.value='legacy.fernwood.local'; els.pathInput.value='/'; handleSend();});
+  els.addRoute.addEventListener('click', addIngressPathRule);
+  els.addLegacy.addEventListener('click', addWildcardFallback);
+  els.resetRoutes.addEventListener('click', () => resetMode(state.mode));
+
+  setMode('Ingress');
+  appendLog('<span class="act">Ready. Send one request to start routing checks.</span>', 'act');
+  challengeText();
+  commandHint();
+})();
+</script>
+</body>
+</html>

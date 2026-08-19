@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Service Troubleshoot Coach</title>
+<style>
+  :root{
+    --bg:#0d1220;
+    --panel:#151c2e;
+    --panel2:#101726;
+    --line:#26324e;
+    --line2:#1c2740;
+    --txt:#dbe4f5;
+    --dim:#8494b3;
+    --faint:#5a6a8c;
+    --accent:#4cc9f0;
+    --ok:#3ddc97;
+    --warn:#f5b842;
+    --bad:#ff6b6b;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box}
+  html{font-size:clamp(10px, 0.4vw + 9px, 16px)}
+  body{margin:0;background:var(--bg);color:var(--txt);font:1rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  #app{padding:8px;display:flex;flex-direction:column;gap:7px}
+  h1{margin:0;font-size:1.05rem}
+  h1 .k{color:var(--accent)}
+  .subtitle{font-size:.82rem;color:var(--dim)}
+  #toolbar{display:flex;gap:8px;flex-wrap:wrap}
+  button{border:1px solid var(--line);background:none;color:var(--txt);border-radius:6px;padding:7px 10px;font-size:.86rem}
+  button:hover{border-color:var(--accent);color:var(--accent)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px}
+  .panel h2{font-size:.82rem;letter-spacing:.4px;text-transform:uppercase;color:var(--dim);margin:0 0 7px}
+  .layout{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .k{font-family:var(--mono);font-size:.74rem;color:var(--faint)}
+  .help{margin:0;padding:0;display:grid;gap:7px}
+  .cmd{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:7px 8px}
+  .cmd .title{font-size:.78rem;color:var(--accent);margin-bottom:4px}
+  pre{margin:0;background:#0b111f;border-radius:6px;padding:6px 7px;white-space:pre-wrap;font-family:var(--mono);font-size:.75rem;color:var(--dim)}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  #out{min-height:142px}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .badge{border-radius:999px;padding:2px 8px;font-size:.7rem;border:1px solid var(--line2);color:var(--dim)}
+  @media (max-width:860px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div id="app">
+    <h1><span class="k">Service</span> Troubleshoot Coach</h1>
+    <div class="subtitle">Pick a symptom, get the fastest kubectl sequence to verify and fix.</div>
+    <div id="toolbar"></div>
+    <div class="layout">
+      <div class="panel">
+        <h2>Scenario</h2>
+        <div class="badges">
+          <span class="badge">DNS</span>
+          <span class="badge">Endpoints</span>
+          <span class="badge">Traffic path</span>
+          <span class="badge">Readiness</span>
+        </div>
+        <ul id="symptomList" class="help"></ul>
+      </div>
+      <div class="panel">
+        <h2>What to run now</h2>
+        <div id="out" class="cmd"><span class="k">Select a scenario to see commands.</span></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const scenarios = [
+    {
+      title: '1) I get `no endpoints` style errors',
+      symptom: 'Service exists but traffic never reaches a Pod.',
+      commands: [
+        'kubectl get endpoints backend -o yaml',
+        'kubectl get svc backend -o jsonpath="{.spec.selector}"',
+        'kubectl get pods -l <selector-from-svc> -o wide',
+        'kubectl describe svc backend | sed -n "1,80p"',
+      ],
+      expected: 'Usually selector/label mismatch or Pod labels changed after rollout.',
+      className: 'warn',
+      next: 'Fix labels/selector pair, then recheck endpoints.'
+    },
+    {
+      title: '2) DNS from frontend works sometimes, not always',
+      symptom: 'Intermittent resolution or fallback to default domain behavior.',
+      commands: [
+        'kubectl exec <frontend-pod> -n fernwood -- cat /etc/resolv.conf',
+        'kubectl exec <frontend-pod> -n fernwood -- cat /etc/hosts',
+        'kubectl get service backend -n fernwood -o wide',
+        'kubectl get pod -n fernwood -o wide -l tier=backend',
+      ],
+      expected: 'If service is in another namespace, caller must use fully-qualified name.',
+      className: 'bad',
+      next: 'Use `backend` in same namespace, `backend.fernwood` across namespace.'
+    },
+    {
+      title: '3) Outside traffic works one hour then drops',
+      symptom: 'NodePort path works then clients see failures.',
+      commands: [
+        'kubectl get svc frontend -n fernwood',
+        'kubectl get pods -l tier=backend --show-labels',
+        'kubectl get pods -l tier=frontend -o wide',
+        'kubectl rollout status deployment/frontend -n fernwood',
+      ],
+      expected: 'One backend pod died/replaced; old connection attempts or stale endpoint assumptions can fail briefly.',
+      className: 'ok',
+      next: 'Confirm endpoint set after each rollout and check readiness gates.'
+    },
+    {
+      title: '4) All requests hit only one backend pod',
+      symptom: 'Throughput is lopsided and one Pod is overloaded.',
+      commands: [
+        'kubectl get endpoints backend -n fernwood -o wide',
+        'kubectl get pods -n fernwood -l tier=backend -o jsonpath="{range .items[*]}{.metadata.name}:{.status.phase}:{.status.conditions[?(@.type==\"Ready\")].status}{"\n"}{end}"',
+        'kubectl exec -n fernwood $(kubectl get pod -n fernwood -l tier=backend -o jsonpath="{.items[0].metadata.name}") -- wget -qO- http://backend:8080/health',
+        'kubectl -n fernwood logs <backend-pod> | tail -n 20',
+      ],
+      expected: 'Connections are connection-level; long-lived sessions can stay on one Pod.',
+      className: 'warn',
+      next: 'Prefer short-lived requests, scale horizontally and verify all endpoints are ready.'
+    },
+  ];
+
+  const toolbar = document.getElementById('toolbar');
+  const out = document.getElementById('out');
+  const symptomList = document.getElementById('symptomList');
+
+  function renderSummary(item){
+    const lines = item.commands.map(c => `<pre>${c}</pre>`).join('');
+    out.className = `cmd ${item.className || ''}`;
+    out.innerHTML = `<div class="title">${item.title}</div>` +
+      `<div class="k">Symptom: ${item.symptom}</div>` +
+      `<div style="margin:6px 0 4px;color:var(--dim)">Run:</div>` +
+      lines +
+      `<div style="margin-top:6px;color:var(--dim)">Expected: ${item.expected}</div>` +
+      `<div class="k" style="margin-top:5px">Next: ${item.next}</div>`;
+  }
+
+  function init(){
+    const buttons = scenarios.map((s, idx) => `<button data-i="${idx}" type="button">${s.title}</button>`).join('');
+    toolbar.innerHTML = buttons;
+    toolbar.addEventListener('click', e => {
+      if (e.target.tagName !== 'BUTTON') return;
+      const idx = Number(e.target.dataset.i);
+      renderSummary(scenarios[idx]);
+    });
+
+    const list = scenarios.map(s => `<li class="k">${s.symptom}</li>`).join('');
+    symptomList.innerHTML = `<div class="k">Top signals from your lab:</div><ol>${list}</ol>`;
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

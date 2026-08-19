@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" role="img" aria-label="Placeholder screenshot of Fernwood backend health response">
+  <defs>
+    <style>
+      .title { font: 34px Arial, sans-serif; fill: #17335f; font-weight: bold; }
+      .box { fill: #f7fbff; stroke: #5d86bf; stroke-width: 2; }
+      .txt { font: 20px monospace; fill: #1d3558; }
+      .meta { font: 18px Arial, sans-serif; fill: #333; }
+    </style>
+  </defs>
+  <rect width="1200" height="450" fill="#fff"/>
+  <text x="60" y="52" class="title">Backend Health Check Output</text>
+  <rect class="box" x="60" y="90" width="1080" height="300" />
+  <text x="90" y="140" class="txt">{</text>
+  <text x="120" y="178" class="txt">"db": "connected",</text>
+  <text x="120" y="216" class="txt">"hostname": "abcde123456",</text>
+  <text x="120" y="254" class="txt">"service": "backend",</text>
+  <text x="120" y="292" class="txt">"status": "ok"</text>
+  <text x="90" y="332" class="txt">}</text>
+  <text x="60" y="400" class="meta">Expected pattern from lab step 5</text>
+</svg>
