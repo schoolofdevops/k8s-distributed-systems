@@ -142,14 +142,14 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 2 &nbsp;·&nbsp; DISTRIBUTED SYSTEMS WITH DOCKER &amp; KUBERNETES</p>
   <h2 class="t" style="font-size:2.0em">One file stands up the whole app</h2>
   <p class="s" style="font-size:1.2em">M1: five commands by hand. M2: one file.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Five separate sticky-note commands on the left collapse into one bound book on the right; the same app, now written down once.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Five separate commands on the left collapse into one declared configuration on the right. The same app is started from a single source file.">
     <g filter="url(#rough)">
       <rect x="70" y="70" width="150" height="44" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="90" y="118" width="150" height="44" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="70" y="166" width="150" height="44" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="92" y="214" width="150" height="44" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
-    <text x="150" y="52" text-anchor="middle" class="lbl-sm">five commands, by hand</text>
+    <text x="150" y="52" text-anchor="middle" class="lbl-sm">five manual commands</text>
     <text x="150" y="98" text-anchor="middle" class="lbl-sm">docker network create…</text>
     <text x="165" y="146" text-anchor="middle" class="lbl-sm">docker run db…</text>
     <text x="150" y="194" text-anchor="middle" class="lbl-sm">docker run backend…</text>
@@ -157,13 +157,13 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <path d="M300,160 C400,160 470,160 560,160" marker-end="url(#ah)"/>
     </g>
-    <text x="430" y="140" text-anchor="middle" class="lbl-g">write it down</text>
+    <text x="430" y="140" text-anchor="middle" class="lbl-g">declare once, use everywhere</text>
     <g filter="url(#rough)">
       <rect x="640" y="90" width="330" height="150" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
       <path d="M805,90 L805,240"/>
     </g>
     <text x="805" y="70" text-anchor="middle" class="lbl-b">compose.yaml</text>
-    <text x="805" y="170" text-anchor="middle" class="lbl">one book, one command</text>
+    <text x="805" y="170" text-anchor="middle" class="lbl">compose.yaml</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M2·01</div>
@@ -227,17 +227,17 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M2·04</div>
 </section>
 
-<!-- DIVIDER · analogy -->
+<!-- DIVIDER · from actions to declaration -->
 <section class="divider">
-  <h2 class="t">The analogy: a prompt book, not shouting from the wings</h2>
+  <h2 class="t">From ad-hoc command execution to declared stacks</h2>
   <div class="pageno">M2·05</div>
 </section>
 
-<!-- S3 · prompt book -->
+<!-- S3 · declaration first -->
 <section>
-  <h2 class="t">The prompt book runs the show</h2>
-  <p class="s">One document lists every cast, prop and cue.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="In theatre, the stage manager runs every performance from one master prompt book that lists the cast, the props and the cues; the show repeats because it is written down.">
+  <h2 class="t">Stack behavior is defined in one file</h2>
+  <p class="s">Compose file defines services, startup sequence, and network bindings.</p>
+  <svg viewBox="0 0 1100 340" role="img" aria-label="Docker Compose uses one declarative file with service definitions, startup behavior, and port mapping. It is read by the runtime each time the stack starts.">
     <g filter="url(#rough)">
       <rect x="360" y="70" width="380" height="210" rx="14" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
       <path d="M550,70 L550,280"/>
@@ -245,30 +245,30 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="390" y="165" width="130" height="40" rx="6" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2"/>
       <rect x="390" y="220" width="130" height="40" rx="6" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2"/>
     </g>
-    <text x="550" y="52" text-anchor="middle" class="lbl-b">the prompt book</text>
-    <text x="455" y="137" text-anchor="middle" class="lbl-sm">cast</text>
-    <text x="455" y="192" text-anchor="middle" class="lbl-sm">props</text>
-    <text x="455" y="247" text-anchor="middle" class="lbl-sm">cues</text>
-    <text x="645" y="150" text-anchor="middle" class="lbl">who enters,</text>
-    <text x="645" y="185" text-anchor="middle" class="lbl">carrying what,</text>
-    <text x="645" y="220" text-anchor="middle" class="lbl">on which line</text>
-    <text x="550" y="315" text-anchor="middle" class="lbl-g" fill="#2e7d32">written down, so every night repeats</text>
+    <text x="550" y="52" text-anchor="middle" class="lbl-b">compose.yaml</text>
+    <text x="455" y="137" text-anchor="middle" class="lbl-sm">frontend</text>
+    <text x="455" y="192" text-anchor="middle" class="lbl-sm">backend</text>
+    <text x="455" y="247" text-anchor="middle" class="lbl-sm">database</text>
+    <text x="645" y="150" text-anchor="middle" class="lbl">service image,</text>
+    <text x="645" y="185" text-anchor="middle" class="lbl">ports,</text>
+    <text x="645" y="220" text-anchor="middle" class="lbl">depends_on</text>
+    <text x="550" y="315" text-anchor="middle" class="lbl-g" fill="#2e7d32">all settings are stored in one place</text>
   </svg>
   <div class="pageno">M2·06</div>
 </section>
 
-<!-- S4 · wings vs calling the show -->
+<!-- S4 · manual vs declarative -->
 <section>
-  <h2 class="t">Shouting from the wings vs calling the show</h2>
-  <p class="s">By hand every night vs one compose command.</p>
-  <svg viewBox="0 0 1100 350" role="img" aria-label="Left: you stand in the wings pushing each container on stage by hand in the order you hope is right. Right: one prompt book called with a single command brings the whole cast on.">
+  <h2 class="t">Manual startup vs declared startup</h2>
+  <p class="s">Manual commands each time vs one `docker compose up`.</p>
+  <svg viewBox="0 0 1100 350" role="img" aria-label="Left: each container is started with a separate command and manual order. Right: one docker compose up reads the same compose.yaml file and starts the full stack.">
     <g filter="url(#rough)">
       <rect x="50" y="70" width="470" height="250" rx="14" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-dasharray="9 7"/>
       <rect x="90" y="150" width="110" height="70" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="220" y="150" width="110" height="70" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
       <rect x="350" y="150" width="110" height="70" rx="8" fill="var(--p-orange)" stroke="#1e1e1e" stroke-width="2.2"/>
     </g>
-    <text x="285" y="58" text-anchor="middle" class="lbl-b">in the wings — by hand</text>
+    <text x="285" y="58" text-anchor="middle" class="lbl-b">manual per service</text>
     <text x="145" y="192" text-anchor="middle" class="lbl-sm">db</text>
     <text x="275" y="192" text-anchor="middle" class="lbl-sm">backend</text>
     <text x="405" y="192" text-anchor="middle" class="lbl-sm">frontend</text>
@@ -278,29 +278,29 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="560" y="70" width="490" height="250" rx="14" fill="var(--p-green)" stroke="#1e1e1e" stroke-width="2.8"/>
       <rect x="600" y="110" width="150" height="90" rx="10" fill="var(--paper)" stroke="#1e1e1e" stroke-width="2.4"/>
     </g>
-    <text x="805" y="58" text-anchor="middle" class="lbl-b">call the show</text>
-    <text x="675" y="160" text-anchor="middle" class="lbl-sm">prompt book</text>
+    <text x="805" y="58" text-anchor="middle" class="lbl-b">compose controller</text>
+    <text x="675" y="160" text-anchor="middle" class="lbl-sm">compose.yaml</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <path d="M755,155 L980,155" marker-end="url(#ah)"/>
     </g>
     <text x="875" y="135" text-anchor="middle" class="lbl-sm">docker compose up</text>
-    <text x="805" y="240" text-anchor="middle" class="lbl">whole cast on, one command</text>
+    <text x="805" y="240" text-anchor="middle" class="lbl">all services start from one file</text>
     <text x="805" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">the wiring is in the file, not your memory</text>
   </svg>
   <div class="pageno">M2·07</div>
 </section>
 
-<!-- S5 · wiring becomes a file -->
+<!-- S5 · file as source of truth -->
 <section>
-  <h2 class="t">The wiring becomes a file, not a ritual</h2>
-  <p class="s">You keep it and review it, not re-perform it.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="The wiring moves out of scrollback and memory, which get crossed out, and into a compose file kept in version control that can be read, reviewed in a pull request and diffed.">
+  <h2 class="t">Execution comes from versioned source</h2>
+  <p class="s">Compose behavior is reviewed and changed through source control.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The runtime steps move from terminal scrollback and memory into compose.yaml in version control. Team members can review the file in PRs and run the same result on any environment.">
     <g filter="url(#rough)">
       <rect x="70" y="90" width="330" height="150" rx="12" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="9 7"/>
     </g>
-    <text x="235" y="78" text-anchor="middle" class="lbl-b">scrollback + memory</text>
-    <text x="235" y="150" text-anchor="middle" class="lbl-sm">a ritual you re-perform</text>
-    <text x="235" y="185" text-anchor="middle" class="lbl-sm">every time, from scratch</text>
+    <text x="235" y="78" text-anchor="middle" class="lbl-b">manual steps</text>
+    <text x="235" y="150" text-anchor="middle" class="lbl-sm">not repeatable by memory</text>
+    <text x="235" y="185" text-anchor="middle" class="lbl-sm">hard to review and audit</text>
     <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="3" stroke-linecap="round">
       <path d="M95,110 L385,225"/>
     </g>
@@ -520,23 +520,23 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- S12 · compose is two things -->
 <section>
-  <h2 class="t">Compose is two things</h2>
-  <p class="s">The prompt book, and the tool that calls it.</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Two things share the name Compose: a file format, compose.yaml, that describes the services, networks and volumes; and a command-line tool, docker compose, whose up, down, ps and logs operate on the whole stack.">
+  <h2 class="t">Compose is model + runtime</h2>
+  <p class="s">`compose.yaml` defines the stack. `docker compose` applies it.</p>
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Docker Compose has two parts: the compose.yaml file that defines services, networks, volumes, and dependencies, and the docker compose CLI command that executes those definitions with up, down, ps, and logs.">
     <g filter="url(#rough)">
       <rect x="70" y="90" width="420" height="170" rx="12" fill="var(--p-blue)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
     <text x="280" y="78" text-anchor="middle" class="lbl-b">a file — compose.yaml</text>
     <text x="280" y="140" text-anchor="middle" class="lbl-sm">services · networks · volumes</text>
     <text x="280" y="178" text-anchor="middle" class="lbl-sm">a declarative description</text>
-    <text x="280" y="228" text-anchor="middle" class="lbl-g">the prompt book</text>
+    <text x="280" y="228" text-anchor="middle" class="lbl-g">source of truth</text>
     <g filter="url(#rough)">
       <rect x="610" y="90" width="420" height="170" rx="12" fill="var(--p-purple)" stroke="#1e1e1e" stroke-width="3"/>
     </g>
     <text x="820" y="78" text-anchor="middle" class="lbl-b">a command — docker compose</text>
     <text x="820" y="140" text-anchor="middle" class="lbl-sm">up · down · ps · logs · exec</text>
     <text x="820" y="178" text-anchor="middle" class="lbl-sm">makes reality match the file</text>
-    <text x="820" y="228" text-anchor="middle" class="lbl-g">calls the show</text>
+    <text x="820" y="228" text-anchor="middle" class="lbl-g">runtime control plane</text>
   </svg>
   <div class="pageno">M2·18</div>
 </section>
